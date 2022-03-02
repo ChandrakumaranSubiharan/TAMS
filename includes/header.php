@@ -107,64 +107,60 @@
                     </nav>
                 </div>
                 <div id="travelo-signup" class="travelo-signup-box travelo-box">
-                    <div class="simple-signup">
-                        <div class="text-center signup-email-section">
-                            <a href="#" class="signup-email"><i class="soap-icon-letter"></i>Sign up with Email</a>
-                        </div>
-                        <p class="description">By signing up, I agree to Travelo's Terms of Service, Privacy Policy, Guest Refund olicy, and Host Guarantee Terms.</p>
+                    <div class="simple-sign">
+                            <a href="#" >SIGN UP</a>
                     </div>
                     <div>
                         <form>
                             <div class="form-group">
-                                <input type="text" class="input-text full-width" placeholder="first name">
+                            <label for="first name">First Name</label>
+                                <input type="text" class="input-text full-width" placeholder="Enter Your First Name">
                             </div>
                             <div class="form-group">
-                                <input type="text" class="input-text full-width" placeholder="last name">
+                            <label for="first name">Last Name</label>
+                                <input type="text" class="input-text full-width" placeholder="Enter Your Last Name">
                             </div>
                             <div class="form-group">
-                                <input type="text" class="input-text full-width" placeholder="email address">
+                            <label for="first name">Email Address</label>
+                                <input type="text" class="input-text full-width" placeholder="Enter Your Email Address">
                             </div>
                             <div class="form-group">
-                                <input type="password" class="input-text full-width" placeholder="password">
-                            </div>
-                            <div class="form-group">
-                                <input type="password" class="input-text full-width" placeholder="confirm password">
+                            <label for="first name">Password</label>
+                                <input type="password" class="input-text full-width" placeholder="Enter New Password">
                             </div>
                             <div class="form-group">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox"> Tell me about Travelo news
+                                        <input type="checkbox"> I accept <a href="#travelo-login" class="goto-login soap-popupbox">Terms and Conditions</a>
                                     </label>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <p class="description">By signing up, I agree to Travelo's Terms of Service, Privacy Policy, Guest Refund Policy, and Host Guarantee Terms.</p>
                             </div>
                             <button type="submit" class="full-width btn-medium">SIGNUP</button>
                         </form>
                     </div>
                     <div class="seperator"></div>
-                    <p>Already a Travelo member? <a href="#travelo-login" class="goto-login soap-popupbox">Login</a></p>
+                    <p>Have an Account? <a href="#travelo-login" class="goto-login soap-popupbox">Login</a></p>
                 </div>
                 <div id="travelo-login" class="travelo-login-box travelo-box">
+                    <div class="simple-sign">
+                            <a href="#" >LOGIN</a>
+                    </div>
                     <form>
                         <div class="form-group">
-                            <input type="text" class="input-text full-width" placeholder="email address">
+                            <label for="email">email address</label>
+                            <input type="text" class="input-text full-width" placeholder="Enter your Email">
                         </div>
                         <div class="form-group">
-                            <input type="password" class="input-text full-width" placeholder="password">
+                            <label for="password">password</label>
+
+                            <input type="password" class="input-text full-width" placeholder="Enter your Password">
                         </div>
-                        <div class="form-group">
-                            <a href="#" class="forgot-password pull-right">Forgot password?</a>
-                            <div class="checkbox checkbox-inline">
-                                <label>
-                                    <input type="checkbox"> Remember me
-                                </label>
-                            </div>
-                        </div>
+
+                        <button type="submit" class="full-width btn-medium form-btn-custom">LOG IN</button>
+
                     </form>
                     <div class="seperator"></div>
-                    <p>Don't have an account? <a href="#travelo-signup" class="goto-signup soap-popupbox">Sign up</a></p>
+                    <p>Don't have an account? <a href="#travelo-signup" class="goto-signup soap-popupbox"> Sign up</a></p>
                 </div>
             </header>
     </body>
