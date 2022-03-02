@@ -225,76 +225,181 @@
 
 
 
-    <div class="card-container">
-        <div class="title">Explore HappyHolidayss</div>
-    <div class="row">
-        <div class="col-md-5">
-        <article class="card shadow">
+            <!-- Travel Services Category Cards -->
 
-        </article>
+            <div class="services-conter container">
+                <div class="row">
+                <div class="container-title">Explore HappyHolidayss</div>
+                    <a href="http://google.com" target="_blank">
+                        <div class="col-md-4 col-sm-6">
+                            <div class="service-card-single">
+                                <img src="assets/images/services card images/7b8f9425-f5e7-4c9e-9d6d-b39fa2f6e651.png" alt="">
+                                <h5 class="title">Homes</h5>
+                            </div>
+                        </div>
+                    </a>
 
-        </div>
-        <div class="col-md-5">
-        <article class="card shadow">
-
-        </article>
-        </div>
-    </div>
-    </div>
-
-
-
-    <!-- Travel Services Container Card -->
-
-
-            <!-- <div class="card-container">
-    <article class="card shadow">
-      <div>
-        <img src="https://images.unsplash.com/photo-1540317700647-ec69694d70d0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80" alt="image">
-      </div>
-
-      <div>
-        <p><strong>Lorem ipsum dolor sit dolor sit amet, conse ctetur adipis icing elit...</strong></p>
-        <span>
-          <i class="fab fa-instagram"></i>
-           Instagram - <time>10 min ago</time>
-         </span>
-      </div>
-    </article>
-    
-     
-    <article class="card border">
-      <div>
-        <img src="https://images.unsplash.com/photo-1509070016581-915335454d19?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80" alt="image">
-      </div>
-
-      <div>
-        <p><strong>Lorem ipsum dolor sit dolor sit amet, conse ctetur adipis icing elit...</strong></p>
-        <span>
-          <i class="fab fa-facebook"></i>
-           Facebook - <time>16 min ago</time>
-         </span>
-      </div>
-    </article>
-  </div> -->
+                    <a href="http://google.com" target="_blank">
+                        <div class="col-md-4 col-sm-6">
+                            <div class="service-card-single">
+                                <img src="assets/images/services card images/mantas-hesthaven-_g1WdcKcV3w-unsplash.jpg" alt="">
+                                <h5 class="title">Tour Packages</h5>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
 
 
+                        
+            <!-- Tour Packages Cards -->
 
+            <div class="container">
+                <div class="Services-list">
+                    <h3>Tour Package List</h3>
 
-  
+            <!-- card-01 -->
+
+                        <div class="service-info-crd">
+                            <div class="col-md-3 service-info-left">
+                                <img src="assets/images/services card images/pkg01.png" class="img-responsive" alt="">
+                            </div>
+                            <div class="col-md-5 service-info-midle">
+                                <h3>Weekend Island Break with Galle </h3>
+                                <ul>
+                                    <li><i class="service-info-type-icon"></i><p>Sightseeing Tour</p></li>
+                                    <li><i class="service-info-location-icon"></i><p>Sri Lanka, Galle</p></li>
+                                    <li><i class="service-info-duration-icon"></i><p>4 Days & 3 Nights</p></li>
+                                </ul>
+                            </div>
+                            <div class="col-md-3 service-info-right">
+                                <h5>LKR 25000</h5>
+                                <p>per Adult</p>
+                                <a href="#>" class="view">Details</a>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+
+            <!-- card-02 -->
+
+                        <div class="service-info-crd">
+                            <div class="col-md-3 service-info-left">
+                                <img src="assets/images/services card images/pkg02.png" class="img-responsive" alt="">
+                            </div>
+                            <div class="col-md-5 service-info-midle">
+                                <h3>Scintillating Tropical Tour to South</h3>
+                                <ul>
+                                    <li><i class="service-info-type-icon"></i><p>Sea Coast Tour</p></li>
+                                    <li><i class="service-info-location-icon"></i><p>Sri Lanka, South Coast</p></li>
+                                    <li><i class="service-info-duration-icon"></i><p>7 Days & 6 Nights</p></li>
+                                </ul>
+                            </div>
+                            <div class="col-md-3 service-info-right">
+                                <h5>LKR 60000</h5>
+                                <p>per Adult</p>
+                                <a href="#>" class="view">Details</a>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+
+            <!-- card-03 -->
+
+                        <div class="service-info-crd">
+                            <div class="col-md-3 service-info-left">
+                                <img src="assets/images/services card images/pkg03.png" class="img-responsive" alt="">
+                            </div>
+                            <div class="col-md-5 service-info-midle">
+                                <h3>Delightful Tour to Hill Country</h3>
+                                <ul>
+                                    <li><i class="service-info-type-icon"></i><p>Hill Country Tour</p></li>
+                                    <li><i class="service-info-location-icon"></i><p>Sri Lanka, Central</p></li>
+                                    <li><i class="service-info-duration-icon"></i><p>5 Days & 4 Nights</p></li>
+                                </ul>
+                            </div>
+                            <div class="col-md-3 service-info-right">
+                                <h5>LKR 40000</h5>
+                                <p>per Adult</p>
+                                <a href="#>" class="view">Details</a>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    <div><a href="#" class="view">View More Packages</a></div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+
+                        
+            <!-- Tour Packages Cards -->
+
+            <div class="container">
+                <div class="Services-list">
+                    <h3>Homes List</h3>
+
+            <!-- card-01 -->
+
+                        <div class="service-info-crd">
+                            <div class="col-md-3 service-info-left">
+                                <img src="assets/images/services card images/hom01.png" class="img-responsive" alt="">
+                            </div>
+                            <div class="col-md-5 service-info-midle">
+                                <h3>Madulkelle Tea and Eco Lodge</h3>
+                                <ul>
+                                    <li><i class="service-info-type-icon"></i><p>Eco Lodge</p></li>
+                                    <li><i class="service-info-location-icon"></i><p>Kandy</p></li>
+                                    <li><i class="service-info-rating-icon"></i><p>5.0</p></li>
+                                </ul>
+                            </div>
+                            <div class="col-md-3 service-info-right">
+                                <h5>LKR 25000</h5>
+                                <h4>01 Adult | 01 Day</h4>
+                                <a href="#>" class="view">Details</a>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    <div><a href="#" class="view">View More Homes</a></div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+                
+
+            <!-- features card -->
+
+            <div class="container"> 
+                <div class="col-md-3 features-card">
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                    <div class="info">
+                        <h3>1000+</h3>
+                        <h3>Customers</h3>
+                    </div>
+                </div>
+
+                <div class="col-md-3 features-card">
+                    <i class="fa fa-bar-chart" aria-hidden="true"></i>
+                    <div class="info">
+                        <h3>1000+</h3>
+                        <h3>Bookings</h3>
+                    </div>
+                </div>
+
+                <div class="col-md-3 features-card">
+                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                    <div class="info">
+                        <h3>1000+</h3>
+                        <h3>Enquiries</h3>
+                    </div>
+                </div>
+
+                <div class="col-md-3 features-card">
+                    <i class="fa fa-users" aria-hidden="true"></i>
+                    <div class="info">
+                        <h3>1000+</h3>
+                        <h3>Partners</h3>
+                    </div>
+                </div>
+
+            </div>
+
 </section>
-
-
-
-
-
-
-
-
-
-
-
-
 
     <?php include('includes/jsscripts.php');?>
     <?php include('includes/footer.php');?>
