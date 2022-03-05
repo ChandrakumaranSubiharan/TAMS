@@ -1548,7 +1548,7 @@ img.full-width {
 }
 
 .global-map-area {
-  background: url("../images/slider/02.png") no-repeat;
+  background: url("../images/slider/06.jpg") no-repeat;
 }
 
 .global-map-area2 {
@@ -8307,7 +8307,7 @@ ul.check-circle li:before {
 }
 
 .search-box {
-  margin-top: -80px;
+  margin-top: -260px;
   position: relative;
   z-index: 99;
 }

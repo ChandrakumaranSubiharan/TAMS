@@ -419,7 +419,7 @@
         </div>
 
 
-        <div class="global-map-area3 section parallax" data-stellar-background-ratio="0.5">
+        <!-- <div class="global-map-area3 section parallax" data-stellar-background-ratio="0.5">
         <div class="container description">
             <h1 class="text-center box">Why HappyHolidayss</h1>
             <div class="row">
@@ -449,7 +449,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
 
     <div class="container">
