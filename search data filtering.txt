@@ -1,0 +1,3 @@
+https://www.phpzag.com/product-filter-search-with-ajax-php-mysql/
+
+https://www.codexworld.com/ajax-pagination-with-search-filter-php/

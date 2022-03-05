@@ -6,7 +6,6 @@
     <?php include('includes/header.php');?>
 
 
-
     <!-- slideshow -->
     <div id="slideshow">
             <div class="fullwidthbanner-container">
@@ -230,7 +229,7 @@
             <div class="services-conter container">
                 <div class="row">
                 <div class="container-title">Explore HappyHolidayss</div>
-                    <a href="http://google.com" target="_blank">
+                    <a href="homes-search-list.php" target="_blank">
                         <div class="col-md-4 col-sm-6">
                             <div class="service-card-single">
                                 <img src="assets/images/services card images/7b8f9425-f5e7-4c9e-9d6d-b39fa2f6e651.png" alt="">
@@ -239,7 +238,7 @@
                         </div>
                     </a>
 
-                    <a href="http://google.com" target="_blank">
+                    <a href="tours-search-list.php" target="_blank">
                         <div class="col-md-4 col-sm-6">
                             <div class="service-card-single">
                                 <img src="assets/images/services card images/mantas-hesthaven-_g1WdcKcV3w-unsplash.jpg" alt="">
@@ -251,14 +250,386 @@
             </div>
 
 
-                        
+            <div class="container">
+            <h2>Popular Homes</h2>
+            <div class="row image-box hotel listing-style1">
+                <div class="col-sms-6 col-sm-6 col-md-3">
+                    <article class="box">
+                        <figure class="animated" data-animation-type="fadeInDown" data-animation-delay="0">
+                            <a title=""><img width="270" height="160" src="http://placehold.it/270x160" alt=""></a>
+                        </figure>
+                        <div class="details">
+                            <span class="price">
+                                <small>avg/night</small>
+                                $360
+                            </span>
+                            <h4 class="box-title">Hotel Hilton<small>Paris france</small></h4>
+                            <div class="feedback">
+                                <div title="4 stars" class="five-stars-container" data-toggle="tooltip" data-placement="bottom"><span class="five-stars" style="width: 80%;"></span></div>
+                                <span class="review">270 reviews</span>
+                            </div>
+                            <p class="description">Nunc cursus libero purus ac congue arcu cursus ut sed vitae pulvinar massa idporta nequetiam.</p>
+                            <div class="action">
+                                <a href="hotel-detailed.html" class="button btn-small">SELECT</a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-sms-6 col-sm-6 col-md-3">
+                    <article class="box">
+                        <figure class="animated" data-animation-type="fadeInDown" data-animation-delay="0.6">
+                            <a title=""><img width="270" height="160" src="http://placehold.it/270x160" alt=""></a>
+                        </figure>
+                        <div class="details">
+                            <span class="price"><small>avg/night</small>$188</span>
+                            <h4 class="box-title">Forte Do Vale<small>Albufeira</small></h4>
+                            <div class="feedback">
+                                <div title="4 stars" class="five-stars-container" data-toggle="tooltip" data-placement="bottom"><span class="five-stars" style="width: 80%;"></span></div>
+                                <span class="review">170 reviews</span>
+                            </div>
+                            <p class="description">Nunc cursus libero purus ac congue arcu cursus ut sed vitae pulvinar massa idporta nequetiam.</p>
+                            <div class="action">
+                                <a href="hotel-detailed.html" class="button btn-small">SELECT</a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-sms-6 col-sm-6 col-md-3">
+                    <article class="box">
+                        <figure class="animated" data-animation-type="fadeInDown" data-animation-delay="0.9">
+                            <a title=""><img width="270" height="160" src="http://placehold.it/270x160" alt=""></a>
+                        </figure>
+                        <div class="details">
+                            <span class="price"><small>avg/night</small>$322</span>
+                            <h4 class="box-title">Gran Canaria<small>spain</small></h4>
+                            <div class="feedback">
+                                <div title="4 stars" class="five-stars-container" data-toggle="tooltip" data-placement="bottom"><span class="five-stars" style="width: 80%;"></span></div>
+                                <span class="review">485 reviews</span>
+                            </div>
+                            <p class="description">Nunc cursus libero purus ac congue arcu cursus ut sed vitae pulvinar massa idporta nequetiam.</p>
+                            <div class="action">
+                                <a href="hotel-detailed.html" class="button btn-small">SELECT</a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-sms-6 col-sm-6 col-md-3">
+                    <article class="box">
+                        <figure class="animated" data-animation-type="fadeInDown" data-animation-delay="1.2">
+                            <a title=""><img width="270" height="160" src="http://placehold.it/270x160" alt=""></a>
+                        </figure>
+                        <div class="details">
+                            <span class="price"><small>avg/night</small>$170</span>
+                            <h4 class="box-title">Roosevelt Hotel<small>New york</small></h4>
+                            <div class="feedback">
+                                <div title="4 stars" class="five-stars-container" data-toggle="tooltip" data-placement="bottom"><span class="five-stars" style="width: 80%;"></span></div>
+                                <span class="review">75 reviews</span>
+                            </div>
+                            <p class="description">Nunc cursus libero purus ac congue arcu cursus ut sed vitae pulvinar massa idporta nequetiam.</p>
+                            <div class="action">
+                                <a href="hotel-detailed.html" class="button btn-small">SELECT</a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+
+            <h2>Popular Tours</h2>
+            <div class="row image-box hotel listing-style1">
+                <div class="col-sms-6 col-sm-6 col-md-3">
+                    <article class="box">
+                        <figure class="animated" data-animation-type="fadeInDown" data-animation-delay="0">
+                            <a title=""><img width="270" height="160" src="http://placehold.it/270x160" alt=""></a>
+                        </figure>
+                        <div class="details">
+                            <span class="price">
+                                <small>avg/night</small>
+                                $360
+                            </span>
+                            <h4 class="box-title">Hotel Hilton<small>Paris france</small></h4>
+                            <div class="feedback">
+                                <div title="4 stars" class="five-stars-container" data-toggle="tooltip" data-placement="bottom"><span class="five-stars" style="width: 80%;"></span></div>
+                                <span class="review">270 reviews</span>
+                            </div>
+                            <p class="description">Nunc cursus libero purus ac congue arcu cursus ut sed vitae pulvinar massa idporta nequetiam.</p>
+                            <div class="action">
+                                <a href="hotel-detailed.html" class="button btn-small">SELECT</a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-sms-6 col-sm-6 col-md-3">
+                    <article class="box">
+                        <figure class="animated" data-animation-type="fadeInDown" data-animation-delay="0.6">
+                            <a title=""><img width="270" height="160" src="http://placehold.it/270x160" alt=""></a>
+                        </figure>
+                        <div class="details">
+                            <span class="price"><small>avg/night</small>$188</span>
+                            <h4 class="box-title">Forte Do Vale<small>Albufeira</small></h4>
+                            <div class="feedback">
+                                <div title="4 stars" class="five-stars-container" data-toggle="tooltip" data-placement="bottom"><span class="five-stars" style="width: 80%;"></span></div>
+                                <span class="review">170 reviews</span>
+                            </div>
+                            <p class="description">Nunc cursus libero purus ac congue arcu cursus ut sed vitae pulvinar massa idporta nequetiam.</p>
+                            <div class="action">
+                                <a href="hotel-detailed.html" class="button btn-small">SELECT</a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-sms-6 col-sm-6 col-md-3">
+                    <article class="box">
+                        <figure class="animated" data-animation-type="fadeInDown" data-animation-delay="0.9">
+                            <a title=""><img width="270" height="160" src="http://placehold.it/270x160" alt=""></a>
+                        </figure>
+                        <div class="details">
+                            <span class="price"><small>avg/night</small>$322</span>
+                            <h4 class="box-title">Gran Canaria<small>spain</small></h4>
+                            <div class="feedback">
+                                <div title="4 stars" class="five-stars-container" data-toggle="tooltip" data-placement="bottom"><span class="five-stars" style="width: 80%;"></span></div>
+                                <span class="review">485 reviews</span>
+                            </div>
+                            <p class="description">Nunc cursus libero purus ac congue arcu cursus ut sed vitae pulvinar massa idporta nequetiam.</p>
+                            <div class="action">
+                                <a href="hotel-detailed.html" class="button btn-small">SELECT</a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-sms-6 col-sm-6 col-md-3">
+                    <article class="box">
+                        <figure class="animated" data-animation-type="fadeInDown" data-animation-delay="1.2">
+                            <a title=""><img width="270" height="160" src="http://placehold.it/270x160" alt=""></a>
+                        </figure>
+                        <div class="details">
+                            <span class="price"><small>avg/night</small>$170</span>
+                            <h4 class="box-title">Roosevelt Hotel<small>New york</small></h4>
+                            <div class="feedback">
+                                <div title="4 stars" class="five-stars-container" data-toggle="tooltip" data-placement="bottom"><span class="five-stars" style="width: 80%;"></span></div>
+                                <span class="review">75 reviews</span>
+                            </div>
+                            <p class="description">Nunc cursus libero purus ac congue arcu cursus ut sed vitae pulvinar massa idporta nequetiam.</p>
+                            <div class="action">
+                                <a href="hotel-detailed.html" class="button btn-small">SELECT</a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="global-map-area3 section parallax" data-stellar-background-ratio="0.5">
+        <div class="container description">
+            <h1 class="text-center box">Why HappyHolidayss</h1>
+            <div class="row">
+                <div class="col-xs-6 col-sm-3">
+                    <div class="icon-box style8 animated" data-animation-type="slideInUp" data-animation-delay="0">
+                        <i class="soap-icon-address"></i>
+                        <h4 class="box-title">1,000+ Homes</h4>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-sm-3">
+                    <div class="icon-box style8 animated" data-animation-type="slideInUp" data-animation-delay="0.6">
+                        <i class="soap-icon-insurance"></i>
+                        <h4 class="box-title">Low Rates &amp; Top Savings</h4>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-sm-3">
+                    <div class="icon-box style8 animated" data-animation-type="slideInUp" data-animation-delay="0.9">
+                        <i class="soap-icon-adventure"></i>
+                        <h4 class="box-title">500+ Tour Packages</h4>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-sm-3">
+                    <div class="icon-box style8 animated" data-animation-type="slideInUp" data-animation-delay="1.2">
+                        <i class="soap-icon-support"></i>
+                        <h4 class="box-title">We Speak your Language</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container">
+        <div class="section">
+            <h2>Featured Destinations</h2>
+            <div class="flexslider image-carousel style2 row-2" data-animation="slide" data-item-width="370" data-item-margin="30">
+                <ul class="slides image-box style11">
+                    <li>
+                        <article class="box">
+                            <figure>
+                                <a title="" href="#"><img width="370" height="160" alt="" src="assets/images/districs/kandy.png"></a>
+                                <figcaption>
+                                    <h3 class="caption-title">Kandy</h3>
+                                    <span>Kandy Homes</span>
+                                </figcaption>
+                            </figure>
+                        </article>
+                        <article class="box">
+                            <figure>
+                                <a title="" href="#"><img width="370" height="160" alt="" src="assets/images/districs/colombo.png"></a>
+                                <figcaption>
+                                    <h3 class="caption-title">Colombo</h3>
+                                    <span>Colombo Homes</span>
+                                </figcaption>
+                            </figure>
+                        </article>
+                    </li>
+                    <li>
+                        <article class="box">
+                            <figure>
+                                <a title="" href="#"><img width="370" height="160" alt="" src="assets/images/districs/jaffna.png"></a>
+                                <figcaption>
+                                    <h3 class="caption-title">Jaffna</h3>
+                                    <span>Jaffna Homes</span>
+                                </figcaption>
+                            </figure>
+                        </article>
+                        <article class="box">
+                            <figure>
+                                <a title="" href="#"><img width="370" height="160" alt="" src="assets/images/districs/galle.png"></a>
+                                <figcaption>
+                                    <h3 class="caption-title">Galle</h3>
+                                    <span>Galle Homes</span>
+                                </figcaption>
+                            </figure>
+                        </article>
+                    </li>
+                    <li>
+                        <article class="box">
+                            <figure>
+                                <a title="" href="#"><img width="370" height="160" alt="" src="assets/images/districs/trinco.png"></a>
+                                <figcaption>
+                                    <h3 class="caption-title">Trincomalee</h3>
+                                    <span>Trincomalee Homes</span>
+                                </figcaption>
+                            </figure>
+                        </article>
+                        <article class="box">
+                            <figure>
+                                <a title="" href="#"><img width="370" height="160" alt="" src="assets/images/districs/badulla.png"></a>
+                                <figcaption>
+                                    <h3 class="caption-title">Badulla</h3>
+                                    <span>Badulla Homes</span>
+                                </figcaption>
+                            </figure>
+                        </article>
+                    </li>
+                    <li>
+                        <article class="box">
+                            <figure>
+                                <a title="" href="#"><img width="370" height="160" alt="" src="assets/images/districs/nuwaraliya.png"></a>
+                                <figcaption>
+                                    <h3 class="caption-title">nuwara eliya</h3>
+                                    <span>Nuwara eliya Homes</span>
+                                </figcaption>
+                            </figure>
+                        </article>
+                        <article class="box">
+                            <figure>
+                                <a title="" href="#"><img width="370" height="160" alt="" src="assets/images/districs/anuradhapura.png"></a>
+                                <figcaption>
+                                    <h3 class="caption-title">Anuradhapura</h3>
+                                    <span>Anuradhapura Homes</span>
+                                </figcaption>
+                            </figure>
+                        </article>
+                    </li>
+                </ul>
+            </div>
+            
+        </div>
+    </div>
+
+
+
+    <div class="global-map-area2 promo-box no-margin parallax" data-stellar-background-ratio="0.5">
+        <div class="container">
+            <div class="content-section description pull-right col-sm-9">
+                <div class="table-wrapper hidden-table-sm">
+                    <div class="table-cell">
+                        <h2 class="m-title animated" data-animation-type="fadeInDown" data-animation-duration="1.5">
+                            Tell us where you would like to go.<br /><em>1,000+ Cabins and Resorts Available!</em>
+                        </h2>
+                    </div>
+                    <div class="table-cell action-section col-md-4 no-float">
+                        <form method="post" action="hotel-list-view.html">
+                            <div class="row">
+                                <div class="col-xs-6 col-md-12">
+                                    <button class="full-width btn-large">View Homestays</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="image-container col-sm-4">
+                <img src="assets/images/services card images/hom01.png" alt="" width="342" height="258" class="animated" data-animation-type="fadeInUp" />
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="container section">
+        <h2>Our Investors Relations</h2>
+        <div class="investor-slideshow image-carousel style2 investor-list" data-animation="slide" data-item-width="170" data-item-margin="30">
+            <ul class="slides">
+                <li>
+                    <div class="travelo-box">
+                        <a href="#"><img src="assets/images/partners/01.png" alt=""></a>
+                    </div>
+                </li>
+                <li>
+                    <div class="travelo-box">
+                        <a href="#"><img src="assets/images/partners/02.png" alt=""></a>
+                    </div>
+                </li>
+                <li>
+                    <div class="travelo-box">
+                        <a href="#"><img src="assets/images/partners/03.png" alt=""></a>
+                    </div>
+                </li>
+                <li>
+                    <div class="travelo-box">
+                        <a href="#"><img src="assets/images/partners/04.png" alt=""></a>
+                    </div>
+                </li>
+                <li>
+                    <div class="travelo-box">
+                        <a href="#"><img src="assets/images/partners/05.png" alt=""></a>
+                    </div>
+                </li>
+                <li>
+                    <div class="travelo-box">
+                        <a href="#"><img src="assets/images/partners/06.png" alt=""></a>
+                    </div>
+                </li>
+                <li>
+                    <div class="travelo-box">
+                        <a href="#"><img src="assets/images/partners/07.png" alt=""></a>
+                    </div>
+                </li>
+                <li>
+                    <div class="travelo-box">
+                        <a href="#"><img src="assets/images/partners/08.png" alt=""></a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+
+
             <!-- Tour Packages Cards -->
 
-            <div class="container">
+            <!-- <div class="container">
                 <div class="Services-list">
                     <h3>Tour Package List</h3>
 
-            <!-- card-01 -->
 
                         <div class="service-info-crd">
                             <div class="col-md-3 service-info-left">
@@ -280,7 +651,6 @@
                             <div class="clearfix"></div>
                         </div>
 
-            <!-- card-02 -->
 
                         <div class="service-info-crd">
                             <div class="col-md-3 service-info-left">
@@ -302,7 +672,6 @@
                             <div class="clearfix"></div>
                         </div>
 
-            <!-- card-03 -->
 
                         <div class="service-info-crd">
                             <div class="col-md-3 service-info-left">
@@ -326,16 +695,15 @@
                     <div><a href="#" class="view">View More Packages</a></div>
                 </div>
                 <div class="clearfix"></div>
-            </div>
+            </div> -->
 
                         
             <!-- Tour Packages Cards -->
 
-            <div class="container">
+            <!-- <div class="container">
                 <div class="Services-list">
                     <h3>Homes List</h3>
 
-            <!-- card-01 -->
 
                         <div class="service-info-crd">
                             <div class="col-md-3 service-info-left">
@@ -359,11 +727,11 @@
                     <div><a href="#" class="view">View More Homes</a></div>
                 </div>
                 <div class="clearfix"></div>
-            </div>
+            </div> -->
                 
 
             <!-- features card -->
-
+<!-- 
             <div class="container"> 
                 <div class="col-md-3 features-card">
                     <i class="fa fa-user" aria-hidden="true"></i>
@@ -397,7 +765,7 @@
                     </div>
                 </div>
 
-            </div>
+            </div> -->
 
 </section>
 

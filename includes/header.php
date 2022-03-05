@@ -37,7 +37,7 @@
                         <ul class="quick-menu pull-right">
                             <li><a href="#travelo-login" class="soap-popupbox">LOGIN</a></li>
                             <li><a href="#travelo-signup" class="soap-popupbox">SIGNUP</a></li>
-                            <li><a href="#travelo-signup" class="#">Become a Partner</a></li>
+                            <li><a href="become-partner.php" class="#">Become a Partner</a></li>
                         </ul>
                         <ul class="quick-menu pull-left">
                             <li><a href="#travelo-login" class="soap-popupbox">Phone: +(094) 125-4985-214</a></li>
@@ -65,16 +65,16 @@
                                     <a href="index.php">Home</a>
                                 </li>
                                 <li class="menu-item-has-children">
-                                    <a href="hotel-index.html">Tours</a>
+                                    <a href="listed-tours.php">Tours</a>
                                 </li>
                                 <li class="menu-item-has-children">
-                                    <a href="car-index.html">Stays</a>
+                                    <a href="listed-homes.php">Stays</a>
                                 </li>
                                 <li class="menu-item-has-children">
-                                    <a href="cruise-index.html">About Us</a>
+                                    <a href="about-us.php">About Us</a>
                                 </li>
                                 <li class="menu-item-has-children megamenu-menu">
-                                    <a href="#">Contact Us</a>
+                                    <a href="contact-us.php">Contact Us</a>
                                 </li>
                             </ul>
                         </nav>
