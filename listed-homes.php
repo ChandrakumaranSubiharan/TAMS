@@ -131,12 +131,12 @@
            
                             <article class="service-info-crd box">
                                 <figure class="col-sm-5 col-md-4">
-                                    <a title="" class="popup-gallery"><img width="270" height="160" alt="" src="assets/images/stays/The Riverfront TinyRoom Private Garden Terrace.png"></a>
+                                    <a title="" class="popup-gallery"><img width="270" height="160" alt="" src="assets/images/services card images/hom01.png"></a>
                                 </figure>
                                 <div class="details col-sm-7 col-md-8">
                                     <div>
                                         <div>
-                                            <h4 class="box-title">Hotel Hilton and Resorts<small><i class="soap-icon-departure yellow-color"></i> Bastille, Paris france</small></h4>
+                                            <h4 class="box-title">Madulkelle Tea and Eco Lodge<small><i class="soap-icon-departure yellow-color"></i> Kandy, Sri Lanka</small></h4>
                                             <div class="amenities">
                                                 <i class="soap-icon-wifi circle"></i>
                                                 <i class="soap-icon-fitnessfacility circle"></i>
@@ -148,14 +148,14 @@
                                             <div class="five-stars-container">
                                                 <span class="five-stars" style="width: 80%;"></span>
                                             </div>
-                                            <!-- <span class="review">270 reviews</span> -->
+                                            <span class="review">Eco Lodge</span>
                                         </div>
                                     </div>
                                     <div>
                                         <p>Located amid rolling green hills and the Madulkelle Tea Estate, this property offers tents with a terrace, a seating area, and private bathroom with hot/cold water. Wired internet access is available.</p>
                                         <div>
                                             
-                                            <span class="price"><small>AVG/NIGHT</small>$620</span>
+                                            <span class="price"><small>AVG/NIGHT</small>LKR 25000</span>
                                             <a class="button btn-small full-width text-center view-card" title="" href="hotel-detailed.html">SELECT</a>
                                         </div>
                                     </div>
@@ -164,12 +164,12 @@
 
                             <article class="service-info-crd box">
                                 <figure class="col-sm-5 col-md-4">
-                                    <a title="" class="popup-gallery"><img width="270" height="160" alt="" src="assets/images/stays/The Riverfront TinyRoom Private Garden Terrace.png"></a>
+                                    <a title="" class="popup-gallery"><img width="270" height="160" alt="" src="assets/images/services card images/hom01.png"></a>
                                 </figure>
                                 <div class="details col-sm-7 col-md-8">
                                     <div>
                                         <div>
-                                            <h4 class="box-title">Hotel Hilton and Resorts<small><i class="soap-icon-departure yellow-color"></i> Bastille, Paris france</small></h4>
+                                            <h4 class="box-title">Madulkelle Tea and Eco Lodge<small><i class="soap-icon-departure yellow-color"></i> Kandy, Sri Lanka</small></h4>
                                             <div class="amenities">
                                                 <i class="soap-icon-wifi circle"></i>
                                                 <i class="soap-icon-fitnessfacility circle"></i>
@@ -181,14 +181,14 @@
                                             <div class="five-stars-container">
                                                 <span class="five-stars" style="width: 80%;"></span>
                                             </div>
-                                            <!-- <span class="review">270 reviews</span> -->
+                                            <span class="review">Eco Lodge</span>
                                         </div>
                                     </div>
                                     <div>
                                         <p>Located amid rolling green hills and the Madulkelle Tea Estate, this property offers tents with a terrace, a seating area, and private bathroom with hot/cold water. Wired internet access is available.</p>
                                         <div>
                                             
-                                            <span class="price"><small>AVG/NIGHT</small>$620</span>
+                                            <span class="price"><small>AVG/NIGHT</small>LKR 25000</span>
                                             <a class="button btn-small full-width text-center view-card" title="" href="hotel-detailed.html">SELECT</a>
                                         </div>
                                     </div>
@@ -197,12 +197,12 @@
 
                             <article class="service-info-crd box">
                                 <figure class="col-sm-5 col-md-4">
-                                    <a title="" class="popup-gallery"><img width="270" height="160" alt="" src="assets/images/stays/The Riverfront TinyRoom Private Garden Terrace.png"></a>
+                                    <a title="" class="popup-gallery"><img width="270" height="160" alt="" src="assets/images/services card images/hom01.png"></a>
                                 </figure>
                                 <div class="details col-sm-7 col-md-8">
                                     <div>
                                         <div>
-                                            <h4 class="box-title">Hotel Hilton and Resorts<small><i class="soap-icon-departure yellow-color"></i> Bastille, Paris france</small></h4>
+                                            <h4 class="box-title">Madulkelle Tea and Eco Lodge<small><i class="soap-icon-departure yellow-color"></i> Kandy, Sri Lanka</small></h4>
                                             <div class="amenities">
                                                 <i class="soap-icon-wifi circle"></i>
                                                 <i class="soap-icon-fitnessfacility circle"></i>
@@ -214,14 +214,14 @@
                                             <div class="five-stars-container">
                                                 <span class="five-stars" style="width: 80%;"></span>
                                             </div>
-                                            <!-- <span class="review">270 reviews</span> -->
+                                            <span class="review">Eco Lodge</span>
                                         </div>
                                     </div>
                                     <div>
                                         <p>Located amid rolling green hills and the Madulkelle Tea Estate, this property offers tents with a terrace, a seating area, and private bathroom with hot/cold water. Wired internet access is available.</p>
                                         <div>
                                             
-                                            <span class="price"><small>AVG/NIGHT</small>$620</span>
+                                            <span class="price"><small>AVG/NIGHT</small>LKR 25000</span>
                                             <a class="button btn-small full-width text-center view-card" title="" href="hotel-detailed.html">SELECT</a>
                                         </div>
                                     </div>

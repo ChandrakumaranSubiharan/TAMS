@@ -11,7 +11,7 @@
                 <div class="large-block image-box style6">
                     <article class="box">
                         <figure class="col-md-5">
-                            <a href="#" title="" class="middle-block"><img class="middle-item" src="http://placehold.it/476x318" alt="" width="476" height="318" /></a>
+                            <a href="#" title="" class="middle-block"><img class="middle-item" src="assets/images/logo-aboutus.png" alt="" width="476" height="318" /></a>
                         </figure>
                         <div class="details col-md-offset-5">
                             <h4 class="box-title">Who We Are?</h4>
@@ -20,7 +20,7 @@
                     </article>
                     <article class="box">
                         <figure class="col-md-5 pull-right middle-block">
-                            <a href="#" title=""><img class="middle-item" src="http://placehold.it/476x318" alt="" width="476" height="318" /></a>
+                            <a href="#" title=""><img class="middle-item" src="assets/images/lanka-abotus.png" alt="" width="476" height="318" /></a>
                         </figure>
                         <div class="details col-md-7">
                             <h4 class="box-title">What We Do?</h4>
@@ -29,7 +29,7 @@
                     </article>
                     <article class="box">
                         <figure class="col-md-5">
-                            <a href="#" title="" class="middle-block"><img class="middle-item" src="http://placehold.it/489x489" alt="" /></a>
+                            <a href="#" title="" class="middle-block"><img class="middle-item" src="assets/images/about.png" alt="" /></a>
                         </figure>
                         <div class="details col-md-offset-5">
                             <h4 class="box-title">How Travelo Work?</h4>
@@ -90,7 +90,7 @@
                         <div class="icon-box style3 counters-box">
                             <div class="numbers">
                                 <i class="soap-icon-places yellow-color"></i>
-                                <span class="display-counter" data-value="3200">3200</span>
+                                <span class="display-counter" data-value="100">100</span>
                             </div>
                             <div class="description">Amazing Places To Visit</div>
                         </div>
@@ -98,31 +98,80 @@
                     <div class="col-sm-6 col-md-3">
                         <div class="icon-box style3 counters-box">
                             <div class="numbers">
-                                <i class="soap-icon-hotel blue-color"></i>
-                                <span class="display-counter" data-value="5738">5738</span>
+                                <i class="soap-icon-address blue-color"></i>
+                                <span class="display-counter" data-value="150">150</span>
                             </div>
-                            <div class="description">5 Star Hotels To Stay</div>
+                            <div class="description">Homes To Stay</div>
                         </div>
                     </div>
                     <div class="col-sm-6 col-md-3">
                         <div class="icon-box style3 counters-box">
                             <div class="numbers">
-                                <i class="soap-icon-plane green-color"></i>
+                                <i class="soap-icon-friends green-color"></i>
                                 <span class="display-counter" data-value="4509">4509</span>
                             </div>
-                            <div class="description">Airlines To Travel the World</div>
+                            <div class="description">Customers</div>
                         </div>
                     </div>
                     <div class="col-sm-6 col-md-3">
                         <div class="icon-box style3 counters-box">
                             <div class="numbers">
-                                <i class="soap-icon-car red-color"></i>
-                                <span class="display-counter" data-value="3250">3250</span>
+                                <i class="soap-icon-stories red-color"></i>
+                                <span class="display-counter" data-value="1500">1500</span>
                             </div>
-                            <div class="description">VIP Transport Options</div>
+                            <div class="description">Bookings</div>
                         </div>
                     </div>
                 </div>
+
+
+        <h2>Our Investors Relations</h2>
+        <div class="investor-slideshow image-carousel style2 investor-list" data-animation="slide" data-item-width="170" data-item-margin="30">
+            <ul class="slides">
+                <li>
+                    <div class="travelo-box">
+                        <a href="#"><img src="assets/images/partners/01.png" alt=""></a>
+                    </div>
+                </li>
+                <li>
+                    <div class="travelo-box">
+                        <a href="#"><img src="assets/images/partners/02.png" alt=""></a>
+                    </div>
+                </li>
+                <li>
+                    <div class="travelo-box">
+                        <a href="#"><img src="assets/images/partners/03.png" alt=""></a>
+                    </div>
+                </li>
+                <li>
+                    <div class="travelo-box">
+                        <a href="#"><img src="assets/images/partners/04.png" alt=""></a>
+                    </div>
+                </li>
+                <li>
+                    <div class="travelo-box">
+                        <a href="#"><img src="assets/images/partners/05.png" alt=""></a>
+                    </div>
+                </li>
+                <li>
+                    <div class="travelo-box">
+                        <a href="#"><img src="assets/images/partners/06.png" alt=""></a>
+                    </div>
+                </li>
+                <li>
+                    <div class="travelo-box">
+                        <a href="#"><img src="assets/images/partners/07.png" alt=""></a>
+                    </div>
+                </li>
+                <li>
+                    <div class="travelo-box">
+                        <a href="#"><img src="assets/images/partners/08.png" alt=""></a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+
 
             </div>
         </div>
