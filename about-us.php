@@ -45,7 +45,7 @@
                         <div class="col-sm-6 col-md-3">
                             <article class="box">
                                 <figure>
-                                    <a href="#"><img src="http://placehold.it/270x263" alt="" width="270" height="263" /></a>
+                                    <a href="#"><img src="assets/images/user.png" alt="" width="270" height="263" /></a>
                                 </figure>
                                 <div class="details">
                                     <h4 class="box-title"><a href="#">Don Coleone<small>Chief Executive</small></a></h4>
@@ -55,7 +55,7 @@
                         <div class="col-sm-6 col-md-3">
                             <article class="box">
                                 <figure>
-                                    <a href="#"><img src="http://placehold.it/270x263" alt="" width="270" height="263" /></a>
+                                    <a href="#"><img src="assets/images/user.png" alt="" width="270" height="263" /></a>
                                 </figure>
                                 <div class="details">
                                     <h4 class="box-title"><a href="#">Dilshan Keel<small>Director - Tours Management</small></a></h4>
@@ -65,7 +65,7 @@
                         <div class="col-sm-6 col-md-3">
                             <article class="box">
                                 <figure>
-                                    <a href="#"><img src="http://placehold.it/270x263" alt="" width="270" height="263" /></a>
+                                    <a href="#"><img src="assets/images/user.png" alt="" width="270" height="263" /></a>
                                 </figure>
                                 <div class="details">
                                     <h4 class="box-title"><a href="#">Manoj Ragal<small>Chief Operating Officer</small></a></h4>
@@ -75,7 +75,7 @@
                         <div class="col-sm-6 col-md-3">
                             <article class="box">
                                 <figure>
-                                    <a href="#"><img src="http://placehold.it/270x263" alt="" width="270" height="263" /></a>
+                                    <a href="#"><img src="assets/images/user.png" alt="" width="270" height="263" /></a>
                                 </figure>
                                 <div class="details">
                                     <h4 class="box-title"><a href="#">Subiharan Chandrakumaran<small>Founder &amp; Director</small></a></h4>
