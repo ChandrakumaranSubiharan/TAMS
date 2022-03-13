@@ -1,8 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-</head>
-    <body>
+
     <?php include('includes/header.php');?>
 
 
@@ -659,6 +655,3 @@
     <?php include('includes/jsscripts.php');?>
     <?php include('includes/footer.php');?>
 
-
-    </body>
-</html>
