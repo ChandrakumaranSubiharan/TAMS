@@ -35,8 +35,8 @@
                 <div class="topnav hidden-xs">
                     <div class="container">
                         <ul class="quick-menu pull-right">
-                            <li><a href="#travelo-login" class="soap-popupbox">LOGIN</a></li>
-                            <li><a href="#travelo-signup" class="soap-popupbox">SIGNUP</a></li>
+                            <li><a href="login.php" class="#">LOGIN</a></li>
+                            <li><a href="signup.php" class="#">SIGNUP</a></li>
                             <li><a href="become-partner.php" class="#">Become a Partner</a></li>
                         </ul>
                         <ul class="quick-menu pull-left">
@@ -105,62 +105,6 @@
                             <li><a href="#travelo-signup" >BECOME A PARTNER</a></li>
                         </ul>
                     </nav>
-                </div>
-                <div id="travelo-signup" class="travelo-signup-box travelo-box">
-                    <div class="simple-sign">
-                            <a href="#" >SIGN UP</a>
-                    </div>
-                    <div>
-                        <form>
-                            <div class="form-group">
-                            <label for="first name">First Name</label>
-                                <input type="text" class="input-text full-width" placeholder="Enter Your First Name">
-                            </div>
-                            <div class="form-group">
-                            <label for="first name">Last Name</label>
-                                <input type="text" class="input-text full-width" placeholder="Enter Your Last Name">
-                            </div>
-                            <div class="form-group">
-                            <label for="first name">Email Address</label>
-                                <input type="text" class="input-text full-width" placeholder="Enter Your Email Address">
-                            </div>
-                            <div class="form-group">
-                            <label for="first name">Password</label>
-                                <input type="password" class="input-text full-width" placeholder="Enter New Password">
-                            </div>
-                            <div class="form-group">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox"> I accept <a href="#travelo-login" class="goto-login soap-popupbox">Terms and Conditions</a>
-                                    </label>
-                                </div>
-                            </div>
-                            <button type="submit" class="full-width btn-medium">SIGNUP</button>
-                        </form>
-                    </div>
-                    <div class="seperator"></div>
-                    <p>Have an Account? <a href="#travelo-login" class="goto-login soap-popupbox">Login</a></p>
-                </div>
-                <div id="travelo-login" class="travelo-login-box travelo-box">
-                    <div class="simple-sign">
-                            <a href="#" >LOGIN</a>
-                    </div>
-                    <form>
-                        <div class="form-group">
-                            <label for="email">email address</label>
-                            <input type="text" class="input-text full-width" placeholder="Enter your Email">
-                        </div>
-                        <div class="form-group">
-                            <label for="password">password</label>
-
-                            <input type="password" class="input-text full-width" placeholder="Enter your Password">
-                        </div>
-
-                        <button type="submit" class="full-width btn-medium form-btn-custom">LOG IN</button>
-
-                    </form>
-                    <div class="seperator"></div>
-                    <p>Don't have an account? <a href="#travelo-signup" class="goto-signup soap-popupbox"> Sign up</a></p>
                 </div>
             </header>
     </body>
