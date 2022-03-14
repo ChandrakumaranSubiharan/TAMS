@@ -1,24 +1,54 @@
 <?php
 include_once 'includes/dbconfig.php';
+
 if(isset($_POST['btn-save']))
 {
- $fname = $_POST['first_name'];
- $lname = $_POST['last_name'];
- $address = $_POST['address'];
+// Retrieve form input
+ $fname = $_POST['ufname'];
+ $lname = $_POST['ulname'];
+ $address = $_POST['uaddress'];
  $uname = $_POST['uname'];
- $email = $_POST['email_id'];
- $contact = $_POST['contact'];
+ $email = $_POST['uemail'];
+ $contact = $_POST['ucontact'];
  $pass = $_POST['pass'];
- 
- if($customer->create($fname,$lname,$address,$uname,$email,$contact,$pass))
- {
-  header("Location: signup.php?inserted");
- }
- else
- {
-  header("Location: signup.php?failure");
- }
+
+    // Check for empty and invalid inputs
+    if(empty($fname)){
+        echo '<script>alert("Please enter a valid First Name")</script>';
+    }
+    elseif(empty($lname)){
+        echo '<script>alert("Please enter a valid Last Name")</script>';
+    }
+    elseif(empty($address)){
+        echo '<script>alert("Please enter a valid Address")</script>';
+    }
+    elseif (empty($uname)) {
+        echo '<script>alert("Please enter a valid Username")</script>';
+    }
+    elseif (empty($email)) {
+        echo '<script>alert("Please enter a valid Email")</script>';
+    }  
+    elseif (empty($contact)) {
+        echo '<script>alert("Please enter a valid Contact No")</script>';
+    }  
+    elseif (empty($pass)) {
+        echo '<script>alert("Please enter a valid Password.")</script>';
+    } 
+    else {
+    // Check if the customer may be registred
+
+        if($customer->create($fname,$lname,$address,$uname,$email,$contact,$pass))
+        {
+         header("Location: signup.php?inserted");
+        }
+        else
+        {
+         header("Location: signup.php?failure");
+        }
+    }
+
 }
+
 ?>
 
 
@@ -51,36 +81,36 @@ else if(isset($_GET['failure']))
                             <a href="#" >SIGN UP</a>
                     </div>
                     <div>
-                        <form method='post' >
+                        <form method="POST" >
                             <div class="form-group">
                                 <div class="col-md-6">
                                 <label for="first name">First Name</label>
-                                <input type="text" name='first_name' class="input-text full-width" placeholder="Enter Your First Name" required/>
+                                <input type="text" name='ufname' class="input-text full-width" placeholder="Enter Your First Name" required/>
                                 </div>
                                 <div class="col-md-6">
                                 <label for="last name">Last Name</label>
-                                <input type="text" name='last_name' class="input-text full-width" placeholder="Enter Your Last Name" required/>
+                                <input type="text" name='ulname' class="input-text full-width" placeholder="Enter Your Last Name" required/>
                                 </div>
                             </div>
                             <div class="form-group">
                             <label for="address">Address</label>
-                                <input type="text" name='address' class="input-text full-width" placeholder="Enter Your Address" required/>
+                                <input type="text" name='uaddress' class="input-text full-width" placeholder="Enter Your Address" required/>
                             </div>
                             <div class="form-group">
                             <label for="contact">Contact</label>
-                                <input type="text" name='contact' class="input-text full-width" placeholder="Enter Your Contact Number" required/>
+                                <input type="text" name='ucontact' class="input-text full-width" placeholder="Enter Your Contact Number" required/>
                             </div>
                             <div class="form-group">
                             <label for="email">Email</label>
-                                <input type="text" name='email_id' class="input-text full-width" placeholder="Enter Your Email" required/>
+                                <input type="text" name="uemail" class="input-text full-width" placeholder="Enter Your Email" required/>
                             </div>
                             <div class="form-group">
                             <label for="username">Username</label>
-                                <input type="text" name='uname' class="input-text full-width" placeholder="Enter Username" required/>
+                                <input type="text" name="uname" class="input-text full-width" placeholder="Enter Username" >
                             </div>
                             <div class="form-group">
                             <label for="password">Password</label>
-                                <input type="password" name='pass' class="input-text full-width" placeholder="Enter New Password" required/>
+                                <input type="password" name="pass" class="input-text full-width" placeholder="Enter New Password">
                             </div>
                             <div class="form-group">
                                 <div class="checkbox">
@@ -89,7 +119,7 @@ else if(isset($_GET['failure']))
                                     </label>
                                 </div>
                             </div>
-                            <button type="submit" name='btn-save' class="full-width btn-medium">SIGNUP</button>
+                            <button type="submit" name="btn-save" class="full-width btn-medium">SIGNUP</button>
                         </form>
                     </div>
                     <div class="seperator"></div>

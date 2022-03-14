@@ -8,52 +8,46 @@ class auth
  {
   $this->db = $DB_con;
  }
-
-
-//  public function create($fname,$lname,$address,$uname,$email,$contact,$pass)
-//  {
-//   try
-//   {
-//    $stmt = $this->db->prepare("INSERT INTO tbl_customer(first_name,last_name,address,username,email_address,contact_number,password) VALUES(:fname, :lname,:address,:uname,:email_id,:contact,:pass)");
-//    $stmt->bindparam(":fname",$fname);
-//    $stmt->bindparam(":lname",$lname);
-//    $stmt->bindparam(":address",$address);
-//    $stmt->bindparam(":uname",$uname);
-//    $stmt->bindparam(":email_id",$email);
-//    $stmt->bindparam(":contact",$contact);
-//    $stmt->bindparam(":pass",$pass);
-//    $stmt->execute();
-//    return true;
-//   }
-//   catch(PDOException $e)
-//   {
-//    echo $e->getMessage(); 
-//    return false;
-//   }
-  
-//  }
-
  
- public function login($email,$pass)
- {
-    try
-    {
-     $stmt = $this->db->prepare("SELECT email_address,password FROM tbl_customer WHERE email_address=:email_id and password=:pass;");
-     $stmt->bindparam(":email_id",$email);
-     $stmt->bindparam(":pass",$pass);
-     $stmt->execute();
-     return true;
-    }
-    catch(PDOException $e)
-    {
-     echo $e->getMessage(); 
-     return false;
-    }
 
-  
+ // Log in registered users with either their username or email and their password
+ public function customerlogin($uname,$email,$pass)
+ {
+     try {
+         // Define query to insert values into the users table
+         $sql = "SELECT * FROM tbl_customer WHERE username=:uname OR email_address=:email LIMIT 1";
+
+         // Prepare the statement
+         $query = $this->db->prepare($sql);
+
+         // Bind parameters
+         $query->bindParam(":uname", $uname);
+         $query->bindParam(":email", $email);
+
+         // Execute the query
+         $query->execute();
+
+         // Return row as an array indexed by both column name
+         $returned_row = $query->fetch(PDO::FETCH_ASSOC);
+
+         // Check if row is actually returned
+         if ($query->rowCount() > 0) {
+             // Verify hashed password against entered password
+             if (password_verify($pass, $returned_row['password'])) {
+                 // Define session on successful login
+                 $_SESSION['user_session'] = $returned_row['customer_id'];
+                 return true;
+             } 
+         }
+     } catch (PDOException $e) {
+            echo $e->getMessage(); 
+            return false;
+     }
  }
+
+     // Redirect user
+     public function redirect($url) {
+        header("Location: $url");
+    }
  
 }
-
-
-
