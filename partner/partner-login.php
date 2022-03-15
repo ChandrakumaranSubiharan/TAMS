@@ -1,3 +1,38 @@
+<?php
+session_start();
+include_once '../includes/dbconfig.php';
+
+//Post the inputs
+if(isset($_POST['btn-partner-login']))
+{
+// Retrieve form input
+ $email = $_POST['pmailuser'];
+ $uname = $_POST['pmailuser'];
+ $pass = $_POST['ppassword'];
+
+// Check for empty and invalid inputs
+if(empty($email)){
+    echo '<script>alert("Please enter a valid Email or Username")</script>';
+}
+elseif(empty($pass)){
+    echo '<script>alert("Please enter a valid Pass")</script>';
+}
+
+else {
+    // Check if the user may be logged in
+    if($auth->partnerlogin($uname,$email,$pass))
+    {
+    // Redirect if logged in successfully
+    $auth->redirect('partner/dashboard.php');
+    }
+    else
+    {
+    echo '<script>alert("Incorrect log-in credentials.")</script>';
+    }
+}
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,18 +68,18 @@
             <h3>Login</h3>
                 <h4>Partner Users Only</h4>
         </div>
-        <form>
+        <form method="POST">
             <div class="form-group">
-                <label for="email">email address</label>
-                <input type="text" class="input-text full-width" placeholder="Enter your Email">
+                <label for="email">email address or username</label>
+                <input type="text" name="pmailuser" class="input-text full-width" placeholder="Enter your Email or Username">
             </div>
             <div class="form-group">
                 <label for="password">password</label>
 
-                <input type="password" class="input-text full-width" placeholder="Enter your Password">
+                <input type="password" name="ppassword" class="input-text full-width" placeholder="Enter your Password">
             </div>
 
-            <button type="submit" class="full-width btn-medium form-btn-custom">LOG IN</button>
+            <button type="submit" name="btn-partner-login" class="full-width btn-medium form-btn-custom">LOG IN</button>
 
         </form>
     </div>
