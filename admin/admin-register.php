@@ -8,5 +8,4 @@
 <input type="text" name="amail" class="input-text full-width" placeholder="Enter Email Address">
 <input type="text" name="acategory" class="input-text full-width" placeholder="Select user Category">
 <button type="submit" name="btn-admin-save" class="full-width btn-medium">REGISTER</button>
-
 </form>
