@@ -1,6 +1,6 @@
 <?php
 
-class customer
+class partner
 {
  private $db;
  
@@ -10,8 +10,9 @@ class customer
  }
  
 
- // Method Register new customer
- public function create($fname,$lname,$address,$uname,$email,$contact,$pass)
+
+ // Method Register new partner
+ public function create($fname,$lname,$address,$uname,$email,$contact,$pass,$province,$zipcode,$gender)
  {
   try
   {
@@ -20,15 +21,19 @@ class customer
     
     // Prepare the statement to insert values into the customer table
 
-   $stmt = $this->db->prepare("INSERT INTO tbl_customer(first_name,last_name,address,username,email_address,contact_number,password,status,created_date) VALUES(:fname, :lname,:address,:uname,:email_id,:contact,:pass,:status,:date)");
+   $stmt = $this->db->prepare("INSERT INTO tbl_partner(avatar,first_name,last_name,address,username,email_address,contact_number,password,status,province,zipcode,gender,created_date) VALUES(:avatar,:fname, :lname,:address,:uname,:email_id,:contact,:pass,:status,:province,:zipcode,:gender,:date)");
    
     // variable to fetch customer active/inactive status by bool value
-    $sta = "1";
+    $sta = "0";
 
     // variable to fetch current date time
     $regdate =Date("y-m-d H:i:s");
 
+    // variable to fetch null value
+    $emty =NULL;                 
+
     // Bind parameters
+   $stmt->bindparam(":avatar",$emty);
    $stmt->bindparam(":fname",$fname);
    $stmt->bindparam(":lname",$lname);
    $stmt->bindparam(":address",$address);
@@ -37,8 +42,10 @@ class customer
    $stmt->bindparam(":contact",$contact);
    $stmt->bindparam(":pass",$user_hashed_password);
    $stmt->bindparam(":status",$sta);
+   $stmt->bindparam(":province",$province);
+   $stmt->bindparam(":zipcode",$zipcode);
+   $stmt->bindparam(":gender",$gender);
    $stmt->bindparam(":date",$regdate);
-
 
     // Execute the query
    $stmt->execute();

@@ -11,10 +11,6 @@ if(isset($_POST['btn-save']))
  $email = $_POST['uemail'];
  $contact = $_POST['ucontact'];
  $pass = $_POST['pass'];
- $sta = $_POST['status'];
-//  $regdate = $_POST[Date('Y-m-d H:i:s')];
-//  $regdate =Date("y-m-d");
-
 
     // Check for empty and invalid inputs
     if(empty($fname)){
@@ -42,7 +38,7 @@ if(isset($_POST['btn-save']))
     else {
     // Check if the customer may be registred
 
-        if($customer->create($fname,$lname,$address,$uname,$email,$contact,$pass,$sta))
+        if($customer->create($fname,$lname,$address,$uname,$email,$contact,$pass))
         {
          header("Location: signup.php?inserted");
         }
@@ -117,7 +113,6 @@ else if(isset($_GET['failure']))
                             <label for="password">Password</label>
                                 <input type="password" name="pass" class="input-text full-width" placeholder="Enter New Password" required/>
                             </div>
-                            <input type="hidden" name="status" value="3">
                             <div class="form-group">
                                 <div class="checkbox">
                                     <label>
