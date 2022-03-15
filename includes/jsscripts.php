@@ -21,6 +21,9 @@
         
         <!-- parallax -->
         <script type="text/javascript" src="assets/js/jquery.stellar.min.js"></script>
+
+        <!-- sweet alert -->
+        <script type="text/javascript" src="assets/js/sweet_alreart_script.js"></script>
         
         <!-- waypoint -->
         <script type="text/javascript" src="assets/js/waypoints.min.js"></script>

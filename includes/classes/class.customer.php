@@ -11,7 +11,7 @@ class customer
  
 
  // Method Register new customer
- public function create($fname,$lname,$address,$uname,$email,$contact,$pass)
+ public function create($fname,$lname,$address,$uname,$email,$contact,$pass,$sta)
  {
   try
   {
@@ -20,8 +20,11 @@ class customer
     
     // Prepare the statement to insert values into the customer table
 
-   $stmt = $this->db->prepare("INSERT INTO tbl_customer(first_name,last_name,address,username,email_address,contact_number,password) VALUES(:fname, :lname,:address,:uname,:email_id,:contact,:pass)");
+   $stmt = $this->db->prepare("INSERT INTO tbl_customer(first_name,last_name,address,username,email_address,contact_number,password,status,created_date) VALUES(:fname, :lname,:address,:uname,:email_id,:contact,:pass,:status,:date)");
    
+    // variable to fetch current date time
+  $regdate =Date("y-m-d H:i:s");
+
     // Bind parameters
    $stmt->bindparam(":fname",$fname);
    $stmt->bindparam(":lname",$lname);
@@ -30,6 +33,9 @@ class customer
    $stmt->bindparam(":email_id",$email);
    $stmt->bindparam(":contact",$contact);
    $stmt->bindparam(":pass",$user_hashed_password);
+   $stmt->bindparam(":status",$sta);
+   $stmt->bindparam(":date",$regdate);
+
 
     // Execute the query
    $stmt->execute();
