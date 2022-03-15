@@ -2,41 +2,13 @@
 session_start();
 include_once 'includes/dbconfig.php';
 
-
-
-
-// Check if log-in form is submitted
-if (isset($_POST['log_in'])) {
-    // Retrieve form input
-    $user_name = trim($_POST['user_name_email']);
-    $user_email = trim($_POST['user_name_email']);
-    $user_password = trim($_POST['user_password']);
-
-    // Check for empty and invalid inputs
-    if (empty($user_name) || empty($user_email)) {
-        array_push($errors, "Please enter a valid username or e-mail address");
-    } elseif (empty($user_password)) {
-        array_push($errors, "Please enter a valid password.");
-    } else {
-        // Check if the user may be logged in
-        if ($user->login($user_name, $user_email, $user_password)) {
-            // Redirect if logged in successfully
-            $user->redirect('home.php');
-        } else {
-            array_push($errors, "Incorrect log-in credentials.");
-        }
-    }
-}
-
-
-
+//Post the inputs
 if(isset($_POST['btn-login']))
 {
+    // Retrieve form input
  $email = $_POST['Email'];
  $uname = $_POST['Email'];
  $pass = $_POST['Pass'];
-
-
 
 // Check for empty and invalid inputs
 if(empty($email)){
@@ -47,8 +19,10 @@ elseif(empty($pass)){
 }
 
 else {
+    // Check if the user may be logged in
     if($auth->customerlogin($uname,$email,$pass))
     {
+    // Redirect if logged in successfully
     $auth->redirect('customer/dashboard.php');
     }
     else
@@ -58,14 +32,6 @@ else {
 }
 }
 ?>
-
-
-
-
-
-
-
-
 
 <?php include('includes/header.php');?>
 
@@ -77,8 +43,8 @@ else {
                     </div>
                     <form method='post'>
                         <div class="form-group">
-                            <label for="email">email address</label>
-                            <input name="Email" type="text" class="input-text full-width" placeholder="Enter your Email" required/>
+                            <label for="email">email address or username</label>
+                            <input name="Email" type="text" class="input-text full-width" placeholder="Enter your Email or Username" required/>
                         </div>
                         <div class="form-group">
                             <label for="password">password</label>
@@ -92,7 +58,6 @@ else {
                     <div class="seperator"></div>
                     <p>Don't have an account? <a href="signup.php" class="#"> Sign up</a></p>
                 </div>
-
 </div>
 
 
