@@ -5,7 +5,7 @@ include_once '../includes/dbconfig.php';
 
 // Check if user is not logged in
 if (!$auth->is_logged_in()) {
-    $auth->redirect('partner-login.php');
+	$auth->redirect('partner-login.php');
 }
 
 
@@ -98,7 +98,7 @@ if (isset($_GET['logout']) && ($_GET['logout'] == 'true')) {
 						<span class="user-icon">
 							<img src="../assets/dashboard/vendors/images/photo1.jpg" alt="">
 						</span>
-						<span class="user-name">Ross C. Lopez</span>
+						<span class="user-name"><?= $returned_row['username']; ?></span>
 					</a>
 					<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
 						<a class="dropdown-item" href="profile.html"><i class="dw dw-user1"></i> Profile</a>
@@ -392,7 +392,7 @@ if (isset($_GET['logout']) && ($_GET['logout'] == 'true')) {
 					</div>
 					<div class="col-md-8">
 						<h4 class="font-20 weight-500 mb-10 text-capitalize">
-							Welcome back <div class="weight-600 font-30 text-blue">Johnny Brown!</div>
+							Welcome back <div class="weight-600 font-30 text-blue"><?= $returned_row['first_name']; ?> &nbsp; <?= $returned_row['last_name']; ?>!</div>
 						</h4>
 						<p class="font-18 max-width-600">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde hic non repellendus debitis iure, doloremque assumenda. Autem modi, corrupti, nobis ea iure fugiat, veniam non quaerat mollitia animi error corporis.</p>
 					</div>
