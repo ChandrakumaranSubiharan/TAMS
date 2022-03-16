@@ -1,40 +1,36 @@
 <?php
 session_start();
 include_once '../includes/dbconfig.php';
-if(isset($_POST['btn-admin-login']))
-{
- $email = $_POST['Email'];
- $pass = $_POST['pass'];
- 
- if($auth->login($email,$pass))
- {
-  header("Location: dashboard.php?loged");
- }
- else
- {
-  header("Location: admin-login.php?failed");
- }
-}
-?>
 
-<?php
-if(isset($_GET['loged']))
-{
- ?>
- <script>alert('Succesfully Loged in');</script>"; 
-    <?php
-}
-else if(isset($_GET['failed']))
-{
- ?>
- <script>alert('Failed to Loged in');</script>"; 
-    <?php
+
+//Post the inputs
+if (isset($_POST['btn-admin-login'])) {
+    // Retrieve form input
+    $email = $_POST['Emailuname'];
+    $uname = $_POST['Emailuname'];
+    $pass = $_POST['pass'];
+
+    // Check for empty and invalid inputs
+    if (empty($email)) {
+        echo '<script>alert("Please enter a valid Email or Username")</script>';
+    } elseif (empty($pass)) {
+        echo '<script>alert("Please enter a valid Pass")</script>';
+    } else {
+        // Check if the user may be logged in
+        if ($auth->adminlogin($uname, $email, $pass)) {
+            // Redirect if logged in successfully
+            $auth->redirect('dashboard.php');
+        } else {
+            echo '<script>alert("Incorrect log-in credentials.")</script>';
+        }
+    }
 }
 ?>
 
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <!-- Meta Tags -->
     <meta charset="UTF-8">
@@ -52,10 +48,11 @@ else if(isset($_GET['failed']))
     <!-- Main Style -->
     <link id="main-style" rel="stylesheet" href="../assets/css/components/header.css">
     <link id="main-style" rel="stylesheet" href="../assets/css/style.css">
-    
+
     <!-- Responsive Styles -->
     <link rel="stylesheet" href="../assets/css/responsive.css">
 </head>
+
 <body>
 
     <section id="admin-login">
@@ -66,17 +63,17 @@ else if(isset($_GET['failed']))
                 <div class="sign">
                     <img src="../assets/images/icon.svg" alt="">
                     <h3>Login</h3>
-                        <h4>Administrator Users Only</h4>
+                    <h4>Administrator Users Only</h4>
                 </div>
                 <form method='post'>
                     <div class="form-group">
-                        <label for="email">email address</label>
-                        <input name="Email" type="text" class="input-text full-width" placeholder="Enter your Email" required/>
+                        <label for="email">email address or username</label>
+                        <input name="Emailuname" type="text" class="input-text full-width" placeholder="Enter your Email or Username" required />
                     </div>
                     <div class="form-group">
                         <label for="password">password</label>
 
-                        <input name="pass" type="password" class="input-text full-width" placeholder="Enter your Password" required/>
+                        <input name="pass" type="password" class="input-text full-width" placeholder="Enter your Password" required />
                     </div>
 
                     <button type="submit" name="btn-admin-login" class="full-width btn-medium form-btn-custom">LOG IN</button>
@@ -89,8 +86,9 @@ else if(isset($_GET['failed']))
         </div>
 
     </section>
-    
-<?php include('../includes/jsscripts.php');?>
+
+    <?php include('../includes/jsscripts.php'); ?>
 
 </body>
+
 </html>

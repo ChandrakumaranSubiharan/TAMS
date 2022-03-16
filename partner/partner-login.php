@@ -3,38 +3,32 @@ session_start();
 include_once '../includes/dbconfig.php';
 
 //Post the inputs
-if(isset($_POST['btn-partner-login']))
-{
-// Retrieve form input
- $email = $_POST['pmailuser'];
- $uname = $_POST['pmailuser'];
- $pass = $_POST['ppassword'];
+if (isset($_POST['btn-partner-login'])) {
+    // Retrieve form input
+    $email = $_POST['pmailuser'];
+    $uname = $_POST['pmailuser'];
+    $pass = $_POST['ppassword'];
 
-// Check for empty and invalid inputs
-if(empty($email)){
-    echo '<script>alert("Please enter a valid Email or Username")</script>';
-}
-elseif(empty($pass)){
-    echo '<script>alert("Please enter a valid Pass")</script>';
-}
-
-else {
-    // Check if the user may be logged in
-    if($auth->partnerlogin($uname,$email,$pass))
-    {
-    // Redirect if logged in successfully
-    $auth->redirect('partner/dashboard.php');
+    // Check for empty and invalid inputs
+    if (empty($email)) {
+        echo '<script>alert("Please enter a valid Email or Username")</script>';
+    } elseif (empty($pass)) {
+        echo '<script>alert("Please enter a valid Pass")</script>';
+    } else {
+        // Check if the user may be logged in
+        if ($auth->partnerlogin($uname, $email, $pass)) {
+            // Redirect if logged in successfully
+            $auth->redirect('partner/dashboard.php');
+        } else {
+            echo '<script>alert("Incorrect log-in credentials.")</script>';
+        }
     }
-    else
-    {
-    echo '<script>alert("Incorrect log-in credentials.")</script>';
-    }
-}
 }
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <!-- Meta Tags -->
     <meta charset="UTF-8">
@@ -52,45 +46,47 @@ else {
     <!-- Main Style -->
     <link id="main-style" rel="stylesheet" href="../assets/css/components/header.css">
     <link id="main-style" rel="stylesheet" href="../assets/css/style.css">
-    
+
     <!-- Responsive Styles -->
     <link rel="stylesheet" href="../assets/css/responsive.css">
 </head>
+
 <body>
 
-<section id="partner-login">
+    <section id="partner-login">
 
-<div class="user-login-form-container">
+        <div class="user-login-form-container">
 
-    <div id="travelo-login" class="travelo-box">
-        <div class="sign">
-            <img src="../assets/images/icon.svg" alt="">
-            <h3>Login</h3>
-                <h4>Partner Users Only</h4>
+            <div id="travelo-login" class="travelo-box">
+                <div class="sign">
+                    <img src="../assets/images/icon.svg" alt="">
+                    <h3>Login</h3>
+                    <h4>Partner Users Only</h4>
+                </div>
+                <form method="POST">
+                    <div class="form-group">
+                        <label for="email">email address or username</label>
+                        <input type="text" name="pmailuser" class="input-text full-width" placeholder="Enter your Email or Username">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">password</label>
+
+                        <input type="password" name="ppassword" class="input-text full-width" placeholder="Enter your Password">
+                    </div>
+
+                    <button type="submit" name="btn-partner-login" class="full-width btn-medium form-btn-custom">LOG IN</button>
+
+                </form>
+            </div>
+
+            <h5>Powered by HappyHolidayss (PVT) Ltd.</h5>
+
         </div>
-        <form method="POST">
-            <div class="form-group">
-                <label for="email">email address or username</label>
-                <input type="text" name="pmailuser" class="input-text full-width" placeholder="Enter your Email or Username">
-            </div>
-            <div class="form-group">
-                <label for="password">password</label>
 
-                <input type="password" name="ppassword" class="input-text full-width" placeholder="Enter your Password">
-            </div>
+    </section>
 
-            <button type="submit" name="btn-partner-login" class="full-width btn-medium form-btn-custom">LOG IN</button>
-
-        </form>
-    </div>
-
-    <h5>Powered by HappyHolidayss (PVT) Ltd.</h5>
-
-</div>
-
-</section>
-    
-<?php include('../includes/jsscripts.php');?>
+    <?php include('../includes/jsscripts.php'); ?>
 
 </body>
+
 </html>

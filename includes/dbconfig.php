@@ -30,4 +30,8 @@ $auth = new auth($DB_con);
 //including partner class
 include_once 'classes/class.partner.php';
 $partner = new partner($DB_con);
+
+//including partner class
+include_once 'classes/class.admin.php';
+$admin = new admin($DB_con);
 ?>
