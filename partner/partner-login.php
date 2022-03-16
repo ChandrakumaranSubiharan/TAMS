@@ -1,6 +1,12 @@
 <?php
-session_start();
 include_once '../includes/dbconfig.php';
+
+// Check if user is already logged in
+if ($auth->is_logged_in()) {
+    // Redirect logged in user to their home page
+    $auth->redirect('dashboard.php');
+}
+
 
 //Post the inputs
 if (isset($_POST['btn-partner-login'])) {
@@ -18,7 +24,7 @@ if (isset($_POST['btn-partner-login'])) {
         // Check if the user may be logged in
         if ($auth->partnerlogin($uname, $email, $pass)) {
             // Redirect if logged in successfully
-            $auth->redirect('partner/dashboard.php');
+            $auth->redirect('dashboard.php');
         } else {
             echo '<script>alert("Incorrect log-in credentials.")</script>';
         }

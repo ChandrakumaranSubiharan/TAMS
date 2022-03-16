@@ -1,5 +1,8 @@
 <?php
 
+// Begin/resume session
+session_start();
+
 $DB_host = "localhost";
 $DB_user = "root";
 $DB_pass = "";
@@ -36,3 +39,5 @@ $admin = new admin($DB_con);
 include_once 'classes/class.inquiry.php';
 $inquiry = new inquiry($DB_con);
 ?>
+
+

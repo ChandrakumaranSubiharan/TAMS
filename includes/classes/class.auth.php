@@ -93,7 +93,7 @@ class auth
 
 
 
-    // Log in registered partners with either their username or email and their password
+    // Log in registered admins with either their username or email and their password
     public function adminlogin($uname, $email, $pass)
     {
         try {
@@ -137,7 +137,23 @@ class auth
     }
 
 
+    // Check if the user is already logged in
+    public function is_logged_in()
+    {
+        // Check if user session has been set
+        if (isset($_SESSION['user_session'])) {
+            return true;
+        }
+    }
 
+    // Log out user
+    public function log_out()
+    {
+        // Destroy and unset active session
+        session_destroy();
+        unset($_SESSION['user_session']);
+        return true;
+    }
 
 
     // Redirect user
