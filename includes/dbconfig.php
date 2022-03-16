@@ -16,16 +16,13 @@ catch(PDOException $e)
  echo $e->getMessage();
 }
 
-
-//including customer class
-include_once 'classes/class.customer.php';
-$customer = new customer($DB_con);
-
-
 //including authorization class
 include_once 'classes/class.auth.php';
 $auth = new auth($DB_con);
 
+//including customer class
+include_once 'classes/class.customer.php';
+$customer = new customer($DB_con);
 
 //including partner class
 include_once 'classes/class.partner.php';
@@ -34,4 +31,8 @@ $partner = new partner($DB_con);
 //including partner class
 include_once 'classes/class.admin.php';
 $admin = new admin($DB_con);
+
+//including inquiry class
+include_once 'classes/class.inquiry.php';
+$inquiry = new inquiry($DB_con);
 ?>
