@@ -12,7 +12,7 @@
 			<div class="sidebar-menu">
 				<ul id="accordion-menu">
 					<li>
-						<a href="dash.php" class="dropdown-toggle no-arrow">
+						<a href="dashboard.php" class="dropdown-toggle no-arrow">
 							<span class="micon dw dw-house-1"></span><span class="mtext">Home</span>
 						</a>
 					</li>
@@ -30,12 +30,12 @@
 							<span class="micon icon-copy ti-home"></span></span><span class="mtext">Homes</span>
 						</a>
 						<ul class="submenu">
-							<li><a href="#">Create</a></li>
-							<li><a href="#">Manage</a></li>
+							<li><a href="create-home.php">Create</a></li>
+							<li><a href="manage-home.php">Manage</a></li>
 						</ul>
 					</li>
                     <li>
-						<a href="#" class="dropdown-toggle no-arrow">
+						<a href="manage-booking.php" class="dropdown-toggle no-arrow">
 							<i class="micon icon-copy fa fa-list-ol" aria-hidden="true"></i><span class="mtext">Manage Bookings</span>
 						</a>
 					</li>
