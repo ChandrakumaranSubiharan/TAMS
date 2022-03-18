@@ -1326,7 +1326,8 @@ table.dataTable.dtr-inline.collapsed>tbody>tr.parent>td:first-child:before, tabl
 	font-weight: 500;
 	line-height: 45px;
 	font-family: 'Inter', sans-serif;
-	padding: 0px 20px 0px;
+	padding: 20px;
+
 }
 .brand-logo a .dark-logo,
 .sidebar-light .brand-logo a .light-logo{
