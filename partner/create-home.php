@@ -1,3 +1,38 @@
+<?php
+
+// Include database file
+include_once '../includes/dbconfig.php';
+
+
+// Insert Record in home table
+if(isset($_POST['submit'])) {
+
+    $home_name = $_POST['hname'];
+    $location_address = $_POST['laddress'];
+    $ava_night_price = $_POST['anprice'];
+    $lg_desc = $_POST['lgdesc'];
+    $home_type = $_POST['type'];
+    $extra_people = $_POST['e_people'];
+    $district = $_POST['district'];
+    $province = $_POST['province'];
+    $cancel = $_POST['cancel'];
+    $str_date = $_POST['start_date'];
+    $end_date = $_POST['end_date'];
+    $file = $_FILES['image'];
+
+    $insertData = $home->insertData($home_name, $location_address, $ava_night_price, $lg_desc, $home_type, $extra_people, $district, $province, $cancel, $str_date, $end_date, $file);
+
+    if ($insertData){
+        $msg = "Home successfully created ";
+        echo "<script type='text/javascript'>alert('$msg');</script>";
+    }else{
+        $msg = "Failed to Create Home ";
+        echo "<script type='text/javascript'>alert('$msg');</script>";
+    }
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -60,32 +95,77 @@
                     </div>
                 </div>
                 <div class="pd-20 bg-white border-radius-4 box-shadow mb-30">
-                    <form>
+                    <form method="POST" enctype="multipart/form-data">
                         <div class="form-group">
-                            <label>Text</label>
-                            <input class="form-control" type="text" placeholder="Johnny Brown">
+                            <label>Home Name</label>
+                            <input class="form-control" name="hname" type="text" placeholder="Enter Home Name">
                         </div>
                         <div class="form-group">
-                            <label>Email</label>
-                            <input class="form-control" placeholder="johny@example.com" type="email">
+                            <label>Home Location</label>
+                            <input class="form-control" name="laddress" placeholder="Enter Home Location" type="text">
                         </div>
                         <div class="form-group">
-                            <label>URL</label>
-                            <input class="form-control" value="https://getbootstrap.com" type="url">
+                            <label>Avarage Night Price(LKR)</label>
+                            <input class="form-control" name="anprice" type="number">
                         </div>
                         <div class="form-group">
-                            <label>Telephone</label>
-                            <input class="form-control" value="1-(111)-111-1111" type="tel">
+                            <label>Home Image</label>
+                            <input type="file" class="form-control" name="image" >
                         </div>
                         <div class="form-group">
-                            <label>Password</label>
-                            <input class="form-control" value="password" type="password">
+							<label>Home Details</label>
+							<textarea name="lgdesc" class="form-control"></textarea>
+						</div>
+                        <div class="form-group">
+							<label>Type</label>
+							<select name="type" class="custom-select col-12">
+									<option selected="">Choose...</option>
+									<option value="Cabin">Cabin</option>
+									<option value="Cottage">Cottage</option>
+									<option value="Resort">Resort</option>
+									<option value="Villa">Villa</option>
+									<option value="Hostel">Hostel</option>
+							</select>
+						</div>
+                        <div class="form-group">
+                        <label>Extra People</label>
+                        <input type="text" class="form-control" name="e_people" >
                         </div>
                         <div class="form-group">
-                            <label>Example file input</label>
-                            <input type="file" class="form-control-file form-control height-auto">
+							<label>Province</label>
+							<select name="province" class="custom-select col-12">
+									<option selected="">Choose...</option>
+									<option value="Northern Province">Northern Province</option>
+									<option value="Central Province">Central Province</option>
+									<option value="Western Province">Western Province</option>
+							</select>
+						</div>
+                        <div class="form-group">
+							<label>District</label>
+							<select name="district" class="custom-select col-12">
+									<option selected="">Choose...</option>
+									<option value="Kandy">Kandy</option>
+									<option value="Jaffna">Jaffna</option>
+									<option value="Colombo">Colombo</option>
+							</select>
+						</div>
+                        <div class="form-group">
+							<label>Cancellation</label>
+							<select name="cancel" class="custom-select col-12">
+									<option selected="">Choose...</option>
+									<option value="1">Yes</option>
+									<option value="0">No</option>
+							</select>
+						</div>
+                        <div class="form-group">
+                        <label>Availability Start Date</label>
+                        <input type="date" class="form-control" name="start_date" >
                         </div>
-                        <input class="btn btn-primary" type="submit" value="Submit">
+                        <div class="form-group">
+                        <label>Availability End Date</label>
+                        <input type="date" class="form-control" name="end_date" >
+                        </div>
+                        <input class="btn btn-primary" name="submit" type="submit" value="Submit">
                         <input class="btn btn-info" type="reset" value="Reset">
                     </form>
                 </div>

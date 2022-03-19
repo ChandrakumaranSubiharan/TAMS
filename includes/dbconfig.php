@@ -38,6 +38,13 @@ $admin = new admin($DB_con);
 //including inquiry class
 include_once 'classes/class.inquiry.php';
 $inquiry = new inquiry($DB_con);
+
+//including home class
+include_once 'classes/class.home.php';
+$home = new home($DB_con);
+
 ?>
+
+
 
 

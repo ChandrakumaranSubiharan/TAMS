@@ -1,3 +1,13 @@
+<?php 
+      // Include database file
+      include_once '../includes/dbconfig.php';
+
+
+      ?>
+
+      
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -59,8 +69,31 @@
                         </div>
                     </div>
                 </div>
+
+
+                <?php 
+      // Include database file
+
+      $customers = $home->displayData(); 
+
+      foreach ($customers as $homes) {
+       
+      ?>
+  <tr>
+    <td>#<?php echo $homes['home_id']; ?></td>
+    <td><?php echo $homes['home_name']; ?></td>
+    <td><?php echo $homes['location_address']; ?></td>
+    <td><?php echo date('d-M-Y', strtotime($homes['ava_start_date'])); ?></td>
+    <td><img src="<?php echo 'includes/uploads/'. $homes['cover_img1'] ?>" width="80px"></td>
+  </tr>
+<?php } ?>
+
+
+
+
+
                 <!-- Export Datatable start -->
-                <div class="card-box mb-30">
+                <!-- <div class="card-box mb-30">
                     <div class=" pt-20">
                         <table class=" table hover data-table-export nowrap ">
                             <thead>
@@ -118,7 +151,7 @@
                             </tbody>
                         </table>
                     </div>
-                </div>
+                </div> -->
                 <!-- Export Datatable End -->
 
             </div>
