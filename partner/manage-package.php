@@ -1,3 +1,11 @@
+<?php
+// Include database file
+include_once '../includes/dbconfig.php';
+?>
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -62,6 +70,27 @@
                 <!-- Export Datatable start -->
                 <div class="card-box mb-30">
                     <div class=" pt-20">
+
+
+                        <?php
+                        // Include database file
+
+                        $customers = $home->displayData();
+
+                        foreach ($customers as $homes) {
+
+                        ?>
+                            <tr>
+                                <td>#<?php echo $homes['home_id']; ?></td>
+                                <td><?php echo $homes['home_name']; ?></td>
+                                <td><?php echo $homes['location_address']; ?></td>
+                                <td><?php echo date('d-M-Y', strtotime($homes['ava_start_date'])); ?></td>
+                                <td><img src="<?php echo 'includes/uploads/' . $homes['cover_img1'] ?>" width="80px"></td>
+                            </tr>
+                        <?php } ?>
+
+
+
                         <table class=" table hover data-table-export nowrap ">
                             <thead>
                                 <tr>
@@ -83,17 +112,17 @@
                                     <td>29-03-2018</td>
                                     <td>$162,700</td>
                                     <td>
-										<div class="dropdown">
-											<a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-												<i class="dw dw-more"></i>
-											</a>
-											<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-												<a class="dropdown-item" href="#"><i class="dw dw-eye"></i> View</a>
-												<a class="dropdown-item" href="#"><i class="dw dw-edit2"></i> Edit</a>
-												<a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i> Delete</a>
-											</div>
-										</div>
-									</td>
+                                        <div class="dropdown">
+                                            <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                                                <i class="dw dw-more"></i>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                                                <a class="dropdown-item" href="#"><i class="dw dw-eye"></i> View</a>
+                                                <a class="dropdown-item" href="#"><i class="dw dw-edit2"></i> Edit</a>
+                                                <a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i> Delete</a>
+                                            </div>
+                                        </div>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td class="table-plus">Andrea J. Cagle</td>
@@ -103,17 +132,17 @@
                                     <td>29-03-2018</td>
                                     <td>$162,700</td>
                                     <td>
-										<div class="dropdown">
-											<a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-												<i class="dw dw-more"></i>
-											</a>
-											<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-												<a class="dropdown-item" href="#"><i class="dw dw-eye"></i> View</a>
-												<a class="dropdown-item" href="#"><i class="dw dw-edit2"></i> Edit</a>
-												<a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i> Delete</a>
-											</div>
-										</div>
-									</td>
+                                        <div class="dropdown">
+                                            <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                                                <i class="dw dw-more"></i>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                                                <a class="dropdown-item" href="#"><i class="dw dw-eye"></i> View</a>
+                                                <a class="dropdown-item" href="#"><i class="dw dw-edit2"></i> Edit</a>
+                                                <a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i> Delete</a>
+                                            </div>
+                                        </div>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>

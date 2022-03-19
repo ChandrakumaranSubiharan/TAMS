@@ -1,3 +1,9 @@
+<?php
+// Include database file
+include_once '../includes/dbconfig.php';
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -65,56 +71,69 @@
                         <table class=" table hover data-table-export nowrap ">
                             <thead>
                                 <tr>
-                                    <th class="table-plus datatable-nosort">Name</th>
-                                    <th>Age</th>
-                                    <th>Office</th>
-                                    <th>Address</th>
-                                    <th>Start Date</th>
-                                    <th>Start Date</th>
+                                    <th class="table-plus datatable-nosort">Id</th>
+                                    <th>Home Name</th>
+                                    <th>Location</th>
+                                    <th>Ava Start Date</th>
+                                    <th>Ava End Date</th>
+                                    <th>Avg/Night(LKR)</th>
+                                    <th>Description</th>
+                                    <th>Status</th>
+                                    <th>Type</th>
+                                    <th>Extra people</th>
+                                    <th>Province</th>
+                                    <th>District</th>
+                                    <th>Cancellation</th>
+                                    <th>Image</th>
+                                    <th>Created Date</th>
                                     <th class="datatable-nosort">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td class="table-plus">Gloria F. Mead</td>
-                                    <td>25</td>
-                                    <td>Sagittarius</td>
-                                    <td>2829 Trainer Avenue Peoria, IL 61602 </td>
-                                    <td>29-03-2018</td>
-                                    <td>$162,700</td>
-                                    <td>
-										<div class="dropdown">
-											<a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-												<i class="dw dw-more"></i>
-											</a>
-											<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-												<a class="dropdown-item" href="#"><i class="dw dw-eye"></i> View</a>
-												<a class="dropdown-item" href="#"><i class="dw dw-edit2"></i> Edit</a>
-												<a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i> Delete</a>
-											</div>
-										</div>
-									</td>
-                                </tr>
-                                <tr>
-                                    <td class="table-plus">Andrea J. Cagle</td>
-                                    <td>30</td>
-                                    <td>Gemini</td>
-                                    <td>1280 Prospect Valley Road Long Beach, CA 90802 </td>
-                                    <td>29-03-2018</td>
-                                    <td>$162,700</td>
-                                    <td>
-										<div class="dropdown">
-											<a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-												<i class="dw dw-more"></i>
-											</a>
-											<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-												<a class="dropdown-item" href="#"><i class="dw dw-eye"></i> View</a>
-												<a class="dropdown-item" href="#"><i class="dw dw-edit2"></i> Edit</a>
-												<a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i> Delete</a>
-											</div>
-										</div>
-									</td>
-                                </tr>
+
+                                <?php
+                                // Include database file
+
+                                $customers = $home->displayData();
+
+                                foreach ($customers as $homes) {
+
+                                ?>
+                                    <tr>
+                                        <td><?php echo $homes['home_id']; ?></td>
+                                        <td><?php echo $homes['home_name']; ?></td>
+                                        <td><?php echo $homes['location_address']; ?></td>
+                                        <td><?php echo date('d-M-Y', strtotime($homes['ava_start_date'])) ; ?></td>
+                                        <td><?php echo date('d-M-Y', strtotime($homes['ava_end_date'])) ; ?></td>
+                                        <td><?php echo $homes['ava_night_price']; ?></td>
+                                        <td><?php echo $homes['lg_desc']; ?></td>
+                                        <td><?php if($homes['status'] == 0){echo "Inactive";} else{echo "Active";} ?></td>
+                                        <td><?php echo $homes['home_type']; ?></td>
+                                        <td><?php echo $homes['extra_people']; ?></td>
+                                        <td><?php echo $homes['province']; ?></td>
+                                        <td><?php echo $homes['district']; ?></td>
+                                        <td><?php if($homes['cancellation'] == 0){echo "Disabled";} else{echo "Enabled";} ?></td>
+                                        <td><img src="<?php echo 'includes/uploads/' . $homes['cover_img1'] ?>" width="150px"></td>
+                                        <td><?php echo date('d-M-Y', strtotime($homes['created_date'])) ; ?></td>
+                                        <td>
+                                            <div class="dropdown">
+                                                <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                                                    <i class="dw dw-more"></i>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+
+                                                <?php if($homes['status'] == 0)
+                                                {echo"<a class='dropdown-item' href='#'><i class='dw dw-eye'></i> Active</a>";} 
+                                                else
+                                                {echo"<a class='dropdown-item' href='#'><i class='dw dw-eye'></i> Deactive</a>";} ?>
+                                                    <a class="dropdown-item" href="#"><i class="dw dw-edit2"></i> Edit</a>
+                                                    <a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i> Delete</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                <?php } ?>
+
                             </tbody>
                         </table>
                     </div>
@@ -123,7 +142,7 @@
 
             </div>
             <div class="footer-wrap pd-20 mb-20 card-box">
-                HappyHolidayss By <a href="https://github.com/dropways" target="_blank">Chandrakumaran Subiharan</a>
+                HappyHolidayss Pvt(Ltd).</a>
             </div>
         </div>
     </div>
