@@ -64,6 +64,26 @@ class home
     }
 
 
+        // Fetch single data for edit from customer table
+        public function displyaRecordById($editId)
+        {
+            $query = "SELECT * FROM tbl_home WHERE home_id = '$editId'";
+            $result = $this->db->query($query);
+            if ($result->rowCount() > 0) {
+              while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                  $data = $row;
+              }
+              return $data;
+              }else{
+                echo "Record not found";
+              }
+        }
+
+    public function editData(){
+
+    }
+
+
 
 
 

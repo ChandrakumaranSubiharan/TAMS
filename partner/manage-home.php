@@ -94,9 +94,9 @@ include_once '../includes/dbconfig.php';
                                 <?php
                                 // Include database file
 
-                                $customers = $home->displayData();
+                                $homedata = $home->displayData();
 
-                                foreach ($customers as $homes) {
+                                foreach ($homedata as $homes) {
 
                                 ?>
                                     <tr>
@@ -126,7 +126,7 @@ include_once '../includes/dbconfig.php';
                                                 {echo"<a class='dropdown-item' href='#'><i class='dw dw-eye'></i> Active</a>";} 
                                                 else
                                                 {echo"<a class='dropdown-item' href='#'><i class='dw dw-eye'></i> Deactive</a>";} ?>
-                                                    <a class="dropdown-item" href="#"><i class="dw dw-edit2"></i> Edit</a>
+                                                    <a class="dropdown-item" href="edit-home.php?editId=<?php echo $homes['home_id'] ?>"><i class="dw dw-edit2" aria-hidden="true"></i> Edit</a>
                                                     <a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i> Delete</a>
                                                 </div>
                                             </div>
