@@ -3,14 +3,58 @@
 // Include database file
 include_once '../includes/dbconfig.php';
 
-// Edit customer record
-
+// display edit record
 if (isset($_GET['editId']) && !empty($_GET['editId'])) {
     $editId = $_GET['editId'];
     $homedata = $home->displyaRecordById($editId);
 }
 
+
+// Update Record in customer table
+if (isset($_POST['update'])) {
+    $id = $_GET['editId'];
+    $homename = $_POST['hname'];
+    $location = $_POST['laddress'];
+    $price = $_POST['anprice'];
+    $des = $_POST['lgdesc'];
+    $type = $_POST['type'];
+    $people = $_POST['e_people'];
+    $province = $_POST['province'];
+    $district = $_POST['district'];
+    $cancell = $_POST['cancel'];
+    $ava_start = $_POST['start_date'];
+    $ava_end = $_POST['end_date'];
+
+
+    $updateData = $home->update($id, $homename, $location, $price, $des, $type, $people, $province, $district, $cancell, $ava_start, $ava_end);
+
+    if ($updateData) {
+
+        $msg = "<div class='alert alert-info'>
+        <strong>WOW!</strong> Record was updated successfully!
+        </div>";
+        $homedata = $home->displyaRecordById($editId);
+
+    } else {
+        $msg = "Failed to Create Home ";
+        echo "<script type='text/javascript'>alert('$msg');</script>";
+    }
+
+
+    
+}
+
+
+
+
+
+
+
 ?>
+
+
+
+
 
 
 <!DOCTYPE html>
@@ -71,6 +115,13 @@ if (isset($_GET['editId']) && !empty($_GET['editId'])) {
                                     <li class="breadcrumb-item active" aria-current="page">edit home</li>
                                 </ol>
                             </nav>
+                            <div class="container">
+                                <?php
+                                if (isset($msg)) {
+                                    echo $msg;
+                                }
+                                ?>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -90,25 +141,13 @@ if (isset($_GET['editId']) && !empty($_GET['editId'])) {
                         </div>
 
                         <div class="form-group">
-                            <label for="focusedinput" >Package Image</label>
-                            <div class="col-sm-8">
-                                <img src="includes/uploads/<?php echo $homedata['cover_img1']; ?>" width="500">&nbsp;&nbsp;&nbsp;
-                                
-                                
-                                <!-- onwards -->
-                                
-                                
-                                
-                                <a href="change-image.php?imgid=<?php echo htmlentities($result->PackageId); ?>">Change Image</a>
+                            <label for="focusedinput">Home Image</label>
+                            <div>
+                                <img src="includes/uploads/<?php echo $homedata['cover_img1']; ?>" width="400">&nbsp;&nbsp;&nbsp;
+
+                                <a href="change-image.php?imgid=<?php echo $homedata['home_id']; ?>">Change Image</a>
                             </div>
                         </div>
-
-
-
-                        <!-- <div class="form-group">
-                            <label>Home Image</label>
-                            <input type="file" class="form-control" value="<?= $homedata['cover_img1']; ?>" name="image">
-                        </div> -->
                         <div class="form-group">
                             <label>Home Details</label>
                             <textarea name="lgdesc" class="form-control"><?php echo $homedata['lg_desc']; ?></textarea>
@@ -116,7 +155,7 @@ if (isset($_GET['editId']) && !empty($_GET['editId'])) {
                         <div class="form-group">
                             <label>Type</label>
                             <select name="type" class="custom-select col-12">
-                                <option selected="">Choose...</option>
+                                <option value="<?php echo $homedata['home_type']; ?>"><?php echo $homedata['home_type']; ?></option>
                                 <option value="Cabin">Cabin</option>
                                 <option value="Cottage">Cottage</option>
                                 <option value="Resort">Resort</option>
@@ -126,12 +165,12 @@ if (isset($_GET['editId']) && !empty($_GET['editId'])) {
                         </div>
                         <div class="form-group">
                             <label>Extra People</label>
-                            <input type="text" class="form-control" name="e_people">
+                            <input type="text" value="<?php echo $homedata['extra_people']; ?>" class="form-control" name="e_people">
                         </div>
                         <div class="form-group">
                             <label>Province</label>
                             <select name="province" class="custom-select col-12">
-                                <option selected="">Choose...</option>
+                                <option value="<?php echo $homedata['province']; ?>"><?php echo $homedata['province']; ?></option>
                                 <option value="Northern Province">Northern Province</option>
                                 <option value="Central Province">Central Province</option>
                                 <option value="Western Province">Western Province</option>
@@ -140,7 +179,7 @@ if (isset($_GET['editId']) && !empty($_GET['editId'])) {
                         <div class="form-group">
                             <label>District</label>
                             <select name="district" class="custom-select col-12">
-                                <option selected="">Choose...</option>
+                                <option value="<?php echo $homedata['district']; ?>"><?php echo $homedata['district']; ?></option>
                                 <option value="Kandy">Kandy</option>
                                 <option value="Jaffna">Jaffna</option>
                                 <option value="Colombo">Colombo</option>
@@ -149,20 +188,24 @@ if (isset($_GET['editId']) && !empty($_GET['editId'])) {
                         <div class="form-group">
                             <label>Cancellation</label>
                             <select name="cancel" class="custom-select col-12">
-                                <option selected="">Choose...</option>
-                                <option value="1">Yes</option>
-                                <option value="0">No</option>
+                                <option value="<?php echo $homedata['cancellation']; ?>"><?php if ($homedata['cancellation'] == 1) {
+                                                                                                echo "Enabled";
+                                                                                            } else {
+                                                                                                echo "Disabled";
+                                                                                            } ?></option>
+                                <option value="1">Enabled</option>
+                                <option value="0">Disabled</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label>Availability Start Date</label>
-                            <input type="date" class="form-control" name="start_date">
+                            <input type="date" value="<?php echo $homedata['ava_start_date']; ?>" class="form-control" name="start_date">
                         </div>
                         <div class="form-group">
                             <label>Availability End Date</label>
-                            <input type="date" class="form-control" name="end_date">
+                            <input type="date" value="<?php echo $homedata['ava_end_date']; ?>" class="form-control" name="end_date">
                         </div>
-                        <input class="btn btn-primary" name="submit" type="submit" value="Submit">
+                        <input class="btn btn-primary" name="update" type="submit" value="Update">
                         <input class="btn btn-info" type="reset" value="Reset">
                     </form>
                 </div>
