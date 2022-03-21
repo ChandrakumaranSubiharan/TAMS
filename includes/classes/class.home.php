@@ -81,7 +81,7 @@ class home
 
 
 
-  public function update($id,$homename,$location,$price,$des,$type,$people,$province,$district,$cancell,$ava_start,$ava_end)
+  public function update($id, $homename, $location, $price, $des, $type, $people, $province, $district, $cancell, $ava_start, $ava_end, $sta)
   {
     try {
       $stmt = $this->db->prepare("UPDATE tbl_home SET 
@@ -95,7 +95,8 @@ class home
                 district=:distri,
                 cancellation=:cancell,
                 ava_start_date=:sdate,
-                ava_end_date=:edate
+                ava_end_date=:edate,
+                status=:st
              WHERE home_id=:id ");
       $stmt->bindparam(":hname", $homename);
       $stmt->bindparam(":address", $location);
@@ -108,6 +109,7 @@ class home
       $stmt->bindparam(":cancell", $cancell);
       $stmt->bindparam(":sdate", $ava_start);
       $stmt->bindparam(":edate", $ava_end);
+      $stmt->bindparam(":st", $sta);
       $stmt->bindparam(":id", $id);
       $stmt->execute();
 
@@ -115,6 +117,37 @@ class home
     } catch (PDOException $e) {
       echo $e->getMessage();
       return false;
+    }
+  }
+
+  // Delete customer data from home table
+  public function deleteRecord($id)
+  {
+    $stmt = $this->db->prepare("DELETE FROM tbl_home WHERE home_id = '$id'");
+    $stmt->bindparam(":id", $id);
+    $stmt->execute();
+    if ($stmt == true) {
+      header("Location:manage-home.php?msg3=delete");
+    } else {
+      echo "Record does not delete try again";
+    }
+  }
+
+
+  // Delete customer data from home table
+  public function activeRecord($id)
+  {
+    $stmt = $this->db->prepare("UPDATE tbl_home SET 
+      status=:sta
+      WHERE home_id=:id ");
+    $sta = 1;
+    $stmt->bindparam(":sta", $sta);
+    $stmt->bindparam(":id", $id);
+    $stmt->execute();
+    if ($stmt == true) {
+      header("Location:manage-home.php?msg2=active");
+    } else {
+      echo "Record does not delete try again";
     }
   }
 }

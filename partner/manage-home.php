@@ -1,6 +1,21 @@
 <?php
 // Include database file
 include_once '../includes/dbconfig.php';
+
+
+// Delete record from table
+if (isset($_GET['deleteId']) && !empty($_GET['deleteId'])) {
+    $deleteId = $_GET['deleteId'];
+    $home->deleteRecord($deleteId);
+}
+
+// update status 
+if (isset($_GET['activeId']) && !empty($_GET['activeId'])) {
+    $activeId = $_GET['activeId'];
+    $home->activeRecord($activeId);
+}
+
+
 ?>
 
 
@@ -62,6 +77,24 @@ include_once '../includes/dbconfig.php';
                                     <li class="breadcrumb-item active" aria-current="page">Manage home</li>
                                 </ol>
                             </nav>
+
+
+                            <?php
+                            if (isset($_GET['msg2']) == "active") {
+                                echo "<div class='alert alert-success alert-dismissible'>
+                                          <button type='button' class='close' data-dismiss='alert'>&times;</button>
+                                          Record activated successfully
+                                        </div>";
+                            }
+                            if (isset($_GET['msg3']) == "delete") {
+                                echo "<div class='alert alert-success alert-dismissible'>
+              <button type='button' class='close' data-dismiss='alert'>&times;</button>
+              Record deleted successfully
+            </div>";
+                            }
+                            ?>
+
+
                         </div>
                     </div>
                 </div>
@@ -92,8 +125,6 @@ include_once '../includes/dbconfig.php';
                             <tbody>
 
                                 <?php
-                                // Include database file
-
                                 $homedata = $home->displayData();
 
                                 foreach ($homedata as $homes) {
@@ -103,31 +134,34 @@ include_once '../includes/dbconfig.php';
                                         <td><?php echo $homes['home_id']; ?></td>
                                         <td><?php echo $homes['home_name']; ?></td>
                                         <td><?php echo $homes['location_address']; ?></td>
-                                        <td><?php echo date('d-M-Y', strtotime($homes['ava_start_date'])) ; ?></td>
-                                        <td><?php echo date('d-M-Y', strtotime($homes['ava_end_date'])) ; ?></td>
+                                        <td><?php echo date('d-M-Y', strtotime($homes['ava_start_date'])); ?></td>
+                                        <td><?php echo date('d-M-Y', strtotime($homes['ava_end_date'])); ?></td>
                                         <td><?php echo $homes['ava_night_price']; ?></td>
                                         <td><?php echo $homes['lg_desc']; ?></td>
-                                        <td><?php if($homes['status'] == 0){echo "Inactive";} else{echo "Active";} ?></td>
+                                        <td><?php if ($homes['status'] == 0) {
+                                                echo "Inactive";
+                                            } else {
+                                                echo "Active";
+                                            } ?></td>
                                         <td><?php echo $homes['home_type']; ?></td>
                                         <td><?php echo $homes['extra_people']; ?></td>
                                         <td><?php echo $homes['province']; ?></td>
                                         <td><?php echo $homes['district']; ?></td>
-                                        <td><?php if($homes['cancellation'] == 0){echo "Disabled";} else{echo "Enabled";} ?></td>
+                                        <td><?php if ($homes['cancellation'] == 0) {
+                                                echo "Disabled";
+                                            } else {
+                                                echo "Enabled";
+                                            } ?></td>
                                         <td><img src="<?php echo 'includes/uploads/' . $homes['cover_img1'] ?>" width="150px"></td>
-                                        <td><?php echo date('d-M-Y', strtotime($homes['created_date'])) ; ?></td>
+                                        <td><?php echo date('d-M-Y', strtotime($homes['created_date'])); ?></td>
                                         <td>
                                             <div class="dropdown">
                                                 <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
                                                     <i class="dw dw-more"></i>
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-
-                                                <?php if($homes['status'] == 0)
-                                                {echo"<a class='dropdown-item' href='#'><i class='dw dw-eye'></i> Active</a>";} 
-                                                else
-                                                {echo"<a class='dropdown-item' href='#'><i class='dw dw-eye'></i> Deactive</a>";} ?>
                                                     <a class="dropdown-item" href="edit-home.php?editId=<?php echo $homes['home_id'] ?>"><i class="dw dw-edit2" aria-hidden="true"></i> Edit</a>
-                                                    <a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i> Delete</a>
+                                                    <a href="manage-home.php?deleteId=<?php echo $homes['home_id'] ?>" style="color:red" onclick="confirm('Are you sure want to delete this record')" class="dropdown-item"><i class="dw dw-delete-3"></i> Delete</a>
                                                 </div>
                                             </div>
                                         </td>

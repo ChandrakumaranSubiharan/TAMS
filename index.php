@@ -1,441 +1,300 @@
+<?php
+// Include database file
+include_once 'includes/dbconfig.php';
+?>
 
-    <?php include('includes/header.php');?>
 
 
-    <!-- slideshow -->
-    <div id="slideshow">
-            <div class="fullwidthbanner-container">
-                <div class="revolution-slider" style="height: 0; overflow: hidden;">
-                    <ul>    <!-- SLIDE  -->
-                        <!-- Slide1 -->
-                        <li data-transition="zoomin" data-slotamount="7" data-masterspeed="1500">
-                            <!-- MAIN IMAGE -->
-                            <img src="assets/images/slider/01.png" alt="">
-                        </li>
-                        
-                        <!-- Slide2 -->
-                        <li data-transition="zoomout" data-slotamount="7" data-masterspeed="1500">
-                            <!-- MAIN IMAGE -->
-                            <img src="assets/images/slider/01.png" alt="">
+<?php include('includes/header.php'); ?>
 
-                        </li>
-                        
-                        <!-- Slide3 -->
-                        <li data-transition="slidedown" data-slotamount="7" data-masterspeed="1500">
-                            <!-- MAIN IMAGE -->
-                            <img src="assets/images/slider/01.png" alt="">
-                        </li>
-                    </ul>
-                </div>
-            </div>
+
+
+<!-- slideshow -->
+<div id="slideshow">
+    <div class="fullwidthbanner-container">
+        <div class="revolution-slider" style="height: 0; overflow: hidden;">
+            <ul>
+                <!-- SLIDE  -->
+                <!-- Slide1 -->
+                <li data-transition="zoomin" data-slotamount="7" data-masterspeed="1500">
+                    <!-- MAIN IMAGE -->
+                    <img src="assets/images/slider/01.png" alt="">
+                </li>
+
+                <!-- Slide2 -->
+                <li data-transition="zoomout" data-slotamount="7" data-masterspeed="1500">
+                    <!-- MAIN IMAGE -->
+                    <img src="assets/images/slider/01.png" alt="">
+
+                </li>
+
+                <!-- Slide3 -->
+                <li data-transition="slidedown" data-slotamount="7" data-masterspeed="1500">
+                    <!-- MAIN IMAGE -->
+                    <img src="assets/images/slider/01.png" alt="">
+                </li>
+            </ul>
         </div>
-        <section id="content">
+    </div>
+</div>
+<section id="content">
 
 
 
     <!-- Search bar -->
-        <div class="search-box-wrapper">
-                <div class="search-box container">
-                    <ul class="search-tabs clearfix">
-                        <li class="active"><a href="#hotels-tab" data-toggle="tab">STAYS</a></li>
-                        <li><a href="#flights-tab" data-toggle="tab">TOURS</a></li>
-                    </ul>
-                    <div class="visible-mobile">
-                        <ul id="mobile-search-tabs" class="search-tabs clearfix">
-                            <li class="active"><a href="#hotels-tab">STAYS</a></li>
-                            <li><a href="#online-checkin-tab">TOURS</a></li>
-                        </ul>
-                    </div>
-                    
-                    <div class="search-tab-content">
-                        <div class="tab-pane fade active in" id="hotels-tab">
-                            <form action="#" method="post">
+    <div class="search-box-wrapper">
+        <div class="search-box container">
+            <ul class="search-tabs clearfix">
+                <li class="active"><a href="#hotels-tab" data-toggle="tab">STAYS</a></li>
+                <li><a href="#flights-tab" data-toggle="tab">TOURS</a></li>
+            </ul>
+            <div class="visible-mobile">
+                <ul id="mobile-search-tabs" class="search-tabs clearfix">
+                    <li class="active"><a href="#hotels-tab">STAYS</a></li>
+                    <li><a href="#online-checkin-tab">TOURS</a></li>
+                </ul>
+            </div>
+
+            <div class="search-tab-content">
+                <div class="tab-pane fade active in" id="hotels-tab">
+                    <form action="#" method="post">
+                        <div class="row">
+                            <div class="form-group col-sm-6 col-md-3">
+                                <h4 class="title">Where</h4>
+                                <label>Select Destination</label>
+                                <div class="selector">
+                                    <select class="full-width">
+                                        <option value="1">Kandy</option>
+                                        <option value="2">Colombo</option>
+                                        <option value="3">Jaffna</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-sm-6 col-md-4">
+                                <h4 class="title">When</h4>
                                 <div class="row">
-                                    <div class="form-group col-sm-6 col-md-3">
-                                        <h4 class="title">Where</h4>
-                                        <label>Select Destination</label>
-                                                <div class="selector">
-                                                    <select class="full-width">
-                                                        <option value="1">Kandy</option>
-                                                        <option value="2">Colombo</option>
-                                                        <option value="3">Jaffna</option>
-                                                    </select>
-                                                </div>
-                                    </div>
-                                    
-                                    <div class="form-group col-sm-6 col-md-4">
-                                        <h4 class="title">When</h4>
-                                        <div class="row">
-                                            <div class="col-xs-6">
-                                                <label>Check In</label>
-                                                <div class="datepicker-wrap">
-                                                    <input type="text" class="input-text full-width" placeholder="mm/dd/yy" />
-                                                </div>
-                                            </div>
-                                            <div class="col-xs-6">
-                                                <label>Check Out</label>
-                                                <div class="datepicker-wrap">
-                                                    <input type="text" class="input-text full-width" placeholder="mm/dd/yy" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="form-group col-sm-6 col-md-3">
-                                        <h4 class="title">Who</h4>
-                                        <div class="row">
-                                            <div class="col-xs-4">
-                                                <label>Adults</label>
-                                                <div class="selector">
-                                                    <select class="full-width">
-                                                        <option value="1">01</option>
-                                                        <option value="2">02</option>
-                                                        <option value="3">03</option>
-                                                        <option value="4">04</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-xs-4">
-                                                <label>Kids</label>
-                                                <div class="selector">
-                                                    <select class="full-width">
-                                                        <option value="1">01</option>
-                                                        <option value="2">02</option>
-                                                        <option value="3">03</option>
-                                                        <option value="4">04</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-xs-4">
-                                                <label>Infants</label>
-                                                <div class="selector">
-                                                    <select class="full-width">
-                                                        <option value="1">01</option>
-                                                        <option value="2">02</option>
-                                                        <option value="3">03</option>
-                                                        <option value="4">04</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="form-group col-sm-6 col-md-2 fixheight">
-                                        <label class="hidden-xs">&nbsp;</label>
-                                        <button type="submit" class="full-width icon-check animated" data-animation-type="bounce" data-animation-duration="1">SEARCH NOW</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="tab-pane fade" id="flights-tab">
-                            <form action="#" method="post">
-                            <div class="row">
-                                    <div class="form-group col-sm-6 col-md-3">
-                                        <h4 class="title">Where</h4>
-                                        <label>Select Destination</label>
-                                                <div class="selector">
-                                                    <select class="full-width">
-                                                        <option value="1">Kandy</option>
-                                                        <option value="2">Colombo</option>
-                                                        <option value="3">Jaffna</option>
-                                                    </select>
-                                                </div>
-                                    </div>
-
-                                    <div class="form-group col-sm-6 col-md-3">
-                                        <h4 class="title">When</h4>
-                                        <label>Select a Date</label>
+                                    <div class="col-xs-6">
+                                        <label>Check In</label>
                                         <div class="datepicker-wrap">
-                                                    <input type="text" class="input-text full-width" placeholder="mm/dd/yy" />
-                                                </div>
+                                            <input type="text" class="input-text full-width" placeholder="mm/dd/yy" />
+                                        </div>
                                     </div>
-
-                                    <div class="form-group col-sm-6 col-md-3">
-                                        <h4 class="title">How</h4>
-                                        <label>Select Tour Type</label>
-                                                <div class="selector">
-                                                    <select class="full-width">
-                                                        <option value="1">Couple Package</option>
-                                                        <option value="2">Colombo</option>
-                                                        <option value="3">Jaffna</option>
-                                                    </select>
-                                                </div>
-                                    </div>
-                                    <div class="form-group col-sm-6 col-md-2 fixheight">
-                                        <label class="hidden-xs">&nbsp;</label>
-                                        <button type="submit" class="full-width icon-check animated" data-animation-type="bounce" data-animation-duration="1">SEARCH NOW</button>
+                                    <div class="col-xs-6">
+                                        <label>Check Out</label>
+                                        <div class="datepicker-wrap">
+                                            <input type="text" class="input-text full-width" placeholder="mm/dd/yy" />
+                                        </div>
                                     </div>
                                 </div>
-                            </form>
+                            </div>
+
+                            <div class="form-group col-sm-6 col-md-3">
+                                <h4 class="title">Who</h4>
+                                <div class="row">
+                                    <div class="col-xs-4">
+                                        <label>Adults</label>
+                                        <div class="selector">
+                                            <select class="full-width">
+                                                <option value="1">01</option>
+                                                <option value="2">02</option>
+                                                <option value="3">03</option>
+                                                <option value="4">04</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <label>Kids</label>
+                                        <div class="selector">
+                                            <select class="full-width">
+                                                <option value="1">01</option>
+                                                <option value="2">02</option>
+                                                <option value="3">03</option>
+                                                <option value="4">04</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <label>Infants</label>
+                                        <div class="selector">
+                                            <select class="full-width">
+                                                <option value="1">01</option>
+                                                <option value="2">02</option>
+                                                <option value="3">03</option>
+                                                <option value="4">04</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-sm-6 col-md-2 fixheight">
+                                <label class="hidden-xs">&nbsp;</label>
+                                <button type="submit" class="full-width icon-check animated" data-animation-type="bounce" data-animation-duration="1">SEARCH NOW</button>
+                            </div>
                         </div>
-                    </div>
+                    </form>
+                </div>
+                <div class="tab-pane fade" id="flights-tab">
+                    <form action="#" method="post">
+                        <div class="row">
+                            <div class="form-group col-sm-6 col-md-3">
+                                <h4 class="title">Where</h4>
+                                <label>Select Destination</label>
+                                <div class="selector">
+                                    <select class="full-width">
+                                        <option value="1">Kandy</option>
+                                        <option value="2">Colombo</option>
+                                        <option value="3">Jaffna</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-sm-6 col-md-3">
+                                <h4 class="title">When</h4>
+                                <label>Select a Date</label>
+                                <div class="datepicker-wrap">
+                                    <input type="text" class="input-text full-width" placeholder="mm/dd/yy" />
+                                </div>
+                            </div>
+
+                            <div class="form-group col-sm-6 col-md-3">
+                                <h4 class="title">How</h4>
+                                <label>Select Tour Type</label>
+                                <div class="selector">
+                                    <select class="full-width">
+                                        <option value="1">Couple Package</option>
+                                        <option value="2">Colombo</option>
+                                        <option value="3">Jaffna</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-6 col-md-2 fixheight">
+                                <label class="hidden-xs">&nbsp;</label>
+                                <button type="submit" class="full-width icon-check animated" data-animation-type="bounce" data-animation-duration="1">SEARCH NOW</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
+        </div>
+    </div>
 
 
 
     <!-- How Holidayss works container -->
 
-            <div class="global-map-area section parallax" data-stellar-background-ratio="0.5">
-                <div class="container description text-center">
-                    <h1>How HappyHolidayss Works?</h1>
-                    <br>
-                    <div class="travelo-process">
-                        <img src="assets/images/happyholidayss_process.png" alt="">
-                        <div class="process first icon-box style12">
-                            <div class="details animated" data-animation-type="fadeInUp" data-animation-delay="1">
-                                <h4>Explore Destinations</h4>
-                            </div>
-                            <div class="icon-wrapper animated" data-animation-type="slideInLeft" data-animation-delay="0">
-                                <i class="soap-icon-beach circle"></i>
-                            </div>
-                        </div>
-                        <div class="process second icon-box style12">
-                            <div class="icon-wrapper animated" data-animation-type="slideInRight" data-animation-delay="1.5">
-                                <i class="soap-icon-availability circle"></i>
-                            </div>
-                            <div class="details animated" data-animation-type="fadeInUp" data-animation-delay="2.5">
-                                <h4>Check Availability</h4>
-                            </div>
-                        </div>
-                        <div class="process third icon-box style12">
-                            <div class="icon-wrapper animated" data-animation-type="slideInRight" data-animation-delay="2">
-                                <i class="soap-icon-stories circle"></i>
-                            </div>
-                            <div class="details animated" data-animation-type="fadeInUp" data-animation-delay="3">
-                                <h4>Book Online</h4>
-                            </div>
-                        </div>
-                        <div class="process forth icon-box style12">
-                            <div class="details animated" data-animation-type="fadeInUp" data-animation-delay="4.5">
-                                <h4>Travel to Destinations</h4>
-                            </div>
-                            <div class="icon-wrapper animated" data-animation-type="slideInLeft" data-animation-delay="3.5">
-                                <i class="soap-icon-adventure takeoff-effect1 circle"></i>
-                            </div>
-                        </div>
+    <div class="global-map-area section parallax" data-stellar-background-ratio="0.5">
+        <div class="container description text-center">
+            <h1>How HappyHolidayss Works?</h1>
+            <br>
+            <div class="travelo-process">
+                <img src="assets/images/happyholidayss_process.png" alt="">
+                <div class="process first icon-box style12">
+                    <div class="details animated" data-animation-type="fadeInUp" data-animation-delay="1">
+                        <h4>Explore Destinations</h4>
+                    </div>
+                    <div class="icon-wrapper animated" data-animation-type="slideInLeft" data-animation-delay="0">
+                        <i class="soap-icon-beach circle"></i>
+                    </div>
+                </div>
+                <div class="process second icon-box style12">
+                    <div class="icon-wrapper animated" data-animation-type="slideInRight" data-animation-delay="1.5">
+                        <i class="soap-icon-availability circle"></i>
+                    </div>
+                    <div class="details animated" data-animation-type="fadeInUp" data-animation-delay="2.5">
+                        <h4>Check Availability</h4>
+                    </div>
+                </div>
+                <div class="process third icon-box style12">
+                    <div class="icon-wrapper animated" data-animation-type="slideInRight" data-animation-delay="2">
+                        <i class="soap-icon-stories circle"></i>
+                    </div>
+                    <div class="details animated" data-animation-type="fadeInUp" data-animation-delay="3">
+                        <h4>Book Online</h4>
+                    </div>
+                </div>
+                <div class="process forth icon-box style12">
+                    <div class="details animated" data-animation-type="fadeInUp" data-animation-delay="4.5">
+                        <h4>Travel to Destinations</h4>
+                    </div>
+                    <div class="icon-wrapper animated" data-animation-type="slideInLeft" data-animation-delay="3.5">
+                        <i class="soap-icon-adventure takeoff-effect1 circle"></i>
                     </div>
                 </div>
             </div>
-
-
-
-            <!-- Travel Services Category Cards -->
-
-            <div class="services-conter container">
-                <div class="row">
-                <div class="container-title">Explore HappyHolidayss</div>
-                    <a href="homes-search-list.php" target="_blank">
-                        <div class="col-md-4 col-sm-6">
-                            <div class="service-card-single">
-                                <img src="assets/images/services card images/7b8f9425-f5e7-4c9e-9d6d-b39fa2f6e651.png" alt="">
-                                <h5 class="title">Homes</h5>
-                            </div>
-                        </div>
-                    </a>
-
-                    <a href="tours-search-list.php" target="_blank">
-                        <div class="col-md-4 col-sm-6">
-                            <div class="service-card-single">
-                                <img src="assets/images/services card images/mantas-hesthaven-_g1WdcKcV3w-unsplash.jpg" alt="">
-                                <h5 class="title">Tour Packages</h5>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-
-
-            <div class="container">
-            <h2>Popular Homes</h2>
-            <div class="row image-box hotel listing-style1">
-                <div class="col-sms-6 col-sm-6 col-md-3">
-                    <article class="box">
-                        <figure class="animated" data-animation-type="fadeInDown" data-animation-delay="0">
-                            <a title=""><img width="270" height="160" src="assets/images/services card images/hom01.png" alt=""></a>
-                        </figure>
-                        <div class="details">
-                            <span class="price">
-                                <small>avg/night</small>
-                                LKR 25000
-                            </span>
-                            <h4 class="box-title">Madulkelle Tea and Eco Lodge<small>Kandy, Sri Lanka</small></h4>
-                            <div class="feedback">
-                                <div title="4 stars" class="five-stars-container" data-toggle="tooltip" data-placement="bottom"><span class="five-stars" style="width: 80%;"></span></div>
-                                <span class="review">Eco Lodge</span>
-                            </div>
-                            <p class="description">The peaceful Madulkelle Tea and Eco Lodge offers a retreat away from the city.</p>
-                            <div class="action">
-                                <a href="hotel-detailed.html" class="button btn-small">SELECT</a>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-                <div class="col-sms-6 col-sm-6 col-md-3">
-                <article class="box">
-                        <figure class="animated" data-animation-type="fadeInDown" data-animation-delay="0">
-                            <a title=""><img width="270" height="160" src="assets/images/services card images/hom03.png" alt=""></a>
-                        </figure>
-                        <div class="details">
-                            <span class="price">
-                                <small>avg/night</small>
-                                LKR 25000
-                            </span>
-                            <h4 class="box-title">Madulkelle Tea and Eco Lodge<small>Kandy, Sri Lanka</small></h4>
-                            <div class="feedback">
-                                <div title="4 stars" class="five-stars-container" data-toggle="tooltip" data-placement="bottom"><span class="five-stars" style="width: 80%;"></span></div>
-                                <span class="review">Eco Lodge</span>
-                            </div>
-                            <p class="description">The peaceful Madulkelle Tea and Eco Lodge offers a retreat away from the city.</p>
-                            <div class="action">
-                                <a href="hotel-detailed.html" class="button btn-small">SELECT</a>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-                <div class="col-sms-6 col-sm-6 col-md-3">
-                <article class="box">
-                        <figure class="animated" data-animation-type="fadeInDown" data-animation-delay="0">
-                            <a title=""><img width="270" height="160" src="assets/images/services card images/hom02.png" alt=""></a>
-                        </figure>
-                        <div class="details">
-                            <span class="price">
-                                <small>avg/night</small>
-                                LKR 25000
-                            </span>
-                            <h4 class="box-title">Madulkelle Tea and Eco Lodge<small>Kandy, Sri Lanka</small></h4>
-                            <div class="feedback">
-                                <div title="4 stars" class="five-stars-container" data-toggle="tooltip" data-placement="bottom"><span class="five-stars" style="width: 80%;"></span></div>
-                                <span class="review">Eco Lodge</span>
-                            </div>
-                            <p class="description">The peaceful Madulkelle Tea and Eco Lodge offers a retreat away from the city.</p>
-                            <div class="action">
-                                <a href="hotel-detailed.html" class="button btn-small">SELECT</a>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-                <div class="col-sms-6 col-sm-6 col-md-3">
-                <article class="box">
-                        <figure class="animated" data-animation-type="fadeInDown" data-animation-delay="0">
-                            <a title=""><img width="270" height="160" src="assets/images/services card images/hom01.png" alt=""></a>
-                        </figure>
-                        <div class="details">
-                            <span class="price">
-                                <small>avg/night</small>
-                                LKR 25000
-                            </span>
-                            <h4 class="box-title">Madulkelle Tea and Eco Lodge<small>Kandy, Sri Lanka</small></h4>
-                            <div class="feedback">
-                                <div title="4 stars" class="five-stars-container" data-toggle="tooltip" data-placement="bottom"><span class="five-stars" style="width: 80%;"></span></div>
-                                <span class="review">Eco Lodge</span>
-                            </div>
-                            <p class="description">The peaceful Madulkelle Tea and Eco Lodge offers a retreat away from the city.</p>
-                            <div class="action">
-                                <a href="hotel-detailed.html" class="button btn-small">SELECT</a>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-            </div>
-
-
-            <h2>Popular Tours</h2>
-            <div class="row image-box hotel listing-style1">
-                <div class="col-sms-6 col-sm-6 col-md-3">
-                    <article class="box">
-                        <figure class="animated" data-animation-type="fadeInDown" data-animation-delay="0">
-                            <a title=""><img width="270" height="160" src="assets/images/services card images/pkg01.png" alt=""></a>
-                        </figure>
-                        <div class="details">
-                            <span class="price">
-                                <small>per Adult</small>
-                                LKR 25000
-                            </span>
-                            <h4 class="box-title">Island Break<small>Galle, Sri Lanka</small></h4>
-                            <div class="feedback">
-                                <div title="4 stars" class="five-stars-container" data-toggle="tooltip" data-placement="bottom"><span class="five-stars" style="width: 80%;"></span></div>
-                                <span class="review">4 Days & 3 Nights</span>
-
-                            </div>
-                            <p class="description">The perfect holiday destination squeezed into verdant rainforests, misty hills amid fertile tea plantations and dazzling beaches</p>
-                            <div class="action">
-                                <a href="hotel-detailed.html" class="button btn-small">SELECT</a>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-                <div class="col-sms-6 col-sm-6 col-md-3">
-                <article class="box">
-                        <figure class="animated" data-animation-type="fadeInDown" data-animation-delay="0">
-                            <a title=""><img width="270" height="160" src="assets/images/services card images/pkg02.png" alt=""></a>
-                        </figure>
-                        <div class="details">
-                            <span class="price">
-                                <small>per Adult</small>
-                                LKR 25000
-                            </span>
-                            <h4 class="box-title">Island Break<small>Galle, Sri Lanka</small></h4>
-                            <div class="feedback">
-                                <div title="4 stars" class="five-stars-container" data-toggle="tooltip" data-placement="bottom"><span class="five-stars" style="width: 80%;"></span></div>
-                                <span class="review">4 Days & 3 Nights</span>
-
-                            </div>
-                            <p class="description">The perfect holiday destination squeezed into verdant rainforests, misty hills amid fertile tea plantations and dazzling beaches</p>
-                            <div class="action">
-                                <a href="hotel-detailed.html" class="button btn-small">SELECT</a>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-                <div class="col-sms-6 col-sm-6 col-md-3">
-                <article class="box">
-                        <figure class="animated" data-animation-type="fadeInDown" data-animation-delay="0">
-                            <a title=""><img width="270" height="160" src="assets/images/services card images/pkg03.png" alt=""></a>
-                        </figure>
-                        <div class="details">
-                            <span class="price">
-                                <small>per Adult</small>
-                                LKR 25000
-                            </span>
-                            <h4 class="box-title">Island Break<small>Galle, Sri Lanka</small></h4>
-                            <div class="feedback">
-                                <div title="4 stars" class="five-stars-container" data-toggle="tooltip" data-placement="bottom"><span class="five-stars" style="width: 80%;"></span></div>
-                                <span class="review">4 Days & 3 Nights</span>
-
-                            </div>
-                            <p class="description">The perfect holiday destination squeezed into verdant rainforests, misty hills amid fertile tea plantations and dazzling beaches</p>
-                            <div class="action">
-                                <a href="hotel-detailed.html" class="button btn-small">SELECT</a>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-                <div class="col-sms-6 col-sm-6 col-md-3">
-                <article class="box">
-                        <figure class="animated" data-animation-type="fadeInDown" data-animation-delay="0">
-                            <a title=""><img width="270" height="160" src="assets/images/services card images/pkg01.png" alt=""></a>
-                        </figure>
-                        <div class="details">
-                            <span class="price">
-                                <small>per Adult</small>
-                                LKR 25000
-                            </span>
-                            <h4 class="box-title">Island Break<small>Galle, Sri Lanka</small></h4>
-                            <div class="feedback">
-                                <div title="4 stars" class="five-stars-container" data-toggle="tooltip" data-placement="bottom"><span class="five-stars" style="width: 80%;"></span></div>
-                                <span class="review">4 Days & 3 Nights</span>
-
-                            </div>
-                            <p class="description">The perfect holiday destination squeezed into verdant rainforests, misty hills amid fertile tea plantations and dazzling beaches</p>
-                            <div class="action">
-                                <a href="hotel-detailed.html" class="button btn-small">SELECT</a>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-            </div>
         </div>
+    </div>
+
+
+
+    <!-- Travel Services Category Cards -->
+
+    <div class="services-conter container">
+        <div class="row">
+            <div class="container-title">Explore HappyHolidayss</div>
+            <a href="homes-search-list.php" target="_blank">
+                <div class="col-md-4 col-sm-6">
+                    <div class="service-card-single">
+                        <img src="assets/images/services card images/7b8f9425-f5e7-4c9e-9d6d-b39fa2f6e651.png" alt="">
+                        <h5 class="title">Homes</h5>
+                    </div>
+                </div>
+            </a>
+
+            <a href="tours-search-list.php" target="_blank">
+                <div class="col-md-4 col-sm-6">
+                    <div class="service-card-single">
+                        <img src="assets/images/services card images/mantas-hesthaven-_g1WdcKcV3w-unsplash.jpg" alt="">
+                        <h5 class="title">Tour Packages</h5>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+
+    <div class="container">
+        <h2>Popular Homes</h2>
+        <div class="row image-box hotel listing-style1">
+
+
+
+
+            <?php $sql = "SELECT * from tbl_home where status = 1 order by rand() limit 2";
+            $query = $DB_con->prepare($sql);
+            $query->execute();
+            $results = $query->fetchAll(PDO::FETCH_OBJ);
+            $cnt = 1;
+            if ($query->rowCount() > 0) {
+                foreach ($results as $result) {    ?>
+
+                    <div class="col-sms-6 col-sm-6 col-md-3">
+                        <article class="box">
+                            <figure class="animated" data-animation-type="fadeInDown" data-animation-delay="0">
+                                <a title=""><img width="270" height="160" src="partner/includes/uploads/<?php echo htmlentities($result->cover_img1); ?>" alt=""></a>
+                            </figure>
+                            <div class="details">
+                                <span class="price">
+                                    <small>avg/night</small>
+                                    LKR <?php echo htmlentities($result->ava_night_price); ?>
+                                </span>
+                                <h4 class="box-title"><?php echo htmlentities($result->home_name); ?><small><?php echo htmlentities($result->district); ?>, Sri Lanka</small></h4>
+                                <div class="feedback">
+                                    <div title="4 stars" class="five-stars-container" data-toggle="tooltip" data-placement="bottom"><span class="five-stars" style="width: 80%;"></span></div>
+                                    <span class="review"><?php echo htmlentities($result->home_type); ?></span>
+                                </div>
+                                <p class="description"><?php echo htmlentities($result->lg_desc); ?></p>
+                                <div class="action">
+                                    <a class="button btn-small" href="home-detailed.php?homeid=<?php echo htmlentities($result->home_id);?>">Details</a>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+            <?php }
+            } ?>
+        </div>
+    </div>
 
 
     <div class="container">
@@ -525,7 +384,7 @@
                     </li>
                 </ul>
             </div>
-            
+
         </div>
     </div>
 
@@ -610,11 +469,11 @@
 
 
 
-           
 
-                        
-            <!-- features card -->
-<!-- 
+
+
+    <!-- features card -->
+    <!-- 
             <div class="container"> 
                 <div class="col-md-3 features-card">
                     <i class="fa fa-user" aria-hidden="true"></i>
@@ -652,6 +511,5 @@
 
 </section>
 
-    <?php include('includes/jsscripts.php');?>
-    <?php include('includes/footer.php');?>
-
+<?php include('includes/jsscripts.php'); ?>
+<?php include('includes/footer.php'); ?>

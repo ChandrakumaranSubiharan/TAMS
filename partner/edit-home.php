@@ -24,9 +24,10 @@ if (isset($_POST['update'])) {
     $cancell = $_POST['cancel'];
     $ava_start = $_POST['start_date'];
     $ava_end = $_POST['end_date'];
+    $sta = $_POST['stat'];
 
 
-    $updateData = $home->update($id, $homename, $location, $price, $des, $type, $people, $province, $district, $cancell, $ava_start, $ava_end);
+    $updateData = $home->update($id, $homename, $location, $price, $des, $type, $people, $province, $district, $cancell, $ava_start, $ava_end, $sta);
 
     if ($updateData) {
 
@@ -39,21 +40,12 @@ if (isset($_POST['update'])) {
         $msg = "Failed to Create Home ";
         echo "<script type='text/javascript'>alert('$msg');</script>";
     }
-
-
     
 }
 
 
 
-
-
-
-
 ?>
-
-
-
 
 
 
@@ -205,6 +197,17 @@ if (isset($_POST['update'])) {
                             <label>Availability End Date</label>
                             <input type="date" value="<?php echo $homedata['ava_end_date']; ?>" class="form-control" name="end_date">
                         </div>
+                        <div class="form-group">
+                            <label>Status</label>
+                            <select name="stat" class="custom-select col-12">
+                                <option value="<?php echo $homedata['status']; ?>"><?php if($homedata['status'] == 1)
+                                                {echo"Active";} 
+                                                else
+                                                {echo"Deactive";} ?></option>
+                                <option value="1">Active</option>
+                                <option value="0">Inactive</option>
+                            </select>
+                        </div>
                         <input class="btn btn-primary" name="update" type="submit" value="Update">
                         <input class="btn btn-info" type="reset" value="Reset">
                     </form>
@@ -223,3 +226,4 @@ if (isset($_POST['update'])) {
 </body>
 
 </html>
+
