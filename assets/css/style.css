@@ -3205,7 +3205,7 @@ a.view::after {
   text-align: center;
 }
 .details {
-  padding: 5em 0;
+  padding: 0;
 }
 
 /* hover effect */
@@ -9622,6 +9622,11 @@ ul.search-tabs li.active a {
   height: 75px;
   float: left;
 }
+
+.booking-details h4 {
+text-align: center;
+}
+
 .booking-details figure img {
   width: auto;
   height: 100%;
@@ -9630,7 +9635,7 @@ ul.search-tabs li.active a {
   margin-left: 90px;
 }
 .booking-details figure .travel-title .box-title {
-  margin-bottom: 5px;
+  margin-top: 20px;
 }
 .booking-details figure .travel-title .box-title:after {
   display: none;
@@ -9702,7 +9707,7 @@ ul.search-tabs li.active a {
   text-transform: none;
 }
 .booking-details .other-details .total-price-value {
-  color: #98ce44;
+  color: #963d8a;
   font-size: 1.4em;
 }
 

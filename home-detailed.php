@@ -51,10 +51,7 @@ if ($query->rowCount() > 0) {
                     <div class="row">
                         <div id="main" class="col-md-9">
                             <div class="tab-container style1" id="hotel-main-content">
-                                <ul class="tabs">
-                                    <li class="active"><a data-toggle="tab" href="#photos-tab">photo</a></li>
-                                    <li><a data-toggle="tab" href="#calendar-tab">calendar</a></li>
-                                </ul>
+
                                 <div class="tab-content">
                                     <div id="photos-tab" class="tab-pane fade in active">
                                         <div class="photo-gallery style1">
@@ -107,7 +104,7 @@ if ($query->rowCount() > 0) {
                             <div id="hotel-features" class="tab-container">
                                 <ul class="tabs">
                                     <li class="active"><a href="#hotel-description" data-toggle="tab">Description</a></li>
-                                    <li><a href="#hotel-availability" data-toggle="tab">Availability</a></li>
+                                    <li><a href="#hotel-availability" data-toggle="tab">Booking</a></li>
                                     <li><a href="#hotel-amenities" data-toggle="tab">Amenities</a></li>
                                     <li><a href="#hotel-reviews" data-toggle="tab">Reviews</a></li>
                                     <li><a href="#hotel-faqs" data-toggle="tab">FAQs</a></li>
@@ -119,6 +116,7 @@ if ($query->rowCount() > 0) {
                                             <div class="col-sm-5 col-lg-4 features table-cell">
                                                 <ul>
                                                     <li><label>Home type:</label><?php echo htmlentities($result->home_type); ?></li>
+                                                    <li><label>Rooms include:</label><?php echo htmlentities($result->rooms); ?></li>
                                                     <li><label>Extra people:</label><?php echo htmlentities($result->extra_people); ?></li>
                                                     <li><label>Province:</label><?php echo htmlentities($result->province); ?></li>
                                                     <li><label>District:</label><?php echo htmlentities($result->district); ?></li>
@@ -154,13 +152,19 @@ if ($query->rowCount() > 0) {
                                         <div class="update-search clearfix">
 
 
-                                            <form action="home-detail-payment.php" method="post">
+                                            <form action="home-detail-payment.php" method="post" enctype="multipart/form-data">
 
                                             <!-- hidden inputs -->
 
                                             <input type="text" name="hoid" hidden value="<?php echo htmlentities($result->home_id); ?>">
                                             <input type="text" name="honame" hidden value="<?php echo htmlentities($result->home_name); ?>">
                                             <input type="text" name="hoprice" hidden value="<?php echo htmlentities($result->ava_night_price); ?>">
+                                            <input type="text" name="hotype" hidden value="<?php echo htmlentities($result->home_type); ?>">
+                                            <input type="text" name="holocation" hidden value="<?php echo htmlentities($result->location_address); ?>">
+                                            <input type="text" name="hoimg" hidden value="<?php echo htmlentities($result->cover_img1); ?>">
+                                            <input type="text" name="hodistrict" hidden value="<?php echo htmlentities($result->district); ?>">
+                                            <input type="text" name="horoom" hidden value="<?php echo htmlentities($result->rooms); ?>">
+
 
                                                 <div class="col-md-5">
                                                     <div class="row">
