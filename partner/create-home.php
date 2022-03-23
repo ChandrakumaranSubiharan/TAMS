@@ -12,6 +12,7 @@ if(isset($_POST['submit'])) {
     $ava_night_price = $_POST['anprice'];
     $lg_desc = $_POST['lgdesc'];
     $home_type = $_POST['type'];
+    $home_room = $_POST['rooms'];
     $extra_people = $_POST['e_people'];
     $district = $_POST['district'];
     $province = $_POST['province'];
@@ -19,8 +20,9 @@ if(isset($_POST['submit'])) {
     $str_date = $_POST['start_date'];
     $end_date = $_POST['end_date'];
     $file = $_FILES['image'];
+    $pid = $_POST['partnerid'];
 
-    $insertData = $home->insertData($home_name, $location_address, $ava_night_price, $lg_desc, $home_type, $extra_people, $district, $province, $cancel, $str_date, $end_date, $file);
+    $insertData = $home->insertData($home_name, $location_address, $ava_night_price, $lg_desc, $home_type,$home_room, $extra_people, $district, $province, $cancel, $str_date, $end_date, $file,$pid);
 
     if ($insertData){
         $msg = "Home successfully created ";
@@ -96,6 +98,10 @@ if(isset($_POST['submit'])) {
                 </div>
                 <div class="pd-20 bg-white border-radius-4 box-shadow mb-30">
                     <form method="POST" enctype="multipart/form-data">
+
+                    <input type="text" name="partnerid" hidden id="" value="<?= $returned_row['partner_id']; ?>">
+
+
                         <div class="form-group">
                             <label>Home Name</label>
                             <input class="form-control" name="hname" type="text" placeholder="Enter Home Name">
@@ -125,6 +131,22 @@ if(isset($_POST['submit'])) {
 									<option value="Resort">Resort</option>
 									<option value="Villa">Villa</option>
 									<option value="Hostel">Hostel</option>
+							</select>
+						</div>
+                        <div class="form-group">
+							<label>Available Rooms</label>
+							<select name="rooms" class="custom-select col-12">
+									<option selected="">Choose...</option>
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5">5</option>
+									<option value="6">6</option>
+									<option value="7">7</option>
+									<option value="8">8</option>
+									<option value="9">9</option>
+									<option value="10">10</option>
 							</select>
 						</div>
                         <div class="form-group">
@@ -171,8 +193,13 @@ if(isset($_POST['submit'])) {
                 </div>
             </div>
             <div class="footer-wrap pd-20 mb-20 card-box">
+
                 HappyHolidayss By <a href="https://github.com/dropways" target="_blank">Subiharan Chandrakumaran</a>
             </div>
+            
+    
+
+
         </div>
     </div>
 

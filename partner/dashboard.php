@@ -1,39 +1,4 @@
-<?php
-// Include necessary file
-include_once '../includes/dbconfig.php';
 
-
-// Check if user is not logged in
-// if (!$auth->is_logged_in()) {
-// 	$auth->redirect('partner-login.php');
-// }
-
-
-// try {
-	// Define query to select values from the partner table
-	// $sql = "SELECT * FROM tbl_partner WHERE partner_id=:partner_id";
-
-	// Prepare the statement
-	// $query = $DB_con->prepare($sql);
-
-	// Bind the parameters
-	// $query->bindParam(':partner_id', $_SESSION['user_session']);
-
-	// Execute the query
-	// $query->execute();
-
-	// Return row as an array indexed by both column name
-	// $returned_row = $query->fetch(PDO::FETCH_ASSOC);
-// } catch (PDOException $e) {
-	// array_push($errors, $e->getMessage());
-// }
-
-if (isset($_GET['logout']) && ($_GET['logout'] == 'true')) {
-	$auth->log_out();
-	$auth->redirect('partner-login.php');
-}
-
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -85,7 +50,7 @@ if (isset($_GET['logout']) && ($_GET['logout'] == 'true')) {
 					</div>
 					<div class="col-md-8">
 						<h4 class="font-20 weight-500 mb-10 text-capitalize">
-							Welcome back <div class="weight-600 font-30 text-blue">Sanju !</div>
+							Welcome back <div class="weight-600 font-30 text-blue"><?= $returned_row['first_name']; ?> <?= $returned_row['last_name']; ?> </div>
 						</h4>
 						<p class="font-18 max-width-600">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde hic non repellendus debitis iure, doloremque assumenda. Autem modi, corrupti, nobis ea iure fugiat, veniam non quaerat mollitia animi error corporis.</p>
 					</div>

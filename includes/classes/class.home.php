@@ -10,7 +10,7 @@ class home
   }
 
   // Insert customer data into customer table
-  public function insertData($home_name, $location_address, $ava_night_price, $lg_desc, $home_type, $extra_people, $district, $province, $cancel, $str_date, $end_date, $file)
+  public function insertData($home_name, $location_address, $ava_night_price, $lg_desc, $home_type,$home_room, $extra_people, $district, $province, $cancel, $str_date, $end_date, $file,$pid)
   {
     $allow = array('jpg', 'jpeg', 'png');
     $exntension = explode('.', $file['name']);
@@ -32,8 +32,8 @@ class home
           $emty = NULL;
 
 
-          $query = "INSERT INTO tbl_home(home_name, location_address, ava_night_price, lg_desc, home_type, extra_people, district, province, cancellation, ava_start_date, ava_end_date,created_date,status, cover_img1)
-                 VALUES('$home_name','$location_address','$ava_night_price','$lg_desc','$home_type','$extra_people','$district','$province','$cancel','$str_date','$end_date','$cdate','$sta','$fileNew')";
+          $query = "INSERT INTO tbl_home(home_name, location_address, ava_night_price, lg_desc, home_type, rooms, extra_people, district, province, cancellation, ava_start_date, ava_end_date,created_date,status, cover_img1,partner_id)
+                 VALUES('$home_name','$location_address','$ava_night_price','$lg_desc','$home_type','$home_room','$extra_people','$district','$province','$cancel','$str_date','$end_date','$cdate','$sta','$fileNew','$pid')";
           $sql = $this->db->query($query);
           if ($sql == true) {
             return true;

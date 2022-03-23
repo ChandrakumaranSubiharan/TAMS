@@ -1,5 +1,43 @@
+<?php
+// Include necessary file
+include_once '../includes/dbconfig.php';
 
-    <!-- <div class="pre-loader">
+
+// Check if user is not logged in
+if (!$auth->is_logged_in()) {
+	$auth->redirect('partner-login.php');
+}
+
+
+try {
+	// Define query to select values from the partner table
+	$sql = "SELECT * FROM tbl_partner WHERE partner_id=:partner_id";
+
+	// Prepare the statement
+	$query = $DB_con->prepare($sql);
+
+	// Bind the parameters
+	$query->bindParam(':partner_id', $_SESSION['user_session']);
+
+	// Execute the query
+	$query->execute();
+
+	// Return row as an array indexed by both column name
+	$returned_row = $query->fetch(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+	array_push($errors, $e->getMessage());
+}
+
+if (isset($_GET['logout']) && ($_GET['logout'] == 'true')) {
+	$auth->log_out();
+	$auth->redirect('partner-login.php');
+}
+
+?>
+    
+	
+	
+	<!-- <div class="pre-loader">
 		<div class="pre-loader-box">
 			<div class="loader-logo"><img src="vendors/images/deskapp-logo.svg" alt=""></div>
 			<div class='loader-progress' id="progress_div">
@@ -22,9 +60,9 @@
 				<div class="dropdown">
 					<a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
 						<span class="user-icon">
-							<img src="../assets/dashboard/vendors/images/photo1.jpg" alt="">
+							<img src="../assets/dashboard/vendors/images/user.png" alt="">
 						</span>
-						<span class="user-name">Subiharan</span>
+						<span class="user-name"><?= $returned_row['username']; ?></span>
 					</a>
 					<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
 						<a class="dropdown-item" href="profile.html"><i class="dw dw-user1"></i> Profile</a>
