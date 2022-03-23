@@ -251,7 +251,7 @@ include_once 'includes/dbconfig.php';
 
 
 
-            <?php $sql = "SELECT * from tbl_home where status = 1 order by rand() limit 2";
+            <?php $sql = "SELECT * from tbl_home where status = 1 order by rand() limit 5";
             $query = $DB_con->prepare($sql);
             $query->execute();
             $results = $query->fetchAll(PDO::FETCH_OBJ);

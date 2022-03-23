@@ -43,6 +43,10 @@ $inquiry = new inquiry($DB_con);
 include_once 'classes/class.home.php';
 $home = new home($DB_con);
 
+//including booking class
+include_once 'classes/class.booking.php';
+$booking = new booking($DB_con);
+
 ?>
 
 

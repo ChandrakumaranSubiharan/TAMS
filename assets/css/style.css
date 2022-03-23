@@ -5302,7 +5302,6 @@ ul.check-circle li:before {
 .image-box .box img,
 .image-box.box img {
   width: 100%;
-  height: auto;
 }
 .image-box .box > .details,
 .image-box.box > .details {

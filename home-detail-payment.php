@@ -9,7 +9,7 @@
     include_once 'includes/dbconfig.php';
 
 
-    if (!$auth->is_logged_in()) { 
+    if (!$auth->is_logged_in()) {
 
         $message = "Please Login Before Making Reservation !";
 
@@ -17,11 +17,11 @@
         alert('$message');
         window.location.href = 'login.php';
         </script>";
-        
-        }
+    }
 
     ?>
 
+    <!-- retriving from home detailed page via post request -->
 
     <?php
     $adultprice = $_POST["hoprice"];
@@ -31,55 +31,66 @@
     $totchildprice = $_POST["ckids"] * $kidprice;
     $totpersons = $totadultprice + $totchildprice;
     $tot = $totpersons * $_POST["cnight"];
+    $hname = $_POST["honame"];
+    $hlocation = $_POST["holocation"];
+    $hdistrict = $_POST["hodistrict"];
+    $hsdate = $_POST["sdate"];
+    $hcnight = $_POST["cnight"];
+    $hedate = $_POST["edate"];
+    $htype = $_POST["hotype"];
+    $hroom = $_POST["horoom"];
+    $hprice = $_POST["hoprice"];
+    $himg = $_POST["hoimg"];
+    $hid = $_POST["hoid"];
+    $partnerid = $_POST["pid"];
     ?>
 
-<?php
-// Insert Record in booking table
-if(isset($_POST['submit'])) {
+    <?php
+    // Insert Record in booking table
+    if (isset($_POST['submit'])) {
 
-    $tot_amount = $_POST[$tot];
-    $cus_fname = $_POST['fname'];
-    $cus_lname = $_POST['lname'];
-    $cus_email = $_POST['email'];
-    $cus_contact = $_POST['contact'];
-    $cus_card_type = $_POST[$htype];
-    $cus_id = $_POST['cusid'];
-    $b_sdate = $_POST[$hsdate];
-    $b_edate = $_POST[$hedate];
-    $b_tot_night = $_POST[$hcnight];
-    $b_tot_persons = $_POST[$totalcount];
-    $b_h_id = $_POST[$hid];
-    $b_h_name = $_POST[$name];
-    // $partner_id = $_POST['pid'];
+        $tot_amount = $_POST[$tot];
+        $cus_fname = $_POST['fname'];
+        $cus_lname = $_POST['lname'];
+        $cus_email = $_POST['email'];
+        $cus_contact = $_POST['contact'];
+        $cus_card_type = $_POST[$htype];
+        $cus_id = $_POST['cusid'];
+        $b_sdate = $_POST[$hsdate];
+        $b_edate = $_POST[$hedate];
+        $b_tot_night = $_POST[$hcnight];
+        $b_tot_persons = $_POST[$totalcount];
+        $b_h_id = $_POST[$hid];
+        $b_h_name = $_POST[$name];
+        $pid = $_POST['partnerid'];
+
+        $insertBookingData = $booking->insertBookingData($tot_amount, $cus_fname, $cus_lname, $cus_email, $cus_contact, $cus_card_type, $cus_id, $b_sdate, $b_edate, $b_tot_night, $b_tot_persons, $b_h_id, $b_h_name, $pid);
+        // $insertEarningData = $earning->insertEarningData($tot_amount,$pid);
+
+        if ($insertBookingData) {
+
+            $message = "Home Reservation Success.";
+
+            echo "<script type='text/javascript'>
+            alert('$message');
+            window.location.href = 'sdn.php';
+            </script>";
 
 
+            // $msg = "Home Reservation Success. ";
+            // echo "<script type='text/javascript'>alert('$msg');</script>";
+        } else {
+            $message = "Home Reservation unSuccess.";
 
-    $insertData = $home->insertData($home_name, $location_address, $ava_night_price, $lg_desc, $home_type, $extra_people, $district, $province, $cancel, $str_date, $end_date, $file);
-
-    if ($insertData){
-        $msg = "Home successfully created ";
-        echo "<script type='text/javascript'>alert('$msg');</script>";
-    }else{
-        $msg = "Failed to Create Home ";
-        echo "<script type='text/javascript'>alert('$msg');</script>";
+            echo "<script type='text/javascript'>
+            alert('$message');
+            window.location.href = 'sdn.php';
+            </script>";
+            // $msg = "Home Reservation Success ";
+            // echo "<script type='text/javascript'>alert('$msg');</script>";
+        }
     }
-}
-?>
-
-<!-- retriving from home detailed page via post request -->
-<?php 
-$hname=$_POST["honame"]; 
-$hlocation=$_POST["holocation"]; 
-$hdistrict=$_POST["hodistrict"]; 
-$hsdate=$_POST["sdate"]; 
-$hcnight=$_POST["cnight"]; 
-$hedate=$_POST["edate"]; 
-$htype=$_POST["hotype"]; 
-$hroom=$_POST["horoom"]; 
-$hprice=$_POST["hoprice"]; 
-$himg=$_POST["hoimg"]; 
-$hid=$_POST["hoid"]; 
-?>
+    ?>
 
 </head>
 
@@ -114,8 +125,9 @@ $hid=$_POST["hoid"];
                         <form class="booking-form" method="POST">
 
                             <!-- hidden inputs -->
-                            <input type="text" name="cusid" hidden  value="<?= $returned_row['customer_id']; ?>">
-
+                            <input type="text" name="cusid" hidden value="<?= $returned_row['customer_id']; ?>">
+                            <input type="text" name="partnerid" value="<?php echo $partnerid; ?>
+">
 
 
                             <div class="person-information">
@@ -150,9 +162,9 @@ $hid=$_POST["hoid"];
                                         <div class="selector">
                                             <select name="cardtype" class="full-width">
                                                 <option value=''>--Select a Card--</option>
-                                                    <option selected value='Visa Card'>Visa Card</option>
-                                                    <option value='Master Card'>Master Card</option>
-                                                    <option value='Amercian Express'>Amercian Express</option>
+                                                <option selected value='Visa Card'>Visa Card</option>
+                                                <option value='Master Card'>Master Card</option>
+                                                <option value='Amercian Express'>Amercian Express</option>
                                             </select>
                                         </div>
                                     </div>
@@ -194,7 +206,7 @@ $hid=$_POST["hoid"];
                                             </div>
                                             <div class="selector">
                                                 <select class="full-width">
-                                                <option value=''>--Select Year--</option>
+                                                    <option value=''>--Select Year--</option>
                                                     <option selected value='1'>2022</option>
                                                     <option value='2'>2023</option>
                                                     <option value='3'>2024</option>
@@ -220,7 +232,7 @@ $hid=$_POST["hoid"];
                             </div>
                             <div class="form-group row">
                                 <div class="col-sm-6 col-md-5">
-                                    <button type="submit" class="full-width btn-large">CONFIRM BOOKING</button>
+                                    <button type="submit" name="submit" class="full-width btn-large">CONFIRM BOOKING</button>
                                 </div>
                             </div>
                         </form>

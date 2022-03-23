@@ -10,38 +10,62 @@ class booking
   }
 
   // Insert booking data into booking table
-  public function insertData($home_name, $location_address, $ava_night_price, $lg_desc, $home_type, $extra_people, $district, $province, $cancel, $str_date, $end_date, $file)
+  public function insertBookingData($tot_amount, $cus_fname, $cus_lname, $cus_email, $cus_contact, $cus_card_type, $cus_id, $b_sdate, $b_edate, $b_tot_night, $b_tot_persons, $b_h_id, $b_h_name, $pid)
   {
-    $allow = array('jpg', 'jpeg', 'png');
-    $exntension = explode('.', $file['name']);
-    $fileActExt = strtolower(end($exntension));
-    $fileNew = rand() . "." . $fileActExt;  // rand function create the rand number 
-    $filePath = 'includes/uploads/' . $fileNew;
+    // variable to fetch home active/inactive status by bool value
+    $sta = "0";
 
-    if (in_array($fileActExt, $allow)) {
-      if ($file['size'] > 0 && $file['error'] == 0) {
-        if (move_uploaded_file($file['tmp_name'], $filePath)) {
+    // variable to fetch home active/inactive status by bool value
+    $paymentsta = "1";
 
-          // variable to fetch home active/inactive status by bool value
-          $sta = "0";
+    // variable to fetch current date time
+    $cdate = Date("y-m-d H:i:s");
 
-          // variable to fetch current date time
-          $cdate = Date("y-m-d H:i:s");
-
-          // variable to fetch null value
-          $emty = NULL;
+    // variable to fetch null value
+    $emty = NULL;
 
 
-          $query = "INSERT INTO tbl_home(home_name, location_address, ava_night_price, lg_desc, home_type, extra_people, district, province, cancellation, ava_start_date, ava_end_date,created_date,status, cover_img1)
-                 VALUES('$home_name','$location_address','$ava_night_price','$lg_desc','$home_type','$extra_people','$district','$province','$cancel','$str_date','$end_date','$cdate','$sta','$fileNew')";
-          $sql = $this->db->query($query);
-          if ($sql == true) {
-            return true;
-          } else {
-            return false;
-          }
-        }
-      }
+    $query = "INSERT INTO tbl_booking(
+            total_amount, 
+            cus_first_name, 
+            cus_last_name, 
+            cus_email, 
+            cus_contact, 
+            cus_payment_card_type, 
+            cus_id, 
+            start_date, 
+            end_date, 
+            status, 
+            created_date, 
+            payment_status, 
+            total_nights, 
+            total_persons, 
+            home_id,
+            home_name, 
+            partner_id)
+                 VALUES(
+                   '$tot_amount',
+                   '$cus_fname',
+                   '$cus_lname',
+                   '$cus_email',
+                   '$cus_contact',
+                   '$cus_card_type',
+                   '$cus_id',
+                   '$b_sdate',
+                   '$b_edate',
+                   '$sta',
+                   '$cdate',
+                   '$paymentsta',
+                   '$b_tot_night',
+                   '$b_tot_persons',
+                   '$b_h_id',
+                   '$b_h_name',
+                   '$pid')";
+    $sql = $this->db->query($query);
+    if ($sql == true) {
+      return true;
+    } else {
+      return false;
     }
   }
 }

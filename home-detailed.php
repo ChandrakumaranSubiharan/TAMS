@@ -163,6 +163,7 @@ if ($query->rowCount() > 0) {
                                                 <input type="text" name="hoimg" hidden value="<?php echo htmlentities($result->cover_img1); ?>">
                                                 <input type="text" name="hodistrict" hidden value="<?php echo htmlentities($result->district); ?>">
                                                 <input type="text" name="horoom" hidden value="<?php echo htmlentities($result->rooms); ?>">
+                                                <input type="text" name="pid" hidden value="<?php echo htmlentities($result->partner_id); ?>">
 
 
 
