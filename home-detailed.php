@@ -149,6 +149,7 @@ if ($query->rowCount() > 0) {
                                     </div>
                                     <div class="tab-pane fade" id="hotel-availability">
                                         <div class="update-search clearfix">
+                                            
 
 
                                             <form action="home-detail-payment.php" method="post" enctype="multipart/form-data">
@@ -164,28 +165,8 @@ if ($query->rowCount() > 0) {
                                                 <input type="text" name="hodistrict" hidden value="<?php echo htmlentities($result->district); ?>">
                                                 <input type="text" name="horoom" hidden value="<?php echo htmlentities($result->rooms); ?>">
                                                 <input type="text" name="pid" hidden value="<?php echo htmlentities($result->partner_id); ?>">
+                                                <input name="cnight" type="text" id="nights" hidden >
 
-
-
-
-
-                                                <div class="col-md-5">
-                                                    <div class="row">
-                                                        <div class="col-xs-6">
-                                                            <label>CHECK IN</label>
-                                                            <input type="date" name="sdate" id="date1" class="input-text full-width" min="<?php echo htmlentities($result->ava_start_date); ?>" max="<?php echo htmlentities($result->ava_end_date); ?>" />
-                                                        </div>
-                                                        <div class="col-xs-6">
-                                                            <label>CHECK OUT</label>
-                                                            <input type="date" name="edate" id="date2" class="input-text full-width" min="<?php echo htmlentities($result->ava_start_date); ?>" max="<?php echo htmlentities($result->ava_end_date); ?>" />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <h3 id="ans"></h3>
-                                                <div class="col-md-4">
-                                                    <div class="row">
-                                                        <button id="sub" onclick="func()" hidden type="button"> Submit</button>
-                                                        <input name="cnight" type="text" id="nights" hidden />
                                                         <script>
                                                             $(function() {
                                                                 $("#date1").datepicker();
@@ -205,6 +186,26 @@ if ($query->rowCount() > 0) {
 
                                                             }
                                                         </script>
+
+
+
+
+                                                <div class="col-md-5">
+                                                    <div class="row">
+                                                        <div class="col-xs-6">
+                                                            <label>CHECK IN</label>
+                                                            <input type="date" name="sdate" id="date1" class="input-text full-width" min="<?php echo htmlentities($result->ava_start_date); ?>" max="<?php echo htmlentities($result->ava_end_date); ?>" />
+                                                        </div>
+                                                        <div class="col-xs-6">
+                                                            <label>CHECK OUT</label>
+                                                            <input type="date" name="edate" id="date2" class="input-text full-width" min="<?php echo htmlentities($result->ava_start_date); ?>" max="<?php echo htmlentities($result->ava_end_date); ?>" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <h3 id="ans"></h3>
+                                                <div class="col-md-4">
+                                                    <div class="row">
+
                                                         <div class="col-xs-4">
                                                             <label>ADULTS</label>
                                                             <input type="number" name="cadult" value="5" class="input-text full-width" />

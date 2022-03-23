@@ -1,9 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-
-    <?php
+<?php
 
     // Include database file
     include_once 'includes/dbconfig.php';
@@ -20,48 +15,43 @@
     }
 
     ?>
-
     <!-- retriving from home detailed page via post request -->
-
     <?php
-    $adultprice = $_POST["hoprice"];
+   if(isset($_REQUEST['book'])) 
+   {
+    $adultprice = $_REQUEST["hoprice"];
     $kidprice = $adultprice / 2;
-    $totalcount = $_POST["cadult"] + $_POST["ckids"];
-    $totadultprice = $_POST["cadult"] * $adultprice;
-    $totchildprice = $_POST["ckids"] * $kidprice;
+    $totalcount = $_REQUEST["cadult"] + $_REQUEST["ckids"];
+    $totadultprice = $_REQUEST["cadult"] * $adultprice;
+    $totchildprice = $_REQUEST["ckids"] * $kidprice;
     $totpersons = $totadultprice + $totchildprice;
-    $tot = $totpersons * $_POST["cnight"];
-    $hname = $_POST["honame"];
-    $hlocation = $_POST["holocation"];
-    $hdistrict = $_POST["hodistrict"];
-    $hsdate = $_POST["sdate"];
-    $hcnight = $_POST["cnight"];
-    $hedate = $_POST["edate"];
-    $htype = $_POST["hotype"];
-    $hroom = $_POST["horoom"];
-    $hprice = $_POST["hoprice"];
-    $himg = $_POST["hoimg"];
-    $hid = $_POST["hoid"];
-    $partnerid = $_POST["pid"];
-    ?>
+    $tot = $totpersons * $_REQUEST["cnight"];
+    $hid = $_REQUEST["hoid"];
+    $partnerid = $_REQUEST["pid"];
+   }
+?>
 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
     <?php
     // Insert Record in booking table
     if (isset($_POST['submit'])) {
 
-        $tot_amount = $_POST[$tot];
+        $tot_amount = $_POST['total'];
         $cus_fname = $_POST['fname'];
         $cus_lname = $_POST['lname'];
         $cus_email = $_POST['email'];
         $cus_contact = $_POST['contact'];
-        $cus_card_type = $_POST[$htype];
+        $cus_card_type = $_POST['hometype'];
         $cus_id = $_POST['cusid'];
-        $b_sdate = $_POST[$hsdate];
-        $b_edate = $_POST[$hedate];
-        $b_tot_night = $_POST[$hcnight];
-        $b_tot_persons = $_POST[$totalcount];
-        $b_h_id = $_POST[$hid];
-        $b_h_name = $_POST[$name];
+        $b_sdate = $_POST['homesdate'];
+        $b_edate = $_POST['homeedate'];
+        $b_tot_night = $_POST['totnight'];
+        $b_tot_persons = $_POST['totcount'];
+        $b_h_id = $_POST['homeid'];
+        $b_h_name = $_POST['hname'];
         $pid = $_POST['partnerid'];
 
         $insertBookingData = $booking->insertBookingData($tot_amount, $cus_fname, $cus_lname, $cus_email, $cus_contact, $cus_card_type, $cus_id, $b_sdate, $b_edate, $b_tot_night, $b_tot_persons, $b_h_id, $b_h_name, $pid);
@@ -126,9 +116,15 @@
 
                             <!-- hidden inputs -->
                             <input type="text" name="cusid" hidden value="<?= $returned_row['customer_id']; ?>">
-                            <input type="text" name="partnerid" value="<?php echo $partnerid; ?>
-">
-
+                            <input type="text" name="partnerid" hidden value="<?php echo $_REQUEST["pid"]; ?>">
+                            <input type="text" name="homeid" hidden value="<?php echo $_REQUEST["hoid"]; ?>">
+                            <input type="text" name="total" hidden value="<?php echo $tot; ?>">
+                            <input type="text" name="hometype" hidden value="<?php echo $_REQUEST["hotype"]; ?>">
+                            <input type="text" name="homesdate" hidden value="<?php echo $_REQUEST["sdate"]; ?>">
+                            <input type="text" name="homeedate" hidden value="<?php echo $_REQUEST["edate"]; ?>">
+                            <input type="text" name="totnight" hidden value="<?php echo $_REQUEST["cnight"]; ?>">
+                            <input type="text" name="totcount" hidden value="<?php echo $totalcount; ?>">
+                            <input type="text" name="hname" hidden value="<?php echo $_REQUEST["honame"]; ?>">
 
                             <div class="person-information">
                                 <h2>Your Personal Information</h2>
@@ -161,8 +157,8 @@
                                         <label>Credit Card Type</label>
                                         <div class="selector">
                                             <select name="cardtype" class="full-width">
-                                                <option value=''>--Select a Card--</option>
-                                                <option selected value='Visa Card'>Visa Card</option>
+                                                <option selected value=''>--Select a Card--</option>
+                                                <option value='Visa Card'>Visa Card</option>
                                                 <option value='Master Card'>Master Card</option>
                                                 <option value='Amercian Express'>Amercian Express</option>
                                             </select>
@@ -243,9 +239,9 @@
                         <h4>Booking Details</h4>
                         <article class="image-box hotel listing-style1">
                             <figure class="clearfix">
-                                <a href="hotel-detailed.html" class="middle-block"><img class="middle-item" width="270" height="160" alt="" src="partner/includes/uploads/<?php echo $himg; ?>"></a>
+                                <a href="hotel-detailed.html" class="middle-block"><img class="middle-item" width="270" height="160" alt="" src="partner/includes/uploads/<?php echo $_REQUEST["hoimg"]; ?>"></a>
                                 <div class="travel-title">
-                                    <h5 class="box-title"><?php echo $hname; ?><small><?php echo $hlocation; ?>, <?php echo $hdistrict; ?></small></h5>
+                                    <h5 class="box-title"><?php echo $_REQUEST["honame"]; ?><small><?php echo $_REQUEST["holocation"]; ?>, <?php echo $_REQUEST["hodistrict"]; ?></small></h5>
                                 </div>
                             </figure>
                             <div class="details">
@@ -256,15 +252,15 @@
                                 <div class="constant-column-3 timing clearfix">
                                     <div class="check-in">
                                         <label>Check in</label>
-                                        <span><?php echo $hsdate; ?><br />6 AM</span>
+                                        <span><?php echo $_REQUEST["sdate"]; ?><br />6 AM</span>
                                     </div>
                                     <div class="duration text-center">
                                         <i class="soap-icon-clock"></i>
-                                        <span><?php echo $hcnight; ?> Nights</span>
+                                        <span><?php $_REQUEST["cnight"]; ?> Nights</span>
                                     </div>
                                     <div class="check-out">
                                         <label>Check out</label>
-                                        <span><?php echo $hedate; ?><br />12 AM</span>
+                                        <span><?php echo $_REQUEST["edate"]; ?><br />12 AM</span>
                                     </div>
                                 </div>
                                 <div class="guest">
@@ -276,14 +272,14 @@
                         <h4>Other Details</h4>
                         <dl class="other-details">
                             <dt class="feature">home Type:</dt>
-                            <dd class="value"><?php echo $htype; ?></dd>
+                            <dd class="value"><?php echo $_REQUEST["hotype"]; ?></dd>
                             <dt class="feature">rooms include:</dt>
-                            <dd class="value"><?php echo $hroom; ?></dd>
+                            <dd class="value"><?php echo $_REQUEST["horoom"]; ?></dd>
                             <dt class="feature">per adult price:</dt>
-                            <dd class="value">LKR<?php echo $hprice; ?></dd>
+                            <dd class="value">LKR<?php echo $_REQUEST["hoprice"]; ?></dd>
                             <dt class="feature">per kid price:</dt>
                             <dd class="value">LKR<?php echo $kidprice ?></dd>
-                            <dt class="feature"><?php echo $hcnight; ?> night Stay:</dt>
+                            <dt class="feature"><?php echo $_REQUEST["cnight"] ?> night Stay:</dt>
                             <dd class="value">LKR<?php echo $tot; ?></dd>
                             <dt class="total-price">Total Price</dt>
                             <dd class="total-price-value">LKR <?php echo $tot; ?></dd>
