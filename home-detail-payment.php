@@ -24,28 +24,71 @@
 
 
     <?php
-
-
     $adultprice = $_POST["hoprice"];
     $kidprice = $adultprice / 2;
-
     $totalcount = $_POST["cadult"] + $_POST["ckids"];
-
     $totadultprice = $_POST["cadult"] * $adultprice;
     $totchildprice = $_POST["ckids"] * $kidprice;
-
-
     $totpersons = $totadultprice + $totchildprice;
-
     $tot = $totpersons * $_POST["cnight"];
-
     ?>
 
+<?php
+// Insert Record in booking table
+if(isset($_POST['submit'])) {
 
+    $tot_amount = $_POST[$tot];
+    $cus_fname = $_POST['fname'];
+    $cus_lname = $_POST['lname'];
+    $cus_email = $_POST['email'];
+    $cus_contact = $_POST['contact'];
+    $cus_card_type = $_POST[$htype];
+    $cus_id = $_POST['cusid'];
+    $b_sdate = $_POST[$hsdate];
+    $b_edate = $_POST[$hedate];
+    $b_tot_night = $_POST[$hcnight];
+    $b_tot_persons = $_POST[$totalcount];
+    $b_h_id = $_POST[$hid];
+    $b_h_name = $_POST[$name];
+    // $partner_id = $_POST['pid'];
+
+
+
+    $insertData = $home->insertData($home_name, $location_address, $ava_night_price, $lg_desc, $home_type, $extra_people, $district, $province, $cancel, $str_date, $end_date, $file);
+
+    if ($insertData){
+        $msg = "Home successfully created ";
+        echo "<script type='text/javascript'>alert('$msg');</script>";
+    }else{
+        $msg = "Failed to Create Home ";
+        echo "<script type='text/javascript'>alert('$msg');</script>";
+    }
+}
+?>
+
+<!-- retriving from home detailed page via post request -->
+<?php 
+$hname=$_POST["honame"]; 
+$hlocation=$_POST["holocation"]; 
+$hdistrict=$_POST["hodistrict"]; 
+$hsdate=$_POST["sdate"]; 
+$hcnight=$_POST["cnight"]; 
+$hedate=$_POST["edate"]; 
+$htype=$_POST["hotype"]; 
+$hroom=$_POST["horoom"]; 
+$hprice=$_POST["hoprice"]; 
+$himg=$_POST["hoimg"]; 
+$hid=$_POST["hoid"]; 
+?>
 
 </head>
 
 <body>
+
+
+
+
+
     <?php include('includes/header.php'); ?>
     <div class="page-title-container">
         <div class="container">
@@ -68,10 +111,10 @@
                 <div id="main" class="col-sms-6 col-sm-8 col-md-9">
                     <div class="booking-section travelo-box">
 
-                        <form class="booking-form">
+                        <form class="booking-form" method="POST">
 
                             <!-- hidden inputs -->
-                            <input type="text" name="id" hidden value="<?php echo $_POST["hoid"]; ?>">
+                            <input type="text" name="cusid" hidden  value="<?= $returned_row['customer_id']; ?>">
 
 
 
@@ -80,23 +123,21 @@
                                 <div class="form-group row">
                                     <div class="col-sm-6 col-md-5">
                                         <label>first name</label>
-
-
-                                        <input type="text" class="input-text full-width" value="<?= $returned_row['first_name']; ?>" placeholder="" />
+                                        <input type="text" name="fname" class="input-text full-width" value="<?= $returned_row['first_name']; ?>" placeholder="" />
                                     </div>
                                     <div class="col-sm-6 col-md-5">
                                         <label>last name</label>
-                                        <input type="text" class="input-text full-width" value="<?= $returned_row['last_name']; ?>" placeholder="" />
+                                        <input type="text" name="lname" class="input-text full-width" value="<?= $returned_row['last_name']; ?>" placeholder="" />
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 col-md-5">
                                         <label>email address</label>
-                                        <input type="text" class="input-text full-width" value="<?= $returned_row['email_address']; ?>" placeholder="" />
+                                        <input type="text" name="email" class="input-text full-width" value="<?= $returned_row['email_address']; ?>" placeholder="" />
                                     </div>
                                     <div class="col-sm-6 col-md-5">
                                         <label>Phone number</label>
-                                        <input type="text" class="input-text full-width" value="<?= $returned_row['contact_number']; ?>" placeholder="" />
+                                        <input type="text" name="contact" class="input-text full-width" value="<?= $returned_row['contact_number']; ?>" placeholder="" />
                                     </div>
                                 </div>
                             </div>
@@ -107,11 +148,11 @@
                                     <div class="col-sm-6 col-md-5">
                                         <label>Credit Card Type</label>
                                         <div class="selector">
-                                            <select class="full-width">
+                                            <select name="cardtype" class="full-width">
                                                 <option value=''>--Select a Card--</option>
-                                                    <option selected value='1'>Visa Card</option>
-                                                    <option value='2'>Master Card</option>
-                                                    <option value='3'>Amercian Express</option>
+                                                    <option selected value='Visa Card'>Visa Card</option>
+                                                    <option value='Master Card'>Master Card</option>
+                                                    <option value='Amercian Express'>Amercian Express</option>
                                             </select>
                                         </div>
                                     </div>
@@ -190,9 +231,9 @@
                         <h4>Booking Details</h4>
                         <article class="image-box hotel listing-style1">
                             <figure class="clearfix">
-                                <a href="hotel-detailed.html" class="middle-block"><img class="middle-item" width="270" height="160" alt="" src="partner/includes/uploads/<?php echo $_POST["hoimg"]; ?>"></a>
+                                <a href="hotel-detailed.html" class="middle-block"><img class="middle-item" width="270" height="160" alt="" src="partner/includes/uploads/<?php echo $himg; ?>"></a>
                                 <div class="travel-title">
-                                    <h5 class="box-title"><?php echo $_POST["honame"]; ?><small><?php echo $_POST["holocation"]; ?>, <?php echo $_POST["hodistrict"]; ?></small></h5>
+                                    <h5 class="box-title"><?php echo $hname; ?><small><?php echo $hlocation; ?>, <?php echo $hdistrict; ?></small></h5>
                                 </div>
                             </figure>
                             <div class="details">
@@ -203,15 +244,15 @@
                                 <div class="constant-column-3 timing clearfix">
                                     <div class="check-in">
                                         <label>Check in</label>
-                                        <span><?php echo $_POST["sdate"]; ?><br />6 AM</span>
+                                        <span><?php echo $hsdate; ?><br />6 AM</span>
                                     </div>
                                     <div class="duration text-center">
                                         <i class="soap-icon-clock"></i>
-                                        <span><?php echo $_POST["cnight"]; ?> Nights</span>
+                                        <span><?php echo $hcnight; ?> Nights</span>
                                     </div>
                                     <div class="check-out">
                                         <label>Check out</label>
-                                        <span><?php echo $_POST["edate"]; ?><br />12 AM</span>
+                                        <span><?php echo $hedate; ?><br />12 AM</span>
                                     </div>
                                 </div>
                                 <div class="guest">
@@ -223,14 +264,14 @@
                         <h4>Other Details</h4>
                         <dl class="other-details">
                             <dt class="feature">home Type:</dt>
-                            <dd class="value"><?php echo $_POST["hotype"]; ?></dd>
+                            <dd class="value"><?php echo $htype; ?></dd>
                             <dt class="feature">rooms include:</dt>
-                            <dd class="value"><?php echo $_POST["horoom"]; ?></dd>
+                            <dd class="value"><?php echo $hroom; ?></dd>
                             <dt class="feature">per adult price:</dt>
-                            <dd class="value">LKR<?php echo $_POST["hoprice"]; ?></dd>
+                            <dd class="value">LKR<?php echo $hprice; ?></dd>
                             <dt class="feature">per kid price:</dt>
                             <dd class="value">LKR<?php echo $kidprice ?></dd>
-                            <dt class="feature"><?php echo $_POST["cnight"]; ?> night Stay:</dt>
+                            <dt class="feature"><?php echo $hcnight; ?> night Stay:</dt>
                             <dd class="value">LKR<?php echo $tot; ?></dd>
                             <dt class="total-price">Total Price</dt>
                             <dd class="total-price-value">LKR <?php echo $tot; ?></dd>
