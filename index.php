@@ -92,7 +92,7 @@ include_once 'includes/dbconfig.php';
                             <div class="form-group col-sm-6 col-md-3">
                                 <h4 class="title">Who</h4>
                                 <div class="row">
-                                    <div class="col-xs-4">
+                                    <div class="col-xs-6">
                                         <label>Adults</label>
                                         <div class="selector">
                                             <select class="full-width">
@@ -103,7 +103,7 @@ include_once 'includes/dbconfig.php';
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-xs-4">
+                                    <div class="col-xs-6">
                                         <label>Kids</label>
                                         <div class="selector">
                                             <select class="full-width">
@@ -114,17 +114,7 @@ include_once 'includes/dbconfig.php';
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-xs-4">
-                                        <label>Infants</label>
-                                        <div class="selector">
-                                            <select class="full-width">
-                                                <option value="1">01</option>
-                                                <option value="2">02</option>
-                                                <option value="3">03</option>
-                                                <option value="4">04</option>
-                                            </select>
-                                        </div>
-                                    </div>
+
                                 </div>
                             </div>
 

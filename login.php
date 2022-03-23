@@ -1,6 +1,12 @@
 <?php
-session_start();
 include_once 'includes/dbconfig.php';
+
+
+// Check if user is already logged in
+if ($auth->is_logged_in()) {
+    // Redirect logged in user to their home page
+    $auth->redirect('customer/dashboard.php');
+}
 
 //Post the inputs
 if(isset($_POST['btn-login']))

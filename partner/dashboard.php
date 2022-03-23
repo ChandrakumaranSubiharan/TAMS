@@ -1,6 +1,6 @@
 <?php
 // Include necessary file
-// include_once '../includes/dbconfig.php';
+include_once '../includes/dbconfig.php';
 
 
 // Check if user is not logged in
@@ -28,10 +28,10 @@
 	// array_push($errors, $e->getMessage());
 // }
 
-// if (isset($_GET['logout']) && ($_GET['logout'] == 'true')) {
-	// $auth->log_out();
-	// $auth->redirect('partner-login.php');
-// }
+if (isset($_GET['logout']) && ($_GET['logout'] == 'true')) {
+	$auth->log_out();
+	$auth->redirect('partner-login.php');
+}
 
 ?>
 
