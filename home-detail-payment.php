@@ -8,7 +8,20 @@
     // Include database file
     include_once 'includes/dbconfig.php';
 
+
+    if (!$auth->is_logged_in()) { 
+
+        $message = "Please Login Before Making Reservation !";
+
+        echo "<script type='text/javascript'>
+        alert('$message');
+        window.location.href = 'login.php';
+        </script>";
+        
+        }
+
     ?>
+
 
     <?php
 
@@ -16,7 +29,7 @@
     $adultprice = $_POST["hoprice"];
     $kidprice = $adultprice / 2;
 
-    $totalcount = $_POST["cadult"]+$_POST["ckids"];
+    $totalcount = $_POST["cadult"] + $_POST["ckids"];
 
     $totadultprice = $_POST["cadult"] * $adultprice;
     $totchildprice = $_POST["ckids"] * $kidprice;
@@ -48,9 +61,6 @@
     </div>
 
 
-    
-
-
 
     <section id="content" class="gray-area">
         <div class="container">
@@ -60,8 +70,8 @@
 
                         <form class="booking-form">
 
-                        <!-- hidden inputs -->
-                        <input type="text" name="id" hidden value="<?php echo $_POST["hoid"]; ?>">
+                            <!-- hidden inputs -->
+                            <input type="text" name="id" hidden value="<?php echo $_POST["hoid"]; ?>">
 
 
 
@@ -70,36 +80,23 @@
                                 <div class="form-group row">
                                     <div class="col-sm-6 col-md-5">
                                         <label>first name</label>
-                                        <input type="text" class="input-text full-width" value="" placeholder="" />
+
+
+                                        <input type="text" class="input-text full-width" value="<?= $returned_row['first_name']; ?>" placeholder="" />
                                     </div>
                                     <div class="col-sm-6 col-md-5">
                                         <label>last name</label>
-                                        <input type="text" class="input-text full-width" value="" placeholder="" />
+                                        <input type="text" class="input-text full-width" value="<?= $returned_row['last_name']; ?>" placeholder="" />
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 col-md-5">
                                         <label>email address</label>
-                                        <input type="text" class="input-text full-width" value="" placeholder="" />
-                                    </div>
-                                    <div class="col-sm-6 col-md-5">
-                                        <label>Verify E-mail Address</label>
-                                        <input type="text" class="input-text full-width" value="" placeholder="" />
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-6 col-md-5">
-                                        <label>Country code</label>
-                                        <div class="selector">
-                                            <select class="full-width">
-                                                <option>United Kingdom (+44)</option>
-                                                <option>United States (+1)</option>
-                                            </select>
-                                        </div>
+                                        <input type="text" class="input-text full-width" value="<?= $returned_row['email_address']; ?>" placeholder="" />
                                     </div>
                                     <div class="col-sm-6 col-md-5">
                                         <label>Phone number</label>
-                                        <input type="text" class="input-text full-width" value="" placeholder="" />
+                                        <input type="text" class="input-text full-width" value="<?= $returned_row['contact_number']; ?>" placeholder="" />
                                     </div>
                                 </div>
                             </div>
@@ -111,7 +108,10 @@
                                         <label>Credit Card Type</label>
                                         <div class="selector">
                                             <select class="full-width">
-                                                <option>select a card</option>
+                                                <option value=''>--Select a Card--</option>
+                                                    <option selected value='1'>Visa Card</option>
+                                                    <option value='2'>Master Card</option>
+                                                    <option value='3'>Amercian Express</option>
                                             </select>
                                         </div>
                                     </div>
@@ -136,19 +136,36 @@
                                         <div class="constant-column-2">
                                             <div class="selector">
                                                 <select class="full-width">
-                                                    <option>month</option>
+                                                    <option value=''>--Select Month--</option>
+                                                    <option selected value='1'>Janaury</option>
+                                                    <option value='2'>February</option>
+                                                    <option value='3'>March</option>
+                                                    <option value='4'>April</option>
+                                                    <option value='5'>May</option>
+                                                    <option value='6'>June</option>
+                                                    <option value='7'>July</option>
+                                                    <option value='8'>August</option>
+                                                    <option value='9'>September</option>
+                                                    <option value='10'>October</option>
+                                                    <option value='11'>November</option>
+                                                    <option value='12'>December</option>
                                                 </select>
                                             </div>
                                             <div class="selector">
                                                 <select class="full-width">
-                                                    <option>year</option>
+                                                <option value=''>--Select Year--</option>
+                                                    <option selected value='1'>2022</option>
+                                                    <option value='2'>2023</option>
+                                                    <option value='3'>2024</option>
+                                                    <option value='4'>2025</option>
+                                                    <option value='5'>2026</option>
+                                                    <option value='6'>2027</option>
+                                                    <option value='7'>2028</option>
+                                                    <option value='8'>2029</option>
+                                                    <option value='9'>2030</option>
                                                 </select>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-sm-3 col-md-2">
-                                        <label>billing zip code</label>
-                                        <input type="text" class="input-text full-width" value="" placeholder="" />
                                     </div>
                                 </div>
                             </div>
@@ -210,7 +227,7 @@
                             <dt class="feature">rooms include:</dt>
                             <dd class="value"><?php echo $_POST["horoom"]; ?></dd>
                             <dt class="feature">per adult price:</dt>
-                            <dd class="value">LKR<?php echo $_POST["hoprice"]; ?></dd> 
+                            <dd class="value">LKR<?php echo $_POST["hoprice"]; ?></dd>
                             <dt class="feature">per kid price:</dt>
                             <dd class="value">LKR<?php echo $kidprice ?></dd>
                             <dt class="feature"><?php echo $_POST["cnight"]; ?> night Stay:</dt>

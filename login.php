@@ -29,7 +29,7 @@ else {
     if($auth->customerlogin($uname,$email,$pass))
     {
     // Redirect if logged in successfully
-    $auth->redirect('customer/dashboard.php');
+    $auth->redirect('index.php');
     }
     else
     {

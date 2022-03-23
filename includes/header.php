@@ -130,25 +130,8 @@
             </div>
         </header>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     <?php } else { ?>
-        
+
         <?php
         try {
             // Define query to select values from the partner table
@@ -170,10 +153,83 @@
         }
         ?>
 
-        
+        <header id="header" class="navbar-static-top">
+            <div class="topnav hidden-xs">
+                <div class="container">
+                    <ul class="quick-menu pull-right">
+                        <!-- <li><a href="#" class="#">Welcome &nbsp; UserName</a></li>
+                        <li><a  href="?logout=true" class="#">Dashboard</a></li> -->
+                        <li><a href="#" class="#">Welcome ! <?= $returned_row['username']; ?></a></li>
+                        <li><a href="customer/dashboard.php">dashboard</a></li>
+                        <li><a href="?logout=true">Log Out</a></li>
+                    </ul>
+                    <ul class="quick-menu pull-left">
+                        <li><a href="#travelo-login" class="soap-popupbox">Phone: +(094) 125-4985-214</a></li>
+                        <li><a href="#travelo-signup" class="soap-popupbox">Email: info@happyholidayss.com</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="main-header">
 
+                <a href="#mobile-menu-01" data-toggle="collapse" class="mobile-menu-toggle">
+                    Mobile Menu Toggle
+                </a>
 
-<span class="user-name"><?= $returned_row['username']; ?></span>
+                <div class="container">
+                    <h1 class=" logo-header navbar-brand">
+                        <a href="index.html" title="HappyHolidayss - home">
+                            <img src="assets/images/logo.svg" alt="HappyHolidayss_Logo" />
+                        </a>
+                    </h1>
+
+                    <nav id="main-menu" role="navigation">
+                        <ul class="menu">
+                            <li class="menu-item-has-children">
+                                <a href="index.php">Home</a>
+                            </li>
+                            <li class="menu-item-has-children">
+                                <a href="listed-tours.php">Tours</a>
+                            </li>
+                            <li class="menu-item-has-children">
+                                <a href="listed-homes.php">Stays</a>
+                            </li>
+                            <li class="menu-item-has-children">
+                                <a href="about-us.php">About Us</a>
+                            </li>
+                            <li class="menu-item-has-children megamenu-menu">
+                                <a href="contact-us.php">Contact Us</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+
+                <nav id="mobile-menu-01" class="mobile-menu collapse">
+                    <ul id="mobile-primary-menu" class="menu">
+                        <li>
+                            <a href="index.php">Home</a>
+                        </li>
+                        <li>
+                            <a href="#">Tours</a>
+                        </li>
+                        <li>
+                            <a href="#">Stays</a>
+                        </li>
+                        <li>
+                            <a href="#">About Us</a>
+                        </li>
+                        <li>
+                            <a href="#">Contact Us</a>
+                        </li>
+                    </ul>
+
+                    <ul class="mobile-topnav container">
+                        <li><a href="#travelo-login" class="soap-popupbox">LOGIN</a></li>
+                        <li><a href="#travelo-signup" class="soap-popupbox">SIGNUP</a></li>
+                        <li><a href="#travelo-signup">BECOME A PARTNER</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
 
 
 

@@ -2,11 +2,10 @@
 
 // Include database file
 include_once 'includes/dbconfig.php';
-
 ?>
 
-<?php include('includes/header.php'); ?>
 
+<?php include('includes/header.php'); ?>
 
 
 
@@ -20,7 +19,7 @@ $results = $query->fetchAll(PDO::FETCH_OBJ);
 $cnt = 1;
 if ($query->rowCount() > 0) {
     foreach ($results as $result) {    ?>
-    
+
 
         <div class="page-title-container">
             <div class="container">
@@ -154,16 +153,19 @@ if ($query->rowCount() > 0) {
 
                                             <form action="home-detail-payment.php" method="post" enctype="multipart/form-data">
 
-                                            <!-- hidden inputs -->
+                                                <!-- hidden inputs -->
 
-                                            <input type="text" name="hoid" hidden value="<?php echo htmlentities($result->home_id); ?>">
-                                            <input type="text" name="honame" hidden value="<?php echo htmlentities($result->home_name); ?>">
-                                            <input type="text" name="hoprice" hidden value="<?php echo htmlentities($result->ava_night_price); ?>">
-                                            <input type="text" name="hotype" hidden value="<?php echo htmlentities($result->home_type); ?>">
-                                            <input type="text" name="holocation" hidden value="<?php echo htmlentities($result->location_address); ?>">
-                                            <input type="text" name="hoimg" hidden value="<?php echo htmlentities($result->cover_img1); ?>">
-                                            <input type="text" name="hodistrict" hidden value="<?php echo htmlentities($result->district); ?>">
-                                            <input type="text" name="horoom" hidden value="<?php echo htmlentities($result->rooms); ?>">
+                                                <input type="text" name="hoid" hidden value="<?php echo htmlentities($result->home_id); ?>">
+                                                <input type="text" name="honame" hidden value="<?php echo htmlentities($result->home_name); ?>">
+                                                <input type="text" name="hoprice" hidden value="<?php echo htmlentities($result->ava_night_price); ?>">
+                                                <input type="text" name="hotype" hidden value="<?php echo htmlentities($result->home_type); ?>">
+                                                <input type="text" name="holocation" hidden value="<?php echo htmlentities($result->location_address); ?>">
+                                                <input type="text" name="hoimg" hidden value="<?php echo htmlentities($result->cover_img1); ?>">
+                                                <input type="text" name="hodistrict" hidden value="<?php echo htmlentities($result->district); ?>">
+                                                <input type="text" name="horoom" hidden value="<?php echo htmlentities($result->rooms); ?>">
+
+
+
 
 
                                                 <div class="col-md-5">
