@@ -91,14 +91,29 @@ if (isset($_REQUEST['book'])) {
     ?>
 
 
-    <?php
-    // Set session variables
-    $_SESSION["total_amount"] = "$tot";
-    $_SESSION["total_persons"] = "$totalcount";
-    $_SESSION["Home_name"] = "$homename";
-    
-    print_r($_SESSION);
-    ?>
+<!-- passing booking values to thank you page via session -->
+<?php
+if (isset($_POST['submit'])) {
+     $_SESSION['cus_first_name'] = $_POST['fname']; 
+     $_SESSION['cus_last_name'] = $_POST['lname']; 
+     $_SESSION['cus_email'] = $_POST['email']; 
+     $_SESSION['cus_contact'] = $_POST['contact']; 
+     $_SESSION['cus_card_type'] = $_POST['cardtype']; 
+     $_SESSION['total_amount'] = $_POST['total']; 
+     $_SESSION['home_true'] = $_POST['homeid']; 
+     $_SESSION['booking_s_date'] = $_POST['homesdate']; 
+     $_SESSION['booking_e_date'] = $_POST['homeedate']; 
+     $_SESSION['booking_nights'] = $_POST['totnight']; 
+     $_SESSION['booking_person_count'] = $_POST['totcount']; 
+     $_SESSION['host_id'] = $_POST['partnerid']; 
+     $_SESSION['customer_id'] = $_POST['cusid']; 
+
+
+
+
+     
+}
+?> 
 
 </head>
 
