@@ -1,10 +1,10 @@
+
 <?php
 // Include database file
 include_once 'includes/dbconfig.php';
 ?>
 
 <?php include('includes/header.php'); ?>
-
 
 
 <!DOCTYPE html>
@@ -59,6 +59,8 @@ include_once 'includes/dbconfig.php';
                             <dd>353 Third floor Avenue</dd>
                             <dt>Town / City:</dt>
                             <dd>Paris,France</dd>
+                            <dt>Home Type:</dt>
+                            <dd></dd>
                             <dt>ZIP code:</dt>
                             <dd>75800-875</dd>
                             <dt>Country:</dt>

@@ -458,10 +458,6 @@ include_once 'includes/dbconfig.php';
 
 
 
-
-
-
-
     <!-- features card -->
     <!-- 
             <div class="container"> 
