@@ -1,11 +1,27 @@
+<?php
+// Include database file
+include_once 'includes/dbconfig.php';
+?>
+
+
+
+
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 </head>
-<body>
-<?php include('includes/header.php');?>
 
-<div class="page-title-container">
+<body>
+    <?php include('includes/header.php'); ?>
+
+    <div class="page-title-container">
         <div class="container">
             <div class="page-title pull-left">
                 <h3 class="entry-title">Stays Search Results</h3>
@@ -15,9 +31,9 @@
                 <li class="active">Stays Search Results</li>
             </ul>
         </div>
-</div>
+    </div>
 
-<section id="content">
+    <section id="content">
         <div class="container">
             <div id="main">
                 <div class="row">
@@ -29,7 +45,7 @@
                                 <h4 class="panel-title">
                                     <p>Modify Search</p>
                                 </h4>
-                                <div >
+                                <div>
                                     <div class="panel-content">
                                         <form method="post">
                                             <div class="form-group">
@@ -54,7 +70,7 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div class="panel style1 arrow-right">
                                 <h4 class="panel-title">
                                     <a data-toggle="collapse" href="#price-filter" class="collapsed">Price</a>
@@ -69,7 +85,7 @@
                                     </div><!-- end content -->
                                 </div>
                             </div>
-                            
+
                             <div class="panel style1 arrow-right">
                                 <h4 class="panel-title">
                                     <a data-toggle="collapse" href="#accomodation-type-filter" class="collapsed">Accomodation Type</a>
@@ -88,7 +104,7 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div class="panel style1 arrow-right">
                                 <h4 class="panel-title">
                                     <a data-toggle="collapse" href="#language-filter" class="collapsed">District</a>
@@ -124,110 +140,62 @@
                         </div>
                     </div>
                     <div class="col-sm-8 col-md-9">
-                    <div class="sort-by-section box clearfix">
+                        <div class="sort-by-section box clearfix">
                             <h4 class="sort-by-title block-sm">Results for Your Search <i class="fa fa-arrow-down"></i> </h4>
                         </div>
                         <div class="hotel-list listing-style3 hotel">
-           
-                            <article class="box">
-                                <figure class="col-sm-5 col-md-4">
-                                    <a title="" class="popup-gallery"><img width="270" height="160" alt="" src="assets/images/stays/The Riverfront TinyRoom Private Garden Terrace.png"></a>
-                                </figure>
-                                <div class="details col-sm-7 col-md-8">
-                                    <div>
-                                        <div>
-                                            <h4 class="box-title">Hotel Hilton and Resorts<small><i class="soap-icon-departure yellow-color"></i> Bastille, Paris france</small></h4>
-                                            <div class="amenities">
-                                                <i class="soap-icon-wifi circle"></i>
-                                                <i class="soap-icon-fitnessfacility circle"></i>
-                                                <i class="soap-icon-fork circle"></i>
-                                                <i class="soap-icon-television circle"></i>
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <div class="five-stars-container">
-                                                <span class="five-stars" style="width: 80%;"></span>
-                                            </div>
-                                            <!-- <span class="review">270 reviews</span> -->
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <p>Located amid rolling green hills and the Madulkelle Tea Estate, this property offers tents with a terrace, a seating area, and private bathroom with hot/cold water. Wired internet access is available.</p>
-                                        <div>
-                                            
-                                            <span class="price"><small>AVG/NIGHT</small>$620</span>
-                                            <a class="button btn-small full-width text-center" title="" href="hotel-detailed.html">SELECT</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
 
-                            <article class="box">
-                                <figure class="col-sm-5 col-md-4">
-                                    <a title="" class="popup-gallery"><img width="270" height="160" alt="" src="assets/images/stays/The Riverfront TinyRoom Private Garden Terrace.png"></a>
-                                </figure>
-                                <div class="details col-sm-7 col-md-8">
-                                    <div>
-                                        <div>
-                                            <h4 class="box-title">Hotel Hilton and Resorts<small><i class="soap-icon-departure yellow-color"></i> Bastille, Paris france</small></h4>
-                                            <div class="amenities">
-                                                <i class="soap-icon-wifi circle"></i>
-                                                <i class="soap-icon-fitnessfacility circle"></i>
-                                                <i class="soap-icon-fork circle"></i>
-                                                <i class="soap-icon-television circle"></i>
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <div class="five-stars-container">
-                                                <span class="five-stars" style="width: 80%;"></span>
-                                            </div>
-                                            <!-- <span class="review">270 reviews</span> -->
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <p>Located amid rolling green hills and the Madulkelle Tea Estate, this property offers tents with a terrace, a seating area, and private bathroom with hot/cold water. Wired internet access is available.</p>
-                                        <div>
-                                            
-                                            <span class="price"><small>AVG/NIGHT</small>$620</span>
-                                            <a class="button btn-small full-width text-center" title="" href="hotel-detailed.html">SELECT</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
 
-                            <article class="box">
-                                <figure class="col-sm-5 col-md-4">
-                                    <a title="" class="popup-gallery"><img width="270" height="160" alt="" src="assets/images/stays/The Riverfront TinyRoom Private Garden Terrace.png"></a>
-                                </figure>
-                                <div class="details col-sm-7 col-md-8">
-                                    <div>
-                                        <div>
-                                            <h4 class="box-title">Hotel Hilton and Resorts<small><i class="soap-icon-departure yellow-color"></i> Bastille, Paris france</small></h4>
-                                            <div class="amenities">
-                                                <i class="soap-icon-wifi circle"></i>
-                                                <i class="soap-icon-fitnessfacility circle"></i>
-                                                <i class="soap-icon-fork circle"></i>
-                                                <i class="soap-icon-television circle"></i>
+
+
+                        
+
+                            <?php 
+                            $sql ="SELECT * from tbl_home WHERE status = 1 AND district = 'colombo' AND ava_start_date >= '2022-03-15' AND ava_end_date <= '2022-04-15' AND max_adults >= '2' AND max_kids >= '1' order by rand() ";
+                            $query = $DB_con->prepare($sql);
+                            $query->execute();
+                            $results = $query->fetchAll(PDO::FETCH_OBJ);
+                            $cnt = 1;
+                            if ($query->rowCount() > 0) {
+                                foreach ($results as $result) {    ?>
+
+
+
+                                    <article class="box">
+                                        <figure class="col-sm-5 col-md-4">
+                                            <a title="" class="popup-gallery"><img width="270" height="160" alt="" src="partner/includes/uploads/<?php echo htmlentities($result->cover_img1); ?>"></a>
+                                        </figure>
+                                        <div class="details col-sm-7 col-md-8">
+                                            <div>
+                                                <div>
+                                                    <h4 class="box-title"><?php echo htmlentities($result->home_name); ?><small><i class="soap-icon-departure yellow-color"></i> <?php echo htmlentities($result->district); ?>, Sri Lanka</small></h4>
+                                                    <div class="amenities">
+                                                        <i class="soap-icon-wifi circle"></i>
+                                                        <i class="soap-icon-fitnessfacility circle"></i>
+                                                        <i class="soap-icon-fork circle"></i>
+                                                        <i class="soap-icon-television circle"></i>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <span class="review">Includes <br /><?php echo htmlentities($result->rooms); ?> Rooms</span>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <p><?php echo htmlentities($result->lg_desc); ?></p>
+                                                <div>
+
+                                                    <span class="price"><small>AVG/NIGHT</small><?php echo htmlentities($result->ava_night_price); ?></span>
+                                                    <a class="button btn-small full-width text-center" title="" href="hotel-detailed.html">SELECT</a>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div>
-                                            <div class="five-stars-container">
-                                                <span class="five-stars" style="width: 80%;"></span>
-                                            </div>
-                                            <!-- <span class="review">270 reviews</span> -->
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <p>Located amid rolling green hills and the Madulkelle Tea Estate, this property offers tents with a terrace, a seating area, and private bathroom with hot/cold water. Wired internet access is available.</p>
-                                        <div>
-                                            
-                                            <span class="price"><small>AVG/NIGHT</small>$620</span>
-                                            <a class="button btn-small full-width text-center" title="" href="hotel-detailed.html">SELECT</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
-                            
+                                    </article>
+
+                            <?php }
+                            } ?>
+
+
+
                         </div>
                     </div>
                 </div>
@@ -235,7 +203,8 @@
         </div>
     </section>
 
-<?php include('includes/jsscripts.php');?>
-<?php include('includes/footer.php');?>
+    <?php include('includes/jsscripts.php'); ?>
+    <?php include('includes/footer.php'); ?>
 </body>
+
 </html>

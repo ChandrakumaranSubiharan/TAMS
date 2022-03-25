@@ -57,7 +57,7 @@ include_once 'includes/dbconfig.php';
 
             <div class="search-tab-content">
                 <div class="tab-pane fade active in" id="hotels-tab">
-                    <form action="#" method="post">
+                    <form action="homes-search-list" method="post">
                         <div class="row">
                             <div class="form-group col-sm-6 col-md-3">
                                 <h4 class="title">Where</h4>
@@ -120,7 +120,7 @@ include_once 'includes/dbconfig.php';
 
                             <div class="form-group col-sm-6 col-md-2 fixheight">
                                 <label class="hidden-xs">&nbsp;</label>
-                                <button type="submit" class="full-width icon-check animated" data-animation-type="bounce" data-animation-duration="1">SEARCH NOW</button>
+                                <button type="submit" name="homesubmit" class="full-width icon-check animated" data-animation-type="bounce" data-animation-duration="1">SEARCH NOW</button>
                             </div>
                         </div>
                     </form>
