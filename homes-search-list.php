@@ -145,13 +145,19 @@ include_once 'includes/dbconfig.php';
                         </div>
                         <div class="hotel-list listing-style3 hotel">
 
-
-
-
+                        <!-- retriving from home detailed page via post request -->
+                        <?php
+                        if (isset($_REQUEST['homesubmit'])) {
+                            $Hdistrict = $_REQUEST["district"];
+                            $Hsdate = $_REQUEST["sdate"];
+                            $Hedate = $_REQUEST["edate"];
+                            $Hcadult = $_REQUEST["cadult"];
+                            $Hckid = $_REQUEST["ckid"];
+                        }
                         
-
+                        ?>
                             <?php 
-                            $sql ="SELECT * from tbl_home WHERE status = 1 AND district = 'colombo' AND ava_start_date >= '2022-03-15' AND ava_end_date <= '2022-04-15' AND max_adults >= '2' AND max_kids >= '1' order by rand() ";
+                            $sql ="SELECT * from tbl_home WHERE status = 1 AND district = '$Hdistrict' AND ava_start_date >= '$Hsdate' AND ava_end_date <= '$Hedate' AND max_adults >= '$Hcadult' AND max_kids >= '$Hckid' order by rand() ";
                             $query = $DB_con->prepare($sql);
                             $query->execute();
                             $results = $query->fetchAll(PDO::FETCH_OBJ);

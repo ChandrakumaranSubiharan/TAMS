@@ -41,6 +41,8 @@ include_once 'includes/dbconfig.php';
 
 
 
+
+
     <!-- Search bar -->
     <div class="search-box-wrapper">
         <div class="search-box container">
@@ -57,16 +59,16 @@ include_once 'includes/dbconfig.php';
 
             <div class="search-tab-content">
                 <div class="tab-pane fade active in" id="hotels-tab">
-                    <form action="homes-search-list" method="post">
+                    <form action="homes-search-list.php" method="post">
                         <div class="row">
                             <div class="form-group col-sm-6 col-md-3">
                                 <h4 class="title">Where</h4>
                                 <label>Select Destination</label>
                                 <div class="selector">
-                                    <select class="full-width">
-                                        <option value="1">Kandy</option>
-                                        <option value="2">Colombo</option>
-                                        <option value="3">Jaffna</option>
+                                    <select name="district" class="full-width">
+                                        <option value="Kandy">Kandy</option>
+                                        <option value="Colombo">Colombo</option>
+                                        <option value="Jaffna">Jaffna</option>
                                     </select>
                                 </div>
                             </div>
@@ -77,13 +79,13 @@ include_once 'includes/dbconfig.php';
                                     <div class="col-xs-6">
                                         <label>Check In</label>
                                         <div class="datepicker-wrap">
-                                            <input type="text" class="input-text full-width" placeholder="mm/dd/yy" />
+                                            <input type="date" name="sdate" class="input-text full-width" placeholder="mm/dd/yy" />
                                         </div>
                                     </div>
                                     <div class="col-xs-6">
                                         <label>Check Out</label>
                                         <div class="datepicker-wrap">
-                                            <input type="text" class="input-text full-width" placeholder="mm/dd/yy" />
+                                            <input type="date" name="edate" class="input-text full-width" placeholder="mm/dd/yy" />
                                         </div>
                                     </div>
                                 </div>
@@ -95,7 +97,7 @@ include_once 'includes/dbconfig.php';
                                     <div class="col-xs-6">
                                         <label>Adults</label>
                                         <div class="selector">
-                                            <select class="full-width">
+                                            <select name="cadult" class="full-width">
                                                 <option value="1">01</option>
                                                 <option value="2">02</option>
                                                 <option value="3">03</option>
@@ -106,7 +108,7 @@ include_once 'includes/dbconfig.php';
                                     <div class="col-xs-6">
                                         <label>Kids</label>
                                         <div class="selector">
-                                            <select class="full-width">
+                                            <select name="ckid" class="full-width">
                                                 <option value="1">01</option>
                                                 <option value="2">02</option>
                                                 <option value="3">03</option>
@@ -276,7 +278,7 @@ include_once 'includes/dbconfig.php';
                                 </div>
                                 <p class="description"><?php echo htmlentities($result->lg_desc); ?></p>
                                 <div class="action">
-                                    <a class="button btn-small" href="home-detailed.php?homeid=<?php echo htmlentities($result->home_id);?>">Details</a>
+                                    <a class="button btn-small" href="home-detailed.php?homeid=<?php echo htmlentities($result->home_id); ?>">Details</a>
                                 </div>
                             </div>
                         </article>
