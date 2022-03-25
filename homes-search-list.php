@@ -3,13 +3,32 @@
 include_once 'includes/dbconfig.php';
 ?>
 
+<?php
+if (isset($_REQUEST['homesubmit'])) {
+    $_COOKIE['District'] = $_REQUEST['district'];
+    $_COOKIE['StartDate'] = $_REQUEST['sdate'];
+    $_COOKIE['EndDate'] = $_REQUEST['edate'];
+    $_COOKIE['CountAdult'] = $_REQUEST['cadult'];
+    $_COOKIE['CountKid'] = $_REQUEST['ckid'];
+    $_COOKIE['CountRoom'] = $_REQUEST['croom'];
+}
+
+//    echo $_COOKIE['District'];
+?>
 
 
+<!-- retriving from home detailed page via post request -->
+<?php
+if (isset($_REQUEST['homesubmit'])) {
+    $Hdistrict = $_REQUEST["district"];
+    $Hsdate = $_REQUEST["sdate"];
+    $Hedate = $_REQUEST["edate"];
+    $Hcadult = $_REQUEST["cadult"];
+    $Hckid = $_REQUEST["ckid"];
+    $Hcroom = $_REQUEST["croom"];
+}
 
-
-
-
-
+?>
 
 
 <!DOCTYPE html>
@@ -49,23 +68,72 @@ include_once 'includes/dbconfig.php';
                                     <div class="panel-content">
                                         <form method="post">
                                             <div class="form-group">
-                                                <label>destination</label>
-                                                <input type="text" class="input-text full-width" placeholder="" value="Paris" />
+                                                <label>Destination</label>
+                                                <div class="selector">
+                                                    <select name="district" class="full-width">
+                                                        <option value="<?php echo $_COOKIE['District']; ?>"><?php echo $_COOKIE['District']; ?></option>
+                                                        <option value="Kandy">Kandy</option>
+                                                        <option value="Colombo">Colombo</option>
+                                                        <option value="Jaffna">Jaffna</option>
+                                                    </select>
+                                                </div>
                                             </div>
                                             <div class="form-group">
                                                 <label>check in</label>
                                                 <div class="datepicker-wrap">
-                                                    <input type="text" class="input-text full-width" placeholder="mm/dd/yy" />
+                                                    <input type="date" name="sdate" value="<?php echo $_COOKIE['StartDate']; ?>" class="input-text full-width" placeholder="mm/dd/yy" />
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label>check out</label>
                                                 <div class="datepicker-wrap">
-                                                    <input type="text" class="input-text full-width" placeholder="mm/dd/yy" />
+                                                    <input type="date" name="edate" value="<?php echo $_COOKIE['EndDate']; ?>" class="input-text full-width" placeholder="mm/dd/yy" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Adults</label>
+                                                <div class="selector">
+                                                    <select name="cadult" class="full-width">
+                                                        <option value="<?php echo $_COOKIE['CountAdult']; ?>"><?php echo $_COOKIE['CountAdult']; ?></option>
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Kids</label>
+                                                <div class="selector">
+                                                    <select name="ckid" class="full-width">
+                                                        <option value="<?php echo $_COOKIE['CountKid']; ?>"><?php echo $_COOKIE['CountKid']; ?></option>
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Rooms</label>
+                                                <div class="selector">
+                                                    <select name="croom" class="full-width">
+                                                        <option value="<?php echo $_COOKIE['CountRoom']; ?>"><?php echo $_COOKIE['CountRoom']; ?></option>
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                        <option value="6">6</option>
+                                                        <option value="7">7</option>
+                                                        <option value="8">8</option>
+                                                        <option value="9">9</option>
+                                                        <option value="10">10</option>
+                                                    </select>
                                                 </div>
                                             </div>
                                             <br />
-                                            <button class="btn-medium icon-check uppercase full-width">search again</button>
+                                            <button type="submit" name="homesubmit" class="btn-medium icon-check uppercase full-width">search again</button>
                                         </form>
                                     </div>
                                 </div>
@@ -145,19 +213,14 @@ include_once 'includes/dbconfig.php';
                         </div>
                         <div class="hotel-list listing-style3 hotel">
 
-                        <!-- retriving from home detailed page via post request -->
-                        <?php
-                        if (isset($_REQUEST['homesubmit'])) {
-                            $Hdistrict = $_REQUEST["district"];
-                            $Hsdate = $_REQUEST["sdate"];
-                            $Hedate = $_REQUEST["edate"];
-                            $Hcadult = $_REQUEST["cadult"];
-                            $Hckid = $_REQUEST["ckid"];
-                        }
-                        
-                        ?>
-                            <?php 
-                            $sql ="SELECT * from tbl_home WHERE status = 1 AND district = '$Hdistrict' AND ava_start_date >= '$Hsdate' AND ava_end_date <= '$Hedate' AND max_adults >= '$Hcadult' AND max_kids >= '$Hckid' order by rand() ";
+
+
+
+
+
+
+                            <?php
+                            $sql = "SELECT * from tbl_home WHERE status = 1 AND district = '$Hdistrict' AND ava_start_date >= '$Hsdate' AND ava_end_date >= '$Hedate' AND max_adults >= '$Hcadult' AND max_kids >= '$Hckid' AND rooms >= '$Hcroom' order by rand() ";
                             $query = $DB_con->prepare($sql);
                             $query->execute();
                             $results = $query->fetchAll(PDO::FETCH_OBJ);
@@ -174,7 +237,7 @@ include_once 'includes/dbconfig.php';
                                         <div class="details col-sm-7 col-md-8">
                                             <div>
                                                 <div>
-                                                    <h4 class="box-title"><?php echo htmlentities($result->home_name); ?><small><i class="soap-icon-departure yellow-color"></i> <?php echo htmlentities($result->district); ?>, Sri Lanka</small></h4>
+                                                    <h4 class="box-title"><?php echo htmlentities($result->home_name); ?><small><i class="soap-icon-departure yellow-color"></i> <?php echo htmlentities($result->district); ?>, Sri Lanka</small><small> <i style="font-size: 17px;" class="soap-icon-availability yellow-color"></i> <?php echo htmlentities($result->ava_start_date); ?> - <?php echo htmlentities($result->ava_end_date); ?> </small></h4> <br />
                                                     <div class="amenities">
                                                         <i class="soap-icon-wifi circle"></i>
                                                         <i class="soap-icon-fitnessfacility circle"></i>

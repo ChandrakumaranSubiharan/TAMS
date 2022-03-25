@@ -107,11 +107,6 @@ if (isset($_POST['submit'])) {
      $_SESSION['booking_person_count'] = $_POST['totcount']; 
      $_SESSION['host_id'] = $_POST['partnerid']; 
      $_SESSION['customer_id'] = $_POST['cusid']; 
-
-
-
-
-     
 }
 ?> 
 

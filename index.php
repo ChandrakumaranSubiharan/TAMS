@@ -92,33 +92,50 @@ include_once 'includes/dbconfig.php';
                             </div>
 
                             <div class="form-group col-sm-6 col-md-3">
-                                <h4 class="title">Who</h4>
+                                <h4 class="title">Who and Space</h4>
                                 <div class="row">
-                                    <div class="col-xs-6">
+                                    <div class="col-xs-4">
                                         <label>Adults</label>
                                         <div class="selector">
                                             <select name="cadult" class="full-width">
-                                                <option value="1">01</option>
-                                                <option value="2">02</option>
-                                                <option value="3">03</option>
-                                                <option value="4">04</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-xs-6">
+                                    <div class="col-xs-4">
                                         <label>Kids</label>
                                         <div class="selector">
                                             <select name="ckid" class="full-width">
-                                                <option value="1">01</option>
-                                                <option value="2">02</option>
-                                                <option value="3">03</option>
-                                                <option value="4">04</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
                                             </select>
                                         </div>
                                     </div>
-
+                                    <div class="col-xs-4">
+                                        <label>Rooms</label>
+                                        <div class="selector">
+                                            <select name="croom" class="full-width">
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                                <option value="6">6</option>
+                                                <option value="7">7</option>
+                                                <option value="8">8</option>
+                                                <option value="9">9</option>
+                                                <option value="10">10</option>
+                                            </select>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
+
 
                             <div class="form-group col-sm-6 col-md-2 fixheight">
                                 <label class="hidden-xs">&nbsp;</label>
@@ -161,7 +178,7 @@ include_once 'includes/dbconfig.php';
                                     </select>
                                 </div>
                             </div>
-                            <div class="form-group col-sm-6 col-md-2 fixheight">
+                            <div class="form-group col-sm-5 col-md-2 fixheight">
                                 <label class="hidden-xs">&nbsp;</label>
                                 <button type="submit" class="full-width icon-check animated" data-animation-type="bounce" data-animation-duration="1">SEARCH NOW</button>
                             </div>
