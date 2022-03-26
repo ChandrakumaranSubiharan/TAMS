@@ -324,7 +324,7 @@ include_once 'includes/dbconfig.php';
                     <li>
                         <article class="box">
                             <figure>
-                                <a title="" href="#"><img width="370" height="160" alt="" src="assets/images/districs/kandy.png"></a>
+                                <a title="" href="listed-homes.php?district=kandy"><img width="370" height="160" alt="" src="assets/images/districs/kandy.png"></a>
                                 <figcaption>
                                     <h3 class="caption-title">Kandy</h3>
                                     <span>Kandy Homes</span>
@@ -333,7 +333,7 @@ include_once 'includes/dbconfig.php';
                         </article>
                         <article class="box">
                             <figure>
-                                <a title="" href="#"><img width="370" height="160" alt="" src="assets/images/districs/colombo.png"></a>
+                                <a title="" href="listed-homes.php?district=colombo"><img width="370" height="160" alt="" src="assets/images/districs/colombo.png"></a>
                                 <figcaption>
                                     <h3 class="caption-title">Colombo</h3>
                                     <span>Colombo Homes</span>
