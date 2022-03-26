@@ -60,8 +60,9 @@ include_once 'includes/dbconfig.php';
             <div class="search-tab-content">
                 <div class="tab-pane fade active in" id="hotels-tab">
                     <form action="homes-search-list.php" method="post">
+                    <input type="text" name="pricerange" hidden value="50000" />
                         <div class="row">
-                            <div class="form-group col-sm-6 col-md-3">
+                            <div class="form-group col-sm-6 col-md-2">
                                 <h4 class="title">Where</h4>
                                 <label>Select Destination</label>
                                 <div class="selector">
@@ -91,10 +92,10 @@ include_once 'includes/dbconfig.php';
                                 </div>
                             </div>
 
-                            <div class="form-group col-sm-6 col-md-3">
+                            <div class="form-group col-sm-8 col-md-4">
                                 <h4 class="title">Who and Space</h4>
                                 <div class="row">
-                                    <div class="col-xs-4">
+                                    <div class="col-xs-3">
                                         <label>Adults</label>
                                         <div class="selector">
                                             <select name="cadult" class="full-width">
@@ -105,7 +106,7 @@ include_once 'includes/dbconfig.php';
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-xs-4">
+                                    <div class="col-xs-3">
                                         <label>Kids</label>
                                         <div class="selector">
                                             <select name="ckid" class="full-width">
@@ -116,7 +117,7 @@ include_once 'includes/dbconfig.php';
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-xs-4">
+                                    <div class="col-xs-3">
                                         <label>Rooms</label>
                                         <div class="selector">
                                             <select name="croom" class="full-width">
@@ -133,10 +134,19 @@ include_once 'includes/dbconfig.php';
                                             </select>
                                         </div>
                                     </div>
+                                    <div class="col-xs-3">
+                                        <label>Home Type</label>
+                                        <div class="selector">
+                                            <select name="htype" class="full-width">
+                                                <option value="resort">Resort</option>
+                                                <option value="villa">Villa</option>
+                                                <option value="cabin">Cabin</option>
+                                                <option value="cottage">Cottage</option>
+                                            </select>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-
-
                             <div class="form-group col-sm-6 col-md-2 fixheight">
                                 <label class="hidden-xs">&nbsp;</label>
                                 <button type="submit" name="homesubmit" class="full-width icon-check animated" data-animation-type="bounce" data-animation-duration="1">SEARCH NOW</button>

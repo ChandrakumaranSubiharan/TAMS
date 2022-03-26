@@ -3,15 +3,18 @@
 include_once 'includes/dbconfig.php';
 ?>
 
+
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.8.0/css/bootstrap-slider.min.css" rel="stylesheet"/>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
 </head>
 
 <body>
-    <?php include('includes/header.php'); ?>
-
     <div class="page-title-container">
         <div class="container">
             <div class="page-title pull-left">
@@ -31,54 +34,21 @@ include_once 'includes/dbconfig.php';
                     <div class="col-sm-4 col-md-3">
                         <h4 class="search-results-title"><i class="soap-icon-search"></i>Sort Homes by:</h4>
                         <div class="toggle-container filters-container">
-
-                            <div class="panel style1 arrow-right">
-                                <h4 class="panel-title">
-                                    <p>Search</p>
-                                </h4>
-                                <div>
-                                    <div class="panel-content">
-                                        <form method="post">
-                                            <div class="form-group">
-                                                <label>destination</label>
-                                                <input type="text" class="input-text full-width" placeholder="" value="Paris" />
-                                            </div>
-                                            <div class="form-group">
-                                                <label>check in</label>
-                                                <div class="datepicker-wrap">
-                                                    <input type="text" class="input-text full-width" placeholder="mm/dd/yy" />
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>check out</label>
-                                                <div class="datepicker-wrap">
-                                                    <input type="text" class="input-text full-width" placeholder="mm/dd/yy" />
-                                                </div>
-                                            </div>
-                                            <br />
-                                            <button class="btn-medium icon-check uppercase full-width">search again</button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-
                             <div class="panel style1 arrow-right">
                                 <h4 class="panel-title">
                                     <a data-toggle="collapse" href="#price-filter" class="collapsed">Price</a>
                                 </h4>
-                                <div id="price-filter" class="panel-collapse collapse">
+                                <div id="price-filter" class="">
                                     <div class="panel-content">
-                                        <div id="price-range"></div>
-                                        <br />
-                                        <span class="min-price-label pull-left"></span>
-                                        <span class="max-price-label pull-right"></span>
-                                        <div class="clearer"></div>
-                                    </div><!-- end content -->
+                                        <div class="list-group-item">
+				<input id="priceSlider" data-slider-id='ex1Slider' type="text" data-slider-min="1000" data-slider-max="65000" data-slider-step="1" data-slider-value="14"/>
+				<div class="priceRange">1000 - 65000</div>
+				<input type="hidden" id="minPrice" value="0" />
+				<input type="hidden" id="maxPrice" value="65000" />                  
+			</div>
+                                    </div>
                                 </div>
                             </div>
-
-
-
 
                             <div class="panel style1 arrow-right">
                                 <h4 class="panel-title">
@@ -98,23 +68,6 @@ include_once 'includes/dbconfig.php';
                                     </div>
                                 </div>
                             </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                            
 
                             <div class="panel style1 arrow-right">
                                 <h4 class="panel-title">
@@ -156,13 +109,14 @@ include_once 'includes/dbconfig.php';
                         </div>
                         <div class="hotel-list listing-style3 hotel">
 
-                            <?php $sql = "SELECT * from tbl_home where status = 1 order by rand() limit 2";
+                            <?php $sql = "SELECT * from tbl_home where status = 1 order by rand()";
                             $query = $DB_con->prepare($sql);
                             $query->execute();
                             $results = $query->fetchAll(PDO::FETCH_OBJ);
                             $cnt = 1;
                             if ($query->rowCount() > 0) {
                                 foreach ($results as $result) {    ?>
+
 
                                     <article class="service-info-crd box">
                                         <figure class="col-sm-5 col-md-4">
@@ -200,6 +154,16 @@ include_once 'includes/dbconfig.php';
                             <?php }
                             } ?>
 
+
+
+
+
+
+
+
+
+
+
                         </div>
                     </div>
                 </div>
@@ -207,8 +171,11 @@ include_once 'includes/dbconfig.php';
         </div>
     </section>
 
-    <?php include('includes/jsscripts.php'); ?>
-    <?php include('includes/footer.php'); ?>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="assets/js/search.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.8.0/bootstrap-slider.min.js"></script>
+
 </body>
 
 </html>

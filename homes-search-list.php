@@ -11,6 +11,8 @@ if (isset($_REQUEST['homesubmit'])) {
     $_COOKIE['CountAdult'] = $_REQUEST['cadult'];
     $_COOKIE['CountKid'] = $_REQUEST['ckid'];
     $_COOKIE['CountRoom'] = $_REQUEST['croom'];
+    $_COOKIE['PriceRange'] = $_REQUEST['pricerange'];
+    $_COOKIE['HomeType'] = $_REQUEST['htype'];
 }
 
 //    echo $_COOKIE['District'];
@@ -26,9 +28,12 @@ if (isset($_REQUEST['homesubmit'])) {
     $Hcadult = $_REQUEST["cadult"];
     $Hckid = $_REQUEST["ckid"];
     $Hcroom = $_REQUEST["croom"];
+    $Hpricerange = $_REQUEST['pricerange'];
+    $Htype = $_REQUEST['htype'];
 }
 
 ?>
+
 
 
 <!DOCTYPE html>
@@ -107,6 +112,7 @@ if (isset($_REQUEST['homesubmit'])) {
                                                 <div class="selector">
                                                     <select name="ckid" class="full-width">
                                                         <option value="<?php echo $_COOKIE['CountKid']; ?>"><?php echo $_COOKIE['CountKid']; ?></option>
+                                                        <option value="">No Kids</option>
                                                         <option value="1">1</option>
                                                         <option value="2">2</option>
                                                         <option value="3">3</option>
@@ -132,76 +138,40 @@ if (isset($_REQUEST['homesubmit'])) {
                                                     </select>
                                                 </div>
                                             </div>
+                                            <div class="form-group">
+                                                <label>Price Range</label>
+                                                <div class="selector">
+                                                    <select name="pricerange" class="full-width">
+                                                        <option value="<?php echo  $_COOKIE['PriceRange'];?>"> Below LKR <?php echo $_COOKIE['PriceRange']; ?></option>
+                                                        <option value="5000">Below LKR 5000</option>
+                                                        <option value="10000">Below LKR 10000</option>
+                                                        <option value="15000">Below LKR 15000</option>
+                                                        <option value="20000">Below LKR 20000</option>
+                                                        <option value="25000">Below LKR 25000</option>
+                                                        <option value="30000">Below LKR 30000</option>
+                                                        <option value="35000">Below LKR 35000</option>
+                                                        <option value="40000">Below LKR 40000</option>
+                                                        <option value="45000">Below LKR 45000</option>
+                                                        <option value="50000">Below LKR 50000</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Home Type</label>
+                                                <div class="selector">
+                                                    <select name="htype" class="full-width">
+                                                        <option value="<?php echo $_COOKIE['HomeType']; ?>"><?php echo $_COOKIE['HomeType']; ?></option>
+                                                        <option value="resort">Resort</option>
+                                                        <option value="villa">Villa</option>
+                                                        <option value="cabin">Cabin</option>
+                                                        <option value="cottage">Cottage</option>
+
+                                                    </select>
+                                                </div>
+                                            </div>
                                             <br />
                                             <button type="submit" name="homesubmit" class="btn-medium icon-check uppercase full-width">search again</button>
                                         </form>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="panel style1 arrow-right">
-                                <h4 class="panel-title">
-                                    <a data-toggle="collapse" href="#price-filter" class="collapsed">Price</a>
-                                </h4>
-                                <div id="price-filter" class="panel-collapse collapse">
-                                    <div class="panel-content">
-                                        <div id="price-range"></div>
-                                        <br />
-                                        <span class="min-price-label pull-left"></span>
-                                        <span class="max-price-label pull-right"></span>
-                                        <div class="clearer"></div>
-                                    </div><!-- end content -->
-                                </div>
-                            </div>
-
-                            <div class="panel style1 arrow-right">
-                                <h4 class="panel-title">
-                                    <a data-toggle="collapse" href="#accomodation-type-filter" class="collapsed">Accomodation Type</a>
-                                </h4>
-                                <div id="accomodation-type-filter" class="panel-collapse collapse">
-                                    <div class="panel-content">
-                                        <ul class="check-square filters-option">
-                                            <li><a href="#">All</a></li>
-                                            <li><a href="#">Hotel</a></li>
-                                            <li><a href="#">Resort</a></li>
-                                            <li class="active"><a href="#">Bed &amp; Breakfast</a></li>
-                                            <li><a href="#">Condo</a></li>
-                                            <li><a href="#">Residence</a></li>
-                                            <li><a href="#">Guest House</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="panel style1 arrow-right">
-                                <h4 class="panel-title">
-                                    <a data-toggle="collapse" href="#language-filter" class="collapsed">District</a>
-                                </h4>
-                                <div id="language-filter" class="panel-collapse collapse">
-                                    <div class="panel-content">
-                                        <ul class="check-square filters-option">
-                                            <li><a href="#">English<small>(722)</small></a></li>
-                                            <li><a href="#">Español<small>(982)</small></a></li>
-                                            <li class="active"><a href="#">Português<small>(127)</small></a></li>
-                                            <li class="active"><a href="#">Français<small>(222)</small></a></li>
-                                            <li><a href="#">Suomi<small>(158)</small></a></li>
-                                            <li><a href="#">Italiano<small>(439)</small></a></li>
-                                            <li><a href="#">Sign Language<small>(52)</small></a></li>
-                                            <li><a href="#">English<small>(722)</small></a></li>
-                                            <li><a href="#">Español<small>(982)</small></a></li>
-                                            <li class="active"><a href="#">Português<small>(127)</small></a></li>
-                                            <li class="active"><a href="#">Français<small>(222)</small></a></li>
-                                            <li><a href="#">Suomi<small>(158)</small></a></li>
-                                            <li><a href="#">Italiano<small>(439)</small></a></li>
-                                            <li><a href="#">Sign Language<small>(52)</small></a></li>
-                                            <li><a href="#">English<small>(722)</small></a></li>
-                                            <li><a href="#">Español<small>(982)</small></a></li>
-                                            <li class="active"><a href="#">Português<small>(127)</small></a></li>
-                                            <li class="active"><a href="#">Français<small>(222)</small></a></li>
-                                            <li><a href="#">Suomi<small>(158)</small></a></li>
-                                            <li><a href="#">Italiano<small>(439)</small></a></li>
-                                            <li><a href="#">Sign Language<small>(52)</small></a></li>
-                                        </ul>
                                     </div>
                                 </div>
                             </div>
@@ -220,8 +190,21 @@ if (isset($_REQUEST['homesubmit'])) {
 
 
                             <?php
-                            $sql = "SELECT * from tbl_home WHERE status = 1 AND district = '$Hdistrict' AND ava_start_date >= '$Hsdate' AND ava_end_date >= '$Hedate' AND max_adults >= '$Hcadult' AND max_kids >= '$Hckid' AND rooms >= '$Hcroom' order by rand() ";
-                            $query = $DB_con->prepare($sql);
+                            // $sql = "SELECT * from tbl_home WHERE status = 1 AND district = '$Hdistrict' AND ava_start_date >= '$Hsdate' AND ava_end_date >= '$Hedate' AND max_adults >= '$Hcadult' AND max_kids >= '$Hckid' AND rooms >= '$Hcroom' order by rand() ";
+                            $sql = "SELECT * from tbl_home WHERE status = 1 
+                            AND district = '$Hdistrict' 
+                            AND ava_start_date >= '$Hsdate' 
+                            AND ava_end_date >= '$Hedate' 
+                            AND max_adults >= '$Hcadult' 
+                            AND max_kids >= '$Hckid' 
+                            AND rooms >= '$Hcroom' 
+                            AND ava_night_price <= '$Hpricerange'  
+                            AND home_type = '$Htype' order by rand() ";
+
+
+
+
+                            $query = $DB_con->prepare($sql);                
                             $query->execute();
                             $results = $query->fetchAll(PDO::FETCH_OBJ);
                             $cnt = 1;
