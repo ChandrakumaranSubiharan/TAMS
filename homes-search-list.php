@@ -15,7 +15,6 @@ if (isset($_REQUEST['homesubmit'])) {
     $_COOKIE['HomeType'] = $_REQUEST['htype'];
 }
 
-//    echo $_COOKIE['District'];
 ?>
 
 
@@ -112,7 +111,7 @@ if (isset($_REQUEST['homesubmit'])) {
                                                 <div class="selector">
                                                     <select name="ckid" class="full-width">
                                                         <option value="<?php echo $_COOKIE['CountKid']; ?>"><?php echo $_COOKIE['CountKid']; ?></option>
-                                                        <option value="">No Kids</option>
+                                                        <option value="0">No Kids</option>
                                                         <option value="1">1</option>
                                                         <option value="2">2</option>
                                                         <option value="3">3</option>

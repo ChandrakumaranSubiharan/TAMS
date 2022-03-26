@@ -36,117 +36,109 @@ include_once 'includes/dbconfig.php';
                                 <h4 class="panel-title">
                                     <p>Search</p>
                                 </h4>
-                                <div>
                                     <div class="panel-content">
                                         <form method="post">
                                             <div class="form-group">
-                                                <label>destination</label>
-                                                <input type="text" class="input-text full-width" placeholder="" value="Paris" />
+                                                <label>Destination</label>
+                                                <div class="selector">
+                                                    <select name="district" class="full-width">
+                                                        <option value="" disabled selected>Select District</option>
+                                                        <option value="Kandy">Kandy</option>
+                                                        <option value="Colombo">Colombo</option>
+                                                        <option value="Jaffna">Jaffna</option>
+                                                    </select>
+                                                </div>
                                             </div>
                                             <div class="form-group">
                                                 <label>check in</label>
                                                 <div class="datepicker-wrap">
-                                                    <input type="text" class="input-text full-width" placeholder="mm/dd/yy" />
+                                                    <input type="date" name="sdate" value="<?php echo $_COOKIE['StartDate']; ?>" class="input-text full-width" placeholder="mm/dd/yy" />
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label>check out</label>
                                                 <div class="datepicker-wrap">
-                                                    <input type="text" class="input-text full-width" placeholder="mm/dd/yy" />
+                                                    <input type="date" name="edate" value="<?php echo $_COOKIE['EndDate']; ?>" class="input-text full-width" placeholder="mm/dd/yy" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Adults</label>
+                                                <div class="selector">
+                                                    <select name="cadult" class="full-width">
+                                                    <option value="" disabled selected>Pick Number</option>
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Kids</label>
+                                                <div class="selector">
+                                                    <select name="ckid" class="full-width">
+                                                    <option value="" disabled selected>Pick Number</option>
+                                                        <option value="0">No Kids</option>
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Rooms</label>
+                                                <div class="selector">
+                                                    <select name="croom" class="full-width">
+                                                    <option value="" disabled selected>Pick Number</option>
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                        <option value="6">6</option>
+                                                        <option value="7">7</option>
+                                                        <option value="8">8</option>
+                                                        <option value="9">9</option>
+                                                        <option value="10">10</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Price Range</label>
+                                                <div class="selector">
+                                                    <select name="pricerange" class="full-width">
+                                                    <option value="" disabled selected>Select Price Range</option>
+                                                        <option value="5000">Below LKR 5000</option>
+                                                        <option value="10000">Below LKR 10000</option>
+                                                        <option value="15000">Below LKR 15000</option>
+                                                        <option value="20000">Below LKR 20000</option>
+                                                        <option value="25000">Below LKR 25000</option>
+                                                        <option value="30000">Below LKR 30000</option>
+                                                        <option value="35000">Below LKR 35000</option>
+                                                        <option value="40000">Below LKR 40000</option>
+                                                        <option value="45000">Below LKR 45000</option>
+                                                        <option value="50000">Below LKR 50000</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Home Type</label>
+                                                <div class="selector">
+                                                    <select  name="htype" class="full-width">
+                                                        <option value="" disabled selected>Select Home Type</option>
+                                                        <option value="resort">Resort</option>
+                                                        <option value="villa">Villa</option>
+                                                        <option value="cabin">Cabin</option>
+                                                        <option value="cottage">Cottage</option>
+
+                                                    </select>
                                                 </div>
                                             </div>
                                             <br />
-                                            <button class="btn-medium icon-check uppercase full-width">search again</button>
+                                            <button type="submit" name="homesubmit" class="btn-medium icon-check uppercase full-width">search again</button>
                                         </form>
                                     </div>
-                                </div>
-                            </div>
-
-                            <div class="panel style1 arrow-right">
-                                <h4 class="panel-title">
-                                    <a data-toggle="collapse" href="#price-filter" class="collapsed">Price</a>
-                                </h4>
-                                <div id="price-filter" class="panel-collapse collapse">
-                                    <div class="panel-content">
-                                        <div id="price-range"></div>
-                                        <br />
-                                        <span class="min-price-label pull-left"></span>
-                                        <span class="max-price-label pull-right"></span>
-                                        <div class="clearer"></div>
-                                    </div><!-- end content -->
-                                </div>
-                            </div>
-
-
-
-
-                            <div class="panel style1 arrow-right">
-                                <h4 class="panel-title">
-                                    <a data-toggle="collapse" href="#accomodation-type-filter" class="collapsed">Accomodation Type</a>
-                                </h4>
-                                <div id="accomodation-type-filter" class="panel-collapse collapse">
-                                    <div class="panel-content">
-                                        <ul class="check-square filters-option">
-                                            <li><a href="#">All</a></li>
-                                            <li><a href="#">Hotel</a></li>
-                                            <li><a href="#">Resort</a></li>
-                                            <li class="active"><a href="#">Bed &amp; Breakfast</a></li>
-                                            <li><a href="#">Condo</a></li>
-                                            <li><a href="#">Residence</a></li>
-                                            <li><a href="#">Guest House</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                            
-
-                            <div class="panel style1 arrow-right">
-                                <h4 class="panel-title">
-                                    <a data-toggle="collapse" href="#language-filter" class="collapsed">District</a>
-                                </h4>
-                                <div id="language-filter" class="panel-collapse collapse">
-                                    <div class="panel-content">
-                                        <ul class="check-square filters-option">
-                                            <li><a href="#">English<small>(722)</small></a></li>
-                                            <li><a href="#">Español<small>(982)</small></a></li>
-                                            <li class="active"><a href="#">Português<small>(127)</small></a></li>
-                                            <li class="active"><a href="#">Français<small>(222)</small></a></li>
-                                            <li><a href="#">Suomi<small>(158)</small></a></li>
-                                            <li><a href="#">Italiano<small>(439)</small></a></li>
-                                            <li><a href="#">Sign Language<small>(52)</small></a></li>
-                                            <li><a href="#">English<small>(722)</small></a></li>
-                                            <li><a href="#">Español<small>(982)</small></a></li>
-                                            <li class="active"><a href="#">Português<small>(127)</small></a></li>
-                                            <li class="active"><a href="#">Français<small>(222)</small></a></li>
-                                            <li><a href="#">Suomi<small>(158)</small></a></li>
-                                            <li><a href="#">Italiano<small>(439)</small></a></li>
-                                            <li><a href="#">Sign Language<small>(52)</small></a></li>
-                                            <li><a href="#">English<small>(722)</small></a></li>
-                                            <li><a href="#">Español<small>(982)</small></a></li>
-                                            <li class="active"><a href="#">Português<small>(127)</small></a></li>
-                                            <li class="active"><a href="#">Français<small>(222)</small></a></li>
-                                            <li><a href="#">Suomi<small>(158)</small></a></li>
-                                            <li><a href="#">Italiano<small>(439)</small></a></li>
-                                            <li><a href="#">Sign Language<small>(52)</small></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -191,7 +183,7 @@ include_once 'includes/dbconfig.php';
                                                 <div>
 
                                                     <span class="price"><small>AVG/NIGHT</small>LKR <?php echo htmlentities($result->ava_night_price); ?></span>
-					                                <a class="button btn-small full-width text-center view-card" href="home-detailed.php?homeid=<?php echo htmlentities($result->home_id);?>">Details</a>
+                                                    <a class="button btn-small full-width text-center view-card" href="home-detailed.php?homeid=<?php echo htmlentities($result->home_id); ?>">Details</a>
 
                                                 </div>
                                             </div>
