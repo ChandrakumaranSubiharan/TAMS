@@ -31,7 +31,7 @@ $customer = new customer($DB_con);
 include_once 'classes/class.partner.php';
 $partner = new partner($DB_con);
 
-//including partner class
+//including admin class
 include_once 'classes/class.admin.php';
 $admin = new admin($DB_con);
 
@@ -46,6 +46,10 @@ $home = new home($DB_con);
 //including booking class
 include_once 'classes/class.booking.php';
 $booking = new booking($DB_con);
+
+//including  class
+include_once 'classes/class.earning.php';
+$earning = new earning($DB_con);
 
 ?>
 

@@ -48,6 +48,34 @@ if (isset($_REQUEST['book'])) {
 <html lang="en">
 
 <head>
+
+
+
+
+    <?php
+
+    $TotalBookingAmount = $tot;
+
+    if($TotalBookingAmount >= 50000){
+    $percentToSet = 20;
+    }else{
+    $percentToSet = 10;
+    }
+
+    //Convert our percentage value into a decimal.
+    $percentInDecimal = $percentToSet / 100;
+
+    //Get the result.
+    $percent = $percentInDecimal * $TotalBookingAmount;
+
+    //Print it out - Result is 232.
+    echo $percent;
+
+    ?>
+
+
+
+
     <?php
     // Insert Record in booking table
     if (isset($_POST['submit'])) {
@@ -69,7 +97,7 @@ if (isset($_REQUEST['book'])) {
 
 
         $insertBookingData = $booking->insertBookingData($tot_amount, $cus_fname, $cus_lname, $cus_email, $cus_contact, $cus_card_type, $cus_id, $b_sdate, $b_edate, $b_tot_night, $b_tot_persons, $b_h_id, $b_h_name, $pid);
-        // $insertEarningData = $earning->insertEarningData($tot_amount,$pid);
+        // $insertEarningData = $earning->insertEarningData($pid, $tot_amount, $payout, $net, $customerid);
 
         if ($insertBookingData) {
 
@@ -91,24 +119,24 @@ if (isset($_REQUEST['book'])) {
     ?>
 
 
-<!-- passing booking values to thank you page via session -->
-<?php
-if (isset($_POST['submit'])) {
-     $_SESSION['cus_first_name'] = $_POST['fname']; 
-     $_SESSION['cus_last_name'] = $_POST['lname']; 
-     $_SESSION['cus_email'] = $_POST['email']; 
-     $_SESSION['cus_contact'] = $_POST['contact']; 
-     $_SESSION['cus_card_type'] = $_POST['cardtype']; 
-     $_SESSION['total_amount'] = $_POST['total']; 
-     $_SESSION['home_true'] = $_POST['homeid']; 
-     $_SESSION['booking_s_date'] = $_POST['homesdate']; 
-     $_SESSION['booking_e_date'] = $_POST['homeedate']; 
-     $_SESSION['booking_nights'] = $_POST['totnight']; 
-     $_SESSION['booking_person_count'] = $_POST['totcount']; 
-     $_SESSION['host_id'] = $_POST['partnerid']; 
-     $_SESSION['customer_id'] = $_POST['cusid']; 
-}
-?> 
+    <!-- passing booking values to thank you page via session -->
+    <?php
+    if (isset($_POST['submit'])) {
+        $_SESSION['cus_first_name'] = $_POST['fname'];
+        $_SESSION['cus_last_name'] = $_POST['lname'];
+        $_SESSION['cus_email'] = $_POST['email'];
+        $_SESSION['cus_contact'] = $_POST['contact'];
+        $_SESSION['cus_card_type'] = $_POST['cardtype'];
+        $_SESSION['total_amount'] = $_POST['total'];
+        $_SESSION['home_true'] = $_POST['homeid'];
+        $_SESSION['booking_s_date'] = $_POST['homesdate'];
+        $_SESSION['booking_e_date'] = $_POST['homeedate'];
+        $_SESSION['booking_nights'] = $_POST['totnight'];
+        $_SESSION['booking_person_count'] = $_POST['totcount'];
+        $_SESSION['host_id'] = $_POST['partnerid'];
+        $_SESSION['customer_id'] = $_POST['cusid'];
+    }
+    ?>
 
 </head>
 

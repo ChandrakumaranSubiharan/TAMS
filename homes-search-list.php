@@ -190,7 +190,7 @@ if (isset($_REQUEST['homesubmit'])) {
 
                             <?php
                             // $sql = "SELECT * from tbl_home WHERE status = 1 AND district = '$Hdistrict' AND ava_start_date >= '$Hsdate' AND ava_end_date >= '$Hedate' AND max_adults >= '$Hcadult' AND max_kids >= '$Hckid' AND rooms >= '$Hcroom' order by rand() ";
-                            $sql = "SELECT * from tbl_home WHERE status = 1 
+                            $sql = "SELECT * from tbl_home WHERE status = 1 AND ava_start_date >= CURDATE()
                             AND district = '$Hdistrict' 
                             AND ava_start_date >= '$Hsdate' 
                             AND ava_end_date >= '$Hedate' 
@@ -236,7 +236,7 @@ if (isset($_REQUEST['homesubmit'])) {
                                                 <div>
 
                                                     <span class="price"><small>AVG/NIGHT</small><?php echo htmlentities($result->ava_night_price); ?></span>
-                                                    <a class="button btn-small full-width text-center" title="" href="hotel-detailed.html">SELECT</a>
+                                                    <a class="button btn-small full-width text-center" title="" href="home-detailed.php?homeid=<?php echo htmlentities($result->home_id); ?>">SELECT</a>
                                                 </div>
                                             </div>
                                         </div>
