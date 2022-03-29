@@ -10,7 +10,7 @@ class home
   }
 
   // Insert customer data into customer table
-  public function insertData($home_name, $location_address, $ava_night_price, $lg_desc, $home_type,$home_room, $extra_people, $district, $province, $cancel, $str_date, $end_date, $file,$pid)
+  public function insertData($home_name, $location_address, $ava_night_price, $lg_desc, $home_type, $home_room, $extra_people, $district, $province, $cancel, $str_date, $end_date, $file, $pid)
   {
     $allow = array('jpg', 'jpeg', 'png');
     $exntension = explode('.', $file['name']);
@@ -134,7 +134,7 @@ class home
   }
 
 
-  // Delete customer data from home table
+  // Update Status data from home table
   public function activeRecord($id)
   {
     $stmt = $this->db->prepare("UPDATE tbl_home SET 
@@ -150,17 +150,4 @@ class home
       echo "Record does not delete try again";
     }
   }
-
-
-
-
-
-
-
-
-
-
-
-
-  
 }
