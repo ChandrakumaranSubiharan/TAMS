@@ -278,6 +278,9 @@ include_once 'includes/dbconfig.php';
     <div class="container">
         <h2>Popular Homes</h2>
         <div class="row image-box hotel listing-style1">
+
+
+
             <?php
             $homedata = $home->HomeActiveData();
             foreach ($homedata as $homes) {
@@ -292,12 +295,65 @@ include_once 'includes/dbconfig.php';
                                 <small>avg/night</small>
                                 LKR <?php echo $homes['ava_night_price']; ?>
                             </span>
-                            <h4 class="box-title"><?php  echo $homes['home_name'];?><small><?php echo $homes['district'];?>, Sri Lanka</small></h4>
+                            <h4 class="box-title"><?php echo $homes['home_name']; ?><small><?php echo $homes['district']; ?>, Sri Lanka</small></h4>
                             <div class="feedback">
                                 <div title="4 stars" class="five-stars-container" data-toggle="tooltip" data-placement="bottom"><span class="five-stars" style="width: 80%;"></span></div>
-                                <span class="review"><?php echo $homes['home_type'];?></span>
+                                <span class="review"><?php echo $homes['home_type']; ?></span>
                             </div>
-                            <p class="description"><?php  echo $homes['lg_desc'];?></p>
+
+                            <?php
+                            $string = $homes['lg_desc'];
+
+                            // strip tags to avoid breaking any html
+                            $string = strip_tags($string);
+                            if (strlen($string) > 100) {
+
+                                // truncate string
+                                $stringCut = substr($string, 0, 100);
+                                $endPoint = strrpos($stringCut, ' ');
+
+                                //if the string doesn't contain any space then it will cut without word basis.
+                                $string = $endPoint ? substr($stringCut, 0, $endPoint) : substr($stringCut, 0);
+                                $string .= '... <a href="/this/story">Read More</a>';
+                            }
+                            ?>
+                            <p class="description"><?php echo $string; ?></p>
+
+                            <div class="action">
+                                <a class="button btn-small" href="home-detailed.php?homeid=<?php echo $homes['home_id']; ?>">Details</a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+            <?php }
+            ?>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>Popular Tour Packages</h2>
+        <div class="row image-box hotel listing-style1">
+            <?php
+            $homedata = $home->HomeActiveData();
+            foreach ($homedata as $homes) {
+            ?>
+                <div class="col-sms-6 col-sm-6 col-md-3">
+                    <article class="box">
+                        <figure class="animated" data-animation-type="fadeInDown" data-animation-delay="0">
+                            <a title=""><img width="270" height="160" src="partner/includes/uploads/<?php echo $homes['cover_img1']; ?>" alt=""></a>
+                        </figure>
+                        <div class="details">
+                            <span class="price">
+                                <small>avg/night</small>
+                                LKR <?php echo $homes['ava_night_price']; ?>
+                            </span>
+                            <h4 class="box-title"><?php echo $homes['home_name']; ?><small><?php echo $homes['district']; ?>, Sri Lanka</small></h4>
+                            <div class="feedback">
+                                <div title="4 stars" class="five-stars-container" data-toggle="tooltip" data-placement="bottom"><span class="five-stars" style="width: 80%;"></span></div>
+                                <span class="review"><?php echo $homes['home_type']; ?></span>
+                            </div>
+                            <p class="description"><?php echo $homes['lg_desc']; ?></p>
                             <div class="action">
                                 <a class="button btn-small" href="home-detailed.php?homeid=<?php echo $homes['home_id']; ?>">Details</a>
                             </div>
@@ -313,7 +369,7 @@ include_once 'includes/dbconfig.php';
 
     <div class="container">
         <div class="section">
-            <h2>Featured Destinations</h2>
+            <h2>Featured Destinations to Stay</h2>
             <div class="flexslider image-carousel style2 row-2" data-animation="slide" data-item-width="370" data-item-margin="30">
                 <ul class="slides image-box style11">
                     <li>
@@ -402,6 +458,18 @@ include_once 'includes/dbconfig.php';
         </div>
     </div>
 
+
+
+    <div>
+
+
+
+
+
+
+    </div>
+
+
     <div class="global-map-area2 promo-box no-margin parallax" data-stellar-background-ratio="0.5">
         <div class="container">
             <div class="content-section description pull-right col-sm-9">
@@ -412,13 +480,11 @@ include_once 'includes/dbconfig.php';
                         </h2>
                     </div>
                     <div class="table-cell action-section col-md-4 no-float">
-                        <form method="post" action="hotel-list-view.html">
-                            <div class="row">
-                                <div class="col-xs-6 col-md-12">
-                                    <button class="full-width btn-large">View Homestays</button>
-                                </div>
+                        <div class="row">
+                            <div class="col-xs-6 col-md-12">
+                                <a href="listed-homes.php"> <button href="listed-homes.php" class="full-width btn-large"> Homestays</button></a>
                             </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -475,45 +541,6 @@ include_once 'includes/dbconfig.php';
             </ul>
         </div>
     </div>
-
-
-
-    <!-- features card -->
-    <!-- 
-            <div class="container"> 
-                <div class="col-md-3 features-card">
-                    <i class="fa fa-user" aria-hidden="true"></i>
-                    <div class="info">
-                        <h3>1000+</h3>
-                        <h3>Customers</h3>
-                    </div>
-                </div>
-
-                <div class="col-md-3 features-card">
-                    <i class="fa fa-bar-chart" aria-hidden="true"></i>
-                    <div class="info">
-                        <h3>1000+</h3>
-                        <h3>Bookings</h3>
-                    </div>
-                </div>
-
-                <div class="col-md-3 features-card">
-                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                    <div class="info">
-                        <h3>1000+</h3>
-                        <h3>Enquiries</h3>
-                    </div>
-                </div>
-
-                <div class="col-md-3 features-card">
-                    <i class="fa fa-users" aria-hidden="true"></i>
-                    <div class="info">
-                        <h3>1000+</h3>
-                        <h3>Partners</h3>
-                    </div>
-                </div>
-
-            </div> -->
 
 </section>
 
