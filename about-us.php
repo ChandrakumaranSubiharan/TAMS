@@ -37,8 +37,6 @@
                         </div>
                     </article>
                 </div>
-
-
                 <div class="large-block">
                     <h2>Travelo Dedicated Team</h2>
                     <div class="row image-box style1 team">

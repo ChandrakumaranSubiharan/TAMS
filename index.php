@@ -254,7 +254,7 @@ include_once 'includes/dbconfig.php';
 
 
             <div class="container-title">Explore HappyHolidayss</div>
-            <a href="homes-search-list.php" target="_blank">
+            <a href="listed-homes.php" target="_blank">
                 <div class="col-md-4 col-sm-6">
                     <div class="service-card-single">
                         <img src="assets/images/services card images/7b8f9425-f5e7-4c9e-9d6d-b39fa2f6e651.png" alt="">
