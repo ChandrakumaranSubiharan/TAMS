@@ -32,42 +32,8 @@ class tour {
           // variable to fetch null value
           $emty = NULL;
 
-
-          $query = "INSERT INTO tbl_tour(
-              title,
-              details,
-              location,
-              tour_type,
-              duration_days,
-              adult_price,
-              image,
-              created_date,
-              partner_id,
-              status,
-              language,
-              district,
-              availabile_seats,
-              ava_start_date,
-              ava_end_date,
-              cancellation,
-              )
-                 VALUES(
-                     '$tour_title',
-                     '$tour_details',
-                     '$tour_location',
-                     '$tour_type',
-                     '$tour_duration',
-                     '$adult_price',
-                     '$file',
-                     '$cdate',
-                     '$pid',
-                     '$sta',
-                     '$tour_language',
-                     '$district',
-                     '$ava_seats',
-                     '$str_date',
-                     '$end_date',
-                     '$cancel')";
+          $query = "INSERT INTO tbl_tour(title,details,location,tour_type,duration_days,adult_price,image,created_date,partner_id,status,language,district,availabile_seats,ava_start_date,ava_end_date,cancellation)
+                    VALUES('$tour_title','$tour_details','$tour_location','$tour_type','$tour_duration','$adult_price','$fileNew','$cdate','$pid','$sta','$tour_language','$district','$ava_seats','$str_date','$end_date','$cancel')";
           $sql = $this->db->query($query);
           if ($sql == true) {
             return true;
