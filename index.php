@@ -314,7 +314,7 @@ include_once 'includes/dbconfig.php';
 
                                 //if the string doesn't contain any space then it will cut without word basis.
                                 $string = $endPoint ? substr($stringCut, 0, $endPoint) : substr($stringCut, 0);
-                                $string .= '... <a href="/this/story">Read More</a>';
+                                $string .= '... <a">Read More</a>';
                             }
                             ?>
                             <p class="description"><?php echo $string; ?></p>
@@ -353,7 +353,23 @@ include_once 'includes/dbconfig.php';
                                 <div title="4 stars" class="five-stars-container" data-toggle="tooltip" data-placement="bottom"><span class="five-stars" style="width: 80%;"></span></div>
                                 <span class="review"><?php echo $homes['home_type']; ?></span>
                             </div>
-                            <p class="description"><?php echo $homes['lg_desc']; ?></p>
+                            <?php
+                            $string = $homes['lg_desc'];
+
+                            // strip tags to avoid breaking any html
+                            $string = strip_tags($string);
+                            if (strlen($string) > 100) {
+
+                                // truncate string
+                                $stringCut = substr($string, 0, 100);
+                                $endPoint = strrpos($stringCut, ' ');
+
+                                //if the string doesn't contain any space then it will cut without word basis.
+                                $string = $endPoint ? substr($stringCut, 0, $endPoint) : substr($stringCut, 0);
+                                $string .= '... <a">Read More</a>';
+                            }
+                            ?>
+                            <p class="description"><?php echo $string; ?></p>
                             <div class="action">
                                 <a class="button btn-small" href="home-detailed.php?homeid=<?php echo $homes['home_id']; ?>">Details</a>
                             </div>
