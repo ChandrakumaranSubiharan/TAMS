@@ -278,42 +278,35 @@ include_once 'includes/dbconfig.php';
     <div class="container">
         <h2>Popular Homes</h2>
         <div class="row image-box hotel listing-style1">
-
-
-
-
-            <?php $sql = "SELECT * from tbl_home where status = 1 order by rand() limit 5";
-            $query = $DB_con->prepare($sql);
-            $query->execute();
-            $results = $query->fetchAll(PDO::FETCH_OBJ);
-            $cnt = 1;
-            if ($query->rowCount() > 0) {
-                foreach ($results as $result) {    ?>
-
-                    <div class="col-sms-6 col-sm-6 col-md-3">
-                        <article class="box">
-                            <figure class="animated" data-animation-type="fadeInDown" data-animation-delay="0">
-                                <a title=""><img width="270" height="160" src="partner/includes/uploads/<?php echo htmlentities($result->cover_img1); ?>" alt=""></a>
-                            </figure>
-                            <div class="details">
-                                <span class="price">
-                                    <small>avg/night</small>
-                                    LKR <?php echo htmlentities($result->ava_night_price); ?>
-                                </span>
-                                <h4 class="box-title"><?php echo htmlentities($result->home_name); ?><small><?php echo htmlentities($result->district); ?>, Sri Lanka</small></h4>
-                                <div class="feedback">
-                                    <div title="4 stars" class="five-stars-container" data-toggle="tooltip" data-placement="bottom"><span class="five-stars" style="width: 80%;"></span></div>
-                                    <span class="review"><?php echo htmlentities($result->home_type); ?></span>
-                                </div>
-                                <p class="description"><?php echo htmlentities($result->lg_desc); ?></p>
-                                <div class="action">
-                                    <a class="button btn-small" href="home-detailed.php?homeid=<?php echo htmlentities($result->home_id); ?>">Details</a>
-                                </div>
+            <?php
+            $homedata = $home->HomeActiveData();
+            foreach ($homedata as $homes) {
+            ?>
+                <div class="col-sms-6 col-sm-6 col-md-3">
+                    <article class="box">
+                        <figure class="animated" data-animation-type="fadeInDown" data-animation-delay="0">
+                            <a title=""><img width="270" height="160" src="partner/includes/uploads/<?php echo $homes['cover_img1']; ?>" alt=""></a>
+                        </figure>
+                        <div class="details">
+                            <span class="price">
+                                <small>avg/night</small>
+                                LKR <?php echo $homes['ava_night_price']; ?>
+                            </span>
+                            <h4 class="box-title"><?php  echo $homes['home_name'];?><small><?php echo $homes['district'];?>, Sri Lanka</small></h4>
+                            <div class="feedback">
+                                <div title="4 stars" class="five-stars-container" data-toggle="tooltip" data-placement="bottom"><span class="five-stars" style="width: 80%;"></span></div>
+                                <span class="review"><?php echo $homes['home_type'];?></span>
                             </div>
-                        </article>
-                    </div>
+                            <p class="description"><?php  echo $homes['lg_desc'];?></p>
+                            <div class="action">
+                                <a class="button btn-small" href="home-detailed.php?homeid=<?php echo $homes['home_id']; ?>">Details</a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
             <?php }
-            } ?>
+            ?>
         </div>
     </div>
 

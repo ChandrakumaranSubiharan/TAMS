@@ -46,7 +46,7 @@ class home
   }
 
 
-  // Fetch customer records for show listing
+  // Fetch home records for show listing
 
   public function displayData()
   {
@@ -162,9 +162,6 @@ class home
     $diff = $date2_ts - $date1_ts;
     $Ava_Days = ($diff / 86400);
 
-
-
-
     if ($ncount == $Ava_Days) {
 
       $sta = false;
@@ -206,11 +203,36 @@ class home
         echo $e->getMessage();
         return false;
       }
-
-
-
- 
-
     } 
   }
+
+
+
+
+    // Fetch home records for show listing
+
+    public function HomeActiveData()
+    {
+      $sql = "SELECT * FROM tbl_home where status = 1";
+      $query = $this->db->query($sql);
+      $data = array();
+      if ($query->rowCount() > 0) {
+        while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+          $data[] = $row;
+        }
+        return $data;
+      } else {
+        return false;
+      }
+    }
+
+
+
+
+
+
+
+
+
+
 }
