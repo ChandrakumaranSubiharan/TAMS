@@ -179,9 +179,7 @@ class home
         echo $e->getMessage();
         return false;
       }
-
-    }
-    else {
+    } else {
 
       $date = date_create("$sdate");
 
@@ -203,36 +201,41 @@ class home
         echo $e->getMessage();
         return false;
       }
-    } 
+    }
   }
 
+  // Fetch home records for show listing
 
-
-
-    // Fetch home records for show listing
-
-    public function HomeActiveData()
-    {
-      $sql = "SELECT * FROM tbl_home where status = 1";
-      $query = $this->db->query($sql);
-      $data = array();
-      if ($query->rowCount() > 0) {
-        while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
-          $data[] = $row;
-        }
-        return $data;
-      } else {
-        return false;
+  public function HomeActiveData()
+  {
+    $sql = "SELECT * FROM tbl_home where status = 1";
+    $query = $this->db->query($sql);
+    $data = array();
+    if ($query->rowCount() > 0) {
+      while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+        $data[] = $row;
       }
+      return $data;
+    } else {
+      return false;
     }
+  }
 
+  // Fetch home records by district
 
-
-
-
-
-
-
-
+  public function HomebyDistrictData($district)
+  {
+    $sql = "SELECT * FROM tbl_home where status = 1 AND district = '$district'";
+    $query = $this->db->query($sql);
+    $data = array();
+    if ($query->rowCount() > 0) {
+      while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+        $data[] = $row;
+      }
+      return $data;
+    } else {
+      return false;
+    }
+  }
 
 }

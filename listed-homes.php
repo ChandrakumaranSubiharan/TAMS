@@ -150,115 +150,87 @@ include_once 'includes/dbconfig.php';
 
                             <?php
 
-
-
                             if (isset($_GET['district'])) {
                                 $d = ($_GET['district']);
 
-                                $sql = "SELECT * from tbl_home where status = 1 AND district = '$d' order by rand() limit 2";
-                                $query = $DB_con->prepare($sql);
-                                $query->execute();
-                                $results = $query->fetchAll(PDO::FETCH_OBJ);
-                                $cnt = 1;
-                                if ($query->rowCount() > 0) {
-                                    foreach ($results as $result) {    ?>
+                                $homedata = $home->HomebyDistrictData($d);
+                                foreach ($homedata as $homes) {
 
-                                        <article class="service-info-crd box">
-                                            <figure class="col-sm-5 col-md-4">
-                                                <a title="" class="popup-gallery"><img width="270" height="160" alt="" src="partner/includes/uploads/<?php echo htmlentities($result->cover_img1); ?>"></a>
-                                            </figure>
-                                            <div class="details col-sm-7 col-md-8">
+                            ?>
+                                    <article class="service-info-crd box">
+                                        <figure class="col-sm-5 col-md-4">
+                                            <a title="" class="popup-gallery"><img width="270" height="160" alt="" src="partner/includes/uploads/<?php echo $homes['cover_img1']; ?>"></a>
+                                        </figure>
+                                        <div class="details col-sm-7 col-md-8">
+                                            <div>
                                                 <div>
-                                                    <div>
-
-
-                                                        <h4 class="box-title"><?php echo htmlentities($result->home_name); ?><small><i class="soap-icon-departure yellow-color"></i> <?php echo htmlentities($result->district); ?>, Sri Lanka</small></h4>
-                                                        <div class="amenities">
-                                                            <i class="soap-icon-wifi circle"></i>
-                                                            <i class="soap-icon-fitnessfacility circle"></i>
-                                                            <i class="soap-icon-fork circle"></i>
-                                                            <i class="soap-icon-television circle"></i>
-                                                        </div>
-                                                    </div>
-                                                    <div>
-                                                        <div class="five-stars-container">
-                                                            <span class="five-stars" style="width: 80%;"></span>
-                                                        </div>
-                                                        <span class="review"><?php echo htmlentities($result->home_type); ?></span>
+                                                    <h4 class="box-title"><?php echo $homes['home_name']; ?><small><i class="soap-icon-departure yellow-color"></i><?php echo $homes['district']; ?>, Sri Lanka</small></h4>
+                                                    <div class="amenities">
+                                                        <i class="soap-icon-wifi circle"></i>
+                                                        <i class="soap-icon-fitnessfacility circle"></i>
+                                                        <i class="soap-icon-fork circle"></i>
+                                                        <i class="soap-icon-television circle"></i>
                                                     </div>
                                                 </div>
                                                 <div>
-                                                    <p><?php echo htmlentities($result->lg_desc); ?></p>
-                                                    <div>
-
-                                                        <span class="price"><small>AVG/NIGHT</small>LKR <?php echo htmlentities($result->ava_night_price); ?></span>
-                                                        <a class="button btn-small full-width text-center view-card" href="home-detailed.php?homeid=<?php echo htmlentities($result->home_id); ?>">Details</a>
-
+                                                    <div class="five-stars-container">
+                                                        <span class="five-stars" style="width: 80%;"></span>
                                                     </div>
+                                                    <span class="review"><?php echo $homes['home_type']; ?></span>
                                                 </div>
                                             </div>
-                                        </article>
+                                            <div>
+                                                <p><?php echo $homes['lg_desc']; ?></p>
+                                                <div>
+                                                    <span class="price"><small>AVG/NIGHT</small>LKR <?php echo $homes['ava_night_price']; ?></span>
+                                                    <a class="button btn-small full-width text-center view-card" href="home-detailed.php?homeid=<?php echo $homes['home_id']; ?>">Details</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </article>
                                 <?php }
-                                }
                             } else {
 
                                 ?>
 
-
                                 <?php
-                                $sql = "SELECT * from tbl_home where status = 1 order by rand() limit 2";
-                                $query = $DB_con->prepare($sql);
-                                $query->execute();
-                                $results = $query->fetchAll(PDO::FETCH_OBJ);
-                                $cnt = 1;
-                                if ($query->rowCount() > 0) {
-                                    foreach ($results as $result) {
+                                    $homedata = $home->displayData();
+                                    foreach ($homedata as $homes) {
                                 ?>
-
                                         <article class="service-info-crd box">
-                                            <figure class="col-sm-5 col-md-4">
-                                                <a title="" class="popup-gallery"><img width="270" height="160" alt="" src="partner/includes/uploads/<?php echo htmlentities($result->cover_img1); ?>"></a>
-                                            </figure>
-                                            <div class="details col-sm-7 col-md-8">
+                                        <figure class="col-sm-5 col-md-4">
+                                            <a title="" class="popup-gallery"><img width="270" height="160" alt="" src="partner/includes/uploads/<?php echo $homes['cover_img1']; ?>"></a>
+                                        </figure>
+                                        <div class="details col-sm-7 col-md-8">
+                                            <div>
                                                 <div>
-                                                    <div>
-
-
-                                                        <h4 class="box-title"><?php echo htmlentities($result->home_name); ?><small><i class="soap-icon-departure yellow-color"></i> <?php echo htmlentities($result->district); ?>, Sri Lanka</small></h4>
-                                                        <div class="amenities">
-                                                            <i class="soap-icon-wifi circle"></i>
-                                                            <i class="soap-icon-fitnessfacility circle"></i>
-                                                            <i class="soap-icon-fork circle"></i>
-                                                            <i class="soap-icon-television circle"></i>
-                                                        </div>
-                                                    </div>
-                                                    <div>
-                                                        <div class="five-stars-container">
-                                                            <span class="five-stars" style="width: 80%;"></span>
-                                                        </div>
-                                                        <span class="review"><?php echo htmlentities($result->home_type); ?></span>
+                                                    <h4 class="box-title"><?php echo $homes['home_name']; ?><small><i class="soap-icon-departure yellow-color"></i><?php echo $homes['district']; ?>, Sri Lanka</small></h4>
+                                                    <div class="amenities">
+                                                        <i class="soap-icon-wifi circle"></i>
+                                                        <i class="soap-icon-fitnessfacility circle"></i>
+                                                        <i class="soap-icon-fork circle"></i>
+                                                        <i class="soap-icon-television circle"></i>
                                                     </div>
                                                 </div>
                                                 <div>
-                                                    <p><?php echo htmlentities($result->lg_desc); ?></p>
-                                                    <div>
-
-                                                        <span class="price"><small>AVG/NIGHT</small>LKR <?php echo htmlentities($result->ava_night_price); ?></span>
-                                                        <a class="button btn-small full-width text-center view-card" href="home-detailed.php?homeid=<?php echo htmlentities($result->home_id); ?>">Details</a>
-
+                                                    <div class="five-stars-container">
+                                                        <span class="five-stars" style="width: 80%;"></span>
                                                     </div>
+                                                    <span class="review"><?php echo $homes['home_type']; ?></span>
                                                 </div>
                                             </div>
-                                        </article>
-
-
-
-
+                                            <div>
+                                                <p><?php echo $homes['lg_desc']; ?></p>
+                                                <div>
+                                                    <span class="price"><small>AVG/NIGHT</small>LKR <?php echo $homes['ava_night_price']; ?></span>
+                                                    <a class="button btn-small full-width text-center view-card" href="home-detailed.php?homeid=<?php echo $homes['home_id']; ?>">Details</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </article>
                             <?php   }
                                 }
-                            }
                             ?>
-
                         </div>
                     </div>
                 </div>

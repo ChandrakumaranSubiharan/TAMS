@@ -339,7 +339,7 @@ include_once 'includes/dbconfig.php';
                     <li>
                         <article class="box">
                             <figure>
-                                <a title="" href="#"><img width="370" height="160" alt="" src="assets/images/districs/jaffna.png"></a>
+                                <a title="" href="listed-homes.php?district=jaffna"><img width="370" height="160" alt="" src="assets/images/districs/jaffna.png"></a>
                                 <figcaption>
                                     <h3 class="caption-title">Jaffna</h3>
                                     <span>Jaffna Homes</span>
@@ -348,7 +348,7 @@ include_once 'includes/dbconfig.php';
                         </article>
                         <article class="box">
                             <figure>
-                                <a title="" href="#"><img width="370" height="160" alt="" src="assets/images/districs/galle.png"></a>
+                                <a title="" href="listed-homes.php?district=galle"><img width="370" height="160" alt="" src="assets/images/districs/galle.png"></a>
                                 <figcaption>
                                     <h3 class="caption-title">Galle</h3>
                                     <span>Galle Homes</span>
@@ -359,7 +359,7 @@ include_once 'includes/dbconfig.php';
                     <li>
                         <article class="box">
                             <figure>
-                                <a title="" href="#"><img width="370" height="160" alt="" src="assets/images/districs/trinco.png"></a>
+                                <a title="" href="listed-homes.php?district=trincomalee"><img width="370" height="160" alt="" src="assets/images/districs/trinco.png"></a>
                                 <figcaption>
                                     <h3 class="caption-title">Trincomalee</h3>
                                     <span>Trincomalee Homes</span>
@@ -368,7 +368,7 @@ include_once 'includes/dbconfig.php';
                         </article>
                         <article class="box">
                             <figure>
-                                <a title="" href="#"><img width="370" height="160" alt="" src="assets/images/districs/badulla.png"></a>
+                                <a title="" href="listed-homes.php?district=badulla"><img width="370" height="160" alt="" src="assets/images/districs/badulla.png"></a>
                                 <figcaption>
                                     <h3 class="caption-title">Badulla</h3>
                                     <span>Badulla Homes</span>
@@ -379,7 +379,7 @@ include_once 'includes/dbconfig.php';
                     <li>
                         <article class="box">
                             <figure>
-                                <a title="" href="#"><img width="370" height="160" alt="" src="assets/images/districs/nuwaraliya.png"></a>
+                                <a title="" href="listed-homes.php?district=nuwaraeliya"><img width="370" height="160" alt="" src="assets/images/districs/nuwaraliya.png"></a>
                                 <figcaption>
                                     <h3 class="caption-title">nuwara eliya</h3>
                                     <span>Nuwara eliya Homes</span>
@@ -388,7 +388,7 @@ include_once 'includes/dbconfig.php';
                         </article>
                         <article class="box">
                             <figure>
-                                <a title="" href="#"><img width="370" height="160" alt="" src="assets/images/districs/anuradhapura.png"></a>
+                                <a title="" href="listed-homes.php?district=anuradhapura"><img width="370" height="160" alt="" src="assets/images/districs/anuradhapura.png"></a>
                                 <figcaption>
                                     <h3 class="caption-title">Anuradhapura</h3>
                                     <span>Anuradhapura Homes</span>
@@ -401,8 +401,6 @@ include_once 'includes/dbconfig.php';
 
         </div>
     </div>
-
-
 
     <div class="global-map-area2 promo-box no-margin parallax" data-stellar-background-ratio="0.5">
         <div class="container">
@@ -429,8 +427,6 @@ include_once 'includes/dbconfig.php';
             </div>
         </div>
     </div>
-
-
 
     <div class="container section">
         <h2>Our Investors Relations</h2>
