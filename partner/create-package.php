@@ -1,3 +1,43 @@
+<?php
+
+// Include database file
+include_once '../includes/dbconfig.php';
+
+
+// Insert Record in home table
+if(isset($_POST['submit'])) {
+
+    $tour_title = $_POST['ttitle'];
+    $tour_location = $_POST['tlocation'];
+    $adult_price = $_POST['anprice'];
+    $file = $_FILES['image'];
+    $tour_details = $_POST['lgdesc'];
+    $tour_duration = $_POST['duration'];
+    $tour_type = $_POST['type'];
+    $ava_seats = $_POST['seats'];
+    $tour_language = $_POST['language'];
+    $district = $_POST['district'];
+    $cancel = $_POST['cancel'];
+    $str_date = $_POST['start_date'];
+    $end_date = $_POST['end_date'];
+    $pid = $_POST['partnerid'];
+
+    $insertData = $home->insertData($home_name, $location_address, $ava_night_price, $lg_desc, $home_type,$home_room, $extra_people, $district, $province, $cancel, $str_date, $end_date, $file,$pid);
+
+    if ($insertData){
+        $msg = "Home successfully created ";
+        echo "<script type='text/javascript'>alert('$msg');</script>";
+    }else{
+        $msg = "Failed to Create Home ";
+        echo "<script type='text/javascript'>alert('$msg');</script>";
+    }
+}
+?>
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -103,7 +143,7 @@
 						</div>
                         <div class="form-group">
 							<label>Tour language</label>
-							<select name="province" class="custom-select col-12">
+							<select name="language" class="custom-select col-12">
 									<option selected="">Choose...</option>
 									<option value="English">English</option>
 									<option value="Tamil">Tamil</option>

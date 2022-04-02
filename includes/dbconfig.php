@@ -47,9 +47,13 @@ $home = new home($DB_con);
 include_once 'classes/class.booking.php';
 $booking = new booking($DB_con);
 
-//including  class
+//including earning class 
 include_once 'classes/class.earning.php';
 $earning = new earning($DB_con);
+
+//including tour class 
+include_once 'classes/class.tour.php';
+$tour = new tour($DB_con);
 
 ?>
 
