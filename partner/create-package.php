@@ -22,13 +22,13 @@ if(isset($_POST['submit'])) {
     $end_date = $_POST['end_date'];
     $pid = $_POST['partnerid'];
 
-    $insertData = $home->insertData($home_name, $location_address, $ava_night_price, $lg_desc, $home_type,$home_room, $extra_people, $district, $province, $cancel, $str_date, $end_date, $file,$pid);
+    $insertData = $tour->insertData($tour_title,$tour_location,$adult_price,$file,$tour_details,$tour_duration,$tour_type,$ava_seats,$tour_language,$district,$cancel,$str_date,$end_date,$pid);
 
     if ($insertData){
-        $msg = "Home successfully created ";
+        $msg = "Tour Package successfully created ";
         echo "<script type='text/javascript'>alert('$msg');</script>";
     }else{
-        $msg = "Failed to Create Home ";
+        $msg = "Failed to Create Tour Package ";
         echo "<script type='text/javascript'>alert('$msg');</script>";
     }
 }

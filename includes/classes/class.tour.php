@@ -11,7 +11,7 @@ class tour {
 
 
     // Insert tour data into tour table
-  public function insertData($home_name, $location_address, $ava_night_price, $lg_desc, $home_type, $home_room, $extra_people, $district, $province, $cancel, $str_date, $end_date, $file, $pid)
+  public function insertData($tour_title,$tour_location,$adult_price,$file,$tour_details,$tour_duration,$tour_type,$ava_seats,$tour_language,$district,$cancel,$str_date,$end_date,$pid)
   {
     $allow = array('jpg', 'jpeg', 'png');
     $exntension = explode('.', $file['name']);
@@ -33,8 +33,41 @@ class tour {
           $emty = NULL;
 
 
-          $query = "INSERT INTO tbl_home(home_name, location_address, ava_night_price, lg_desc, home_type, rooms, extra_people, district, province, cancellation, ava_start_date, ava_end_date,created_date,status, cover_img1,partner_id)
-                 VALUES('$home_name','$location_address','$ava_night_price','$lg_desc','$home_type','$home_room','$extra_people','$district','$province','$cancel','$str_date','$end_date','$cdate','$sta','$fileNew','$pid')";
+          $query = "INSERT INTO tbl_tour(
+              title,
+              details,
+              location,
+              tour_type,
+              duration_days,
+              adult_price,
+              image,
+              created_date,
+              partner_id,
+              status,
+              language,
+              district,
+              availabile_seats,
+              ava_start_date,
+              ava_end_date,
+              cancellation,
+              )
+                 VALUES(
+                     '$tour_title',
+                     '$tour_details',
+                     '$tour_location',
+                     '$tour_type',
+                     '$tour_duration',
+                     '$adult_price',
+                     '$file',
+                     '$cdate',
+                     '$pid',
+                     '$sta',
+                     '$tour_language',
+                     '$district',
+                     '$ava_seats',
+                     '$str_date',
+                     '$end_date',
+                     '$cancel')";
           $sql = $this->db->query($query);
           if ($sql == true) {
             return true;
