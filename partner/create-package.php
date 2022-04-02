@@ -52,7 +52,7 @@
                             </div>
                             <nav aria-label="breadcrumb" role="navigation">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                                    <li class="breadcrumb-item"><a href="dashboard.php">Tour</a></li>
                                     <li class="breadcrumb-item active" aria-current="page">create tour</li>
                                 </ol>
                             </nav>
@@ -60,32 +60,82 @@
                     </div>
                 </div>
                 <div class="pd-20 bg-white border-radius-4 box-shadow mb-30">
-                    <form>
-                        <div class="form-group">
-                            <label>Text</label>
-                            <input class="form-control" type="text" placeholder="Johnny Brown">
+
+                    <form method="POST" enctype="multipart/form-data">
+                    <input type="text" name="partnerid" hidden id="" value="<?= $returned_row['partner_id']; ?>">
+
+                    <div class="form-group">
+                            <label>Tour Title</label>
+                            <input class="form-control" name="ttitle" type="text" placeholder="Enter Tour Title">
                         </div>
                         <div class="form-group">
-                            <label>Email</label>
-                            <input class="form-control" placeholder="johny@example.com" type="email">
+                            <label>Tour Starting Location</label>
+                            <input class="form-control" name="tlocation" placeholder="Enter Tour Starting Location" type="text">
                         </div>
                         <div class="form-group">
-                            <label>URL</label>
-                            <input class="form-control" value="https://getbootstrap.com" type="url">
+                            <label>Adult Price(LKR)</label>
+                            <input placeholder="Enter Adult Price in LKR" class="form-control" name="anprice" type="number">
                         </div>
                         <div class="form-group">
-                            <label>Telephone</label>
-                            <input class="form-control" value="1-(111)-111-1111" type="tel">
+                            <label>Tour Image</label>
+                            <input type="file" class="form-control" name="image" >
                         </div>
                         <div class="form-group">
-                            <label>Password</label>
-                            <input class="form-control" value="password" type="password">
+							<label>Tour Details</label>
+							<textarea placeholder="Enter Tour Details" name="lgdesc" class="form-control"></textarea>
+						</div>
+                        <div class="form-group">
+							<label>Tour Duration (in days)</label>
+                            <input class="form-control" name="duration" placeholder="Enter Tour Duration in Days" type="number">
+						</div>
+                        <div class="form-group">
+							<label>Type</label>
+							<select name="type" class="custom-select col-12">
+									<option selected="">Choose...</option>
+									<option value="Active Adventure">Active Adventure</option>
+									<option value="Explorer">Explorer</option>
+									<option value="In-depth Cultural">In-depth Cultural</option>
+							</select>
+						</div>
+                        <div class="form-group">
+							<label>Available Seats (count)</label>
+                            <input class="form-control" placeholder="Enter Seats Availability in Number" name="seats" type="number">
+						</div>
+                        <div class="form-group">
+							<label>Tour language</label>
+							<select name="province" class="custom-select col-12">
+									<option selected="">Choose...</option>
+									<option value="English">English</option>
+									<option value="Tamil">Tamil</option>
+									<option value="Sinhala">Sinhala</option>
+							</select>
+						</div>
+                        <div class="form-group">
+							<label>District</label>
+							<select name="district" class="custom-select col-12">
+									<option selected="">Choose...</option>
+									<option value="Kandy">Kandy</option>
+									<option value="Jaffna">Jaffna</option>
+									<option value="Colombo">Colombo</option>
+							</select>
+						</div>
+                        <div class="form-group">
+							<label>Cancellation</label>
+							<select name="cancel" class="custom-select col-12">
+									<option selected="">Choose...</option>
+									<option value="1">Yes</option>
+									<option value="0">No</option>
+							</select>
+						</div>
+                        <div class="form-group">
+                        <label>Availability Start Date</label>
+                        <input type="date" class="form-control" name="start_date" >
                         </div>
                         <div class="form-group">
-                            <label>Example file input</label>
-                            <input type="file" class="form-control-file form-control height-auto">
+                        <label>Availability End Date</label>
+                        <input type="date" class="form-control" name="end_date" >
                         </div>
-                        <input class="btn btn-primary" type="submit" value="Submit">
+                        <input class="btn btn-primary" name="submit" type="submit" value="Submit">
                         <input class="btn btn-info" type="reset" value="Reset">
                     </form>
                 </div>

@@ -112,7 +112,7 @@ if(isset($_POST['submit'])) {
                         </div>
                         <div class="form-group">
                             <label>Avarage Night Price(LKR)</label>
-                            <input class="form-control" name="anprice" type="number">
+                            <input placeholder="Enter Avarage Night Price in LKR" class="form-control" name="anprice" type="number">
                         </div>
                         <div class="form-group">
                             <label>Home Image</label>
@@ -120,7 +120,7 @@ if(isset($_POST['submit'])) {
                         </div>
                         <div class="form-group">
 							<label>Home Details</label>
-							<textarea name="lgdesc" class="form-control"></textarea>
+							<textarea placeholder="Enter Home Details"  name="lgdesc" class="form-control"></textarea>
 						</div>
                         <div class="form-group">
 							<label>Type</label>
@@ -151,7 +151,7 @@ if(isset($_POST['submit'])) {
 						</div>
                         <div class="form-group">
                         <label>Extra People</label>
-                        <input type="text" class="form-control" name="e_people" >
+                        <input placeholder="ex: no charge" type="text" class="form-control" name="e_people" >
                         </div>
                         <div class="form-group">
 							<label>Province</label>
