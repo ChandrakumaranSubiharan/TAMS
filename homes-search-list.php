@@ -202,7 +202,6 @@ if (isset($_REQUEST['homesubmit'])) {
 
 
 
-
                             $query = $DB_con->prepare($sql);                
                             $query->execute();
                             $results = $query->fetchAll(PDO::FETCH_OBJ);

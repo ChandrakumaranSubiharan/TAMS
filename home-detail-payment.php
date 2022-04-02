@@ -39,6 +39,8 @@ if (isset($_REQUEST['book'])) {
     $homeimage = $_REQUEST["hoimg"];
     $homeid = $_REQUEST["hoid"];
     $partnerid = $_REQUEST["pid"];
+    $homeavaStartdate = $_REQUEST["h_ava_s_date"];
+    $homeavaEnddate = $_REQUEST["h_ava_e_date"];
 }
 ?>
 
@@ -48,33 +50,6 @@ if (isset($_REQUEST['book'])) {
 <html lang="en">
 
 <head>
-
-
-
-
-    <?php
-
-    $TotalBookingAmount = $tot;
-
-    if($TotalBookingAmount >= 50000){
-    $percentToSet = 20;
-    }else{
-    $percentToSet = 10;
-    }
-
-    //Convert our percentage value into a decimal.
-    $percentInDecimal = $percentToSet / 100;
-
-    //Get the result.
-    $percent = $percentInDecimal * $TotalBookingAmount;
-
-    //Print it out - Result is 232.
-    echo $percent;
-
-    ?>
-
-
-
 
     <?php
     // Insert Record in booking table
@@ -94,12 +69,19 @@ if (isset($_REQUEST['book'])) {
         $b_h_id = $_POST['homeid'];
         $b_h_name = $_POST['hname'];
         $pid = $_POST['partnerid'];
+        $hosdate = $_POST['hstartdate'];
+        $hoedate = $_POST['henddate'];
 
 
+        $net_amount = $earning->PercentageCalculate($tot_amount);
+        $payout = $earning->Payout($tot_amount,$net_amount);
+        
         $insertBookingData = $booking->insertBookingData($tot_amount, $cus_fname, $cus_lname, $cus_email, $cus_contact, $cus_card_type, $cus_id, $b_sdate, $b_edate, $b_tot_night, $b_tot_persons, $b_h_id, $b_h_name, $pid);
-        // $insertEarningData = $earning->insertEarningData($pid, $tot_amount, $payout, $net, $customerid);
+        $homeUpdate = $home->home_update_after_booking($b_h_id,$hosdate,$hoedate,$b_tot_night);
+        $insertEarningData = $earning->insertEarningData($pid, $tot_amount, $payout, $net_amount, $cus_id);
 
-        if ($insertBookingData) {
+
+        if ($insertBookingData && $insertEarningData && $homeUpdate) {
 
             $message = "Home Reservation Success.";
 
@@ -181,6 +163,10 @@ if (isset($_REQUEST['book'])) {
                             <input type="text" name="totnight" hidden value="<?php echo $nightcount; ?>">
                             <input type="text" name="totcount" hidden value="<?php echo $totalcount; ?>">
                             <input type="text" name="hname" hidden value="<?php echo $homename; ?>">
+                            <input type="date" name="hstartdate" hidden  value="<?php echo $homeavaStartdate; ?>">
+                            <input type="date" name="henddate" hidden  value="<?php echo $homeavaEnddate; ?>">
+
+
 
                             <div class="person-information">
                                 <h2>Your Personal Information</h2>
@@ -312,7 +298,7 @@ if (isset($_REQUEST['book'])) {
                                     </div>
                                     <div class="duration text-center">
                                         <i class="soap-icon-clock"></i>
-                                        <span><?php $nightcount; ?> Nights</span>
+                                        <span><?php echo $nightcount; ?> Nights</span>
                                     </div>
                                     <div class="check-out">
                                         <label>Check out</label>

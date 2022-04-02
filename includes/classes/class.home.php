@@ -150,4 +150,67 @@ class home
       echo "Record does not delete try again";
     }
   }
+
+
+
+
+  public function home_update_after_booking($id, $sdate, $edate, $ncount)
+  {
+
+    $date1_ts = strtotime($sdate);
+    $date2_ts = strtotime($edate);
+    $diff = $date2_ts - $date1_ts;
+    $Ava_Days = ($diff / 86400);
+
+
+
+
+    if ($ncount == $Ava_Days) {
+
+      $sta = false;
+
+      try {
+        $stmt = $this->db->prepare("UPDATE tbl_home SET 
+                  status=:st
+               WHERE home_id=:id ");
+        $stmt->bindparam(":st", $sta);
+        $stmt->bindparam(":id", $id);
+        $stmt->execute();
+
+        return true;
+      } catch (PDOException $e) {
+        echo $e->getMessage();
+        return false;
+      }
+
+    }
+    else {
+
+      $date = date_create("$sdate");
+
+      // Use date_add() function to add date object
+      date_add($date, date_interval_create_from_date_string("$ncount days"));
+
+      $NewStDate = date_format($date, "Y-m-d");
+
+      try {
+        $stmt = $this->db->prepare("UPDATE tbl_home SET 
+                ava_start_date=:sdate
+               WHERE home_id=:id ");
+        $stmt->bindparam(":sdate", $NewStDate);
+        $stmt->bindparam(":id", $id);
+        $stmt->execute();
+
+        return true;
+      } catch (PDOException $e) {
+        echo $e->getMessage();
+        return false;
+      }
+
+
+
+ 
+
+    } 
+  }
 }

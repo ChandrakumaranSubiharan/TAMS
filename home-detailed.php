@@ -165,7 +165,9 @@ if ($query->rowCount() > 0) {
                                                 <input type="text" name="hodistrict" hidden value="<?php echo htmlentities($result->district); ?>">
                                                 <input type="text" name="horoom" hidden value="<?php echo htmlentities($result->rooms); ?>">
                                                 <input type="text" name="pid" hidden value="<?php echo htmlentities($result->partner_id); ?>">
-                                                <input name="cnight" type="text" id="nights" hidden >
+                                                <input name="h_ava_s_date" type="date"  hidden value="<?php echo htmlentities($result->ava_start_date); ?>" >
+                                                <input name="h_ava_e_date" type="date"  hidden value="<?php echo htmlentities($result->ava_end_date); ?>" >
+                                                <input name="cnight"  type="text" id="nights" hidden >
 
                                                         <script>
                                                             $(function() {
@@ -186,8 +188,6 @@ if ($query->rowCount() > 0) {
 
                                                             }
                                                         </script>
-
-
 
 
                                                 <div class="col-md-5">
