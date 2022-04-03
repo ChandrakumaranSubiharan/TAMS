@@ -278,31 +278,28 @@ include_once 'includes/dbconfig.php';
     <div class="container">
         <h2>Popular Homes</h2>
         <div class="row image-box hotel listing-style1">
-
-
-
             <?php
             $homedata = $home->HomeActiveData();
-            foreach ($homedata as $homes) {
+            foreach ($homedata as $homeinfo) {
             ?>
                 <div class="col-sms-6 col-sm-6 col-md-3">
                     <article class="box">
                         <figure class="animated" data-animation-type="fadeInDown" data-animation-delay="0">
-                            <a title=""><img width="270" height="160" src="partner/includes/uploads/<?php echo $homes['cover_img1']; ?>" alt=""></a>
+                            <a title=""><img width="270" height="160" src="partner/includes/uploads/<?php echo $homeinfo['cover_img1']; ?>" alt=""></a>
                         </figure>
                         <div class="details">
                             <span class="price">
                                 <small>avg/night</small>
-                                LKR <?php echo $homes['ava_night_price']; ?>
+                                LKR <?php echo $homeinfo['ava_night_price']; ?>
                             </span>
-                            <h4 class="box-title"><?php echo $homes['home_name']; ?><small><?php echo $homes['district']; ?>, Sri Lanka</small></h4>
+                            <h4 class="box-title"><?php echo $homeinfo['home_name']; ?><small><?php echo $homeinfo['district']; ?>, Sri Lanka</small></h4>
                             <div class="feedback">
                                 <div title="4 stars" class="five-stars-container" data-toggle="tooltip" data-placement="bottom"><span class="five-stars" style="width: 80%;"></span></div>
-                                <span class="review"><?php echo $homes['home_type']; ?></span>
+                                <span class="review"><?php echo $homeinfo['home_type']; ?></span>
                             </div>
 
                             <?php
-                            $string = $homes['lg_desc'];
+                            $string = $homeinfo['lg_desc'];
 
                             // strip tags to avoid breaking any html
                             $string = strip_tags($string);
@@ -320,7 +317,7 @@ include_once 'includes/dbconfig.php';
                             <p class="description"><?php echo $string; ?></p>
 
                             <div class="action">
-                                <a class="button btn-small" href="home-detailed.php?homeid=<?php echo $homes['home_id']; ?>">Details</a>
+                                <a class="button btn-small" href="home-detailed.php?homeid=<?php echo $homeinfo['home_id']; ?>">Details</a>
                             </div>
                         </div>
                     </article>
@@ -336,25 +333,25 @@ include_once 'includes/dbconfig.php';
         <div class="row image-box hotel listing-style1">
             <?php
             $homedata = $home->HomeActiveData();
-            foreach ($homedata as $homes) {
+            foreach ($homedata as $homeinfo) {
             ?>
                 <div class="col-sms-6 col-sm-6 col-md-3">
                     <article class="box">
                         <figure class="animated" data-animation-type="fadeInDown" data-animation-delay="0">
-                            <a title=""><img width="270" height="160" src="partner/includes/uploads/<?php echo $homes['cover_img1']; ?>" alt=""></a>
+                            <a title=""><img width="270" height="160" src="partner/includes/uploads/<?php echo $homeinfo['cover_img1']; ?>" alt=""></a>
                         </figure>
                         <div class="details">
                             <span class="price">
                                 <small>avg/night</small>
-                                LKR <?php echo $homes['ava_night_price']; ?>
+                                LKR <?php echo $homeinfo['ava_night_price']; ?>
                             </span>
-                            <h4 class="box-title"><?php echo $homes['home_name']; ?><small><?php echo $homes['district']; ?>, Sri Lanka</small></h4>
+                            <h4 class="box-title"><?php echo $homeinfo['home_name']; ?><small><?php echo $homeinfo['district']; ?>, Sri Lanka</small></h4>
                             <div class="feedback">
                                 <div title="4 stars" class="five-stars-container" data-toggle="tooltip" data-placement="bottom"><span class="five-stars" style="width: 80%;"></span></div>
-                                <span class="review"><?php echo $homes['home_type']; ?></span>
+                                <span class="review"><?php echo $homeinfo['home_type']; ?></span>
                             </div>
                             <?php
-                            $string = $homes['lg_desc'];
+                            $string = $homeinfo['lg_desc'];
 
                             // strip tags to avoid breaking any html
                             $string = strip_tags($string);
@@ -371,7 +368,7 @@ include_once 'includes/dbconfig.php';
                             ?>
                             <p class="description"><?php echo $string; ?></p>
                             <div class="action">
-                                <a class="button btn-small" href="home-detailed.php?homeid=<?php echo $homes['home_id']; ?>">Details</a>
+                                <a class="button btn-small" href="home-detailed.php?homeid=<?php echo $homeinfo['home_id']; ?>">Details</a>
                             </div>
                         </div>
                     </article>

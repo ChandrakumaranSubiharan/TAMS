@@ -1,17 +1,18 @@
-<?php 
+<?php
 
-class tour {
+class tour
+{
 
-    private $db;
+  private $db;
 
-    function __construct($DB_con)
-    {
-      $this->db = $DB_con;
-    }
+  function __construct($DB_con)
+  {
+    $this->db = $DB_con;
+  }
 
 
-    // Insert tour data into tour table
-  public function insertData($tour_title,$tour_location,$adult_price,$file,$tour_details,$tour_duration,$tour_type,$ava_seats,$tour_language,$district,$cancel,$str_date,$end_date,$pid)
+  // Insert tour data into tour table
+  public function insertData($tour_title, $tour_location, $adult_price, $file, $tour_details, $tour_duration, $tour_type, $ava_seats, $tour_language, $district, $cancel, $str_date, $end_date, $pid)
   {
     $allow = array('jpg', 'jpeg', 'png');
     $exntension = explode('.', $file['name']);
@@ -46,4 +47,93 @@ class tour {
   }
 
 
+
+  // Fetch tour records for show listing
+  public function displayData()
+  {
+    $sql = "SELECT * FROM tbl_tour";
+    $query = $this->db->query($sql);
+    $data = array();
+    if ($query->rowCount() > 0) {
+      while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+        $data[] = $row;
+      }
+      return $data;
+    } else {
+      return false;
+    }
+  }
+
+
+  // Fetch single data for edit from tour table
+  public function displyaRecordById($editId)
+  {
+    $query = "SELECT * FROM tbl_tour WHERE tour_id = '$editId'";
+    $result = $this->db->query($query);
+    if ($result->rowCount() > 0) {
+      while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+        $data = $row;
+      }
+      return $data;
+    } else {
+      echo "Record not found";
+    }
+  }
+
+    // Fetch single data for edit from tour table
+    public function displyaImgById($imgid)
+    {
+
+      $query = "SELECT image FROM tbl_tour WHERE tour_id = '$imgid'";
+      $result = $this->db->query($query);
+      if ($result->rowCount() > 0) {
+        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+          $imgdata = $row;
+        }
+        return $imgdata;
+      } else {
+        echo "Image not found";
+      }
+    }
+
+  public function update($id,$tourtitle,$location,$price,$des,$duration,$type,$avaseats,$language,$district,$cancell,$ava_start,$ava_end,$sta)
+  {
+    try {
+      $stmt = $this->db->prepare("UPDATE tbl_tour SET 
+                title=:ttitle, 
+                location=:location, 
+                adult_price=:price, 
+                details=:desc,
+                tour_type=:type,
+                duration_days=:duration,
+                availabile_seats=:seats,
+                language=:lan,
+                district=:distri,
+                cancellation=:cancell,
+                ava_start_date=:sdate,
+                ava_end_date=:edate,
+                status=:st
+             WHERE tour_id=:id ");
+      $stmt->bindparam(":ttitle", $tourtitle);
+      $stmt->bindparam(":location", $location);
+      $stmt->bindparam(":price", $price);
+      $stmt->bindparam(":desc", $des);
+      $stmt->bindparam(":type", $type);
+      $stmt->bindparam(":duration", $duration);
+      $stmt->bindparam(":seats", $avaseats);
+      $stmt->bindparam(":lan", $language);
+      $stmt->bindparam(":distri", $district);
+      $stmt->bindparam(":cancell", $cancell);
+      $stmt->bindparam(":sdate", $ava_start);
+      $stmt->bindparam(":edate", $ava_end);
+      $stmt->bindparam(":st", $sta);
+      $stmt->bindparam(":id", $id);
+      $stmt->execute();
+
+      return true;
+    } catch (PDOException $e) {
+      echo $e->getMessage();
+      return false;
+    }
+  }
 }

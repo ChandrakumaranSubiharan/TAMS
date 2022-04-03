@@ -21,8 +21,8 @@
 							<span class="micon icon-copy ti-map-alt "></span><span class="mtext">Tour Packages</span>
 						</a>
 						<ul class="submenu">
-							<li><a href="create-package.php">Create</a></li>
-							<li><a href="manage-package.php">Manage</a></li>
+							<li><a href="create-tour.php">Create</a></li>
+							<li><a href="manage-tour.php">Manage</a></li>
 						</ul>
 					</li>
                     <li class="dropdown">
