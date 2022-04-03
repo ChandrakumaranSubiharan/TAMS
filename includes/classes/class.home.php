@@ -208,7 +208,7 @@ class home
 
   public function HomeActiveData()
   {
-    $sql = "SELECT * FROM tbl_home where status = 1";
+    $sql = "SELECT * FROM tbl_home where status = 1 AND ava_start_date >= CURDATE() order by rand()";
     $query = $this->db->query($sql);
     $data = array();
     if ($query->rowCount() > 0) {
@@ -225,7 +225,7 @@ class home
 
   public function HomebyDistrictData($district)
   {
-    $sql = "SELECT * FROM tbl_home where status = 1 AND district = '$district'";
+    $sql = "SELECT * FROM tbl_home where status = 1 AND district = '$district' AND ava_start_date >= CURDATE() order by rand()";
     $query = $this->db->query($sql);
     $data = array();
     if ($query->rowCount() > 0) {

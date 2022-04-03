@@ -183,13 +183,7 @@ if (isset($_REQUEST['homesubmit'])) {
                         <div class="hotel-list listing-style3 hotel">
 
 
-
-
-
-
-
                             <?php
-                            // $sql = "SELECT * from tbl_home WHERE status = 1 AND district = '$Hdistrict' AND ava_start_date >= '$Hsdate' AND ava_end_date >= '$Hedate' AND max_adults >= '$Hcadult' AND max_kids >= '$Hckid' AND rooms >= '$Hcroom' order by rand() ";
                             $sql = "SELECT * from tbl_home WHERE status = 1 AND ava_start_date >= CURDATE()
                             AND district = '$Hdistrict' 
                             AND ava_start_date >= '$Hsdate' 

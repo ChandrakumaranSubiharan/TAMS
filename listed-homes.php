@@ -28,6 +28,9 @@ include_once 'includes/dbconfig.php';
         <div class="container">
             <div id="main">
                 <div class="row">
+
+
+
                     <div class="col-sm-4 col-md-3">
                         <h4 class="search-results-title"><i class="soap-icon-search"></i>Sort Homes by:</h4>
                         <div class="toggle-container filters-container">
@@ -142,6 +145,12 @@ include_once 'includes/dbconfig.php';
                             </div>
                         </div>
                     </div>
+
+
+
+
+
+
                     <div class="col-sm-8 col-md-9">
                         <div class="sort-by-section box clearfix">
                             <h4 class="sort-by-title block-sm">Recently Listed Homes <i class="fa fa-arrow-down"></i> </h4>
@@ -151,9 +160,9 @@ include_once 'includes/dbconfig.php';
                             <?php
 
                             if (isset($_GET['district'])) {
-                                $d = ($_GET['district']);
+                                $bydistrict = ($_GET['district']);
 
-                                $homedata = $home->HomebyDistrictData($d);
+                                $homedata = $home->HomebyDistrictData($bydistrict);
                                 foreach ($homedata as $homeinfo) {
 
                             ?>
@@ -194,7 +203,7 @@ include_once 'includes/dbconfig.php';
                                 ?>
 
                                 <?php
-                                    $homedata = $home->displayData();
+                                    $homedata = $home->HomeActiveData();
                                     foreach ($homedata as $homeinfo) {
                                 ?>
                                         <article class="service-info-crd box">
