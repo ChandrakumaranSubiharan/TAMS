@@ -64,21 +64,22 @@ class home
   }
 
 
-  // Fetch single data for edit from customer table
-  public function displyaRecordById($editId)
+  // Fetch single data for edit from home table
+  public function displyaRecordById($Id)
   {
-    $query = "SELECT * FROM tbl_home WHERE home_id = '$editId'";
+    $query = "SELECT * FROM tbl_home WHERE home_id = '$Id'";
     $result = $this->db->query($query);
+    $data = array();
+
     if ($result->rowCount() > 0) {
       while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-        $data = $row;
+        $data[] = $row;
       }
       return $data;
     } else {
-      echo "Record not found";
+      return false;
     }
   }
-
 
 
   public function update($id, $homename, $location, $price, $des, $type, $people, $province, $district, $cancell, $ava_start, $ava_end, $sta)
