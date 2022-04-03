@@ -332,26 +332,26 @@ include_once 'includes/dbconfig.php';
         <h2>Popular Tour Packages</h2>
         <div class="row image-box hotel listing-style1">
             <?php
-            $homedata = $home->HomeActiveData();
-            foreach ($homedata as $homeinfo) {
+            $tourdata = $tour->TourActiveData();
+            foreach ($tourdata as $tourinfo) {
             ?>
                 <div class="col-sms-6 col-sm-6 col-md-3">
                     <article class="box">
                         <figure class="animated" data-animation-type="fadeInDown" data-animation-delay="0">
-                            <a title=""><img width="270" height="160" src="partner/includes/uploads/<?php echo $homeinfo['cover_img1']; ?>" alt=""></a>
+                            <a title=""><img width="270" height="160" src="partner/includes/uploads/<?php echo $tourinfo['image']; ?>" alt=""></a>
                         </figure>
                         <div class="details">
                             <span class="price">
-                                <small>avg/night</small>
-                                LKR <?php echo $homeinfo['ava_night_price']; ?>
+                                <small>Adult Price</small>
+                                LKR <?php echo $tourinfo['adult_price']; ?>
                             </span>
-                            <h4 class="box-title"><?php echo $homeinfo['home_name']; ?><small><?php echo $homeinfo['district']; ?>, Sri Lanka</small></h4>
+                            <h4 class="box-title"><?php echo $tourinfo['title']; ?><small>Starting From <?php echo $tourinfo['district']; ?></small></h4>
                             <div class="feedback">
-                                <div title="4 stars" class="five-stars-container" data-toggle="tooltip" data-placement="bottom"><span class="five-stars" style="width: 80%;"></span></div>
-                                <span class="review"><?php echo $homeinfo['home_type']; ?></span>
+                                <div class="five-stars-container">Total <?php echo $tourinfo['duration_days'];?> Days</div>
+                                <span class="review"><?php echo $tourinfo['tour_type']; ?></span>
                             </div>
                             <?php
-                            $string = $homeinfo['lg_desc'];
+                            $string = $tourinfo['details'];
 
                             // strip tags to avoid breaking any html
                             $string = strip_tags($string);
@@ -368,7 +368,7 @@ include_once 'includes/dbconfig.php';
                             ?>
                             <p class="description"><?php echo $string; ?></p>
                             <div class="action">
-                                <a class="button btn-small" href="home-detailed.php?homeid=<?php echo $homeinfo['home_id']; ?>">Details</a>
+                                <a class="button btn-small" href="tour-detailed.php?tourid=<?php echo $tourinfo['tour_id']; ?>">Details</a>
                             </div>
                         </div>
                     </article>

@@ -187,4 +187,20 @@ class tour
       echo "Record does not delete try again";
     }
   }
+
+    // Fetch tour records for show listing
+    public function TourActiveData()
+    {
+      $sql = "SELECT * FROM tbl_tour where status = 1";
+      $query = $this->db->query($sql);
+      $data = array();
+      if ($query->rowCount() > 0) {
+        while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+          $data[] = $row;
+        }
+        return $data;
+      } else {
+        return false;
+      }
+    }
 }

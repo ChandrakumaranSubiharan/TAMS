@@ -1898,7 +1898,7 @@ article {
   color: #838383;
   text-transform: uppercase;
   display: block;
-  margin-top: 4px;
+  margin-top: 8px;
   /*letter-spacing: normal;*/
 }
 .box-title small [class^="soap-icon"] {
@@ -3590,6 +3590,8 @@ a.view::after {
   display: block;
 }
 
+
+
 /* 2.2.10. Five Stars */
 .five-stars-container {
   display: inline-block;
@@ -3600,8 +3602,9 @@ a.view::after {
   cursor: default;
   white-space: nowrap;
   line-height: 1.2em;
-  color: #dbdbdb;
+  color: #838383 !important;
 }
+
 /* .five-stars-container .five-stars,
 .five-stars-container.editable-rating .ui-slider-range {
   display: block;
