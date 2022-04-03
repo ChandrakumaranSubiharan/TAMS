@@ -137,7 +137,7 @@ if (isset($_POST['update'])) {
                             <div>
                                 <img src="includes/uploads/<?php echo $homedata['cover_img1']; ?>" width="400">&nbsp;&nbsp;&nbsp;
 
-                                <a href="change-image.php?imgid=<?php echo $homedata['home_id']; ?>">Change Image</a>
+                                <a href="change-image.php?homeimgid=<?php echo $homedata['home_id']; ?>">Change Image</a>
                             </div>
                         </div>
                         <div class="form-group">

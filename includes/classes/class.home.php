@@ -238,4 +238,20 @@ class home
     }
   }
 
+
+  // Fetch single data for edit from HOME table
+  public function displyaImgById($imgid)
+  {
+
+    $query = "SELECT cover_img1 FROM tbl_home WHERE home_id = '$imgid'";
+    $result = $this->db->query($query);
+    if ($result->rowCount() > 0) {
+      while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+        $imgdata = $row;
+      }
+      return $imgdata;
+    } else {
+      echo "Image not found";
+    }
+  }
 }

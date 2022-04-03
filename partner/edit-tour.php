@@ -135,7 +135,7 @@ if (isset($_POST['update'])) {
                             <div>
                                 <img src="includes/uploads/<?php echo $tourdata['image']; ?>" width="400">&nbsp;&nbsp;&nbsp;
 
-                                <a href="change-image.php?imgid=<?php echo $tourdata['tour_id']; ?>">Change Image</a>
+                                <a href="change-image.php?tourimgid=<?php echo $tourdata['tour_id']; ?>">Change Image</a>
                             </div>
                         </div>
                         <div class="form-group">
