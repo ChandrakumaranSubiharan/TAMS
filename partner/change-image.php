@@ -5,21 +5,43 @@ include_once '../includes/dbconfig.php';
 
 // Update Record in customer table
 if (isset($_POST['submit'])) {
-    $imgid = intval($_GET['imgid']);
-    $img = $_FILES['image']['name'];
 
-    $updateimg = $tour->updateimg($imgid, $img);
+    if (isset($_GET['tourimgid'])) {
 
-    if ($updateimg) {
+        $imgid = intval($_GET['tourimgid']);
+        $img = $_FILES['image']['name'];
 
-        $msg = "<div class='alert alert-info'>
+        $updateimg = $tour->updateimg($imgid, $img);
+
+        if ($updateimg) {
+
+            $msg = "<div class='alert alert-info'>
+            <strong>WOW!</strong> Image was updated successfully!
+            </div>";
+            echo "<script type='text/javascript'>alert('$msg');</script>";
+            $tourdata = $tour->displyaImgById($imgid);
+        } else {
+            $msg = "Failed to Update Tour Image ";
+            echo "<script type='text/javascript'>alert('$msg');</script>";
+        }
+    } else {
+
+        $imgid = intval($_GET['homeimgid']);
+        $img = $_FILES['image']['name'];
+
+        $updateimg = $home->updateimg($imgid, $img);
+
+        if ($updateimg) {
+
+            $msg = "<div class='alert alert-info'>
         <strong>WOW!</strong> Image was updated successfully!
         </div>";
-        echo "<script type='text/javascript'>alert('$msg');</script>";
-        $tourdata = $tour->displyaImgById($imgid);
-    } else {
-        $msg = "Failed to Update Tour Image ";
-        echo "<script type='text/javascript'>alert('$msg');</script>";
+            echo "<script type='text/javascript'>alert('$msg');</script>";
+            $tourdata = $tour->displyaImgById($imgid);
+        } else {
+            $msg = "Failed to Update Tour Image ";
+            echo "<script type='text/javascript'>alert('$msg');</script>";
+        }
     }
 }
 

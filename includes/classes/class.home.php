@@ -254,4 +254,24 @@ class home
       echo "Image not found";
     }
   }
+
+
+  public function updateimg($id,$img)
+  {
+    try {
+
+      move_uploaded_file($_FILES["image"]["tmp_name"], "includes/uploads/" . $_FILES["image"]["name"]);
+      $stmt = $this->db->prepare("UPDATE tbl_home SET 
+                cover_img1=:timage
+             WHERE home_id=:id ");
+      $stmt->bindparam(":timage", $img);
+      $stmt->bindparam(":id", $id);
+      $stmt->execute();
+
+      return true;
+    } catch (PDOException $e) {
+      echo $e->getMessage();
+      return false;
+    }
+  }
 }

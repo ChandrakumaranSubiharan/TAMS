@@ -6,16 +6,8 @@ include_once '../includes/dbconfig.php';
 // Delete record from table
 if (isset($_GET['deleteId']) && !empty($_GET['deleteId'])) {
     $deleteId = $_GET['deleteId'];
-    $home->deleteRecord($deleteId);
+    $tour->deleteRecord($deleteId);
 }
-
-// update status 
-if (isset($_GET['activeId']) && !empty($_GET['activeId'])) {
-    $activeId = $_GET['activeId'];
-    $home->activeRecord($activeId);
-}
-
-
 ?>
 
 
@@ -164,7 +156,7 @@ if (isset($_GET['activeId']) && !empty($_GET['activeId'])) {
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
                                                     <a class="dropdown-item" href="edit-tour.php?editId=<?php echo $tourinfo['tour_id'] ?>"><i class="dw dw-edit2" aria-hidden="true"></i> Edit</a>
-                                                    <a href="manage-package.php?deleteId=<?php echo $tourinfo['tour_id'] ?>" style="color:red" onclick="confirm('Are you sure want to delete this record')" class="dropdown-item"><i class="dw dw-delete-3"></i> Delete</a>
+                                                    <a href="manage-tour.php?deleteId=<?php echo $tourinfo['tour_id'] ?>" style="color:red" onclick="confirm('Are you sure want to delete this record')" class="dropdown-item"><i class="dw dw-delete-3"></i> Delete</a>
                                                 </div>
                                             </div>
                                         </td>

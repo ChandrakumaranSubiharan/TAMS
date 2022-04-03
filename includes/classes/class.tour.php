@@ -80,23 +80,23 @@ class tour
     }
   }
 
-    // Fetch single data for edit from tour table
-    public function displyaImgById($imgid)
-    {
+  // Fetch single data for edit from tour table
+  public function displyaImgById($imgid)
+  {
 
-      $query = "SELECT image FROM tbl_tour WHERE tour_id = '$imgid'";
-      $result = $this->db->query($query);
-      if ($result->rowCount() > 0) {
-        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-          $imgdata = $row;
-        }
-        return $imgdata;
-      } else {
-        echo "Image not found";
+    $query = "SELECT image FROM tbl_tour WHERE tour_id = '$imgid'";
+    $result = $this->db->query($query);
+    if ($result->rowCount() > 0) {
+      while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+        $imgdata = $row;
       }
+      return $imgdata;
+    } else {
+      echo "Image not found";
     }
+  }
 
-  public function update($id,$tourtitle,$location,$price,$des,$duration,$type,$avaseats,$language,$district,$cancell,$ava_start,$ava_end,$sta)
+  public function update($id, $tourtitle, $location, $price, $des, $duration, $type, $avaseats, $language, $district, $cancell, $ava_start, $ava_end, $sta)
   {
     try {
       $stmt = $this->db->prepare("UPDATE tbl_tour SET 
@@ -138,7 +138,7 @@ class tour
   }
 
 
-  public function updateimg($id,$img)
+  public function updateimg($id, $img)
   {
     try {
 
@@ -157,4 +157,34 @@ class tour
     }
   }
 
+
+  // Delete customer data from home table
+  public function deleteRecord($id)
+  {
+    $stmt = $this->db->prepare("DELETE FROM tbl_tour WHERE tour_id = '$id'");
+    $stmt->bindparam(":id", $id);
+    $stmt->execute();
+    if ($stmt == true) {
+      header("Location:manage-tour.php?msg3=delete");
+    } else {
+      echo "Record does not delete try again";
+    }
+  }
+
+  // Update Status data from home table
+  public function activeRecord($id)
+  {
+    $stmt = $this->db->prepare("UPDATE tbl_tour SET 
+      status=:sta
+      WHERE tour_id=:id ");
+    $sta = 1;
+    $stmt->bindparam(":sta", $sta);
+    $stmt->bindparam(":id", $id);
+    $stmt->execute();
+    if ($stmt == true) {
+      header("Location:manage-tour.php?msg2=active");
+    } else {
+      echo "Record does not delete try again";
+    }
+  }
 }

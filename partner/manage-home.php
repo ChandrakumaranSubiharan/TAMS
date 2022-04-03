@@ -9,13 +9,6 @@ if (isset($_GET['deleteId']) && !empty($_GET['deleteId'])) {
     $home->deleteRecord($deleteId);
 }
 
-// update status 
-if (isset($_GET['activeId']) && !empty($_GET['activeId'])) {
-    $activeId = $_GET['activeId'];
-    $home->activeRecord($activeId);
-}
-
-
 ?>
 
 
