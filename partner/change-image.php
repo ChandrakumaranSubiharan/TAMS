@@ -3,28 +3,27 @@
 // Include database file
 include_once '../includes/dbconfig.php';
 
-
-?>
-
-
-<?php
-
-$imgid = intval($_GET['imgid']);
+// Update Record in customer table
 if (isset($_POST['submit'])) {
+    $imgid = intval($_GET['imgid']);
+    $img = $_FILES['image']['name'];
 
-    $pimage = $_FILES["cover_img1"]["name"];
-    move_uploaded_file($_FILES["cover_img1"]["tmp_name"], "includes/uploads/" . $_FILES["cover_img1"]["name"]);
-    $sql = "update tbl_home set cover_img1=:pimage where home_id=:imgid";
-    $query = $DB_con->prepare($sql);
+    $updateimg = $tour->updateimg($imgid, $img);
 
-    $query->bindParam(':imgid', $imgid, PDO::PARAM_STR);
-    $query->bindParam(':pimage', $pimage, PDO::PARAM_STR);
-    $query->execute();
-    $msg = "Image Updated Successfully";
+    if ($updateimg) {
+
+        $msg = "<div class='alert alert-info'>
+        <strong>WOW!</strong> Image was updated successfully!
+        </div>";
+        echo "<script type='text/javascript'>alert('$msg');</script>";
+        $tourdata = $tour->displyaImgById($imgid);
+    } else {
+        $msg = "Failed to Update Tour Image ";
+        echo "<script type='text/javascript'>alert('$msg');</script>";
+    }
 }
 
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -85,6 +84,13 @@ if (isset($_POST['submit'])) {
                                     <li class="breadcrumb-item active" aria-current="page">change image</li>
                                 </ol>
                             </nav>
+                            <div class="container">
+                                <?php
+                                if (isset($msg)) {
+                                    echo $msg;
+                                }
+                                ?>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -95,24 +101,24 @@ if (isset($_POST['submit'])) {
                 <?php
 
                 // display Img
-                    $imgid = intval($_GET['imgid']);
-                    $tourdata = $tour->displyaImgById($imgid);
-                     ?>
-                        <div class="form-group">
-                            <label for="focusedinput" class="col-sm-2 control-label"> Package Image </label>
-                            <div class="col-sm-8">
-                                <img  src="includes/uploads/<?php echo $tourdata['image'] ?>" width="300">
-                            </div>
-                        </div>
+                $imgid = intval($_GET['imgid']);
+                $tourdata = $tour->displyaImgById($imgid);
+                ?>
+                <div class="form-group">
+                    <label for="focusedinput" class="col-sm-2 control-label"> Package Image </label>
+                    <div class="col-sm-8">
+                        <img src="includes/uploads/<?php echo $tourdata['image'] ?>" width="300">
+                    </div>
+                </div>
 
-                        <div class="form-group">
-                            <label for="focusedinput" class="col-sm-2 control-label">New Image</label>
-                            <div class="col-sm-8">
-                                <input type="file" name="image" id="image" required>
-                            </div>
-                        </div>
-                <?php    
-                 ?>
+                <div class="form-group">
+                    <label for="focusedinput" class="col-sm-2 control-label">New Image</label>
+                    <div class="col-sm-8">
+                        <input type="file" name="image" id="image" required>
+                    </div>
+                </div>
+                <?php
+                ?>
 
                 <div class="row">
                     <div class="col-sm-8 col-sm-offset-2">
@@ -124,12 +130,6 @@ if (isset($_POST['submit'])) {
         </div>
 
         </form>
-
-
-
-
-
-
 
         <div class="footer-wrap pd-20 mb-20 card-box">
             HappyHolidayss Pvt(Ltd).</a>
