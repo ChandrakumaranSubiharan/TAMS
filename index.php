@@ -155,42 +155,90 @@ include_once 'includes/dbconfig.php';
                     </form>
                 </div>
                 <div class="tab-pane fade" id="flights-tab">
-                    <form action="#" method="post">
+                    <form action="tour-search-list.php" method="post">
+                    <input type="text" name="pricerange" hidden value="50000" />
                         <div class="row">
-                            <div class="form-group col-sm-6 col-md-3">
+                            <div class="form-group col-sm-6 col-md-2">
                                 <h4 class="title">Where</h4>
                                 <label>Select Destination</label>
                                 <div class="selector">
-                                    <select class="full-width">
-                                        <option value="1">Kandy</option>
-                                        <option value="2">Colombo</option>
-                                        <option value="3">Jaffna</option>
+                                    <select name="tdistrict" class="full-width">
+                                        <option value="kandy">Kandy</option>
+                                        <option value="colombo">Colombo</option>
+                                        <option value="jaffna">Jaffna</option>
                                     </select>
                                 </div>
                             </div>
 
-                            <div class="form-group col-sm-6 col-md-3">
+                            <div class="form-group col-sm-6 col-md-2">
                                 <h4 class="title">When</h4>
                                 <label>Select a Date</label>
                                 <div class="datepicker-wrap">
-                                    <input type="text" class="input-text full-width" placeholder="mm/dd/yy" />
+                                    <input type="date" name="sdate" class="input-text full-width" placeholder="mm/dd/yy" />
                                 </div>
                             </div>
 
-                            <div class="form-group col-sm-6 col-md-3">
+
+                            <div class="form-group col-sm-6 col-md-4">
                                 <h4 class="title">How</h4>
-                                <label>Select Tour Type</label>
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                    <label>Select Tour Type</label>
                                 <div class="selector">
-                                    <select class="full-width">
-                                        <option value="1">Couple Package</option>
+                                    <select name="ttype" class="full-width">
+                                        <option value="Active Adventure">Active Adventure</option>
                                         <option value="2">Colombo</option>
                                         <option value="3">Jaffna</option>
                                     </select>
                                 </div>
+                                    </div>
+                                    <div class="col-xs-6">
+                                    <label>Select Guide Language</label>
+                                    <div class="selector">
+                                    <select name="tlan" class="full-width">
+                                        <option value="english">English</option>
+                                        <option value="tamil">Tamil</option>
+                                        <option value="sinhala">Sinhala</option>
+                                    </select>
+                                </div>
+                                    </div>
+                                </div>
                             </div>
+
+                            <div class="form-group col-sm-8 col-md-2">
+                                <h4 class="title">Who and Space</h4>
+                                <div class="row">
+                                    <div class="col-xs-5">
+                                        <label>Adults</label>
+                                        <div class="selector">
+                                            <select name="cadult" class="full-width">
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-5">
+                                        <label>Kids</label>
+                                        <div class="selector">
+                                            <select name="ckid" class="full-width">
+                                                <option value="0">No</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
                             <div class="form-group col-sm-5 col-md-2 fixheight">
                                 <label class="hidden-xs">&nbsp;</label>
-                                <button type="submit" class="full-width icon-check animated" data-animation-type="bounce" data-animation-duration="1">SEARCH NOW</button>
+                                <button type="submit" name="toursubmit" class="full-width icon-check animated" data-animation-type="bounce" data-animation-duration="1">SEARCH NOW</button>
                             </div>
                         </div>
                     </form>

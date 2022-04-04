@@ -28,9 +28,6 @@ include_once 'includes/dbconfig.php';
         <div class="container">
             <div id="main">
                 <div class="row">
-
-
-
                     <div class="col-sm-4 col-md-3">
                         <h4 class="search-results-title"><i class="soap-icon-search"></i>Sort Homes by:</h4>
                         <div class="toggle-container filters-container">
@@ -40,12 +37,11 @@ include_once 'includes/dbconfig.php';
                                     <p>Search</p>
                                 </h4>
                                 <div class="panel-content">
-                                    <form method="post">
+                                    <form action="homes-search-list.php" method="post">
                                         <div class="form-group">
                                             <label>Destination</label>
                                             <div class="selector">
                                                 <select name="district" class="full-width">
-                                                    <option value="" disabled selected>Select District</option>
                                                     <option value="Kandy">Kandy</option>
                                                     <option value="Colombo">Colombo</option>
                                                     <option value="Jaffna">Jaffna</option>
@@ -55,20 +51,19 @@ include_once 'includes/dbconfig.php';
                                         <div class="form-group">
                                             <label>check in</label>
                                             <div class="datepicker-wrap">
-                                                <input type="date" name="sdate" value="<?php echo $_COOKIE['StartDate']; ?>" class="input-text full-width" placeholder="mm/dd/yy" />
+                                                <input type="date" name="sdate" class="input-text full-width" placeholder="mm/dd/yy" />
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label>check out</label>
                                             <div class="datepicker-wrap">
-                                                <input type="date" name="edate" value="<?php echo $_COOKIE['EndDate']; ?>" class="input-text full-width" placeholder="mm/dd/yy" />
+                                                <input type="date" name="edate" class="input-text full-width" placeholder="mm/dd/yy" />
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label>Adults</label>
                                             <div class="selector">
                                                 <select name="cadult" class="full-width">
-                                                    <option value="" disabled selected>Pick Number</option>
                                                     <option value="1">1</option>
                                                     <option value="2">2</option>
                                                     <option value="3">3</option>
@@ -80,7 +75,6 @@ include_once 'includes/dbconfig.php';
                                             <label>Kids</label>
                                             <div class="selector">
                                                 <select name="ckid" class="full-width">
-                                                    <option value="" disabled selected>Pick Number</option>
                                                     <option value="0">No Kids</option>
                                                     <option value="1">1</option>
                                                     <option value="2">2</option>
@@ -93,7 +87,6 @@ include_once 'includes/dbconfig.php';
                                             <label>Rooms</label>
                                             <div class="selector">
                                                 <select name="croom" class="full-width">
-                                                    <option value="" disabled selected>Pick Number</option>
                                                     <option value="1">1</option>
                                                     <option value="2">2</option>
                                                     <option value="3">3</option>
@@ -111,7 +104,6 @@ include_once 'includes/dbconfig.php';
                                             <label>Price Range</label>
                                             <div class="selector">
                                                 <select name="pricerange" class="full-width">
-                                                    <option value="" disabled selected>Select Price Range</option>
                                                     <option value="5000">Below LKR 5000</option>
                                                     <option value="10000">Below LKR 10000</option>
                                                     <option value="15000">Below LKR 15000</option>
@@ -129,12 +121,10 @@ include_once 'includes/dbconfig.php';
                                             <label>Home Type</label>
                                             <div class="selector">
                                                 <select name="htype" class="full-width">
-                                                    <option value="" disabled selected>Select Home Type</option>
                                                     <option value="resort">Resort</option>
                                                     <option value="villa">Villa</option>
                                                     <option value="cabin">Cabin</option>
                                                     <option value="cottage">Cottage</option>
-
                                                 </select>
                                             </div>
                                         </div>
@@ -145,12 +135,6 @@ include_once 'includes/dbconfig.php';
                             </div>
                         </div>
                     </div>
-
-
-
-
-
-
                     <div class="col-sm-8 col-md-9">
                         <div class="sort-by-section box clearfix">
                             <h4 class="sort-by-title block-sm">Recently Listed Homes <i class="fa fa-arrow-down"></i> </h4>
@@ -203,10 +187,10 @@ include_once 'includes/dbconfig.php';
                                 ?>
 
                                 <?php
-                                    $homedata = $home->HomeActiveData();
-                                    foreach ($homedata as $homeinfo) {
+                                $homedata = $home->HomeActiveData();
+                                foreach ($homedata as $homeinfo) {
                                 ?>
-                                        <article class="service-info-crd box">
+                                    <article class="service-info-crd box">
                                         <figure class="col-sm-5 col-md-4">
                                             <a title="" class="popup-gallery"><img width="270" height="160" alt="" src="partner/includes/uploads/<?php echo $homeinfo['cover_img1']; ?>"></a>
                                         </figure>
@@ -238,7 +222,7 @@ include_once 'includes/dbconfig.php';
                                         </div>
                                     </article>
                             <?php   }
-                                }
+                            }
                             ?>
                         </div>
                     </div>
