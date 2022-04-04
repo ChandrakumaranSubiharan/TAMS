@@ -65,7 +65,7 @@ class home
 
 
   // Fetch single data for edit from home table
-  public function displyaRecordById($Id)
+  public function displyaRecordByIdviaArray($Id)
   {
     $query = "SELECT * FROM tbl_home WHERE home_id = '$Id'";
     $result = $this->db->query($query);
@@ -78,6 +78,22 @@ class home
       return $data;
     } else {
       return false;
+    }
+  }
+
+
+  // Fetch single data for edit from tour table
+  public function displyaRecordById($Id)
+  {
+    $query = "SELECT * FROM tbl_home WHERE home_id = '$Id'";
+    $result = $this->db->query($query);
+    if ($result->rowCount() > 0) {
+      while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+        $data = $row;
+      }
+      return $data;
+    } else {
+      echo "Record not found";
     }
   }
 
@@ -257,7 +273,7 @@ class home
   }
 
 
-  public function updateimg($id,$img)
+  public function updateimg($id, $img)
   {
     try {
 

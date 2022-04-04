@@ -6,18 +6,19 @@ include_once 'includes/dbconfig.php';
 <?php include('includes/header.php'); ?>
 
 <?php
-$hid = intval($_GET['homeid']);
-$homedata = $home->displyaRecordByIdviaArray($hid);
-foreach ($homedata as $homeinfo) {
+$tid = intval($_GET['tourid']);
+$tourdata = $tour->displyaRecordByIdviaArray($tid);
+foreach ($tourdata as $tourinfo) {
 ?>
     <div class="page-title-container">
         <div class="container">
             <div class="page-title pull-left">
-                <h2 class="entry-title"><?php echo $homeinfo['home_name']; ?></h2>
+                <h2 class="entry-title"><?php echo $tourinfo['title']; ?></h2>
             </div>
             <ul class="breadcrumbs pull-right">
                 <li><a href="#">HOMES</a></li>
-                <li class="active"><?php echo $homeinfo['home_name']; ?></li>
+                <li><a href="#">TOURS</a></li>
+                <li class="active"><?php echo $tourinfo['title']; ?></li>
             </ul>
         </div>
     </div>
@@ -44,7 +45,7 @@ foreach ($homedata as $homeinfo) {
                                 <div id="photos-tab" class="tab-pane fade in active">
                                     <div class="photo-gallery style1">
                                         <ul class="slides">
-                                            <li><img src="partner/includes/uploads/<?php echo $homeinfo['cover_img1']; ?>" alt="" /></li>
+                                            <li><img src="partner/includes/uploads/<?php echo $tourinfo['image']; ?>" alt="" /></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -103,15 +104,14 @@ foreach ($homedata as $homeinfo) {
                                     <div class="intro table-wrapper full-width hidden-table-sms">
                                         <div class="col-sm-5 col-lg-4 features table-cell">
                                             <ul>
-                                                <li><label>Home type:</label><?php echo $homeinfo['home_type']; ?></li>
-                                                <li><label>Rooms include:</label><?php echo $homeinfo['rooms']; ?></li>
-                                                <li><label>Extra people:</label><?php echo $homeinfo['extra_people']; ?></li>
-                                                <li><label>Province:</label><?php echo $homeinfo['province']; ?></li>
-                                                <li><label>District:</label><?php echo $homeinfo['district']; ?></li>
-                                                <li><label>City:</label><?php echo $homeinfo['location_address']; ?></li>
-                                                <li><label>Cancellation:</label><?php echo $homeinfo['cancellation']; ?> <?php
-                                                                                                                            // if ($result->cancellation == 1)
-                                                                                                                            if ($homeinfo['cancellation'] == 1) {
+                                                <li><label>Tour type:</label><?php echo $tourinfo['tour_type']; ?></li>
+                                                <li><label>Duration:</label><?php echo $tourinfo['duration_days']; ?></li>
+                                                <li><label>Language:</label><?php echo $tourinfo['language']; ?></li>
+                                                <li><label>Ava Seats:</label><?php echo $tourinfo['availabile_seats']; ?></li>
+                                                <li><label>District:</label><?php echo $tourinfo['district']; ?></li>
+                                                <li><label>Starting City:</label><?php echo $tourinfo['location']; ?></li>
+                                                <li><label>Cancellation:</label><?php
+                                                                                                                            if ($tourinfo['cancellation'] == 1) {
                                                                                                                                 echo "Yes";
                                                                                                                             } else {
                                                                                                                                 echo "No";
@@ -132,9 +132,9 @@ foreach ($homedata as $homeinfo) {
                                         </div>
                                     </div>
                                     <div class="long-description">
-                                        <h2>About <?php echo $homeinfo['home_name']; ?></h2>
+                                        <h2>About <?php echo $tourinfo['title']; ?></h2>
                                         <p>
-                                            <?php echo $homeinfo['lg_desc']; ?>
+                                            <?php echo $tourinfo['details']; ?>
                                         </p>
                                     </div>
                                 </div>
@@ -404,13 +404,13 @@ foreach ($homedata as $homeinfo) {
                     <div class="sidebar col-md-3">
                         <article class="detailed-logo">
                             <figure>
-                                <img width="114" height="85" src="partner/includes/uploads/<?php echo $homeinfo['cover_img1']; ?>" alt="">
+                                <img width="114" height="85" src="partner/includes/uploads/<?php echo $tourinfo['image']; ?>" alt="">
 
                             </figure>
-                            <h2 class="box-title"><?php echo $homeinfo['home_name']; ?><small><i class="soap-icon-departure yellow-color"></i><span class="fourty-space"><?php echo $homeinfo['location_address']; ?>, <?php echo $homeinfo['district']; ?></span></small></h2>
+                            <h2 class="box-title"><?php echo $tourinfo['title']; ?><small><i class="soap-icon-departure yellow-color"></i><span class="fourty-space"><?php echo $tourinfo['location']; ?>, <?php echo $tourinfo['district']; ?></span></small></h2>
                             <span class="price clearfix">
                                 <small class="pull-left">avg/night</small>
-                                <span class="pull-right">LKR<?php echo $homeinfo['ava_night_price']; ?></span>
+                                <span class="pull-right">LKR<?php echo $tourinfo['adult_price']; ?></span>
                             </span>
                             <div class="feedback clearfix">
                                 <div title="4 stars" class="five-stars-container" data-toggle="tooltip" data-placement="bottom"><span class="five-stars" style="width: 80%;"></span></div>

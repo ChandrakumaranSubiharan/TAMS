@@ -123,11 +123,6 @@ if (isset($_REQUEST['book'])) {
 </head>
 
 <body>
-
-
-
-
-
     <?php include('includes/header.php'); ?>
     <div class="page-title-container">
         <div class="container">
@@ -141,8 +136,6 @@ if (isset($_REQUEST['book'])) {
             </ul>
         </div>
     </div>
-
-
 
     <section id="content" class="gray-area">
         <div class="container">
