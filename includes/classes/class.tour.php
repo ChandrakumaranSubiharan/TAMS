@@ -64,38 +64,39 @@ class tour
     }
   }
 
-    // Fetch single data for edit from home table
-    public function displyaRecordByIdviaArray($Id)
-    {
-      $query = "SELECT * FROM tbl_tour WHERE tour_id = '$Id'";
-      $result = $this->db->query($query);
-      $data = array();
-  
-      if ($result->rowCount() > 0) {
-        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-          $data[] = $row;
-        }
-        return $data;
-      } else {
-        return false;
-      }
-    }
 
-    // Fetch single data for edit from tour table
-    public function displyaRecordById($Id)
-    {
-      $query = "SELECT * FROM tbl_tour WHERE tour_id = '$Id'";
-      $result = $this->db->query($query);
-      if ($result->rowCount() > 0) {
-        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-          $data = $row;
-        }
-        return $data;
-      } else {
-        echo "Record not found";
+  // Fetch single data for edit from home table
+  public function displyaRecordByIdviaArray($Id)
+  {
+    $query = "SELECT * FROM tbl_tour WHERE tour_id = '$Id'";
+    $result = $this->db->query($query);
+    $data = array();
+
+    if ($result->rowCount() > 0) {
+      while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+        $data[] = $row;
       }
+      return $data;
+    } else {
+      return false;
     }
-  
+  }
+
+  // Fetch single data for edit from tour table
+  public function displyaRecordById($Id)
+  {
+    $query = "SELECT * FROM tbl_tour WHERE tour_id = '$Id'";
+    $result = $this->db->query($query);
+    if ($result->rowCount() > 0) {
+      while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+        $data = $row;
+      }
+      return $data;
+    } else {
+      echo "Record not found";
+    }
+  }
+
 
   // Fetch single data for edit from tour table
   public function displyaImgById($imgid)
@@ -227,6 +228,29 @@ class tour
   public function TourbyDistrictData($district)
   {
     $sql = "SELECT * FROM tbl_tour where status = 1 AND district = '$district' AND ava_start_date >= CURDATE() order by rand()";
+    $query = $this->db->query($sql);
+    $data = array();
+    if ($query->rowCount() > 0) {
+      while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+        $data[] = $row;
+      }
+      return $data;
+    } else {
+      return false;
+    }
+  }
+
+  // Fetch tour records for show listing
+  public function TourSearchData($tdistrict,$tsdate,$tlanguage,$tpricerange,$ttype)
+  {
+    $sql = "SELECT * FROM tbl_tour where status = 1 
+      AND district = '$tdistrict' 
+         AND ava_start_date >= '$tsdate' 
+         AND language = '$tlanguage' 
+         AND adult_price <= '$tpricerange' 
+         AND availabile_seats >= 1
+         AND tour_type = '$ttype' order by rand() ";
+
     $query = $this->db->query($sql);
     $data = array();
     if ($query->rowCount() > 0) {

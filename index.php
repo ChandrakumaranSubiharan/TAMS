@@ -155,8 +155,8 @@ include_once 'includes/dbconfig.php';
                     </form>
                 </div>
                 <div class="tab-pane fade" id="flights-tab">
-                    <form action="tour-search-list.php" method="post">
-                    <input type="text" name="pricerange" hidden value="50000" />
+                    <form action="tours-search-list.php" method="post">
+                        <input type="text" name="pricerange" hidden value="50000" />
                         <div class="row">
                             <div class="form-group col-sm-6 col-md-2">
                                 <h4 class="title">Where</h4>
@@ -169,38 +169,35 @@ include_once 'includes/dbconfig.php';
                                     </select>
                                 </div>
                             </div>
-
                             <div class="form-group col-sm-6 col-md-2">
                                 <h4 class="title">When</h4>
-                                <label>Select a Date</label>
+                                <label>from when onwards</label>
                                 <div class="datepicker-wrap">
                                     <input type="date" name="sdate" class="input-text full-width" placeholder="mm/dd/yy" />
                                 </div>
                             </div>
-
-
                             <div class="form-group col-sm-6 col-md-4">
                                 <h4 class="title">How</h4>
                                 <div class="row">
                                     <div class="col-xs-6">
-                                    <label>Select Tour Type</label>
-                                <div class="selector">
-                                    <select name="ttype" class="full-width">
-                                        <option value="Active Adventure">Active Adventure</option>
-                                        <option value="2">Colombo</option>
-                                        <option value="3">Jaffna</option>
-                                    </select>
-                                </div>
+                                        <label>Select Tour Type</label>
+                                        <div class="selector">
+                                            <select name="ttype" class="full-width">
+                                                <option value="Active Adventure">Active Adventure</option>
+                                                <option value="2">Colombo</option>
+                                                <option value="3">Jaffna</option>
+                                            </select>
+                                        </div>
                                     </div>
                                     <div class="col-xs-6">
-                                    <label>Select Guide Language</label>
-                                    <div class="selector">
-                                    <select name="tlan" class="full-width">
-                                        <option value="english">English</option>
-                                        <option value="tamil">Tamil</option>
-                                        <option value="sinhala">Sinhala</option>
-                                    </select>
-                                </div>
+                                        <label>Select Guide Language</label>
+                                        <div class="selector">
+                                            <select name="tlan" class="full-width">
+                                                <option value="english">English</option>
+                                                <option value="tamil">Tamil</option>
+                                                <option value="sinhala">Sinhala</option>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -395,7 +392,7 @@ include_once 'includes/dbconfig.php';
                             </span>
                             <h4 class="box-title"><?php echo $tourinfo['title']; ?><small>Starting From <?php echo $tourinfo['district']; ?></small></h4>
                             <div class="feedback">
-                                <div class="five-stars-container">Total <?php echo $tourinfo['duration_days'];?> Days</div>
+                                <div class="five-stars-container">Total <?php echo $tourinfo['duration_days']; ?> Days</div>
                                 <span class="review"><?php echo $tourinfo['tour_type']; ?></span>
                             </div>
                             <?php

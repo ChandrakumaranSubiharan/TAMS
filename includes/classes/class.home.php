@@ -291,4 +291,30 @@ class home
       return false;
     }
   }
+
+
+  // Fetch tour records for show listing
+  public function HomeSearchData($Hdistrict,$Hsdate,$Hedate,$Hcadult,$Hckid,$Hcroom,$Hpricerange,$Htype)
+  {
+    $sql = "SELECT * from tbl_home WHERE status = 1 AND ava_start_date >= CURDATE()
+    AND district = '$Hdistrict' 
+    AND ava_start_date >= '$Hsdate' 
+    AND ava_end_date >= '$Hedate' 
+    AND max_adults >= '$Hcadult' 
+    AND max_kids >= '$Hckid' 
+    AND rooms >= '$Hcroom' 
+    AND ava_night_price <= '$Hpricerange'  
+    AND home_type = '$Htype' order by rand() ";
+
+    $query = $this->db->query($sql);
+    $data = array();
+    if ($query->rowCount() > 0) {
+      while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+        $data[] = $row;
+      }
+      return $data;
+    } else {
+      return false;
+    }
+  }
 }

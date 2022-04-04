@@ -31,18 +31,16 @@ include_once 'includes/dbconfig.php';
                     <div class="col-sm-4 col-md-3">
                         <h4 class="search-results-title"><i class="soap-icon-search"></i>Sort Tours by:</h4>
                         <div class="toggle-container filters-container">
-
                             <div class="panel style1 arrow-right">
                                 <h4 class="panel-title">
                                     <p>Search</p>
                                 </h4>
                                 <div class="panel-content">
-                                    <form method="post">
+                                    <form action="tours-search-list.php" method="post">
                                         <div class="form-group">
                                             <label>Destination</label>
                                             <div class="selector">
-                                                <select name="district" class="full-width">
-                                                    <option value="" disabled selected>Select District</option>
+                                                <select name="tdistrict" class="full-width">
                                                     <option value="Kandy">Kandy</option>
                                                     <option value="Colombo">Colombo</option>
                                                     <option value="Jaffna">Jaffna</option>
@@ -50,22 +48,38 @@ include_once 'includes/dbconfig.php';
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label>check in</label>
+                                            <label>from when onwards</label>
                                             <div class="datepicker-wrap">
-                                                <input type="date" name="sdate" value="<?php echo $_COOKIE['StartDate']; ?>" class="input-text full-width" placeholder="mm/dd/yy" />
+                                                <input type="date" name="sdate" class="input-text full-width" placeholder="mm/dd/yy" />
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label>check out</label>
-                                            <div class="datepicker-wrap">
-                                                <input type="date" name="edate" value="<?php echo $_COOKIE['EndDate']; ?>" class="input-text full-width" placeholder="mm/dd/yy" />
+                                            <label>Tour Type</label>
+                                            <div class="selector">
+                                                <select name="ttype" class="full-width">
+                                                    <option value="Active Adventure">Active Adventure</option>
+                                                    <option value="resort">Resort</option>
+                                                    <option value="villa">Villa</option>
+                                                    <option value="cabin">Cabin</option>
+                                                    <option value="cottage">Cottage</option>
+
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label>Adults</label>
+                                            <label>Guide Language</label>
+                                            <div class="selector">
+                                                <select name="tlan" class="full-width">
+                                                    <option value="english">English</option>
+                                                    <option value="tamil">Tamil</option>
+                                                    <option value="sinhala">Sinhala</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Adult</label>
                                             <div class="selector">
                                                 <select name="cadult" class="full-width">
-                                                    <option value="" disabled selected>Pick Number</option>
                                                     <option value="1">1</option>
                                                     <option value="2">2</option>
                                                     <option value="3">3</option>
@@ -77,7 +91,6 @@ include_once 'includes/dbconfig.php';
                                             <label>Kids</label>
                                             <div class="selector">
                                                 <select name="ckid" class="full-width">
-                                                    <option value="" disabled selected>Pick Number</option>
                                                     <option value="0">No Kids</option>
                                                     <option value="1">1</option>
                                                     <option value="2">2</option>
@@ -87,28 +100,9 @@ include_once 'includes/dbconfig.php';
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label>Rooms</label>
-                                            <div class="selector">
-                                                <select name="croom" class="full-width">
-                                                    <option value="" disabled selected>Pick Number</option>
-                                                    <option value="1">1</option>
-                                                    <option value="2">2</option>
-                                                    <option value="3">3</option>
-                                                    <option value="4">4</option>
-                                                    <option value="5">5</option>
-                                                    <option value="6">6</option>
-                                                    <option value="7">7</option>
-                                                    <option value="8">8</option>
-                                                    <option value="9">9</option>
-                                                    <option value="10">10</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
                                             <label>Price Range</label>
                                             <div class="selector">
                                                 <select name="pricerange" class="full-width">
-                                                    <option value="" disabled selected>Select Price Range</option>
                                                     <option value="5000">Below LKR 5000</option>
                                                     <option value="10000">Below LKR 10000</option>
                                                     <option value="15000">Below LKR 15000</option>
@@ -122,21 +116,8 @@ include_once 'includes/dbconfig.php';
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="form-group">
-                                            <label>Home Type</label>
-                                            <div class="selector">
-                                                <select name="htype" class="full-width">
-                                                    <option value="" disabled selected>Select Home Type</option>
-                                                    <option value="resort">Resort</option>
-                                                    <option value="villa">Villa</option>
-                                                    <option value="cabin">Cabin</option>
-                                                    <option value="cottage">Cottage</option>
-
-                                                </select>
-                                            </div>
-                                        </div>
                                         <br />
-                                        <button type="submit" name="homesubmit" class="btn-medium icon-check uppercase full-width">search again</button>
+                                        <button type="submit" name="toursubmit" class="btn-medium icon-check uppercase full-width">search again</button>
                                     </form>
                                 </div>
                             </div>
@@ -284,9 +265,6 @@ include_once 'includes/dbconfig.php';
             </div>
         </div>
     </section>
-
-
-
     <?php include('includes/jsscripts.php'); ?>
     <?php include('includes/footer.php'); ?>
 </body>

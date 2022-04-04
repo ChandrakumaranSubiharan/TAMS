@@ -141,7 +141,7 @@ if (isset($_REQUEST['homesubmit'])) {
                                                 <label>Price Range</label>
                                                 <div class="selector">
                                                     <select name="pricerange" class="full-width">
-                                                        <option value="<?php echo  $_COOKIE['PriceRange'];?>"> Below LKR <?php echo $_COOKIE['PriceRange']; ?></option>
+                                                        <option value="<?php echo  $_COOKIE['PriceRange']; ?>"> Below LKR <?php echo $_COOKIE['PriceRange']; ?></option>
                                                         <option value="5000">Below LKR 5000</option>
                                                         <option value="10000">Below LKR 10000</option>
                                                         <option value="15000">Below LKR 15000</option>
@@ -181,38 +181,19 @@ if (isset($_REQUEST['homesubmit'])) {
                             <h4 class="sort-by-title block-sm">Results for Your Search <i class="fa fa-arrow-down"></i> </h4>
                         </div>
                         <div class="hotel-list listing-style3 hotel">
-
-
                             <?php
-                            $sql = "SELECT * from tbl_home WHERE status = 1 AND ava_start_date >= CURDATE()
-                            AND district = '$Hdistrict' 
-                            AND ava_start_date >= '$Hsdate' 
-                            AND ava_end_date >= '$Hedate' 
-                            AND max_adults >= '$Hcadult' 
-                            AND max_kids >= '$Hckid' 
-                            AND rooms >= '$Hcroom' 
-                            AND ava_night_price <= '$Hpricerange'  
-                            AND home_type = '$Htype' order by rand() ";
-
-
-
-                            $query = $DB_con->prepare($sql);                
-                            $query->execute();
-                            $results = $query->fetchAll(PDO::FETCH_OBJ);
-                            $cnt = 1;
-                            if ($query->rowCount() > 0) {
-                                foreach ($results as $result) {    ?>
-
-
-
+                            $homedata = $home->HomeSearchData($Hdistrict, $Hsdate, $Hedate, $Hcadult, $Hckid, $Hcroom, $Hpricerange, $Htype);
+                            if ($homedata) {
+                                foreach ($homedata as $homeinfo) {
+                            ?>
                                     <article class="box">
                                         <figure class="col-sm-5 col-md-4">
-                                            <a title="" class="popup-gallery"><img width="270" height="160" alt="" src="partner/includes/uploads/<?php echo htmlentities($result->cover_img1); ?>"></a>
+                                            <a title="" class="popup-gallery"><img width="270" height="160" alt="" src="partner/includes/uploads/<?php echo $homeinfo['cover_img1']; ?>"></a>
                                         </figure>
                                         <div class="details col-sm-7 col-md-8">
                                             <div>
                                                 <div>
-                                                    <h4 class="box-title"><?php echo htmlentities($result->home_name); ?><small><i class="soap-icon-departure yellow-color"></i> <?php echo htmlentities($result->district); ?>, Sri Lanka</small><small> <i style="font-size: 17px;" class="soap-icon-availability yellow-color"></i> <?php echo htmlentities($result->ava_start_date); ?> - <?php echo htmlentities($result->ava_end_date); ?> </small></h4> <br />
+                                                    <h4 class="box-title"><?php echo $homeinfo['home_name']; ?><small><i class="soap-icon-departure yellow-color"></i> <?php echo $homeinfo['district']; ?>, Sri Lanka</small><small> <i style="font-size: 17px;" class="soap-icon-availability yellow-color"></i> <?php echo $homeinfo['ava_start_date']; ?> - <?php echo $homeinfo['ava_end_date']; ?> </small></h4> <br />
                                                     <div class="amenities">
                                                         <i class="soap-icon-wifi circle"></i>
                                                         <i class="soap-icon-fitnessfacility circle"></i>
@@ -221,25 +202,24 @@ if (isset($_REQUEST['homesubmit'])) {
                                                     </div>
                                                 </div>
                                                 <div>
-                                                    <span class="review">Includes <br /><?php echo htmlentities($result->rooms); ?> Rooms</span>
+                                                    <span class="review">Includes <br /><?php echo $homeinfo['rooms']; ?> Rooms</span>
                                                 </div>
                                             </div>
                                             <div>
-                                                <p><?php echo htmlentities($result->lg_desc); ?></p>
+                                                <p><?php echo $homeinfo['lg_desc']; ?></p>
                                                 <div>
-
-                                                    <span class="price"><small>AVG/NIGHT</small><?php echo htmlentities($result->ava_night_price); ?></span>
-                                                    <a class="button btn-small full-width text-center" title="" href="home-detailed.php?homeid=<?php echo htmlentities($result->home_id); ?>">SELECT</a>
+                                                    <span class="price"><small>AVG/NIGHT</small><?php echo $homeinfo['ava_night_price']; ?></span>
+                                                    <a class="button btn-small full-width text-center" title="" href="home-detailed.php?homeid=<?php echo $homeinfo['home_id']; ?>">SELECT</a>
                                                 </div>
                                             </div>
                                         </div>
                                     </article>
-
-                            <?php }
-                            } ?>
-
-
-
+                            <?php
+                                }
+                            } else {
+                                echo "Home Not Found.";
+                            }
+                            ?>
                         </div>
                     </div>
                 </div>
