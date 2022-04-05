@@ -244,8 +244,6 @@ include_once 'includes/dbconfig.php';
         </div>
     </div>
 
-
-
     <!-- How Holidayss works container -->
 
     <div class="global-map-area section parallax" data-stellar-background-ratio="0.5">

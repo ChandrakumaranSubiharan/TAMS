@@ -105,17 +105,22 @@ foreach ($tourdata as $tourinfo) {
                                         <div class="col-sm-5 col-lg-4 features table-cell">
                                             <ul>
                                                 <li><label>Tour type:</label><?php echo $tourinfo['tour_type']; ?></li>
-                                                <li><label>Duration:</label><?php echo $tourinfo['duration_days']; ?></li>
                                                 <li><label>Language:</label><?php echo $tourinfo['language']; ?></li>
                                                 <li><label>Ava Seats:</label><?php echo $tourinfo['availabile_seats']; ?></li>
                                                 <li><label>District:</label><?php echo $tourinfo['district']; ?></li>
                                                 <li><label>Starting City:</label><?php echo $tourinfo['location']; ?></li>
+                                                <li><label>Assembly Point:</label><?php echo $tourinfo['gathering_location']; ?></li>
+                                                <li><label>Start Date:</label><?php echo $tourinfo['ava_start_date']; ?></li>
+                                                <li><label>End Date:</label><?php echo $tourinfo['ava_end_date']; ?></li>
+                                                <li><label>Duration:</label><?php echo $tourinfo['duration_days']; ?> Days</li>
+                                                <li><label>Start Time:</label><?php echo date('h:i A', strtotime($tourinfo['s_time']));?></li>
+                                                <li><label>Assembly Point:</label><?php echo $tourinfo['gathering_location']; ?></li>
                                                 <li><label>Cancellation:</label><?php
-                                                                                                                            if ($tourinfo['cancellation'] == 1) {
-                                                                                                                                echo "Yes";
-                                                                                                                            } else {
-                                                                                                                                echo "No";
-                                                                                                                            } ?> </li>
+                                                                                if ($tourinfo['cancellation'] == 1) {
+                                                                                    echo "Yes";
+                                                                                } else {
+                                                                                    echo "No";
+                                                                                } ?> </li>
                                             </ul>
                                         </div>
                                         <div class="col-sm-7 col-lg-8 table-cell testimonials">
@@ -141,69 +146,37 @@ foreach ($tourdata as $tourinfo) {
                                 <div class="tab-pane fade" id="hotel-availability">
                                     <div class="update-search clearfix">
 
-
-
-                                        <form action="home-detail-payment.php" method="post" enctype="multipart/form-data">
-
+                                        <form action="tour-detail-payment.php" method="post" enctype="multipart/form-data">
                                             <!-- hidden inputs -->
-
-                                            <input type="text" name="hoid" hidden value="<?php echo htmlentities($result->home_id); ?>">
-                                            <input type="text" name="honame" hidden value="<?php echo htmlentities($result->home_name); ?>">
-                                            <input type="text" name="hoprice" hidden value="<?php echo htmlentities($result->ava_night_price); ?>">
-                                            <input type="text" name="hotype" hidden value="<?php echo htmlentities($result->home_type); ?>">
-                                            <input type="text" name="holocation" hidden value="<?php echo htmlentities($result->location_address); ?>">
-                                            <input type="text" name="hoimg" hidden value="<?php echo htmlentities($result->cover_img1); ?>">
-                                            <input type="text" name="hodistrict" hidden value="<?php echo htmlentities($result->district); ?>">
-                                            <input type="text" name="horoom" hidden value="<?php echo htmlentities($result->rooms); ?>">
-                                            <input type="text" name="pid" hidden value="<?php echo htmlentities($result->partner_id); ?>">
-                                            <input name="h_ava_s_date" type="date" hidden value="<?php echo htmlentities($result->ava_start_date); ?>">
-                                            <input name="h_ava_e_date" type="date" hidden value="<?php echo htmlentities($result->ava_end_date); ?>">
-                                            <input name="cnight" type="text" id="nights" hidden>
-
-                                            <script>
-                                                $(function() {
-                                                    $("#date1").datepicker();
-                                                    var date1 = $("#date1")
-                                                });
-                                                $(function() {
-                                                    $("#date2").datepicker();
-                                                    var date2 = $("#date2")
-                                                });
-
-                                                function func() {
-                                                    date1 = new Date(date1.value);
-                                                    date2 = new Date(date2.value);
-                                                    var milli_secs = date1.getTime() - date2.getTime();
-                                                    $days = milli_secs / (1000 * 3600 * 24);
-                                                    $("#nights").val(Math.round(Math.abs($days)));
-
-                                                }
-                                            </script>
-
+                                            <input type="text" name="toid" hidden value="<?php echo $tourinfo['tour_id']; ?>">
+                                            <input type="text" name="toprice" hidden value="<?php echo $tourinfo['adult_price']; ?>">
 
                                             <div class="col-md-5">
                                                 <div class="row">
                                                     <div class="col-xs-6">
-                                                        <label>CHECK IN</label>
-                                                        <input type="date" name="sdate" id="date1" class="input-text full-width" min="<?php echo htmlentities($result->ava_start_date); ?>" max="<?php echo htmlentities($result->ava_end_date); ?>" />
+                                                        <label>Tour Start Date</label>
+                                                        <input type="date" name="sdate" value="<?php echo $tourinfo['ava_start_date']; ?>" disabled id="date1" class="input-text full-width"  />
                                                     </div>
                                                     <div class="col-xs-6">
-                                                        <label>CHECK OUT</label>
-                                                        <input type="date" name="edate" id="date2" class="input-text full-width" min="<?php echo htmlentities($result->ava_start_date); ?>" max="<?php echo htmlentities($result->ava_end_date); ?>" />
+                                                        <label>Tour End Date</label>
+                                                        <input type="date" name="edate" value="<?php echo $tourinfo['ava_end_date']; ?>" disabled id="date2" class="input-text full-width"  />
                                                     </div>
                                                 </div>
                                             </div>
                                             <h3 id="ans"></h3>
                                             <div class="col-md-4">
                                                 <div class="row">
-
+                                                <div class="col-xs-4">
+                                                        <label>Tot Days</label>
+                                                        <input type="number" disabled value="<?php echo $tourinfo['duration_days']; ?>"  name="cduration" class="input-text full-width" />
+                                                    </div>
                                                     <div class="col-xs-4">
                                                         <label>ADULTS</label>
-                                                        <input type="number" name="cadult" value="5" class="input-text full-width" />
+                                                        <input type="number" name="cadult" class="input-text full-width" />
                                                     </div>
                                                     <div class="col-xs-4">
                                                         <label>KIDS</label>
-                                                        <input type="number" name="ckids" value="5" class="input-text full-width">
+                                                        <input type="number" name="ckids" class="input-text full-width">
                                                     </div>
                                                 </div>
                                             </div>
@@ -212,7 +185,7 @@ foreach ($tourdata as $tourinfo) {
                                                 <label class="visible-md visible-lg">&nbsp;</label>
                                                 <div class="row">
                                                     <div class="col-xs-9">
-                                                        <button onclick="func()" data-animation-duration="1" name="book" data-animation-type="bounce" type="submit" value="book" class="full-width icon-check animated">BOOK NOW</button>
+                                                        <button data-animation-duration="1" name="book" data-animation-type="bounce" type="submit" value="book" class="full-width icon-check animated">BOOK NOW</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -409,7 +382,7 @@ foreach ($tourdata as $tourinfo) {
                             </figure>
                             <h2 class="box-title"><?php echo $tourinfo['title']; ?><small><i class="soap-icon-departure yellow-color"></i><span class="fourty-space"><?php echo $tourinfo['location']; ?>, <?php echo $tourinfo['district']; ?></span></small></h2>
                             <span class="price clearfix">
-                                <small class="pull-left">avg/night</small>
+                                <small class="pull-left">avg/adult price</small>
                                 <span class="pull-right">LKR<?php echo $tourinfo['adult_price']; ?></span>
                             </span>
                             <div class="feedback clearfix">

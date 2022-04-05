@@ -262,4 +262,20 @@ class tour
       return false;
     }
   }
+
+
+
+  public function TourPriceCalculation($tcadult,$tckid,$tcprice){
+
+    $kid_price = $tcprice/2;
+    
+    $adults_sum_price = $tcadult * $tcprice;
+    $kids_sum_price = $tckid * $kid_price;
+
+    return array(
+      'adults_price'    => $adults_sum_price,
+      'kids_price' => $kids_sum_price
+    );
+
+  }
 }

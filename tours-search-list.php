@@ -215,7 +215,7 @@ if (isset($_REQUEST['toursubmit'])) {
                                                     ?>
                                                     <p><?php echo $string; ?></p>
                                                 </div>
-                                                <a href="cruise-detailed.html" class="button btn-small pull-right view-card">select Tour</a>
+                                                <a class="button btn-small pull-right view-card" href="tour-detailed.php?tourid=<?php echo $tourinfo['tour_id']; ?>">select Tour</a>
                                             </div>
                                         </div>
                                     </article>
