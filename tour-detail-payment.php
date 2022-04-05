@@ -34,8 +34,6 @@ if (isset($_REQUEST['book'])) {
 <html lang="en">
 
 <head>
-
-
     <!-- passing booking values to thank you page via session -->
     <?php
     if (isset($_POST['submit'])) {
@@ -97,11 +95,6 @@ if (isset($_POST['submit'])) {
     }
 }
 ?>
-
-
-
-
-
     <?php include('includes/header.php'); ?>
     <div class="page-title-container">
         <div class="container">

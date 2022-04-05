@@ -109,7 +109,7 @@ foreach ($homedata as $homeinfo) {
                                                 <li><label>Province:</label><?php echo $homeinfo['province']; ?></li>
                                                 <li><label>District:</label><?php echo $homeinfo['district']; ?></li>
                                                 <li><label>City:</label><?php echo $homeinfo['location_address']; ?></li>
-                                                <li><label>Cancellation:</label><?php echo $homeinfo['cancellation']; ?> <?php
+                                                <li><label>Cancellation:</label><?php
                                                                                                                             // if ($result->cancellation == 1)
                                                                                                                             if ($homeinfo['cancellation'] == 1) {
                                                                                                                                 echo "Yes";
