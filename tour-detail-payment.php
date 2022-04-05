@@ -74,10 +74,27 @@ if (isset($_POST['submit'])) {
 
     $net_amount = $earning->TourPercentageCalculate($total_amount);
     $payout = $earning->Payout($total_amount, $net_amount);
-    $insertBookingData = $booking->insertBookingData($total_amount, $cus_fname, $cus_lname, $cus_email, $cus_contact, $cus_card_type, $cus_id, $sdate, $edate, $snights, $total_persons_count, $pid, $kid_count, $adult_count, $serviceid, $servicename, $type);
     $tourUpdate = $tour->tour_update_after_booking($serviceid,$total_persons_count,$availabile_seats);
+    $insertBookingData = $booking->insertBookingData($total_amount, $cus_fname, $cus_lname, $cus_email, $cus_contact, $cus_card_type, $cus_id, $sdate, $edate, $snights, $total_persons_count, $pid, $kid_count, $adult_count, $serviceid, $servicename, $type);
     $insertEarningData = $earning->insertEarningData($pid, $total_amount, $payout, $net_amount, $cus_id, $servicename, $serviceid, $type);
 
+
+    if ($insertBookingData && $insertEarningData && $tourUpdate) {
+
+        $message = "Tour Reservation Success.";
+        echo "<script type='text/javascript'>
+        alert('$message');
+        window.location.href = 'tour-thankyou.php';
+        </script>";
+    } 
+    
+    else {
+        $message = "Tour Reservation unSuccessful. Entered Tourists Count Greater than Available Seats Count";
+        echo "<script type='text/javascript'>
+        alert('$message');
+        window.location.href = 'tour-detailed.php?tourid=$serviceid';
+        </script>";
+    }
 }
 ?>
 

@@ -292,7 +292,7 @@ class tour
 
     $avaseats = $availabile_seats - $total_persons_count ;
 
-    if ($total_persons_count <= $availabile_seats ) {
+    if ($total_persons_count < $availabile_seats ) {
 
       try {
         $stmt = $this->db->prepare("UPDATE tbl_tour SET 
@@ -311,10 +311,11 @@ class tour
 
     } elseif($total_persons_count == $availabile_seats) {
 
-      $sta = false;
+      $sta = "0";
 
       try {
         $stmt = $this->db->prepare("UPDATE tbl_tour SET 
+        
                   availabile_seats=:avaseats,
                   status=:sta
                WHERE tour_id=:id ");
