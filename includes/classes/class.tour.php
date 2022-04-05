@@ -33,7 +33,7 @@ class tour
           // variable to fetch null value
           $emty = NULL;
 
-          $query = "INSERT INTO tbl_tour(title,details,location,tour_type,duration_days,adult_price,image,created_date,partner_id,status,language,district,availabile_seats,ava_start_date,ava_end_date,cancellation)
+          $query = "INSERT INTO tbl_tour(title,details,location,tour_type,duration_nights,adult_price,image,created_date,partner_id,status,language,district,availabile_seats,ava_start_date,ava_end_date,cancellation)
                     VALUES('$tour_title','$tour_details','$tour_location','$tour_type','$tour_duration','$adult_price','$fileNew','$cdate','$pid','$sta','$tour_language','$district','$ava_seats','$str_date','$end_date','$cancel')";
           $sql = $this->db->query($query);
           if ($sql == true) {
@@ -241,7 +241,7 @@ class tour
   }
 
   // Fetch tour records for show listing
-  public function TourSearchData($tdistrict,$tsdate,$tlanguage,$tpricerange,$ttype)
+  public function TourSearchData($tdistrict, $tsdate, $tlanguage, $tpricerange, $ttype)
   {
     $sql = "SELECT * FROM tbl_tour where status = 1 
       AND district = '$tdistrict' 
@@ -265,17 +265,74 @@ class tour
 
 
 
-  public function TourPriceCalculation($tcadult,$tckid,$tcprice){
+  public function TourPriceCalculation($tcadult, $tckid, $tcprice)
+  {
 
-    $kid_price = $tcprice/2;
-    
+
+    $person_sum = $tcadult + $tckid;
+
+    $kid_price = $tcprice / 2;
+
     $adults_sum_price = $tcadult * $tcprice;
     $kids_sum_price = $tckid * $kid_price;
+    $total_amount = $adults_sum_price + $kids_sum_price;
 
     return array(
       'adults_price'    => $adults_sum_price,
-      'kids_price' => $kids_sum_price
+      'kids_price' => $kids_sum_price,
+      'person_sum' => $person_sum,
+      'total_amount' => $total_amount,
+      'kid_price' => $kid_price
     );
+  }
 
+
+  public function tour_update_after_booking($serviceid,$total_persons_count,$availabile_seats)
+  {
+
+    $avaseats = $availabile_seats - $total_persons_count ;
+
+    if ($total_persons_count <= $availabile_seats ) {
+
+      try {
+        $stmt = $this->db->prepare("UPDATE tbl_tour SET 
+                  availabile_seats=:avaseats
+               WHERE tour_id=:id ");
+        $stmt->bindparam(":avaseats", $avaseats);
+        $stmt->bindparam(":id", $serviceid);
+        $stmt->execute();
+
+        return true;
+      } catch (PDOException $e) {
+        echo $e->getMessage();
+        return false;
+      }
+
+
+    } elseif($total_persons_count == $availabile_seats) {
+
+      $sta = false;
+
+      try {
+        $stmt = $this->db->prepare("UPDATE tbl_tour SET 
+                  availabile_seats=:avaseats,
+                  status=:sta
+               WHERE tour_id=:id ");
+        $stmt->bindparam(":avaseats", $avaseats);
+        $stmt->bindparam(":sta", $sta);
+        $stmt->bindparam(":id", $serviceid);
+        $stmt->execute();
+
+        return true;
+      } catch (PDOException $e) {
+        echo $e->getMessage();
+        return false;
+      }
+
+
+    }else {
+
+        return false;
+    }
   }
 }

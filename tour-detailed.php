@@ -105,16 +105,16 @@ foreach ($tourdata as $tourinfo) {
                                         <div class="col-sm-5 col-lg-4 features table-cell">
                                             <ul>
                                                 <li><label>Tour type:</label><?php echo $tourinfo['tour_type']; ?></li>
-                                                <li><label>Language:</label><?php echo $tourinfo['language']; ?></li>
+                                                <li><label>Guide Language:</label><?php echo $tourinfo['language']; ?></li>
                                                 <li><label>Ava Seats:</label><?php echo $tourinfo['availabile_seats']; ?></li>
                                                 <li><label>District:</label><?php echo $tourinfo['district']; ?></li>
                                                 <li><label>Starting City:</label><?php echo $tourinfo['location']; ?></li>
                                                 <li><label>Assembly Point:</label><?php echo $tourinfo['gathering_location']; ?></li>
                                                 <li><label>Start Date:</label><?php echo $tourinfo['ava_start_date']; ?></li>
-                                                <li><label>End Date:</label><?php echo $tourinfo['ava_end_date']; ?></li>
-                                                <li><label>Duration:</label><?php echo $tourinfo['duration_days']; ?> Days</li>
                                                 <li><label>Start Time:</label><?php echo date('h:i A', strtotime($tourinfo['s_time']));?></li>
-                                                <li><label>Assembly Point:</label><?php echo $tourinfo['gathering_location']; ?></li>
+                                                <li><label>End Date:</label><?php echo $tourinfo['ava_end_date']; ?></li>
+                                                <li><label>End Time:</label><?php echo date('h:i A', strtotime($tourinfo['e_time']));?></li>
+                                                <li><label>Duration:</label><?php echo $tourinfo['duration_nights']; ?> Nights</li>
                                                 <li><label>Cancellation:</label><?php
                                                                                 if ($tourinfo['cancellation'] == 1) {
                                                                                     echo "Yes";
@@ -167,8 +167,8 @@ foreach ($tourdata as $tourinfo) {
                                             <div class="col-md-4">
                                                 <div class="row">
                                                 <div class="col-xs-4">
-                                                        <label>Tot Days</label>
-                                                        <input type="number" disabled value="<?php echo $tourinfo['duration_days']; ?>"  name="cduration" class="input-text full-width" />
+                                                        <label>Tot Nights</label>
+                                                        <input type="number" disabled value="<?php echo $tourinfo['duration_nights']; ?>"  name="cduration" class="input-text full-width" />
                                                     </div>
                                                     <div class="col-xs-4">
                                                         <label>ADULTS</label>

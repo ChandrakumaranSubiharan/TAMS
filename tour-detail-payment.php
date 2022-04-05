@@ -4,15 +4,15 @@
 include_once 'includes/dbconfig.php';
 
 
-// if (!$auth->is_logged_in()) {
+if (!$auth->is_logged_in()) {
 
-//     $message = "Please Login Before Making Reservation !";
+    $message = "Please Login Before Making Reservation !";
 
-//     echo "<script type='text/javascript'>
-//         alert('$message');
-//         window.location.href = 'login.php';
-//         </script>";
-// }
+    echo "<script type='text/javascript'>
+        alert('$message');
+        window.location.href = 'login.php';
+        </script>";
+}
 ?>
 
 <!-- retriving from home detailed page via post request -->
@@ -22,32 +22,18 @@ if (isset($_REQUEST['book'])) {
     $tcadult = $_REQUEST['cadult'];
     $tckid = $_REQUEST['ckids'];
     $tcprice = $_REQUEST['toprice'];
-
     $tourprice = $tour->TourPriceCalculation($tcadult, $tckid, $tcprice);
-
-    echo $tourprice['adults_price'] . ' ' . $tourprice['kids_price'];
-
-
-
-
-
-
     $tourdata = $tour->displyaRecordById($tid);
-
-    echo $tourdata['title'];
 }
 ?>
+
+
+
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-
-    <?php
-    // Insert Record in booking table
-    if (isset($_POST['submit'])) {
-    }
-    ?>
 
 
     <!-- passing booking values to thank you page via session -->
@@ -59,6 +45,46 @@ if (isset($_REQUEST['book'])) {
 </head>
 
 <body>
+
+
+<?php
+// Insert Record in booking table
+if (isset($_POST['submit'])) {
+
+
+    $cus_id = $_POST['cusid'];
+    $cus_fname = $_POST['fname'];
+    $cus_lname = $_POST['lname'];
+    $cus_email = $_POST['email'];
+    $cus_contact = $_POST['contact'];
+    $cus_card_type = $_POST['cardtype'];
+    $serviceid = $_POST['tourid'];
+    $adult_count = $_POST['cadult'];
+    $kid_count = $_POST['ckid'];
+    $total_persons_count = $_POST['cpersons'];
+    $total_amount = $_POST['tamount'];
+    $tourdata = $tour->displyaRecordById($serviceid);
+    $pid = $tourdata['partner_id'];
+    $sdate = $tourdata['ava_start_date'];
+    $edate = $tourdata['ava_end_date'];
+    $snights = $tourdata['duration_nights'];
+    $servicename = $tourdata['title'];
+    $availabile_seats = $tourdata['availabile_seats'];
+    $type = 'Tour Package';
+
+    $net_amount = $earning->TourPercentageCalculate($total_amount);
+    $payout = $earning->Payout($total_amount, $net_amount);
+    $insertBookingData = $booking->insertBookingData($total_amount, $cus_fname, $cus_lname, $cus_email, $cus_contact, $cus_card_type, $cus_id, $sdate, $edate, $snights, $total_persons_count, $pid, $kid_count, $adult_count, $serviceid, $servicename, $type);
+    $tourUpdate = $tour->tour_update_after_booking($serviceid,$total_persons_count,$availabile_seats);
+    $insertEarningData = $earning->insertEarningData($pid, $total_amount, $payout, $net_amount, $cus_id, $servicename, $serviceid, $type);
+
+}
+?>
+
+
+
+
+
     <?php include('includes/header.php'); ?>
     <div class="page-title-container">
         <div class="container">
@@ -83,6 +109,11 @@ if (isset($_REQUEST['book'])) {
 
                             <!-- hidden inputs -->
                             <input type="text" name="cusid" hidden value="<?= $returned_row['customer_id']; ?>">
+                            <input type="text" name="tourid" hidden value="<?php echo $tourdata['tour_id']; ?>">
+                            <input type="text" name="tamount" hidden value="<?php echo $tourprice['total_amount']; ?>">
+                            <input type="text" name="cadult" hidden value="<?php echo $tcadult; ?>">
+                            <input type="text" name="ckid" hidden value="<?php echo $tckid; ?>">
+                            <input type="text" name="cpersons" hidden value="<?php echo $tourprice['person_sum']; ?>">
 
 
                             <div class="person-information">
@@ -198,9 +229,9 @@ if (isset($_REQUEST['book'])) {
                         <h4>Booking Details</h4>
                         <article class="image-box hotel listing-style1">
                             <figure class="clearfix">
-                                <a href="hotel-detailed.html" class="middle-block"><img class="middle-item" width="270" height="160" alt="" src="partner/includes/uploads/<?php echo $homeimage; ?>"></a>
+                                <a href="hotel-detailed.html" class="middle-block"><img class="middle-item" width="270" height="160" alt="" src="partner/includes/uploads/<?php echo $tourdata['image']; ?>"></a>
                                 <div class="travel-title">
-                                    <h5 class="box-title"><?php echo $homename ?><small><?php echo $homelocation; ?>, <?php echo $homedistrict; ?></small></h5>
+                                    <h5 class="box-title"><?php echo $tourdata['title']; ?><small><?php echo $tourdata['location']; ?>, <?php echo $tourdata['district']; ?></small></h5>
                                 </div>
                             </figure>
                             <div class="details">
@@ -210,38 +241,66 @@ if (isset($_REQUEST['book'])) {
                                 </div>
                                 <div class="constant-column-3 timing clearfix">
                                     <div class="check-in">
-                                        <label>Check in</label>
-                                        <span><?php echo $startdate; ?><br />6 AM</span>
+                                        <label>Start Date</label>
+                                        <span><?php echo $tourdata['ava_start_date']; ?><br /><?php echo date('h:i A', strtotime($tourdata['s_time'])); ?></span>
                                     </div>
                                     <div class="duration text-center">
                                         <i class="soap-icon-clock"></i>
-                                        <span><?php echo $nightcount; ?> Nights</span>
+                                        <span><?php echo $tourdata['duration_nights']; ?> Nights</span>
                                     </div>
                                     <div class="check-out">
-                                        <label>Check out</label>
-                                        <span><?php echo $enddate; ?><br />12 AM</span>
+                                        <label>End Date</label>
+                                        <span><?php echo $tourdata['ava_end_date']; ?><br /><?php echo date('h:i A', strtotime($tourdata['e_time'])); ?></span>
                                     </div>
-                                </div>
-                                <div class="guest">
-                                    <small class="uppercase">Total : <span class="skin-color"><?php echo $totalcount ?> Persons</span></small>
                                 </div>
                             </div>
                         </article>
 
                         <h4>Other Details</h4>
                         <dl class="other-details">
-                            <dt class="feature">home Type:</dt>
-                            <dd class="value"><?php echo $hometype ?></dd>
-                            <dt class="feature">rooms include:</dt>
-                            <dd class="value"><?php echo $homerooms; ?></dd>
-                            <dt class="feature">per adult price:</dt>
-                            <dd class="value">LKR<?php echo $homeprice; ?></dd>
-                            <dt class="feature">per kid price:</dt>
-                            <dd class="value">LKR<?php echo $kidprice ?></dd>
-                            <dt class="feature"><?php echo $nightcount; ?> night Stay:</dt>
-                            <dd class="value">LKR<?php echo $tot; ?></dd>
-                            <dt class="total-price">Total Price</dt>
-                            <dd class="total-price-value">LKR <?php echo $tot; ?></dd>
+                            <dt class="feature">Tour Type:</dt>
+                            <dd class="value"><?php echo $tourdata['tour_type']; ?></dd>
+
+                            <dt class="feature">Guide Language:</dt>
+                            <dd class="value"><?php echo $tourdata['language']; ?></dd>
+
+                            <dt class="feature">Ava Seats:</dt>
+                            <dd class="value"><?php echo $tourdata['availabile_seats']; ?></dd>
+
+                            <dt class="feature">District:</dt>
+                            <dd class="value"><?php echo $tourdata['district']; ?></dd>
+
+                            <dt class="feature">Starting City:</dt>
+                            <dd class="value"><?php echo $tourdata['location']; ?></dd>
+
+                            <dt class="feature">Assembly Point:</dt>
+                            <dd class="value"><?php echo $tourdata['gathering_location']; ?></dd>
+
+                            <dt class="feature">Cancellation:</dt>
+                            <dd class="value"><?php
+                                                if ($tourdata['cancellation'] == 1) {
+                                                    echo "Yes";
+                                                } else {
+                                                    echo "No";
+                                                } ?></dd>
+
+                            <dt class="feature">Total Seats Reserved:</dt>
+                            <dd class="value"><?php echo $tourprice['person_sum']; ?></dd>
+
+                            <dt class="feature">For Adults:</dt>
+                            <dd class="value"><?php echo $tcadult; ?> Seat</dd>
+
+                            <dt class="feature">For Kids:</dt>
+                            <dd class="value"><?php echo $tckid; ?> Seat</dd>
+
+                            <dt class="feature">Avg/Adult Price:</dt>
+                            <dd class="value"><?php echo $tourdata['adult_price']; ?></dd>
+
+                            <dt class="feature">Avg/Kid Price:</dt>
+                            <dd class="value"><?php echo $tourprice['kid_price']; ?></dd>
+
+                            <dt class="total-price">Total Reservation <br> Amount:</dt>
+                            <dd class="total-price-value">LKR <?php echo $tourprice['total_amount']; ?></dd>
                         </dl>
                     </div>
 

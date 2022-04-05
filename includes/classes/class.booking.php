@@ -10,7 +10,7 @@ class booking
   }
 
   // Insert booking data into booking table
-  public function insertBookingData($tot_amount, $cus_fname, $cus_lname, $cus_email, $cus_contact, $cus_card_type, $cus_id, $b_sdate, $b_edate, $b_tot_night, $b_tot_persons, $b_h_id, $b_h_name, $pid)
+  public function insertBookingData($total_amount, $cus_fname, $cus_lname, $cus_email, $cus_contact, $cus_card_type, $cus_id, $sdate, $edate, $snights, $total_persons_count, $pid, $kid_count, $adult_count, $serviceid, $servicename, $type)
   {
     // variable to fetch home active/inactive status by bool value
     $sta = "0";
@@ -40,27 +40,33 @@ class booking
             payment_status, 
             total_nights, 
             total_persons, 
-            home_id,
-            home_name, 
-            partner_id)
+            partner_id,
+            total_kids,
+            total_adults,
+            service_id,
+            service_name,
+            service_type)
                  VALUES(
-                   '$tot_amount',
+                   '$total_amount',
                    '$cus_fname',
                    '$cus_lname',
                    '$cus_email',
                    '$cus_contact',
                    '$cus_card_type',
                    '$cus_id',
-                   '$b_sdate',
-                   '$b_edate',
+                   '$sdate',
+                   '$edate',
                    '$sta',
                    '$cdate',
                    '$paymentsta',
-                   '$b_tot_night',
-                   '$b_tot_persons',
-                   '$b_h_id',
-                   '$b_h_name',
-                   '$pid')";
+                   '$snights',
+                   '$total_persons_count',
+                   '$pid',
+                   '$kid_count',
+                   '$adult_count',
+                   '$serviceid',
+                   '$servicename',
+                   '$type')";
     $sql = $this->db->query($query);
     if ($sql == true) {
       return true;

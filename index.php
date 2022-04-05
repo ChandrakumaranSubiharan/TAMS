@@ -390,7 +390,7 @@ include_once 'includes/dbconfig.php';
                             </span>
                             <h4 class="box-title"><?php echo $tourinfo['title']; ?><small>Starting From <?php echo $tourinfo['district']; ?></small></h4>
                             <div class="feedback">
-                                <div class="five-stars-container">Total <?php echo $tourinfo['duration_days']; ?> Days</div>
+                                <div class="five-stars-container">Total <?php echo $tourinfo['duration_nights']; ?> Days</div>
                                 <span class="review"><?php echo $tourinfo['tour_type']; ?></span>
                             </div>
                             <?php
