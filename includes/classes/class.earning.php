@@ -10,7 +10,7 @@ class earning
   }
 
   // Insert booking data into booking table
-  public function insertEarningData($pid,$tot,$payout,$net,$cid,$title,$sid,$type)
+  public function insertEarningData($pid,$tot,$payout,$net,$cid,$stitle,$sid,$type)
   {
     // variable to fetch current date time
     $cdate = Date("y-m-d H:i:s");
@@ -22,7 +22,7 @@ class earning
 
 
     $query = "INSERT INTO tbl_earning(partner_id, total_amount, payout, net_amount, customer_id,created_date,service_name,service_id,service_type)
-                 VALUES('$pid','$tot','$payout','$net','$cid','$cdate','$title','$sid','$type')";
+                 VALUES('$pid','$tot','$payout','$net','$cid','$cdate','$stitle','$sid','$type')";
     $sql = $this->db->query($query);
     if ($sql == true) {
       return true;
