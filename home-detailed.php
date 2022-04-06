@@ -105,17 +105,19 @@ foreach ($homedata as $homeinfo) {
                                             <ul>
                                                 <li><label>Home type:</label><?php echo $homeinfo['home_type']; ?></li>
                                                 <li><label>Rooms include:</label><?php echo $homeinfo['rooms']; ?></li>
-                                                <li><label>Extra people:</label><?php echo $homeinfo['extra_people']; ?></li>
+                                                <li><label>Max Adults:</label><?php echo $homeinfo['max_adults']; ?></li>
+                                                <li><label>Max Kids:</label><?php echo $homeinfo['max_kids']; ?></li>
                                                 <li><label>Province:</label><?php echo $homeinfo['province']; ?></li>
                                                 <li><label>District:</label><?php echo $homeinfo['district']; ?></li>
                                                 <li><label>City:</label><?php echo $homeinfo['location_address']; ?></li>
+                                                <li><label>ava start date:</label><?php echo $homeinfo['ava_start_date']; ?></li>
+                                                <li><label>ava end date:</label><?php echo $homeinfo['ava_end_date']; ?></li>
                                                 <li><label>Cancellation:</label><?php
-                                                                                                                            // if ($result->cancellation == 1)
-                                                                                                                            if ($homeinfo['cancellation'] == 1) {
-                                                                                                                                echo "Yes";
-                                                                                                                            } else {
-                                                                                                                                echo "No";
-                                                                                                                            } ?> </li>
+                                                                                if ($homeinfo['cancellation'] == 1) {
+                                                                                    echo "Yes";
+                                                                                } else {
+                                                                                    echo "No";
+                                                                                } ?> </li>
                                             </ul>
                                         </div>
                                         <div class="col-sm-7 col-lg-8 table-cell testimonials">
@@ -141,23 +143,10 @@ foreach ($homedata as $homeinfo) {
                                 <div class="tab-pane fade" id="hotel-availability">
                                     <div class="update-search clearfix">
 
-
-
                                         <form action="home-detail-payment.php" method="post" enctype="multipart/form-data">
 
                                             <!-- hidden inputs -->
-
-                                            <input type="text" name="hoid" hidden value="<?php echo htmlentities($result->home_id); ?>">
-                                            <input type="text" name="honame" hidden value="<?php echo htmlentities($result->home_name); ?>">
-                                            <input type="text" name="hoprice" hidden value="<?php echo htmlentities($result->ava_night_price); ?>">
-                                            <input type="text" name="hotype" hidden value="<?php echo htmlentities($result->home_type); ?>">
-                                            <input type="text" name="holocation" hidden value="<?php echo htmlentities($result->location_address); ?>">
-                                            <input type="text" name="hoimg" hidden value="<?php echo htmlentities($result->cover_img1); ?>">
-                                            <input type="text" name="hodistrict" hidden value="<?php echo htmlentities($result->district); ?>">
-                                            <input type="text" name="horoom" hidden value="<?php echo htmlentities($result->rooms); ?>">
-                                            <input type="text" name="pid" hidden value="<?php echo htmlentities($result->partner_id); ?>">
-                                            <input name="h_ava_s_date" type="date" hidden value="<?php echo htmlentities($result->ava_start_date); ?>">
-                                            <input name="h_ava_e_date" type="date" hidden value="<?php echo htmlentities($result->ava_end_date); ?>">
+                                            <input type="text" name="hoid" hidden value="<?php echo $homeinfo['home_id']; ?>">
                                             <input name="cnight" type="text" id="nights" hidden>
 
                                             <script>
@@ -185,11 +174,11 @@ foreach ($homedata as $homeinfo) {
                                                 <div class="row">
                                                     <div class="col-xs-6">
                                                         <label>CHECK IN</label>
-                                                        <input type="date" name="sdate" id="date1" class="input-text full-width" min="<?php echo htmlentities($result->ava_start_date); ?>" max="<?php echo htmlentities($result->ava_end_date); ?>" />
+                                                        <input type="date" name="sdate" id="date1" class="input-text full-width" min="<?php echo $homeinfo['ava_start_date']; ?>" max="<?php echo $homeinfo['ava_end_date']; ?>" />
                                                     </div>
                                                     <div class="col-xs-6">
                                                         <label>CHECK OUT</label>
-                                                        <input type="date" name="edate" id="date2" class="input-text full-width" min="<?php echo htmlentities($result->ava_start_date); ?>" max="<?php echo htmlentities($result->ava_end_date); ?>" />
+                                                        <input type="date" name="edate" id="date2" class="input-text full-width" min="<?php echo $homeinfo['ava_start_date']; ?>" max="<?php echo $homeinfo['ava_end_date']; ?>" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -199,11 +188,11 @@ foreach ($homedata as $homeinfo) {
 
                                                     <div class="col-xs-4">
                                                         <label>ADULTS</label>
-                                                        <input type="number" name="cadult" value="5" class="input-text full-width" />
+                                                        <input type="number" name="cadult" value="0" class="input-text full-width" />
                                                     </div>
                                                     <div class="col-xs-4">
                                                         <label>KIDS</label>
-                                                        <input type="number" name="ckids" value="5" class="input-text full-width">
+                                                        <input type="number" name="ckids" value="0" class="input-text full-width">
                                                     </div>
                                                 </div>
                                             </div>
@@ -409,8 +398,12 @@ foreach ($homedata as $homeinfo) {
                             </figure>
                             <h2 class="box-title"><?php echo $homeinfo['home_name']; ?><small><i class="soap-icon-departure yellow-color"></i><span class="fourty-space"><?php echo $homeinfo['location_address']; ?>, <?php echo $homeinfo['district']; ?></span></small></h2>
                             <span class="price clearfix">
-                                <small class="pull-left">avg/night</small>
-                                <span class="pull-right">LKR<?php echo $homeinfo['ava_night_price']; ?></span>
+                                <small class="pull-left">avg/night/adult</small>
+                                <span class="pull-right">LKR<?php echo $homeinfo['ava_night_price_adult']; ?></span>
+                            </span>
+                            <span class="price clearfix">
+                                <small class="pull-left">avg/night/kid</small>
+                                <span class="pull-right">LKR<?php echo $homeinfo['ava_night_price_kid']; ?></span>
                             </span>
                             <div class="feedback clearfix">
                                 <div title="4 stars" class="five-stars-container" data-toggle="tooltip" data-placement="bottom"><span class="five-stars" style="width: 80%;"></span></div>

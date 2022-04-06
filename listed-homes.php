@@ -157,7 +157,7 @@ include_once 'includes/dbconfig.php';
                                         <div class="details col-sm-7 col-md-8">
                                             <div>
                                                 <div>
-                                                    <h4 class="box-title"><?php echo $homeinfo['home_name']; ?><small><i class="soap-icon-departure yellow-color"></i><?php echo $homeinfo['district']; ?>, Sri Lanka</small></h4>
+                                                    <h4 class="box-title"><?php echo $homeinfo['home_name']; ?><small><i class="soap-icon-departure yellow-color"></i> <?php echo $homeinfo['district']; ?>, Sri Lanka</small></h4>
                                                     <div class="amenities">
                                                         <i class="soap-icon-wifi circle"></i>
                                                         <i class="soap-icon-fitnessfacility circle"></i>
@@ -175,7 +175,7 @@ include_once 'includes/dbconfig.php';
                                             <div>
                                                 <p><?php echo $homeinfo['lg_desc']; ?></p>
                                                 <div>
-                                                    <span class="price"><small>AVG/NIGHT</small>LKR <?php echo $homeinfo['ava_night_price']; ?></span>
+                                                    <span class="price"><small>AVG/NIGHT</small>LKR <?php echo $homeinfo['ava_night_price_adult']; ?></span>
                                                     <a class="button btn-small full-width text-center view-card" href="home-detailed.php?homeid=<?php echo $homeinfo['home_id']; ?>">Details</a>
                                                 </div>
                                             </div>
@@ -197,7 +197,7 @@ include_once 'includes/dbconfig.php';
                                         <div class="details col-sm-7 col-md-8">
                                             <div>
                                                 <div>
-                                                    <h4 class="box-title"><?php echo $homeinfo['home_name']; ?><small><i class="soap-icon-departure yellow-color"></i><?php echo $homeinfo['district']; ?>, Sri Lanka</small></h4>
+                                                    <h4 class="box-title"><?php echo $homeinfo['home_name']; ?><small><i class="soap-icon-departure yellow-color"></i> <?php echo $homeinfo['district']; ?>, Sri Lanka</small></h4>
                                                     <div class="amenities">
                                                         <i class="soap-icon-wifi circle"></i>
                                                         <i class="soap-icon-fitnessfacility circle"></i>
@@ -215,7 +215,7 @@ include_once 'includes/dbconfig.php';
                                             <div>
                                                 <p><?php echo $homeinfo['lg_desc']; ?></p>
                                                 <div>
-                                                    <span class="price"><small>AVG/NIGHT</small>LKR <?php echo $homeinfo['ava_night_price']; ?></span>
+                                                    <span class="price"><small>AVG/NIGHT</small>LKR <?php echo $homeinfo['ava_night_price_adult']; ?></span>
                                                     <a class="button btn-small full-width text-center view-card" href="home-detailed.php?homeid=<?php echo $homeinfo['home_id']; ?>">Details</a>
                                                 </div>
                                             </div>

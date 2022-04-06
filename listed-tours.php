@@ -209,7 +209,7 @@ include_once 'includes/dbconfig.php';
                                         </figure>
                                         <div class="details col-sm-8">
                                             <div class="clearfix">
-                                                <h4 class="box-title pull-left"><?php echo $tourinfo['title']; ?><small>Total <?php echo $tourinfo['duration_days']; ?> Days</small></h4>
+                                                <h4 class="box-title pull-left"><?php echo $tourinfo['title']; ?><small>Total <?php echo $tourinfo['duration_nights']; ?> Nights</small></h4>
                                                 <span class="price pull-right"><small>from</small>LKR <?php echo $tourinfo['adult_price']; ?></span>
                                             </div>
                                             <div class="character clearfix">

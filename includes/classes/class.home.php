@@ -294,7 +294,7 @@ class home
 
 
   // Fetch tour records for show listing
-  public function HomeSearchData($Hdistrict,$Hsdate,$Hedate,$Hcadult,$Hckid,$Hcroom,$Hpricerange,$Htype)
+  public function HomeSearchData($Hdistrict, $Hsdate, $Hedate, $Hcadult, $Hckid, $Hcroom, $Hpricerange, $Htype)
   {
     $sql = "SELECT * from tbl_home WHERE status = 1 AND ava_start_date >= CURDATE()
     AND district = '$Hdistrict' 
@@ -316,5 +316,43 @@ class home
     } else {
       return false;
     }
+  }
+
+
+  public function HomePriceCalculation($adultcount, $kidcount, $nightcount, $kidprice, $adultprice)
+  {
+
+
+    $total_person_count = $adultcount + $kidcount;
+    $total_adults_price = $nightcount * $adultprice;
+    $total_kids_price = $nightcount * $kidprice;
+    $total_amount = $total_adults_price + $total_kids_price;
+
+
+
+    
+// $tot = $totpersons * $_REQUEST["cnight"];
+    // $kidprice = $adultprice / 2;
+    // $totalcount = $_REQUEST["cadult"] + $_REQUEST["ckids"];
+    // $totadultprice = $_REQUEST["cadult"] * $adultprice;
+    // $totchildprice = $_REQUEST["ckids"] * $kidprice;
+    // $totpersons = $totadultprice + $totchildprice;
+
+
+    // $person_sum = $tcadult + $tckid;
+
+    // $kid_price = $tcprice / 2;
+
+    // $adults_sum_price = $tcadult * $tcprice;
+    // $kids_sum_price = $tckid * $kid_price;
+    // $total_amount = $adults_sum_price + $kids_sum_price;
+
+    return array(
+      'adults_price'    => $adults_sum_price,
+      'kids_price' => $kids_sum_price,
+      'person_sum' => $person_sum,
+      'total_amount' => $total_amount,
+      'kid_price' => $kid_price
+    );
   }
 }

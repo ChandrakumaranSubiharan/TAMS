@@ -333,7 +333,7 @@ include_once 'includes/dbconfig.php';
                         <div class="details">
                             <span class="price">
                                 <small>avg/night</small>
-                                LKR <?php echo $homeinfo['ava_night_price']; ?>
+                                LKR <?php echo $homeinfo['ava_night_price_adult']; ?>
                             </span>
                             <h4 class="box-title"><?php echo $homeinfo['home_name']; ?><small><?php echo $homeinfo['district']; ?>, Sri Lanka</small></h4>
                             <div class="feedback">

@@ -208,7 +208,7 @@ if (isset($_REQUEST['homesubmit'])) {
                                             <div>
                                                 <p><?php echo $homeinfo['lg_desc']; ?></p>
                                                 <div>
-                                                    <span class="price"><small>AVG/NIGHT</small><?php echo $homeinfo['ava_night_price']; ?></span>
+                                                    <span class="price"><small>AVG/NIGHT</small><?php echo $homeinfo['ava_night_price_adult']; ?></span>
                                                     <a class="button btn-small full-width text-center" title="" href="home-detailed.php?homeid=<?php echo $homeinfo['home_id']; ?>">SELECT</a>
                                                 </div>
                                             </div>

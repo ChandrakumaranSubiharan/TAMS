@@ -172,11 +172,11 @@ foreach ($tourdata as $tourinfo) {
                                                     </div>
                                                     <div class="col-xs-4">
                                                         <label>ADULTS</label>
-                                                        <input type="number" name="cadult" class="input-text full-width" />
+                                                        <input type="number" value="0" name="cadult" class="input-text full-width" />
                                                     </div>
                                                     <div class="col-xs-4">
                                                         <label>KIDS</label>
-                                                        <input type="number" name="ckids" class="input-text full-width">
+                                                        <input type="number" value="0" name="ckids" class="input-text full-width">
                                                     </div>
                                                 </div>
                                             </div>
@@ -384,6 +384,10 @@ foreach ($tourdata as $tourinfo) {
                             <span class="price clearfix">
                                 <small class="pull-left">avg/adult price</small>
                                 <span class="pull-right">LKR<?php echo $tourinfo['adult_price']; ?></span>
+                            </span>
+                            <span class="price clearfix">
+                                <small class="pull-left">avg/kid price</small>
+                                <span class="pull-right">LKR<?php echo $tourinfo['kid_price']; ?></span>
                             </span>
                             <div class="feedback clearfix">
                                 <div title="4 stars" class="five-stars-container" data-toggle="tooltip" data-placement="bottom"><span class="five-stars" style="width: 80%;"></span></div>

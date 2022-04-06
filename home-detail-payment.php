@@ -18,29 +18,36 @@ if (!$auth->is_logged_in()) {
 <!-- retriving from home detailed page via post request -->
 <?php
 if (isset($_REQUEST['book'])) {
-    $adultprice = $_REQUEST["hoprice"];
-    $kidprice = $adultprice / 2;
-    $totalcount = $_REQUEST["cadult"] + $_REQUEST["ckids"];
-    $totadultprice = $_REQUEST["cadult"] * $adultprice;
-    $totchildprice = $_REQUEST["ckids"] * $kidprice;
-    $totpersons = $totadultprice + $totchildprice;
-    $tot = $totpersons * $_REQUEST["cnight"];
     $hid = $_REQUEST["hoid"];
-    $partnerid = $_REQUEST["pid"];
-    $homename = $_REQUEST["honame"];
-    $hometype = $_REQUEST["hotype"];
-    $homeprice = $_REQUEST["hoprice"];
     $nightcount = $_REQUEST["cnight"];
-    $homerooms = $_REQUEST["horoom"];
     $startdate = $_REQUEST["sdate"];
     $enddate = $_REQUEST["edate"];
-    $homelocation = $_REQUEST["holocation"];
-    $homedistrict = $_REQUEST["hodistrict"];
-    $homeimage = $_REQUEST["hoimg"];
-    $homeid = $_REQUEST["hoid"];
-    $partnerid = $_REQUEST["pid"];
-    $homeavaStartdate = $_REQUEST["h_ava_s_date"];
-    $homeavaEnddate = $_REQUEST["h_ava_e_date"];
+    $adultcount = $_REQUEST["cadult"];
+    $kidcount = $_REQUEST["ckids"];
+
+    $homedata = $home->displyaRecordById($hid);
+    $kidprice = $homedata['kid_price'];
+    $adultprice = $homedata['adult_price'];
+
+
+
+    $homeprice = $home->HomePriceCalculation($adultcount, $kidcount, $nightcount, $kidprice, $adultprice);
+
+    // $adultprice = $_REQUEST["hoprice"];
+    
+
+    // $partnerid = $_REQUEST["pid"];
+    // $homename = $_REQUEST["honame"];
+    // $hometype = $_REQUEST["hotype"];
+    // $homeprice = $_REQUEST["hoprice"];
+    // $homerooms = $_REQUEST["horoom"];
+    // $homelocation = $_REQUEST["holocation"];
+    // $homedistrict = $_REQUEST["hodistrict"];
+    // $homeimage = $_REQUEST["hoimg"];
+    // $homeid = $_REQUEST["hoid"];
+    // $partnerid = $_REQUEST["pid"];
+    // $homeavaStartdate = $_REQUEST["h_ava_s_date"];
+    // $homeavaEnddate = $_REQUEST["h_ava_e_date"];
 }
 ?>
 
@@ -55,48 +62,48 @@ if (isset($_REQUEST['book'])) {
     // Insert Record in booking table
     if (isset($_POST['submit'])) {
 
-        $tot_amount = $_POST['total'];
-        $cus_fname = $_POST['fname'];
-        $cus_lname = $_POST['lname'];
-        $cus_email = $_POST['email'];
-        $cus_contact = $_POST['contact'];
-        $cus_card_type = $_POST['cardtype'];
-        $cus_id = $_POST['cusid'];
-        $b_sdate = $_POST['homesdate'];
-        $b_edate = $_POST['homeedate'];
-        $b_tot_night = $_POST['totnight'];
-        $b_tot_persons = $_POST['totcount'];
-        $b_h_id = $_POST['homeid'];
-        $b_h_name = $_POST['hname'];
-        $pid = $_POST['partnerid'];
-        $hosdate = $_POST['hstartdate'];
-        $hoedate = $_POST['henddate'];
+        // $tot_amount = $_POST['total'];
+        // $cus_fname = $_POST['fname'];
+        // $cus_lname = $_POST['lname'];
+        // $cus_email = $_POST['email'];
+        // $cus_contact = $_POST['contact'];
+        // $cus_card_type = $_POST['cardtype'];
+        // $cus_id = $_POST['cusid'];
+        // $b_sdate = $_POST['homesdate'];
+        // $b_edate = $_POST['homeedate'];
+        // $b_tot_night = $_POST['totnight'];
+        // $b_tot_persons = $_POST['totcount'];
+        // $b_h_id = $_POST['homeid'];
+        // $b_h_name = $_POST['hname'];
+        // $pid = $_POST['partnerid'];
+        // $hosdate = $_POST['hstartdate'];
+        // $hoedate = $_POST['henddate'];
 
 
-        $net_amount = $earning->PercentageCalculate($tot_amount);
-        $payout = $earning->Payout($tot_amount,$net_amount);
+        // $net_amount = $earning->PercentageCalculate($tot_amount);
+        // $payout = $earning->Payout($tot_amount,$net_amount);
         
-        $insertBookingData = $booking->insertBookingData($tot_amount, $cus_fname, $cus_lname, $cus_email, $cus_contact, $cus_card_type, $cus_id, $b_sdate, $b_edate, $b_tot_night, $b_tot_persons, $b_h_id, $b_h_name, $pid);
-        $homeUpdate = $home->home_update_after_booking($b_h_id,$hosdate,$hoedate,$b_tot_night);
-        $insertEarningData = $earning->insertEarningData($pid, $tot_amount, $payout, $net_amount, $cus_id);
+        // $insertBookingData = $booking->insertBookingData($tot_amount, $cus_fname, $cus_lname, $cus_email, $cus_contact, $cus_card_type, $cus_id, $b_sdate, $b_edate, $b_tot_night, $b_tot_persons, $b_h_id, $b_h_name, $pid);
+        // $homeUpdate = $home->home_update_after_booking($b_h_id,$hosdate,$hoedate,$b_tot_night);
+        // $insertEarningData = $earning->insertEarningData($pid, $tot_amount, $payout, $net_amount, $cus_id);
 
 
-        if ($insertBookingData && $insertEarningData && $homeUpdate) {
+        // if ($insertBookingData && $insertEarningData && $homeUpdate) {
 
-            $message = "Home Reservation Success.";
+        //     $message = "Home Reservation Success.";
 
-            echo "<script type='text/javascript'>
-            alert('$message');
-            window.location.href = 'home-thankyou.php';
-            </script>";
-        } else {
-            $message = "Home Reservation unSuccess.";
+        //     echo "<script type='text/javascript'>
+        //     alert('$message');
+        //     window.location.href = 'home-thankyou.php';
+        //     </script>";
+        // } else {
+        //     $message = "Home Reservation unSuccess.";
 
-            echo "<script type='text/javascript'>
-            alert('$message');
-            window.location.href = 'sdn.php';
-            </script>";
-        }
+        //     echo "<script type='text/javascript'>
+        //     alert('$message');
+        //     window.location.href = 'sdn.php';
+        //     </script>";
+        // }
     }
     ?>
 
@@ -104,19 +111,19 @@ if (isset($_REQUEST['book'])) {
     <!-- passing booking values to thank you page via session -->
     <?php
     if (isset($_POST['submit'])) {
-        $_SESSION['cus_first_name'] = $_POST['fname'];
-        $_SESSION['cus_last_name'] = $_POST['lname'];
-        $_SESSION['cus_email'] = $_POST['email'];
-        $_SESSION['cus_contact'] = $_POST['contact'];
-        $_SESSION['cus_card_type'] = $_POST['cardtype'];
-        $_SESSION['total_amount'] = $_POST['total'];
-        $_SESSION['home_true'] = $_POST['homeid'];
-        $_SESSION['booking_s_date'] = $_POST['homesdate'];
-        $_SESSION['booking_e_date'] = $_POST['homeedate'];
-        $_SESSION['booking_nights'] = $_POST['totnight'];
-        $_SESSION['booking_person_count'] = $_POST['totcount'];
-        $_SESSION['host_id'] = $_POST['partnerid'];
-        $_SESSION['customer_id'] = $_POST['cusid'];
+    //     $_SESSION['cus_first_name'] = $_POST['fname'];
+    //     $_SESSION['cus_last_name'] = $_POST['lname'];
+    //     $_SESSION['cus_email'] = $_POST['email'];
+    //     $_SESSION['cus_contact'] = $_POST['contact'];
+    //     $_SESSION['cus_card_type'] = $_POST['cardtype'];
+    //     $_SESSION['total_amount'] = $_POST['total'];
+    //     $_SESSION['home_true'] = $_POST['homeid'];
+    //     $_SESSION['booking_s_date'] = $_POST['homesdate'];
+    //     $_SESSION['booking_e_date'] = $_POST['homeedate'];
+    //     $_SESSION['booking_nights'] = $_POST['totnight'];
+    //     $_SESSION['booking_person_count'] = $_POST['totcount'];
+    //     $_SESSION['host_id'] = $_POST['partnerid'];
+    //     $_SESSION['customer_id'] = $_POST['cusid'];
     }
     ?>
 
