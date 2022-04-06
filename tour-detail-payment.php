@@ -3,17 +3,17 @@
 // Include database file
 include_once 'includes/dbconfig.php';
 
+
 if (!$auth->is_logged_in()) {
 
     $message = "Please Login Before Making Reservation !";
+
     echo "<script type='text/javascript'>
         alert('$message');
         window.location.href = 'login.php';
         </script>";
 }
 ?>
-
-
 
 <!-- retriving from home detailed page via post request -->
 <?php
@@ -26,8 +26,6 @@ if (isset($_REQUEST['book'])) {
     $tourdata = $tour->displyaRecordById($tid);
 }
 ?>
-
-
 
 
 <!DOCTYPE html>
@@ -43,39 +41,35 @@ if (isset($_REQUEST['book'])) {
     // Insert Record in booking table
     if (isset($_POST['submit'])) {
 
-        $cus_card_holder_name = $_POST['cardholdername'];
-        $cus_card_number = $_POST['cardnumber'];
+        $cus_id = $_POST['cusid'];
+        $cus_fname = $_POST['fname'];
+        $cus_lname = $_POST['lname'];
+        $cus_email = $_POST['email'];
+        $cus_contact = $_POST['contact'];
         $cus_card_type = $_POST['cardtype'];
+        $serviceid = $_POST['tourid'];
+        $adult_count = $_POST['cadult'];
+        $kid_count = $_POST['ckid'];
+        $total_persons_count = $_POST['cpersons'];
+        $total_amount = $_POST['tamount'];
+        $card_holdername= $_POST['cardholdername'];
+        $card_number= $_POST['cardnumber'];
 
-        $customer_id = $returned_row['customer_id'];
-        $customer_fname = $returned_row['first_name'];
-        $customer_lname = $returned_row['last_name'];
-        $customer_email = $returned_row['email_address'];
-        $customer_contact = $returned_row['contact_number'];
-
-
-        $total_amount = $tourprice['total_amount'];
-        $adult_count = $tcadult;
-        $kid_count = $tckid;
-        $total_persons_count = $tourprice['person_sum'];
 
         $tourdata = $tour->displyaRecordById($serviceid);
-
-        $serviceid = $tourdata['tour_id'];
-
         $pid = $tourdata['partner_id'];
         $sdate = $tourdata['ava_start_date'];
         $edate = $tourdata['ava_end_date'];
         $snights = $tourdata['duration_nights'];
         $servicename = $tourdata['title'];
         $availabile_seats = $tourdata['availabile_seats'];
-        $type = 'Tour Package';
+        $stype = 'Tour Package';
 
         $net_amount = $earning->TourPercentageCalculate($total_amount);
         $payout = $earning->Payout($total_amount, $net_amount);
         $tourUpdate = $tour->tour_update_after_booking($serviceid, $total_persons_count, $availabile_seats);
-        $insertBookingData = $booking->insertBookingData($total_amount, $cus_fname, $cus_lname, $cus_email, $cus_contact, $cus_card_type, $cus_id, $sdate, $edate, $snights, $total_persons_count, $pid, $kid_count, $adult_count, $serviceid, $servicename, $type);
-        $insertEarningData = $earning->insertEarningData($pid, $total_amount, $payout, $net_amount, $cus_id, $servicename, $serviceid, $type);
+        $insertBookingData = $booking->insertBookingData($total_amount, $cus_fname, $cus_lname, $cus_email, $cus_contact, $cus_card_type, $cus_id, $sdate, $edate, $snights, $total_persons_count, $pid, $kid_count, $adult_count, $serviceid, $servicename, $stype ,$card_holdername, $card_number);
+        $insertEarningData = $earning->insertEarningData($pid, $total_amount, $payout, $net_amount, $cus_id, $servicename, $serviceid, $stype);
 
         $LAST_INSERTED_ID = $insertBookingData['lastInsertedID'];
 
@@ -117,8 +111,12 @@ if (isset($_REQUEST['book'])) {
                         <form class="booking-form" method="POST">
 
                             <!-- hidden inputs -->
-
-
+                            <input type="text" name="cusid" hidden value="<?= $returned_row['customer_id']; ?>">
+                            <input type="text" name="tourid" hidden value="<?php echo $tourdata['tour_id']; ?>">
+                            <input type="text" name="tamount" hidden value="<?php echo $tourprice['total_amount']; ?>">
+                            <input type="text" name="cadult" hidden value="<?php echo $tcadult; ?>">
+                            <input type="text" name="ckid" hidden value="<?php echo $tckid; ?>">
+                            <input type="text" name="cpersons" hidden value="<?php echo $tourprice['person_sum']; ?>">
 
                             <div class="person-information">
                                 <h2>Your Personal Information</h2>
@@ -166,7 +164,7 @@ if (isset($_REQUEST['book'])) {
                                 <div class="form-group row">
                                     <div class="col-sm-6 col-md-5">
                                         <label>Card number</label>
-                                        <input type="text" name="cardnumber" class="input-text full-width" value="" placeholder="Ex: 1234 5678 9123 4567" />
+                                        <input type="number" name="cardnumber" class="input-text full-width" value="" placeholder="Ex: 1234 5678 9123 4567" />
                                     </div>
                                     <div class="col-sm-6 col-md-5">
                                         <label>CVV Number</label>

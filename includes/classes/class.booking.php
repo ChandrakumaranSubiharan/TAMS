@@ -10,7 +10,7 @@ class booking
   }
 
   // Insert booking data into booking table
-  public function insertBookingData($total_amount, $cus_fname, $cus_lname, $cus_email, $cus_contact, $cus_card_type, $cus_id, $sdate, $edate, $snights, $total_persons_count, $pid, $kid_count, $adult_count, $serviceid, $servicename, $type)
+  public function insertBookingData($total_amount, $cus_fname, $cus_lname, $cus_email, $cus_contact, $cus_card_type, $cus_id, $sdate, $edate, $snights, $total_persons_count, $pid, $kid_count, $adult_count, $serviceid, $servicename, $stype, $card_holdername, $card_number)
   {
     // variable to fetch home active/inactive status by bool value
     $sta = "0";
@@ -44,7 +44,9 @@ class booking
       total_adults,
       service_id,
       service_name,
-      service_type)
+      service_type,
+      payment_card_holder_name,
+      payment_card_number)
            VALUES(
              '$total_amount',
              '$cus_fname',
@@ -65,7 +67,10 @@ class booking
              '$adult_count',
              '$serviceid',
              '$servicename',
-             '$type')";
+             '$stype',
+             '$card_holdername',
+             '$card_number')";
+
     $sql = $this->db->exec($query);
     if ($sql == true) {
       $last_id = $this->db->lastInsertId();
@@ -76,9 +81,6 @@ class booking
       return false;
     }
   }
-
-
-
 
 
   public function GetRecentlyBookedTour()
@@ -95,4 +97,22 @@ class booking
       return false;
     }
   }
+
+
+    // Fetch single data for edit from home table
+    public function displyaRecordByIdviaArray($Id)
+    {
+      $query = "SELECT * FROM tbl_booking WHERE booking_id = '$Id'";
+      $result = $this->db->query($query);
+      $data = array();
+  
+      if ($result->rowCount() > 0) {
+        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+          $data[] = $row;
+        }
+        return $data;
+      } else {
+        return false;
+      }
+    }
 }

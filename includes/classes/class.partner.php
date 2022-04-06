@@ -58,5 +58,23 @@ class partner
   }
   
  }
+
+
+     // Fetch single data for edit from home table
+     public function displyaRecordByIdviaArray($Id)
+     {
+       $query = "SELECT * FROM tbl_partner WHERE partner_id = '$Id'";
+       $result = $this->db->query($query);
+       $data = array();
+   
+       if ($result->rowCount() > 0) {
+         while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+           $data[] = $row;
+         }
+         return $data;
+       } else {
+         return false;
+       }
+     }
  
 }
