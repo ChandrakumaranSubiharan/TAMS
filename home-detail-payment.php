@@ -24,30 +24,11 @@ if (isset($_REQUEST['book'])) {
     $enddate = $_REQUEST["edate"];
     $adultcount = $_REQUEST["cadult"];
     $kidcount = $_REQUEST["ckids"];
+    $kidprice =  $_REQUEST["kidprice"];
+    $adultprice = $_REQUEST["adultprice"];
 
     $homedata = $home->displyaRecordById($hid);
-    $kidprice = $homedata['kid_price'];
-    $adultprice = $homedata['adult_price'];
-
-
-
     $homeprice = $home->HomePriceCalculation($adultcount, $kidcount, $nightcount, $kidprice, $adultprice);
-
-    // $adultprice = $_REQUEST["hoprice"];
-    
-
-    // $partnerid = $_REQUEST["pid"];
-    // $homename = $_REQUEST["honame"];
-    // $hometype = $_REQUEST["hotype"];
-    // $homeprice = $_REQUEST["hoprice"];
-    // $homerooms = $_REQUEST["horoom"];
-    // $homelocation = $_REQUEST["holocation"];
-    // $homedistrict = $_REQUEST["hodistrict"];
-    // $homeimage = $_REQUEST["hoimg"];
-    // $homeid = $_REQUEST["hoid"];
-    // $partnerid = $_REQUEST["pid"];
-    // $homeavaStartdate = $_REQUEST["h_ava_s_date"];
-    // $homeavaEnddate = $_REQUEST["h_ava_e_date"];
 }
 ?>
 
@@ -62,28 +43,34 @@ if (isset($_REQUEST['book'])) {
     // Insert Record in booking table
     if (isset($_POST['submit'])) {
 
-        // $tot_amount = $_POST['total'];
-        // $cus_fname = $_POST['fname'];
-        // $cus_lname = $_POST['lname'];
-        // $cus_email = $_POST['email'];
-        // $cus_contact = $_POST['contact'];
-        // $cus_card_type = $_POST['cardtype'];
-        // $cus_id = $_POST['cusid'];
-        // $b_sdate = $_POST['homesdate'];
-        // $b_edate = $_POST['homeedate'];
-        // $b_tot_night = $_POST['totnight'];
-        // $b_tot_persons = $_POST['totcount'];
-        // $b_h_id = $_POST['homeid'];
-        // $b_h_name = $_POST['hname'];
-        // $pid = $_POST['partnerid'];
-        // $hosdate = $_POST['hstartdate'];
-        // $hoedate = $_POST['henddate'];
+        $cus_id = $_POST['cusid'];
+        $cus_fname = $_POST['fname'];
+        $cus_lname = $_POST['lname'];
+        $cus_email = $_POST['email'];
+        $cus_contact = $_POST['contact'];
+        $cus_card_type = $_POST['cardtype'];
+        $card_holdername= $_POST['cardholdername'];
+        $card_number= $_POST['cardnumber'];
+        $serviceid = $_POST['homeid'];
+        $adult_count = $_POST['totcountadult'];
+        $kid_count = $_POST['totcountkid'];
+        $total_persons_count = $_POST['totcount'];
+        $total_amount = $_POST['total'];
+        $total_night = $_POST['totnight'];
+        $booking_sdate = $_POST['homesdate'];
+        $booking_edate = $_POST['homeedate'];
+
+        $homedata = $home->displyaRecordById($serviceid);
+        $pid = $homedata['partner_id'];
+        $servicename = $homedata['home_name'];
+        $stype = 'Home Stay';
 
 
-        // $net_amount = $earning->PercentageCalculate($tot_amount);
-        // $payout = $earning->Payout($tot_amount,$net_amount);
-        
-        // $insertBookingData = $booking->insertBookingData($tot_amount, $cus_fname, $cus_lname, $cus_email, $cus_contact, $cus_card_type, $cus_id, $b_sdate, $b_edate, $b_tot_night, $b_tot_persons, $b_h_id, $b_h_name, $pid);
+        $net_amount = $earning->HomePercentageCalculate($total_amount);
+        $payout = $earning->Payout($total_amount,$net_amount);
+
+
+        $insertBookingData = $booking->insertBookingData($total_amount, $cus_fname, $cus_lname, $cus_email, $cus_contact, $cus_card_type, $card_holdername, $card_number, $cus_id, $booking_sdate, $booking_edate, $total_night, $total_persons_count, $adult_count, $kid_count, $serviceid, $servicename, $stype, $pid);
         // $homeUpdate = $home->home_update_after_booking($b_h_id,$hosdate,$hoedate,$b_tot_night);
         // $insertEarningData = $earning->insertEarningData($pid, $tot_amount, $payout, $net_amount, $cus_id);
 
@@ -111,19 +98,19 @@ if (isset($_REQUEST['book'])) {
     <!-- passing booking values to thank you page via session -->
     <?php
     if (isset($_POST['submit'])) {
-    //     $_SESSION['cus_first_name'] = $_POST['fname'];
-    //     $_SESSION['cus_last_name'] = $_POST['lname'];
-    //     $_SESSION['cus_email'] = $_POST['email'];
-    //     $_SESSION['cus_contact'] = $_POST['contact'];
-    //     $_SESSION['cus_card_type'] = $_POST['cardtype'];
-    //     $_SESSION['total_amount'] = $_POST['total'];
-    //     $_SESSION['home_true'] = $_POST['homeid'];
-    //     $_SESSION['booking_s_date'] = $_POST['homesdate'];
-    //     $_SESSION['booking_e_date'] = $_POST['homeedate'];
-    //     $_SESSION['booking_nights'] = $_POST['totnight'];
-    //     $_SESSION['booking_person_count'] = $_POST['totcount'];
-    //     $_SESSION['host_id'] = $_POST['partnerid'];
-    //     $_SESSION['customer_id'] = $_POST['cusid'];
+        //     $_SESSION['cus_first_name'] = $_POST['fname'];
+        //     $_SESSION['cus_last_name'] = $_POST['lname'];
+        //     $_SESSION['cus_email'] = $_POST['email'];
+        //     $_SESSION['cus_contact'] = $_POST['contact'];
+        //     $_SESSION['cus_card_type'] = $_POST['cardtype'];
+        //     $_SESSION['total_amount'] = $_POST['total'];
+        //     $_SESSION['home_true'] = $_POST['homeid'];
+        //     $_SESSION['booking_s_date'] = $_POST['homesdate'];
+        //     $_SESSION['booking_e_date'] = $_POST['homeedate'];
+        //     $_SESSION['booking_nights'] = $_POST['totnight'];
+        //     $_SESSION['booking_person_count'] = $_POST['totcount'];
+        //     $_SESSION['host_id'] = $_POST['partnerid'];
+        //     $_SESSION['customer_id'] = $_POST['cusid'];
     }
     ?>
 
@@ -154,17 +141,14 @@ if (isset($_REQUEST['book'])) {
 
                             <!-- hidden inputs -->
                             <input type="text" name="cusid" hidden value="<?= $returned_row['customer_id']; ?>">
-                            <input type="text" name="partnerid" hidden value="<?php echo $partnerid; ?>">
-                            <input type="text" name="homeid" hidden value="<?php echo $homeid; ?>">
-                            <input type="text" name="total" hidden value="<?php echo $tot; ?>">
-                            <input type="text" name="hometype" hidden value="<?php echo $hometype; ?>">
+                            <input type="text" name="homeid" hidden value="<?php echo $homedata['home_id']; ?>">
+                            <input type="text" name="total" hidden value="<?php echo $homeprice['total_amount']; ?>">
                             <input type="text" name="homesdate" hidden value="<?php echo $startdate; ?>">
                             <input type="text" name="homeedate" hidden value="<?php echo $enddate; ?>">
                             <input type="text" name="totnight" hidden value="<?php echo $nightcount; ?>">
-                            <input type="text" name="totcount" hidden value="<?php echo $totalcount; ?>">
-                            <input type="text" name="hname" hidden value="<?php echo $homename; ?>">
-                            <input type="date" name="hstartdate" hidden  value="<?php echo $homeavaStartdate; ?>">
-                            <input type="date" name="henddate" hidden  value="<?php echo $homeavaEnddate; ?>">
+                            <input type="text" name="totcount" hidden value="<?php echo $homeprice['total_person_count']; ?>">
+                            <input type="text" name="totcountadult" hidden value="<?php echo $adultcount; ?>">
+                            <input type="text" name="totcountkid" hidden value="<?php echo $kidcount; ?>">
 
 
 
@@ -208,17 +192,17 @@ if (isset($_REQUEST['book'])) {
                                     </div>
                                     <div class="col-sm-6 col-md-5">
                                         <label>Card holder name</label>
-                                        <input type="text" class="input-text full-width" value="" placeholder="" />
+                                        <input type="text" name="cardholdername" class="input-text full-width" value="" placeholder="Ex: John Doe" />
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 col-md-5">
                                         <label>Card number</label>
-                                        <input type="text" class="input-text full-width" value="" placeholder="" />
+                                        <input type="number" name="cardnumber" class="input-text full-width" value="" placeholder="Ex: 1234 5678 9123 4567" />
                                     </div>
                                     <div class="col-sm-6 col-md-5">
-                                        <label>Card identification number</label>
-                                        <input type="text" class="input-text full-width" value="" placeholder="" />
+                                        <label>CVV Number</label>
+                                        <input type="number" class="input-text full-width" value="" placeholder="Ex: 456" />
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -281,9 +265,9 @@ if (isset($_REQUEST['book'])) {
                         <h4>Booking Details</h4>
                         <article class="image-box hotel listing-style1">
                             <figure class="clearfix">
-                                <a href="hotel-detailed.html" class="middle-block"><img class="middle-item" width="270" height="160" alt="" src="partner/includes/uploads/<?php echo $homeimage; ?>"></a>
+                                <a href="hotel-detailed.html" class="middle-block"><img class="middle-item" width="270" height="160" alt="" src="partner/includes/uploads/<?php echo $homedata['cover_img1'] ?>"></a>
                                 <div class="travel-title">
-                                    <h5 class="box-title"><?php echo $homename ?><small><?php echo $homelocation; ?>, <?php echo $homedistrict; ?></small></h5>
+                                    <h5 class="box-title"><?php echo $homedata['home_name'] ?><small><?php echo $homedata['location_address'] ?>, <?php $homedata['district'] ?></small></h5>
                                 </div>
                             </figure>
                             <div class="details">
@@ -306,7 +290,7 @@ if (isset($_REQUEST['book'])) {
                                     </div>
                                 </div>
                                 <div class="guest">
-                                    <small class="uppercase">Total : <span class="skin-color"><?php echo $totalcount ?> Persons</span></small>
+                                    <small class="uppercase">Total : <span class="skin-color"><?php echo $homeprice['total_person_count'] ?> Persons</span></small>
                                 </div>
                             </div>
                         </article>
@@ -314,17 +298,31 @@ if (isset($_REQUEST['book'])) {
                         <h4>Other Details</h4>
                         <dl class="other-details">
                             <dt class="feature">home Type:</dt>
-                            <dd class="value"><?php echo $hometype ?></dd>
+                            <dd class="value"><?php echo $homedata['home_type'] ?></dd>
                             <dt class="feature">rooms include:</dt>
-                            <dd class="value"><?php echo $homerooms; ?></dd>
+                            <dd class="value"><?php echo $homedata['rooms'] ?></dd>
                             <dt class="feature">per adult price:</dt>
-                            <dd class="value">LKR<?php echo $homeprice; ?></dd>
-                            <dt class="feature">per kid price:</dt>
-                            <dd class="value">LKR<?php echo $kidprice ?></dd>
-                            <dt class="feature"><?php echo $nightcount; ?> night Stay:</dt>
-                            <dd class="value">LKR<?php echo $tot; ?></dd>
+                            <dd class="value">LKR<?php echo $homedata['ava_night_price_adult'] ?></dd>
+                            <?php
+                            if ($kidcount > 0) {
+                            ?>
+                                <dt class="feature">per kid price:</dt>
+                                <dd class="value">LKR<?php echo $homedata['ava_night_price_kid'] ?></dd>
+                            <?php
+                            }
+                            ?>
+                            <dt class="feature"> Total <?php echo $nightcount; ?> Nights <?php echo $adultcount; ?> Adults Price:</dt>
+                            <dd class="value">LKR<?php echo $homeprice['total_adults_price'] ?></dd>
+                            <?php
+                            if ($kidcount > 0) {
+                            ?>
+                                <dt class="feature"> Total <?php echo $nightcount; ?> Nights <?php echo $kidcount; ?> Kids Price:</dt>
+                                <dd class="value">LKR<?php echo $homeprice['total_kids_price'] ?></dd>
+                            <?php
+                            }
+                            ?>
                             <dt class="total-price">Total Price</dt>
-                            <dd class="total-price-value">LKR <?php echo $tot; ?></dd>
+                            <dd class="total-price-value">LKR <?php echo $homeprice['total_amount'] ?></dd>
                         </dl>
                     </div>
 
@@ -341,8 +339,6 @@ if (isset($_REQUEST['book'])) {
             </div>
         </div>
     </section>
-
-
 
 
 

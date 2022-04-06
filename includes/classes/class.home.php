@@ -321,38 +321,22 @@ class home
 
   public function HomePriceCalculation($adultcount, $kidcount, $nightcount, $kidprice, $adultprice)
   {
-
-
     $total_person_count = $adultcount + $kidcount;
-    $total_adults_price = $nightcount * $adultprice;
-    $total_kids_price = $nightcount * $kidprice;
-    $total_amount = $total_adults_price + $total_kids_price;
+
+    $sum_adults_price = $adultcount * $adultprice;
+    $total_nights_adults_price = $nightcount * $sum_adults_price;
+
+    $sum_kids_price = $kidcount * $kidprice;
+    $total__nights_kids_price = $nightcount * $sum_kids_price;
 
 
-
-    
-// $tot = $totpersons * $_REQUEST["cnight"];
-    // $kidprice = $adultprice / 2;
-    // $totalcount = $_REQUEST["cadult"] + $_REQUEST["ckids"];
-    // $totadultprice = $_REQUEST["cadult"] * $adultprice;
-    // $totchildprice = $_REQUEST["ckids"] * $kidprice;
-    // $totpersons = $totadultprice + $totchildprice;
-
-
-    // $person_sum = $tcadult + $tckid;
-
-    // $kid_price = $tcprice / 2;
-
-    // $adults_sum_price = $tcadult * $tcprice;
-    // $kids_sum_price = $tckid * $kid_price;
-    // $total_amount = $adults_sum_price + $kids_sum_price;
+    $total_amount = $total_nights_adults_price + $total__nights_kids_price;
 
     return array(
-      'adults_price'    => $adults_sum_price,
-      'kids_price' => $kids_sum_price,
-      'person_sum' => $person_sum,
+      'total_person_count'    => $total_person_count,
+      'total_adults_price' => $total_nights_adults_price,
+      'total_kids_price' => $total__nights_kids_price,
       'total_amount' => $total_amount,
-      'kid_price' => $kid_price
     );
   }
 }

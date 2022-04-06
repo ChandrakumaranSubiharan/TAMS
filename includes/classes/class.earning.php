@@ -33,7 +33,7 @@ class earning
 
 
 
-  function PercentageCalculate($total_amount){
+  function HomePercentageCalculate($total_amount){
 
     if($total_amount >= 50000){
       $Allocated_percentage = 20;

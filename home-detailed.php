@@ -148,6 +148,8 @@ foreach ($homedata as $homeinfo) {
                                             <!-- hidden inputs -->
                                             <input type="text" name="hoid" hidden value="<?php echo $homeinfo['home_id']; ?>">
                                             <input name="cnight" type="text" id="nights" hidden>
+                                            <input name="adultprice" type="text" value="<?php echo $homeinfo['ava_night_price_adult']; ?>"  hidden>
+                                            <input name="kidprice" type="text" value="<?php echo $homeinfo['ava_night_price_kid']; ?>"  hidden>
 
                                             <script>
                                                 $(function() {
