@@ -3,17 +3,17 @@
 // Include database file
 include_once 'includes/dbconfig.php';
 
-
 if (!$auth->is_logged_in()) {
 
     $message = "Please Login Before Making Reservation !";
-
     echo "<script type='text/javascript'>
         alert('$message');
         window.location.href = 'login.php';
         </script>";
 }
 ?>
+
+
 
 <!-- retriving from home detailed page via post request -->
 <?php
@@ -34,67 +34,66 @@ if (isset($_REQUEST['book'])) {
 <html lang="en">
 
 <head>
-    <!-- passing booking values to thank you page via session -->
-    <?php
-    if (isset($_POST['submit'])) {
-    }
-    ?>
-
 </head>
 
 <body>
 
 
-<?php
-// Insert Record in booking table
-if (isset($_POST['submit'])) {
+    <?php
+    // Insert Record in booking table
+    if (isset($_POST['submit'])) {
+
+        $cus_card_holder_name = $_POST['cardholdername'];
+        $cus_card_number = $_POST['cardnumber'];
+        $cus_card_type = $_POST['cardtype'];
+
+        $customer_id = $returned_row['customer_id'];
+        $customer_fname = $returned_row['first_name'];
+        $customer_lname = $returned_row['last_name'];
+        $customer_email = $returned_row['email_address'];
+        $customer_contact = $returned_row['contact_number'];
 
 
-    $cus_id = $_POST['cusid'];
-    $cus_fname = $_POST['fname'];
-    $cus_lname = $_POST['lname'];
-    $cus_email = $_POST['email'];
-    $cus_contact = $_POST['contact'];
-    $cus_card_type = $_POST['cardtype'];
-    $serviceid = $_POST['tourid'];
-    $adult_count = $_POST['cadult'];
-    $kid_count = $_POST['ckid'];
-    $total_persons_count = $_POST['cpersons'];
-    $total_amount = $_POST['tamount'];
-    $tourdata = $tour->displyaRecordById($serviceid);
-    $pid = $tourdata['partner_id'];
-    $sdate = $tourdata['ava_start_date'];
-    $edate = $tourdata['ava_end_date'];
-    $snights = $tourdata['duration_nights'];
-    $servicename = $tourdata['title'];
-    $availabile_seats = $tourdata['availabile_seats'];
-    $type = 'Tour Package';
+        $total_amount = $tourprice['total_amount'];
+        $adult_count = $tcadult;
+        $kid_count = $tckid;
+        $total_persons_count = $tourprice['person_sum'];
 
-    $net_amount = $earning->TourPercentageCalculate($total_amount);
-    $payout = $earning->Payout($total_amount, $net_amount);
-    $tourUpdate = $tour->tour_update_after_booking($serviceid,$total_persons_count,$availabile_seats);
-    $insertBookingData = $booking->insertBookingData($total_amount, $cus_fname, $cus_lname, $cus_email, $cus_contact, $cus_card_type, $cus_id, $sdate, $edate, $snights, $total_persons_count, $pid, $kid_count, $adult_count, $serviceid, $servicename, $type);
-    $insertEarningData = $earning->insertEarningData($pid, $total_amount, $payout, $net_amount, $cus_id, $servicename, $serviceid, $type);
+        $tourdata = $tour->displyaRecordById($serviceid);
 
+        $serviceid = $tourdata['tour_id'];
 
-    if ($insertBookingData && $insertEarningData && $tourUpdate) {
+        $pid = $tourdata['partner_id'];
+        $sdate = $tourdata['ava_start_date'];
+        $edate = $tourdata['ava_end_date'];
+        $snights = $tourdata['duration_nights'];
+        $servicename = $tourdata['title'];
+        $availabile_seats = $tourdata['availabile_seats'];
+        $type = 'Tour Package';
 
-        $message = "Tour Reservation Success.";
-        echo "<script type='text/javascript'>
+        $net_amount = $earning->TourPercentageCalculate($total_amount);
+        $payout = $earning->Payout($total_amount, $net_amount);
+        $tourUpdate = $tour->tour_update_after_booking($serviceid, $total_persons_count, $availabile_seats);
+        $insertBookingData = $booking->insertBookingData($total_amount, $cus_fname, $cus_lname, $cus_email, $cus_contact, $cus_card_type, $cus_id, $sdate, $edate, $snights, $total_persons_count, $pid, $kid_count, $adult_count, $serviceid, $servicename, $type);
+        $insertEarningData = $earning->insertEarningData($pid, $total_amount, $payout, $net_amount, $cus_id, $servicename, $serviceid, $type);
+
+        $LAST_INSERTED_ID = $insertBookingData['lastInsertedID'];
+
+        if ($insertBookingData && $insertEarningData && $tourUpdate) {
+            $message = "Tour Reservation Success.";
+            echo "<script type='text/javascript'>
         alert('$message');
-        window.location.href = 'tour-thankyou.php';
+        window.location.href = 'tour-thank-you.php?bookingid=$LAST_INSERTED_ID';
         </script>";
-    } 
-    
-    else {
-        $message = "Tour Reservation unSuccessful. Entered Tourists Count Greater than Available Seats Count";
-        echo "<script type='text/javascript'>
+        } else {
+            $message = "Tour Reservation unSuccessful. Entered Tourists Count Greater than Available Seats Count";
+            echo "<script type='text/javascript'>
         alert('$message');
         window.location.href = 'tour-detailed.php?tourid=$serviceid';
         </script>";
+        }
     }
-}
-?>
+    ?>
     <?php include('includes/header.php'); ?>
     <div class="page-title-container">
         <div class="container">
@@ -118,12 +117,7 @@ if (isset($_POST['submit'])) {
                         <form class="booking-form" method="POST">
 
                             <!-- hidden inputs -->
-                            <input type="text" name="cusid" hidden value="<?= $returned_row['customer_id']; ?>">
-                            <input type="text" name="tourid" hidden value="<?php echo $tourdata['tour_id']; ?>">
-                            <input type="text" name="tamount" hidden value="<?php echo $tourprice['total_amount']; ?>">
-                            <input type="text" name="cadult" hidden value="<?php echo $tcadult; ?>">
-                            <input type="text" name="ckid" hidden value="<?php echo $tckid; ?>">
-                            <input type="text" name="cpersons" hidden value="<?php echo $tourprice['person_sum']; ?>">
+
 
 
                             <div class="person-information">
@@ -166,17 +160,17 @@ if (isset($_POST['submit'])) {
                                     </div>
                                     <div class="col-sm-6 col-md-5">
                                         <label>Card holder name</label>
-                                        <input type="text" class="input-text full-width" value="" placeholder="" />
+                                        <input type="text" name="cardholdername" class="input-text full-width" value="" placeholder="Ex: John Doe" />
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 col-md-5">
                                         <label>Card number</label>
-                                        <input type="text" class="input-text full-width" value="" placeholder="" />
+                                        <input type="text" name="cardnumber" class="input-text full-width" value="" placeholder="Ex: 1234 5678 9123 4567" />
                                     </div>
                                     <div class="col-sm-6 col-md-5">
-                                        <label>Card identification number</label>
-                                        <input type="text" class="input-text full-width" value="" placeholder="" />
+                                        <label>CVV Number</label>
+                                        <input type="number" class="input-text full-width" value="" placeholder="Ex: 456" />
                                     </div>
                                 </div>
                                 <div class="form-group row">
