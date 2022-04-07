@@ -147,7 +147,7 @@ include_once 'includes/dbconfig.php';
                                         </figure>
                                         <div class="details col-sm-8">
                                             <div class="clearfix">
-                                                <h4 class="box-title pull-left"><?php echo $tourinfo['title']; ?><small>Total <?php echo $tourinfo['duration_days']; ?> Days</small></h4>
+                                                <h4 class="box-title pull-left"><?php echo $tourinfo['title']; ?><small>Total <?php echo $tourinfo['duration_nights']; ?> Nights</small></h4>
                                                 <span class="price pull-right"><small>from</small>LKR <?php echo $tourinfo['adult_price']; ?></span>
                                             </div>
                                             <div class="character clearfix">
@@ -160,7 +160,7 @@ include_once 'includes/dbconfig.php';
                                                 <div class="col-xs-4 date">
                                                     <i class="soap-icon-clock yellow-color"></i>
                                                     <div>
-                                                        <span class="skin-color">Starting From:</span><br><?php echo $tourinfo['ava_start_end']; ?>
+                                                        <span class="skin-color">Starting From:</span><br><?php echo $tourinfo['ava_start_date']; ?>
                                                     </div>
                                                 </div>
                                                 <div class="col-xs-5 departure">
@@ -190,7 +190,7 @@ include_once 'includes/dbconfig.php';
                                                     ?>
                                                     <p><?php echo $string; ?></p>
                                                 </div>
-                                                <a href="cruise-detailed.html" class="button btn-small pull-right view-card">select Tour</a>
+                                                <a href="tour-detailed.php?tourid=<?php echo $tourinfo['tour_id']; ?>" class="button btn-small pull-right view-card">select Tour</a>
                                             </div>
                                         </div>
                                     </article>
@@ -252,7 +252,7 @@ include_once 'includes/dbconfig.php';
                                                     ?>
                                                     <p><?php echo $string; ?></p>
                                                 </div>
-                                                <a href="cruise-detailed.html" class="button btn-small pull-right view-card">select Tour</a>
+                                                <a href="tour-detailed.php?tourid=<?php echo $tourinfo['tour_id']; ?>"  class="button btn-small pull-right view-card">select Tour</a>
                                             </div>
                                         </div>
                                     </article>

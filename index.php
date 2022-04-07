@@ -371,6 +371,95 @@ include_once 'includes/dbconfig.php';
         </div>
     </div>
 
+
+    <div class="container">
+        <h2>Featured Destinations to Stay</h2>
+        <div class="flexslider image-carousel style2 row-2" data-animation="slide" data-item-width="370" data-item-margin="30">
+            <ul class="slides image-box style11">
+                <li>
+                    <article class="box">
+                        <figure>
+                            <a title="" href="listed-homes.php?district=kandy"><img width="370" height="160" alt="" src="assets/images/districs/kandy.png"></a>
+                            <figcaption>
+                                <h3 class="caption-title">Kandy</h3>
+                                <span>Kandy Homes</span>
+                            </figcaption>
+                        </figure>
+                    </article>
+                    <article class="box">
+                        <figure>
+                            <a title="" href="listed-homes.php?district=colombo"><img width="370" height="160" alt="" src="assets/images/districs/colombo.png"></a>
+                            <figcaption>
+                                <h3 class="caption-title">Colombo</h3>
+                                <span>Colombo Homes</span>
+                            </figcaption>
+                        </figure>
+                    </article>
+                </li>
+                <li>
+                    <article class="box">
+                        <figure>
+                            <a title="" href="listed-homes.php?district=jaffna"><img width="370" height="160" alt="" src="assets/images/districs/jaffna.png"></a>
+                            <figcaption>
+                                <h3 class="caption-title">Jaffna</h3>
+                                <span>Jaffna Homes</span>
+                            </figcaption>
+                        </figure>
+                    </article>
+                    <article class="box">
+                        <figure>
+                            <a title="" href="listed-homes.php?district=galle"><img width="370" height="160" alt="" src="assets/images/districs/galle.png"></a>
+                            <figcaption>
+                                <h3 class="caption-title">Galle</h3>
+                                <span>Galle Homes</span>
+                            </figcaption>
+                        </figure>
+                    </article>
+                </li>
+                <li>
+                    <article class="box">
+                        <figure>
+                            <a title="" href="listed-homes.php?district=trincomalee"><img width="370" height="160" alt="" src="assets/images/districs/trinco.png"></a>
+                            <figcaption>
+                                <h3 class="caption-title">Trincomalee</h3>
+                                <span>Trincomalee Homes</span>
+                            </figcaption>
+                        </figure>
+                    </article>
+                    <article class="box">
+                        <figure>
+                            <a title="" href="listed-homes.php?district=badulla"><img width="370" height="160" alt="" src="assets/images/districs/badulla.png"></a>
+                            <figcaption>
+                                <h3 class="caption-title">Badulla</h3>
+                                <span>Badulla Homes</span>
+                            </figcaption>
+                        </figure>
+                    </article>
+                </li>
+                <li>
+                    <article class="box">
+                        <figure>
+                            <a title="" href="listed-homes.php?district=nuwaraeliya"><img width="370" height="160" alt="" src="assets/images/districs/nuwaraliya.png"></a>
+                            <figcaption>
+                                <h3 class="caption-title">nuwara eliya</h3>
+                                <span>Nuwara eliya Homes</span>
+                            </figcaption>
+                        </figure>
+                    </article>
+                    <article class="box">
+                        <figure>
+                            <a title="" href="listed-homes.php?district=anuradhapura"><img width="370" height="160" alt="" src="assets/images/districs/anuradhapura.png"></a>
+                            <figcaption>
+                                <h3 class="caption-title">Anuradhapura</h3>
+                                <span>Anuradhapura Homes</span>
+                            </figcaption>
+                        </figure>
+                    </article>
+                </li>
+            </ul>
+        </div>
+    </div>
+
     <div class="container">
         <h2>Popular Tour Packages</h2>
         <div class="row image-box hotel listing-style1">
@@ -390,7 +479,7 @@ include_once 'includes/dbconfig.php';
                             </span>
                             <h4 class="box-title"><?php echo $tourinfo['title']; ?><small>Starting From <?php echo $tourinfo['district']; ?></small></h4>
                             <div class="feedback">
-                                <div class="five-stars-container">Total <?php echo $tourinfo['duration_nights']; ?> Days</div>
+                                <div class="five-stars-container">Total <?php echo $tourinfo['duration_nights']; ?> Nights</div>
                                 <span class="review"><?php echo $tourinfo['tour_type']; ?></span>
                             </div>
                             <?php
@@ -422,97 +511,116 @@ include_once 'includes/dbconfig.php';
         </div>
     </div>
 
-
     <div class="container">
-        <div class="section">
-            <h2>Featured Destinations to Stay</h2>
-            <div class="flexslider image-carousel style2 row-2" data-animation="slide" data-item-width="370" data-item-margin="30">
-                <ul class="slides image-box style11">
-                    <li>
-                        <article class="box">
-                            <figure>
-                                <a title="" href="listed-homes.php?district=kandy"><img width="370" height="160" alt="" src="assets/images/districs/kandy.png"></a>
-                                <figcaption>
-                                    <h3 class="caption-title">Kandy</h3>
-                                    <span>Kandy Homes</span>
-                                </figcaption>
-                            </figure>
-                        </article>
-                        <article class="box">
-                            <figure>
-                                <a title="" href="listed-homes.php?district=colombo"><img width="370" height="160" alt="" src="assets/images/districs/colombo.png"></a>
-                                <figcaption>
-                                    <h3 class="caption-title">Colombo</h3>
-                                    <span>Colombo Homes</span>
-                                </figcaption>
-                            </figure>
-                        </article>
-                    </li>
-                    <li>
-                        <article class="box">
-                            <figure>
-                                <a title="" href="listed-homes.php?district=jaffna"><img width="370" height="160" alt="" src="assets/images/districs/jaffna.png"></a>
-                                <figcaption>
-                                    <h3 class="caption-title">Jaffna</h3>
-                                    <span>Jaffna Homes</span>
-                                </figcaption>
-                            </figure>
-                        </article>
-                        <article class="box">
-                            <figure>
-                                <a title="" href="listed-homes.php?district=galle"><img width="370" height="160" alt="" src="assets/images/districs/galle.png"></a>
-                                <figcaption>
-                                    <h3 class="caption-title">Galle</h3>
-                                    <span>Galle Homes</span>
-                                </figcaption>
-                            </figure>
-                        </article>
-                    </li>
-                    <li>
-                        <article class="box">
-                            <figure>
-                                <a title="" href="listed-homes.php?district=trincomalee"><img width="370" height="160" alt="" src="assets/images/districs/trinco.png"></a>
-                                <figcaption>
-                                    <h3 class="caption-title">Trincomalee</h3>
-                                    <span>Trincomalee Homes</span>
-                                </figcaption>
-                            </figure>
-                        </article>
-                        <article class="box">
-                            <figure>
-                                <a title="" href="listed-homes.php?district=badulla"><img width="370" height="160" alt="" src="assets/images/districs/badulla.png"></a>
-                                <figcaption>
-                                    <h3 class="caption-title">Badulla</h3>
-                                    <span>Badulla Homes</span>
-                                </figcaption>
-                            </figure>
-                        </article>
-                    </li>
-                    <li>
-                        <article class="box">
-                            <figure>
-                                <a title="" href="listed-homes.php?district=nuwaraeliya"><img width="370" height="160" alt="" src="assets/images/districs/nuwaraliya.png"></a>
-                                <figcaption>
-                                    <h3 class="caption-title">nuwara eliya</h3>
-                                    <span>Nuwara eliya Homes</span>
-                                </figcaption>
-                            </figure>
-                        </article>
-                        <article class="box">
-                            <figure>
-                                <a title="" href="listed-homes.php?district=anuradhapura"><img width="370" height="160" alt="" src="assets/images/districs/anuradhapura.png"></a>
-                                <figcaption>
-                                    <h3 class="caption-title">Anuradhapura</h3>
-                                    <span>Anuradhapura Homes</span>
-                                </figcaption>
-                            </figure>
-                        </article>
-                    </li>
-                </ul>
-            </div>
-
+        <h2>Top destinations for your next Trip</h2>
+        <div class="flexslider image-carousel style2 row-2" data-animation="slide" data-item-width="370" data-item-margin="30">
+            <ul class="slides image-box style11">
+                <li>
+                    <article class="box">
+                        <figure>
+                            <a title="" href="listed-tours.php?district=kandy"><img width="370" height="160" alt="" src="assets/images/tour district covers/kandy.png"></a>
+                            <figcaption>
+                                <h3 class="caption-title">Kandy</h3>
+                                <span>Kandy Tours</span>
+                            </figcaption>
+                        </figure>
+                    </article>
+                    <article class="box">
+                        <figure>
+                            <a title="" href="listed-tours.php?district=colombo"><img width="370" height="160" alt="" src="assets/images/tour district covers/colombo.png"></a>
+                            <figcaption>
+                                <h3 class="caption-title">Colombo</h3>
+                                <span>Colombo Tours</span>
+                            </figcaption>
+                        </figure>
+                    </article>
+                </li>
+                <li>
+                    <article class="box">
+                        <figure>
+                            <a title="" href="listed-tours.php?district=jaffna"><img width="370" height="160" alt="" src="assets/images/tour district covers/jaffna.png"></a>
+                            <figcaption>
+                                <h3 class="caption-title">Jaffna</h3>
+                                <span>Jaffna Tours</span>
+                            </figcaption>
+                        </figure>
+                    </article>
+                    <article class="box">
+                        <figure>
+                            <a title="" href="listed-tours.php?district=galle"><img width="370" height="160" alt="" src="assets/images/tour district covers/kegalle.png"></a>
+                            <figcaption>
+                                <h3 class="caption-title">Galle</h3>
+                                <span>kegalle Tours</span>
+                            </figcaption>
+                        </figure>
+                    </article>
+                </li>
+                <li>
+                    <article class="box">
+                        <figure>
+                            <a title="" href="listed-tours.php?district=trincomalee"><img width="370" height="160" alt="" src="assets/images/tour district covers/trinco.png"></a>
+                            <figcaption>
+                                <h3 class="caption-title">Trincomalee</h3>
+                                <span>Trincomalee Tours</span>
+                            </figcaption>
+                        </figure>
+                    </article>
+                    <article class="box">
+                        <figure>
+                            <a title="" href="listed-tours.php?district=badulla"><img width="370" height="160" alt="" src="assets/images/tour district covers/badulla.png"></a>
+                            <figcaption>
+                                <h3 class="caption-title">Badulla</h3>
+                                <span>Badulla Tours</span>
+                            </figcaption>
+                        </figure>
+                    </article>
+                </li>
+                <li>
+                    <article class="box">
+                        <figure>
+                            <a title="" href="listed-tours.php?district=nuwaraeliya"><img width="370" height="160" alt="" src="assets/images/tour district covers/nuwaraliya.png"></a>
+                            <figcaption>
+                                <h3 class="caption-title">nuwara eliya</h3>
+                                <span>Nuwara eliya Tours</span>
+                            </figcaption>
+                        </figure>
+                    </article>
+                    <article class="box">
+                        <figure>
+                            <a title="" href="listed-tours.php?district=anuradhapura"><img width="370" height="160" alt="" src="assets/images/tour district covers/anurathapuram.png"></a>
+                            <figcaption>
+                                <h3 class="caption-title">Anuradhapura</h3>
+                                <span>Anuradhapura Tours</span>
+                            </figcaption>
+                        </figure>
+                    </article>
+                </li>
+                <li>
+                    <article class="box">
+                        <figure>
+                            <a title="" href="listed-tours.php?district=polonnaruwa"><img width="370" height="160" alt="" src="assets/images/tour district covers/polannaruwa.png"></a>
+                            <figcaption>
+                                <h3 class="caption-title">Polonnaruwa</h3>
+                                <span>Polonnaruwa Tours</span>
+                            </figcaption>
+                        </figure>
+                    </article>
+                    <article class="box">
+                        <figure>
+                            <a title="" href="listed-tours.php?district=matale"><img width="370" height="160" alt="" src="assets/images/tour district covers/matale.png"></a>
+                            <figcaption>
+                                <h3 class="caption-title">Matale</h3>
+                                <span>Matale Tours</span>
+                            </figcaption>
+                        </figure>
+                    </article>
+                </li>
+            </ul>
         </div>
     </div>
+
+
+
 
 
 
