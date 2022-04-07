@@ -3,18 +3,6 @@
 include_once 'includes/dbconfig.php';
 ?>
 
-<?php
-if (isset($_REQUEST['toursubmit'])) {
-    $_COOKIE['District'] = $_REQUEST['tdistrict'];
-    $_COOKIE['StartDate'] = $_REQUEST['sdate'];
-    $_COOKIE['CountAdult'] = $_REQUEST['cadult'];
-    $_COOKIE['CountKid'] = $_REQUEST['ckid'];
-    $_COOKIE['PriceRange'] = $_REQUEST['pricerange'];
-    $_COOKIE['TourType'] = $_REQUEST['ttype'];
-    $_COOKIE['Language'] = $_REQUEST['tlan'];
-}
-
-?>
 
 <?php
 if (isset($_REQUEST['toursubmit'])) {
@@ -67,7 +55,7 @@ if (isset($_REQUEST['toursubmit'])) {
                                                 <label>Destination</label>
                                                 <div class="selector">
                                                     <select name="tdistrict" class="full-width">
-                                                        <option value="<?php echo $_COOKIE['District']; ?>"><?php echo $_COOKIE['District']; ?></option>
+                                                        <option value="<?php echo $tdistrict; ?>"><?php echo $tdistrict; ?></option>
                                                         <option value="Kandy">Kandy</option>
                                                         <option value="Colombo">Colombo</option>
                                                         <option value="Jaffna">Jaffna</option>
@@ -77,14 +65,14 @@ if (isset($_REQUEST['toursubmit'])) {
                                             <div class="form-group">
                                                 <label>from when onwards</label>
                                                 <div class="datepicker-wrap">
-                                                    <input type="date" name="sdate" value="<?php echo $_COOKIE['StartDate']; ?>" class="input-text full-width" placeholder="mm/dd/yy" />
+                                                    <input type="date" name="sdate" value="<?php echo $tsdate; ?>" class="input-text full-width" placeholder="mm/dd/yy" />
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label>Tour Type</label>
                                                 <div class="selector">
                                                     <select name="ttype" class="full-width">
-                                                        <option value="<?php echo $_COOKIE['TourType']; ?>"><?php echo $_COOKIE['TourType']; ?></option>
+                                                        <option value="<?php echo $ttype; ?>"><?php echo $ttype; ?></option>
                                                         <option value="Active Adventure">Active Adventure</option>
                                                         <option value="resort">Resort</option>
                                                         <option value="villa">Villa</option>
@@ -98,7 +86,7 @@ if (isset($_REQUEST['toursubmit'])) {
                                                 <label>Guide Language</label>
                                                 <div class="selector">
                                                     <select name="tlan" class="full-width">
-                                                        <option value="<?php echo $_COOKIE['Language']; ?>"><?php echo $_COOKIE['Language']; ?></option>
+                                                        <option value="<?php echo $tlanguage; ?>"><?php echo $tlanguage; ?></option>
                                                         <option value="english">English</option>
                                                         <option value="tamil">Tamil</option>
                                                         <option value="sinhala">Sinhala</option>
@@ -109,7 +97,7 @@ if (isset($_REQUEST['toursubmit'])) {
                                                 <label>Adult</label>
                                                 <div class="selector">
                                                     <select name="cadult" class="full-width">
-                                                        <option value="<?php echo $_COOKIE['CountAdult']; ?>"><?php echo $_COOKIE['CountAdult']; ?></option>
+                                                        <option value="<?php echo $tcadult; ?>"><?php echo $tcadult; ?></option>
                                                         <option value="1">1</option>
                                                         <option value="2">2</option>
                                                         <option value="3">3</option>
@@ -121,7 +109,7 @@ if (isset($_REQUEST['toursubmit'])) {
                                                 <label>Kids</label>
                                                 <div class="selector">
                                                     <select name="ckid" class="full-width">
-                                                        <option value="<?php echo $_COOKIE['CountKid']; ?>"><?php echo $_COOKIE['CountKid']; ?></option>
+                                                        <option value="<?php echo $tckid;?>"><?php if($tckid == 0){echo 'No Kids';}else{echo $tckid;}?></option>
                                                         <option value="0">No Kids</option>
                                                         <option value="1">1</option>
                                                         <option value="2">2</option>
@@ -134,7 +122,7 @@ if (isset($_REQUEST['toursubmit'])) {
                                                 <label>Price Range</label>
                                                 <div class="selector">
                                                     <select name="pricerange" class="full-width">
-                                                        <option value="<?php echo  $_COOKIE['PriceRange']; ?>"> Below LKR <?php echo $_COOKIE['PriceRange']; ?></option>
+                                                        <option value="<?php echo  $tpricerange; ?>"> Below LKR <?php echo $tpricerange; ?></option>
                                                         <option value="5000">Below LKR 5000</option>
                                                         <option value="10000">Below LKR 10000</option>
                                                         <option value="15000">Below LKR 15000</option>

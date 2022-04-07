@@ -3,21 +3,6 @@
 include_once 'includes/dbconfig.php';
 ?>
 
-<?php
-if (isset($_REQUEST['homesubmit'])) {
-    $_COOKIE['District'] = $_REQUEST['district'];
-    $_COOKIE['StartDate'] = $_REQUEST['sdate'];
-    $_COOKIE['EndDate'] = $_REQUEST['edate'];
-    $_COOKIE['CountAdult'] = $_REQUEST['cadult'];
-    $_COOKIE['CountKid'] = $_REQUEST['ckid'];
-    $_COOKIE['CountRoom'] = $_REQUEST['croom'];
-    $_COOKIE['APriceRange'] = $_REQUEST['adultpricerange'];
-    $_COOKIE['HomeType'] = $_REQUEST['htype'];
-}
-
-?>
-
-
 <!-- retriving from home detailed page via post request -->
 <?php
 if (isset($_REQUEST['homesubmit'])) {
@@ -30,9 +15,7 @@ if (isset($_REQUEST['homesubmit'])) {
     $Hapricerange = $_REQUEST['adultpricerange'];
     $Htype = $_REQUEST['htype'];
 }
-
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -74,7 +57,7 @@ if (isset($_REQUEST['homesubmit'])) {
                                                 <label>Destination</label>
                                                 <div class="selector">
                                                     <select name="district" class="full-width">
-                                                        <option value="<?php echo $_COOKIE['District']; ?>"><?php echo $_COOKIE['District']; ?></option>
+                                                        <option value="<?php echo $Hdistrict; ?>"><?php echo $Hdistrict; ?></option>
                                                         <option value="Kandy">Kandy</option>
                                                         <option value="Colombo">Colombo</option>
                                                         <option value="Jaffna">Jaffna</option>
@@ -84,20 +67,20 @@ if (isset($_REQUEST['homesubmit'])) {
                                             <div class="form-group">
                                                 <label>check in</label>
                                                 <div class="datepicker-wrap">
-                                                    <input type="date" name="sdate" value="<?php echo $_COOKIE['StartDate']; ?>" class="input-text full-width" placeholder="mm/dd/yy" />
+                                                    <input type="date" name="sdate" value="<?php echo $Hsdate; ?>" class="input-text full-width" placeholder="mm/dd/yy" />
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label>check out</label>
                                                 <div class="datepicker-wrap">
-                                                    <input type="date" name="edate" value="<?php echo $_COOKIE['EndDate']; ?>" class="input-text full-width" placeholder="mm/dd/yy" />
+                                                    <input type="date" name="edate" value="<?php echo $Hedate; ?>" class="input-text full-width" placeholder="mm/dd/yy" />
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label>Adults</label>
                                                 <div class="selector">
                                                     <select name="cadult" class="full-width">
-                                                        <option value="<?php echo $_COOKIE['CountAdult']; ?>"><?php echo $_COOKIE['CountAdult']; ?></option>
+                                                        <option value="<?php echo $Hcadult; ?>"><?php echo $Hcadult; ?></option>
                                                         <option value="1">1</option>
                                                         <option value="2">2</option>
                                                         <option value="3">3</option>
@@ -109,7 +92,7 @@ if (isset($_REQUEST['homesubmit'])) {
                                                 <label>Kids</label>
                                                 <div class="selector">
                                                     <select name="ckid" class="full-width">
-                                                        <option value="<?php echo $_COOKIE['CountKid']; ?>"><?php echo $_COOKIE['CountKid']; ?></option>
+                                                        <option value="<?php echo $Hckid; ?>"><?php if($Hckid == 0){echo 'No Kids';}else{echo $Hckid;}?></option>
                                                         <option value="0">No Kids</option>
                                                         <option value="1">1</option>
                                                         <option value="2">2</option>
@@ -122,7 +105,7 @@ if (isset($_REQUEST['homesubmit'])) {
                                                 <label>Rooms</label>
                                                 <div class="selector">
                                                     <select name="croom" class="full-width">
-                                                        <option value="<?php echo $_COOKIE['CountRoom']; ?>"><?php echo $_COOKIE['CountRoom']; ?></option>
+                                                        <option value="<?php echo $Hcroom; ?>"><?php echo $Hcroom; ?></option>
                                                         <option value="1">1</option>
                                                         <option value="2">2</option>
                                                         <option value="3">3</option>
@@ -140,7 +123,7 @@ if (isset($_REQUEST['homesubmit'])) {
                                                 <label>Adult Price Range</label>
                                                 <div class="selector">
                                                     <select name="adultpricerange" class="full-width">
-                                                        <option value="<?php echo  $_COOKIE['APriceRange']; ?>"> Below LKR <?php echo $_COOKIE['APriceRange']; ?></option>
+                                                        <option value="<?php echo  $Hapricerange; ?>"> Below LKR <?php echo $Hapricerange; ?></option>
                                                         <option value="5000">Below LKR 5000</option>
                                                         <option value="10000">Below LKR 10000</option>
                                                         <option value="15000">Below LKR 15000</option>
@@ -158,12 +141,11 @@ if (isset($_REQUEST['homesubmit'])) {
                                                 <label>Home Type</label>
                                                 <div class="selector">
                                                     <select name="htype" class="full-width">
-                                                        <option value="<?php echo $_COOKIE['HomeType']; ?>"><?php echo $_COOKIE['HomeType']; ?></option>
+                                                        <option value="<?php echo $Htype; ?>"><?php echo $Htype; ?></option>
                                                         <option value="resort">Resort</option>
                                                         <option value="villa">Villa</option>
                                                         <option value="cabin">Cabin</option>
                                                         <option value="cottage">Cottage</option>
-
                                                     </select>
                                                 </div>
                                             </div>

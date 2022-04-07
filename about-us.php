@@ -141,7 +141,6 @@ include_once 'includes/dbconfig.php';
                     </div>
                 </div>
 
-
                 <h2>Our Investors Relations</h2>
                 <div class="investor-slideshow image-carousel style2 investor-list" data-animation="slide" data-item-width="170" data-item-margin="30">
                     <ul class="slides">

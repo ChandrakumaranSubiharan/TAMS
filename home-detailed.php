@@ -148,8 +148,8 @@ foreach ($homedata as $homeinfo) {
                                             <!-- hidden inputs -->
                                             <input type="text" name="hoid" hidden value="<?php echo $homeinfo['home_id']; ?>">
                                             <input name="cnight" type="text" id="nights" hidden>
-                                            <input name="adultprice" type="text" value="<?php echo $homeinfo['ava_night_price_adult']; ?>"  hidden>
-                                            <input name="kidprice" type="text" value="<?php echo $homeinfo['ava_night_price_kid']; ?>"  hidden>
+                                            <input name="adultprice" type="text" value="<?php echo $homeinfo['ava_night_price_adult']; ?>" hidden>
+                                            <input name="kidprice" type="text" value="<?php echo $homeinfo['ava_night_price_kid']; ?>" hidden>
 
                                             <script>
                                                 $(function() {
@@ -187,14 +187,13 @@ foreach ($homedata as $homeinfo) {
                                             <h3 id="ans"></h3>
                                             <div class="col-md-4">
                                                 <div class="row">
-
                                                     <div class="col-xs-4">
                                                         <label>ADULTS</label>
-                                                        <input type="number" name="cadult" value="0" class="input-text full-width" />
+                                                        <input type="number" name="cadult" min="1" max="<?php echo $homeinfo['max_adults']; ?>" value="1" class="input-text full-width" />
                                                     </div>
                                                     <div class="col-xs-4">
                                                         <label>KIDS</label>
-                                                        <input type="number" name="ckids" value="0" class="input-text full-width">
+                                                        <input type="number" name="ckids" min="0" max="<?php echo $homeinfo['max_kids']; ?>" value="0" class="input-text full-width">
                                                     </div>
                                                 </div>
                                             </div>

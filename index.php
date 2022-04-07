@@ -110,6 +110,7 @@ include_once 'includes/dbconfig.php';
                                         <label>Kids</label>
                                         <div class="selector">
                                             <select name="ckid" class="full-width">
+                                                <option value="0">No</option>
                                                 <option value="1">1</option>
                                                 <option value="2">2</option>
                                                 <option value="3">3</option>
