@@ -131,11 +131,10 @@ include_once 'includes/dbconfig.php';
                         </div>
                         <div class="cruise-list listing-style3 cruise">
 
-
                             <?php
-
                             if (isset($_GET['district'])) {
                                 $bydistrict = ($_GET['district']);
+
 
                                 $tourdata = $tour->TourbyDistrictData($bydistrict);
                                 foreach ($tourdata as $tourinfo) {
@@ -252,7 +251,7 @@ include_once 'includes/dbconfig.php';
                                                     ?>
                                                     <p><?php echo $string; ?></p>
                                                 </div>
-                                                <a href="tour-detailed.php?tourid=<?php echo $tourinfo['tour_id']; ?>"  class="button btn-small pull-right view-card">select Tour</a>
+                                                <a href="tour-detailed.php?tourid=<?php echo $tourinfo['tour_id']; ?>" class="button btn-small pull-right view-card">select Tour</a>
                                             </div>
                                         </div>
                                     </article>

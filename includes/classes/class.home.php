@@ -303,7 +303,7 @@ class home
     AND max_adults >= '$Hcadult' 
     AND max_kids >= '$Hckid' 
     AND rooms >= '$Hcroom' 
-    AND ava_night_price <= '$Hpricerange'  
+    AND ava_night_price_adult <= '$Hpricerange'  
     AND home_type = '$Htype' order by rand() ";
 
     $query = $this->db->query($sql);

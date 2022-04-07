@@ -60,7 +60,7 @@ include_once 'includes/dbconfig.php';
             <div class="search-tab-content">
                 <div class="tab-pane fade active in" id="hotels-tab">
                     <form action="homes-search-list.php" method="post">
-                        <input type="text" name="pricerange" hidden value="50000" />
+                        <input type="text" name="adultpricerange" hidden value="50000" />
                         <div class="row">
                             <div class="form-group col-sm-6 col-md-2">
                                 <h4 class="title">Where</h4>
@@ -306,7 +306,7 @@ include_once 'includes/dbconfig.php';
                 </div>
             </a>
 
-            <a href="tours-search-list.php" target="_blank">
+            <a href="listed-tours.php" target="_blank">
                 <div class="col-md-4 col-sm-6">
                     <div class="service-card-single">
                         <img src="assets/images/services card images/mantas-hesthaven-_g1WdcKcV3w-unsplash.jpg" alt="">

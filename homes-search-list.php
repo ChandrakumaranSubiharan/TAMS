@@ -11,7 +11,7 @@ if (isset($_REQUEST['homesubmit'])) {
     $_COOKIE['CountAdult'] = $_REQUEST['cadult'];
     $_COOKIE['CountKid'] = $_REQUEST['ckid'];
     $_COOKIE['CountRoom'] = $_REQUEST['croom'];
-    $_COOKIE['PriceRange'] = $_REQUEST['pricerange'];
+    $_COOKIE['APriceRange'] = $_REQUEST['adultpricerange'];
     $_COOKIE['HomeType'] = $_REQUEST['htype'];
 }
 
@@ -27,12 +27,11 @@ if (isset($_REQUEST['homesubmit'])) {
     $Hcadult = $_REQUEST["cadult"];
     $Hckid = $_REQUEST["ckid"];
     $Hcroom = $_REQUEST["croom"];
-    $Hpricerange = $_REQUEST['pricerange'];
+    $Hapricerange = $_REQUEST['adultpricerange'];
     $Htype = $_REQUEST['htype'];
 }
 
 ?>
-
 
 
 <!DOCTYPE html>
@@ -138,10 +137,10 @@ if (isset($_REQUEST['homesubmit'])) {
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label>Price Range</label>
+                                                <label>Adult Price Range</label>
                                                 <div class="selector">
-                                                    <select name="pricerange" class="full-width">
-                                                        <option value="<?php echo  $_COOKIE['PriceRange']; ?>"> Below LKR <?php echo $_COOKIE['PriceRange']; ?></option>
+                                                    <select name="adultpricerange" class="full-width">
+                                                        <option value="<?php echo  $_COOKIE['APriceRange']; ?>"> Below LKR <?php echo $_COOKIE['APriceRange']; ?></option>
                                                         <option value="5000">Below LKR 5000</option>
                                                         <option value="10000">Below LKR 10000</option>
                                                         <option value="15000">Below LKR 15000</option>
@@ -182,7 +181,7 @@ if (isset($_REQUEST['homesubmit'])) {
                         </div>
                         <div class="hotel-list listing-style3 hotel">
                             <?php
-                            $homedata = $home->HomeSearchData($Hdistrict, $Hsdate, $Hedate, $Hcadult, $Hckid, $Hcroom, $Hpricerange, $Htype);
+                            $homedata = $home->HomeSearchData($Hdistrict, $Hsdate, $Hedate, $Hcadult, $Hckid, $Hcroom, $Hapricerange, $Htype);
                             if ($homedata) {
                                 foreach ($homedata as $homeinfo) {
                             ?>

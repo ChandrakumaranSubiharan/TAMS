@@ -103,7 +103,7 @@ include_once 'includes/dbconfig.php';
                                         <div class="form-group">
                                             <label>Price Range</label>
                                             <div class="selector">
-                                                <select name="pricerange" class="full-width">
+                                                <select name="adultpricerange" class="full-width">
                                                     <option value="5000">Below LKR 5000</option>
                                                     <option value="10000">Below LKR 10000</option>
                                                     <option value="15000">Below LKR 15000</option>
