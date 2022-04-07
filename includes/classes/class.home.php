@@ -339,4 +339,14 @@ class home
       'total_amount' => $total_amount,
     );
   }
+
+
+  public function GetHomesCount()
+  {
+    $sql = "SELECT home_id from tbl_home";
+    $query = $this->db->query($sql);
+    $cnt=$query->rowCount();
+    return $cnt;
+  }
+
 }

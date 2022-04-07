@@ -1,17 +1,24 @@
+<?php
+// Include database file
+include_once 'includes/dbconfig.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 </head>
-<body>
-<?php include('includes/header.php');?>
 
-<section id="content">
+<body>
+    <?php include('includes/header.php'); ?>
+
+    <section id="content">
         <div class="container">
             <div id="main">
                 <div class="large-block image-box style6">
                     <article class="box">
                         <figure class="col-md-5">
-                            <a href="#" title="" class="middle-block"><img class="middle-item" src="assets/images/logo-aboutus.png" alt="" width="476" height="318" /></a>
+                            <a href="#" title="" class="middle-block"><img class="middle-item" src="assets/images/logo-aboutus.png" alt="" /></a>
                         </figure>
                         <div class="details col-md-offset-5">
                             <h4 class="box-title">Who We Are?</h4>
@@ -20,7 +27,7 @@
                     </article>
                     <article class="box">
                         <figure class="col-md-5 pull-right middle-block">
-                            <a href="#" title=""><img class="middle-item" src="assets/images/lanka-abotus.png" alt="" width="476" height="318" /></a>
+                            <a href="#" title=""><img class="middle-item" src="assets/images/lanka-abotus.png" alt="" /></a>
                         </figure>
                         <div class="details col-md-7">
                             <h4 class="box-title">What We Do?</h4>
@@ -86,36 +93,48 @@
                 <div class="row large-block">
                     <div class="col-sm-6 col-md-3">
                         <div class="icon-box style3 counters-box">
+                            <?php
+                            $tourscount = $tour->GetToursCount()
+                            ?>
                             <div class="numbers">
                                 <i class="soap-icon-places yellow-color"></i>
-                                <span class="display-counter" data-value="100">100</span>
+                                <span class="display-counter" data-value="<?php echo $tourscount; ?>"><?php echo $tourscount; ?></span>
                             </div>
-                            <div class="description">Amazing Places To Visit</div>
+                            <div class="description">Amazing Tours To Travel</div>
                         </div>
                     </div>
                     <div class="col-sm-6 col-md-3">
                         <div class="icon-box style3 counters-box">
+                            <?php
+                            $homescount = $home->GetHomesCount()
+                            ?>
                             <div class="numbers">
                                 <i class="soap-icon-address blue-color"></i>
-                                <span class="display-counter" data-value="150">150</span>
+                                <span class="display-counter" data-value="<?php echo $homescount; ?>"><?php echo $homescount; ?></span>
                             </div>
                             <div class="description">Homes To Stay</div>
                         </div>
                     </div>
                     <div class="col-sm-6 col-md-3">
                         <div class="icon-box style3 counters-box">
+                            <?php
+                            $customerscount = $customer->GetCustomersCount()
+                            ?>
                             <div class="numbers">
                                 <i class="soap-icon-friends green-color"></i>
-                                <span class="display-counter" data-value="4509">4509</span>
+                                <span class="display-counter" data-value="<?php echo $customerscount; ?>"><?php echo $customerscount; ?></span>
                             </div>
                             <div class="description">Customers</div>
                         </div>
                     </div>
                     <div class="col-sm-6 col-md-3">
                         <div class="icon-box style3 counters-box">
+                            <?php
+                            $bookingcount = $booking->GetBookingsCount()
+                            ?>
                             <div class="numbers">
                                 <i class="soap-icon-stories red-color"></i>
-                                <span class="display-counter" data-value="1500">1500</span>
+                                <span class="display-counter" data-value="<?php echo $bookingcount; ?>"><?php echo $bookingcount; ?></span>
                             </div>
                             <div class="description">Bookings</div>
                         </div>
@@ -123,51 +142,51 @@
                 </div>
 
 
-        <h2>Our Investors Relations</h2>
-        <div class="investor-slideshow image-carousel style2 investor-list" data-animation="slide" data-item-width="170" data-item-margin="30">
-            <ul class="slides">
-                <li>
-                    <div class="travelo-box">
-                        <a href="#"><img src="assets/images/partners/01.png" alt=""></a>
-                    </div>
-                </li>
-                <li>
-                    <div class="travelo-box">
-                        <a href="#"><img src="assets/images/partners/02.png" alt=""></a>
-                    </div>
-                </li>
-                <li>
-                    <div class="travelo-box">
-                        <a href="#"><img src="assets/images/partners/03.png" alt=""></a>
-                    </div>
-                </li>
-                <li>
-                    <div class="travelo-box">
-                        <a href="#"><img src="assets/images/partners/04.png" alt=""></a>
-                    </div>
-                </li>
-                <li>
-                    <div class="travelo-box">
-                        <a href="#"><img src="assets/images/partners/05.png" alt=""></a>
-                    </div>
-                </li>
-                <li>
-                    <div class="travelo-box">
-                        <a href="#"><img src="assets/images/partners/06.png" alt=""></a>
-                    </div>
-                </li>
-                <li>
-                    <div class="travelo-box">
-                        <a href="#"><img src="assets/images/partners/07.png" alt=""></a>
-                    </div>
-                </li>
-                <li>
-                    <div class="travelo-box">
-                        <a href="#"><img src="assets/images/partners/08.png" alt=""></a>
-                    </div>
-                </li>
-            </ul>
-        </div>
+                <h2>Our Investors Relations</h2>
+                <div class="investor-slideshow image-carousel style2 investor-list" data-animation="slide" data-item-width="170" data-item-margin="30">
+                    <ul class="slides">
+                        <li>
+                            <div class="travelo-box">
+                                <a href="#"><img src="assets/images/partners/01.png" alt=""></a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="travelo-box">
+                                <a href="#"><img src="assets/images/partners/02.png" alt=""></a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="travelo-box">
+                                <a href="#"><img src="assets/images/partners/03.png" alt=""></a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="travelo-box">
+                                <a href="#"><img src="assets/images/partners/04.png" alt=""></a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="travelo-box">
+                                <a href="#"><img src="assets/images/partners/05.png" alt=""></a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="travelo-box">
+                                <a href="#"><img src="assets/images/partners/06.png" alt=""></a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="travelo-box">
+                                <a href="#"><img src="assets/images/partners/07.png" alt=""></a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="travelo-box">
+                                <a href="#"><img src="assets/images/partners/08.png" alt=""></a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
 
 
 
@@ -175,7 +194,8 @@
         </div>
     </section>
 
-<?php include('includes/jsscripts.php');?>
-<?php include('includes/footer.php');?>
+    <?php include('includes/jsscripts.php'); ?>
+    <?php include('includes/footer.php'); ?>
 </body>
+
 </html>

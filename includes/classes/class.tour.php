@@ -339,6 +339,12 @@ class tour
 
 
 
-
+  public function GetToursCount()
+  {
+    $sql = "SELECT tour_id from tbl_tour";
+    $query = $this->db->query($sql);
+    $cnt=$query->rowCount();
+    return $cnt;
+  }
 
 }

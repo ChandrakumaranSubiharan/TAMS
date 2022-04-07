@@ -115,4 +115,13 @@ class booking
         return false;
       }
     }
+
+
+    public function GetBookingsCount()
+    {
+      $sql = "SELECT booking_id from tbl_booking";
+      $query = $this->db->query($sql);
+      $cnt=$query->rowCount();
+      return $cnt;
+    }
 }

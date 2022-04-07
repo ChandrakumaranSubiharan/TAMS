@@ -51,5 +51,14 @@ class customer
   }
   
  }
+
+
+ public function GetCustomersCount()
+ {
+   $sql = "SELECT customer_id from tbl_customer";
+   $query = $this->db->query($sql);
+   $cnt=$query->rowCount();
+   return $cnt;
+ }
  
 }
