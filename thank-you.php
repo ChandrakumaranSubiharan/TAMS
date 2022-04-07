@@ -6,6 +6,12 @@ include_once 'includes/dbconfig.php';
 <?php include('includes/header.php'); ?>
 
 
+<?php
+$bookingid = intval($_GET['bookingid']);
+$bookingdata = $booking->displyaRecordByIdviaArray($bookingid);
+foreach ($bookingdata as $bookinginfo) {
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -46,101 +52,69 @@ include_once 'includes/dbconfig.php';
                             <br />
                             <br />
                             <a href="#" class="button btn-small print-button uppercase">print Details</a>
-
                         </div>
                         <hr />
                         <h2>Traveler Information</h2>
 
                         <dl class="term-description">
                             <dt>First name:</dt>
-                            <dd><?php echo $_SESSION['cus_first_name']; ?></dd>
+                            <dd><?php echo $bookinginfo['cus_first_name']; ?></dd>
                             <dt>Last name:</dt>
-                            <dd><?php echo $_SESSION['cus_last_name']; ?></dd>
+                            <dd><?php echo $bookinginfo['cus_last_name']; ?></dd>
                             <dt>E-mail address:</dt>
-                            <dd><?php echo $_SESSION['cus_email']; ?></dd>
+                            <dd><?php echo $bookinginfo['cus_email']; ?></dd>
                             <dt>Contact:</dt>
-                            <dd><?php echo $_SESSION['cus_contact']; ?></dd>
+                            <dd><?php echo $bookinginfo['cus_contact']; ?></dd>
                         </dl>
                         <hr />
-
-                        <?php
-                        try {
-                            $tamount = intval($_SESSION['total_amount']);
-                            $cid = intval($_SESSION['customer_id']);
-
-                            // Define query to select values from the partner table
-                            $sql = "SELECT * FROM tbl_booking WHERE total_amount=:totalamount AND cus_id= :cusid ORDER BY booking_id DESC LIMIT 1";
-                            
-                            // Prepare the statement
-                            $query = $DB_con->prepare($sql);
-
-                            // Execute the query
-                            $query->execute([
-                                'totalamount'=>$tamount,
-                                'cusid'=>$cid
-                            ]);
-
-                            // Return row as an array indexed by both column name
-                            $returned_row = $query->fetch(PDO::FETCH_ASSOC);
-                        } catch (PDOException $e) {
-                            array_push($errors, $e->getMessage());
-                        }
-                        ?>
                         <h2>Booking Details</h2>
                         <dl class="term-description">
                             <dt>Booking number:</dt>
-                            <dd><?= $returned_row['booking_id']; ?></dd>
+                            <dd><?php echo $bookinginfo['booking_id']; ?></dd>
                             <dt>Booking Type:</dt>
-                            <dd><?php if ($_SESSION['home_true']) {
-                                    echo 'Home Booking';
-                                } else {
-                                    echo 'Tour Booking';
-                                } ?></dd>
+                            <dd><?php echo $bookinginfo['service_type'];  ?></dd>
+                            <dt>Booked Service Name:</dt>
+                            <dd><?php echo $bookinginfo['service_name'];  ?></dd>
                             <dt>Total Amount:</dt>
-                            <dd>LKR <?php echo $_SESSION['total_amount']; ?></dd>
+                            <dd>LKR <?php echo $bookinginfo['total_amount'];  ?></dd>
                             <dt>Payment Status:</dt>
-                            <dd>Paid</dd>
-                            <dt>Payment Method:</dt>
-                            <dd><?php echo $_SESSION['cus_card_type']; ?></dd>
+                            <dd><?php if ($bookinginfo['payment_status'] == true) {
+                                    echo "PAID";
+                                } else {
+                                    echo "UNPAID";
+                                } ?></dd>
+                            <dt>Card Payment Method:</dt>
+                            <dd><?php echo $bookinginfo['cus_payment_card_type'];  ?></dd>
                             <dt>Booking Start Date:</dt>
-                            <dd><?php echo $_SESSION['booking_s_date']; ?></dd>
+                            <dd><?php echo $bookinginfo['start_date'];  ?></dd>
                             <dt>Booking End Date:</dt>
-                            <dd><?php echo $_SESSION['booking_e_date']; ?></dd>
+                            <dd><?php echo $bookinginfo['end_date']; ?></dd>
                             <dt>Total Nights:</dt>
-                            <dd><?php echo $_SESSION['booking_nights']; ?></dd>
+                            <dd><?php echo $bookinginfo['total_nights']; ?></dd>
                             <dt>Total Persons:</dt>
-                            <dd><?php echo $_SESSION['booking_person_count']; ?></dd>
+                            <dd><?php echo $bookinginfo['total_persons']; ?></dd>
+                            <dt>Adults Count:</dt>
+                            <dd><?php echo $bookinginfo['total_adults']; ?></dd>
+                            <dt>Kids Count:</dt>
+                            <dd><?php echo $bookinginfo['total_kids']; ?></dd>
                         </dl>
 
 
                         <hr />
                         <h2>Service Host Contact Details</h2>
                         <dl class="term-description">
-
                             <?php
-                            $pid = intval($_SESSION['host_id']);
-                            $sql = "SELECT * from tbl_partner where partner_id=:partnerid";
-                            $query = $DB_con->prepare($sql);
-                            $query->bindParam(':partnerid', $pid, PDO::PARAM_STR);
-                            $query->execute();
-                            $results = $query->fetchAll(PDO::FETCH_OBJ);
-                            $cnt = 1;
-                            if ($query->rowCount() > 0) {
-                                foreach ($results as $result) {    ?>
-
-
-
-
-                                    <dt>Host Name:</dt>
-                                    <dd><?php echo htmlentities($result->first_name); ?> <?php echo htmlentities($result->last_name); ?></dd>
-                                    <dt>Contact:</dt>
-                                    <dd> <?php echo htmlentities($result->contact_number); ?></dd>
-                                    <dt>Email:</dt>
-                                    <dd> <?php echo htmlentities($result->email_address); ?></dd>
-
-
-                            <?php }
-                            } ?>
+                            $partnerid = $bookinginfo['partner_id'];
+                            $partnerdata = $partner->displyaRecordByIdviaArray($partnerid);
+                            foreach ($partnerdata as $partnerinfo) {
+                            }
+                            ?>
+                            <dt>Host Name:</dt>
+                            <dd><?php echo $partnerinfo['first_name'];  ?> <?php echo $partnerinfo['last_name'];  ?></dd>
+                            <dt>Contact:</dt>
+                            <dd> <?php echo $partnerinfo['contact_number']; ?></dd>
+                            <dt>Email:</dt>
+                            <dd> <?php echo $partnerinfo['email_address']; ?></dd>
                         </dl>
                     </div>
                 </div>

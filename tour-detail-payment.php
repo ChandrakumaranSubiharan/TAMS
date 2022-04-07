@@ -77,7 +77,7 @@ if (isset($_REQUEST['book'])) {
             $message = "Tour Reservation Success.";
             echo "<script type='text/javascript'>
         alert('$message');
-        window.location.href = 'tour-thank-you.php?bookingid=$LAST_INSERTED_ID';
+        window.location.href = 'thank-you.php?bookingid=$LAST_INSERTED_ID';
         </script>";
         } else {
             $message = "Tour Reservation unSuccessful. Entered Tourists Count Greater than Available Seats Count";

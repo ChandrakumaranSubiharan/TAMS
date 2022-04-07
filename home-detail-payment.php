@@ -78,7 +78,7 @@ if (isset($_REQUEST['book'])) {
             $message = "Home Reservation Success.";
             echo "<script type='text/javascript'>
         alert('$message');
-        window.location.href = 'home-thankyou.php?bookingid=$LAST_INSERTED_ID';
+        window.location.href = 'thank-you.php?bookingid=$LAST_INSERTED_ID';
         </script>";
         } else {
             $message = "Home Reservation unSuccessful.";
