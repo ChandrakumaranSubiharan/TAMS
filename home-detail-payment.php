@@ -47,8 +47,8 @@ if (isset($_REQUEST['book'])) {
         $cus_email = $_POST['email'];
         $cus_contact = $_POST['contact'];
         $cus_card_type = $_POST['cardtype'];
-        $card_holdername= $_POST['cardholdername'];
-        $card_number= $_POST['cardnumber'];
+        $card_holdername = $_POST['cardholdername'];
+        $card_number = $_POST['cardnumber'];
         $serviceid = $_POST['homeid'];
         $adult_count = $_POST['totcountadult'];
         $kid_count = $_POST['totcountkid'];
@@ -66,9 +66,9 @@ if (isset($_REQUEST['book'])) {
         $service_ava_edate = $homedata['ava_end_date'];
 
         $net_amount = $earning->HomePercentageCalculate($total_amount);
-        $payout = $earning->Payout($total_amount,$net_amount);
+        $payout = $earning->Payout($total_amount, $net_amount);
         $insertBookingData = $booking->insertBookingData($total_amount, $cus_fname, $cus_lname, $cus_email, $cus_contact, $cus_card_type, $card_holdername, $card_number, $cus_id, $booking_sdate, $booking_edate, $total_night, $total_persons_count, $adult_count, $kid_count, $serviceid, $servicename, $stype, $pid);
-        $homeUpdate = $home->home_update_after_booking($serviceid,$service_ava_sdate,$service_ava_edate,$total_night);
+        $homeUpdate = $home->home_update_after_booking($serviceid, $service_ava_sdate, $service_ava_edate, $total_night);
         $insertEarningData = $earning->insertEarningData($pid, $total_amount, $payout, $net_amount, $cus_id, $servicename, $serviceid, $stype);
 
 
@@ -248,7 +248,10 @@ if (isset($_REQUEST['book'])) {
                             <div class="details">
                                 <div class="feedback">
                                     <div data-placement="bottom" data-toggle="tooltip" class="five-stars-container" title="4 stars"><span style="width: 80%;" class="five-stars"></span></div>
-                                    <span class="review">270 reviews</span>
+                                    <?php
+                                    $reviewscount = $review->GetReviewsCount($hid)
+                                    ?>
+                                    <span class="review"><?php echo $reviewscount?> reviews</span>
                                 </div>
                                 <div class="constant-column-3 timing clearfix">
                                     <div class="check-in">
@@ -307,9 +310,9 @@ if (isset($_REQUEST['book'])) {
                         <h4>Need HappyHolidayss Help?</h4>
                         <p>We would be more than happy to help you. Our team advisor are 24/7 at your service to help you.</p>
                         <address class="contact-details">
-                            <span class="contact-phone"><i class="soap-icon-phone"></i> 1-800-123-HELLO</span>
+                            <span class="contact-phone"><i class="soap-icon-phone"></i>+94 775 43035-HELLO</span>
                             <br>
-                            <a class="contact-email" href="#">help@travelo.com</a>
+                            <a class="contact-email" href="#">help@HappyHolidayss.com</a>
                         </address>
                     </div>
                 </div>

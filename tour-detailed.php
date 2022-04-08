@@ -391,16 +391,19 @@ foreach ($tourdata as $tourinfo) {
                             </span>
                             <div class="feedback clearfix">
                                 <div title="4 stars" class="five-stars-container" data-toggle="tooltip" data-placement="bottom"><span class="five-stars" style="width: 80%;"></span></div>
-                                <span class="review pull-right">270 reviews</span>
+                                <?php
+                                $reviewscount = $review->GetReviewsCount($tid)
+                                ?>
+                                <span class="review pull-right"><?php echo $reviewscount?> reviews</span>
                             </div>
                         </article>
                         <div class="travelo-box contact-box">
-                            <h4>Need Travelo Help?</h4>
+                            <h4>Need HappyHolidayss Help?</h4>
                             <p>We would be more than happy to help you. Our team advisor are 24/7 at your service to help you.</p>
                             <address class="contact-details">
-                                <span class="contact-phone"><i class="soap-icon-phone"></i> 1-800-123-HELLO</span>
+                                <span class="contact-phone"><i class="soap-icon-phone"></i> +94 775 43035-HELLO</span>
                                 <br>
-                                <a class="contact-email" href="#">help@travelo.com</a>
+                                <a class="contact-email" href="#">help@HappyHolidayss.com</a>
                             </address>
                         </div>
                         <div class="travelo-box book-with-us-box">
@@ -409,17 +412,14 @@ foreach ($tourdata as $tourinfo) {
                                 <li>
                                     <i class="soap-icon-hotel-1 circle"></i>
                                     <h5 class="title"><a href="#">135,00+ Hotels</a></h5>
-                                    <p>Nunc cursus libero pur congue arut nimspnty.</p>
                                 </li>
                                 <li>
                                     <i class="soap-icon-savings circle"></i>
                                     <h5 class="title"><a href="#">Low Rates &amp; Savings</a></h5>
-                                    <p>Nunc cursus libero pur congue arut nimspnty.</p>
                                 </li>
                                 <li>
                                     <i class="soap-icon-support circle"></i>
                                     <h5 class="title"><a href="#">Excellent Support</a></h5>
-                                    <p>Nunc cursus libero pur congue arut nimspnty.</p>
                                 </li>
                             </ul>
                         </div>

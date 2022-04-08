@@ -214,7 +214,7 @@ if (isset($_REQUEST['book'])) {
                             <div class="form-group">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox"> By continuing, you agree to the <a href="#"><span class="skin-color">Terms and Conditions</span></a>.
+                                        <input type="checkbox"> By continuing, you agree to the <a href="terms-and-conditions.php" target="_blank"><span class="skin-color">Terms and Conditions</span></a>.
                                     </label>
                                 </div>
                             </div>

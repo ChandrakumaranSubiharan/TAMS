@@ -120,34 +120,31 @@ foreach ($bookingdata as $bookinginfo) {
                 </div>
                 <div class="sidebar col-sm-4 col-md-3">
                     <div class="travelo-box contact-box">
-                        <h4>Need Travelo Help?</h4>
+                        <h4>Need HappyHolidayss Help?</h4>
                         <p>We would be more than happy to help you. Our team advisor are 24/7 at your service to help you.</p>
                         <address class="contact-details">
-                            <span class="contact-phone"><i class="soap-icon-phone"></i> 1-800-123-HELLO</span>
+                            <span class="contact-phone"><i class="soap-icon-phone"></i> +94 775 43035-HELLO</span>
                             <br>
-                            <a class="contact-email" href="#">help@travelo.com</a>
+                            <a class="contact-email" href="#">help@HappyHolidayss.com</a>
                         </address>
                     </div>
                     <div class="travelo-box book-with-us-box">
-                        <h4>Why Book with us?</h4>
-                        <ul>
-                            <li>
-                                <i class="soap-icon-hotel-1 circle"></i>
-                                <h5 class="title"><a href="#">135,00+ Hotels</a></h5>
-                                <p>Nunc cursus libero pur congue arut nimspnty.</p>
-                            </li>
-                            <li>
-                                <i class="soap-icon-savings circle"></i>
-                                <h5 class="title"><a href="#">Low Rates &amp; Savings</a></h5>
-                                <p>Nunc cursus libero pur congue arut nimspnty.</p>
-                            </li>
-                            <li>
-                                <i class="soap-icon-support circle"></i>
-                                <h5 class="title"><a href="#">Excellent Support</a></h5>
-                                <p>Nunc cursus libero pur congue arut nimspnty.</p>
-                            </li>
-                        </ul>
-                    </div>
+                            <h4>Why Book with us?</h4>
+                            <ul>
+                                <li>
+                                    <i class="soap-icon-hotel-1 circle"></i>
+                                    <h5 class="title"><a href="#">135,00+ Hotels</a></h5>
+                                </li>
+                                <li>
+                                    <i class="soap-icon-savings circle"></i>
+                                    <h5 class="title"><a href="#">Low Rates &amp; Savings</a></h5>
+                                </li>
+                                <li>
+                                    <i class="soap-icon-support circle"></i>
+                                    <h5 class="title"><a href="#">Excellent Support</a></h5>
+                                </li>
+                            </ul>
+                        </div>
                 </div>
             </div>
         </div>

@@ -161,7 +161,7 @@ else if(isset($_GET['failed']))
                                 <div class="form-group">
                                     <div class="checkbox">
                                         <label>
-                                            <input type="checkbox"> I accept <a href="#travelo-login" class="tac goto-login soap-popupbox">Terms and Conditions</a>
+                                            <input type="checkbox"> I accept <a href="terms-and-conditions.php" target="_blank" class="tac">Terms and Conditions</a>
                                         </label>
                                     </div>
                                 </div>

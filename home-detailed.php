@@ -526,7 +526,7 @@ foreach ($homedata as $homeinfo) {
                                 <?php
                                 $reviewscount = $review->GetReviewsCount($hid)
                                 ?>
-                                <span class="review pull-right"><?php echo $reviewscount ?> reviews</span>
+                                <span class="review pull-right"><?php echo $reviewscount?> reviews</span>
                             </div>
                         </article>
                         <div class="travelo-box contact-box">
@@ -544,21 +544,17 @@ foreach ($homedata as $homeinfo) {
                                 <li>
                                     <i class="soap-icon-hotel-1 circle"></i>
                                     <h5 class="title"><a href="#">135,00+ Hotels</a></h5>
-                                    <!-- <p>Nunc cursus libero pur congue arut nimspnty.</p> -->
                                 </li>
                                 <li>
                                     <i class="soap-icon-savings circle"></i>
                                     <h5 class="title"><a href="#">Low Rates &amp; Savings</a></h5>
-                                    <!-- <p>Nunc cursus libero pur congue arut nimspnty.</p> -->
                                 </li>
                                 <li>
                                     <i class="soap-icon-support circle"></i>
                                     <h5 class="title"><a href="#">Excellent Support</a></h5>
-                                    <!-- <p>Nunc cursus libero pur congue arut nimspnty.</p> -->
                                 </li>
                             </ul>
                         </div>
-
                     </div>
                 </div>
             </div>
