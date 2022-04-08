@@ -18,7 +18,7 @@ include_once 'includes/dbconfig.php';
                 <!-- Slide1 -->
                 <li data-transition="zoomin" data-slotamount="7" data-masterspeed="1500">
                     <!-- MAIN IMAGE -->
-                    <img src="assets/images/slider/01.png" alt="">
+                    <img src="assets/images/slider/02.png" alt="">
                 </li>
 
                 <!-- Slide2 -->
@@ -31,7 +31,12 @@ include_once 'includes/dbconfig.php';
                 <!-- Slide3 -->
                 <li data-transition="slidedown" data-slotamount="7" data-masterspeed="1500">
                     <!-- MAIN IMAGE -->
-                    <img src="assets/images/slider/01.png" alt="">
+                    <img src="assets/images/slider/07.png" alt="">
+                </li>
+
+                <li data-transition="zoomout" data-slotamount="7" data-masterspeed="1500">
+                    <!-- MAIN IMAGE -->
+                    <img src="assets/images/slider/04.png" alt="">
                 </li>
             </ul>
         </div>

@@ -63,7 +63,7 @@ if (isset($_GET['success'])) {
                             <i class="soap-icon-phone"></i>
                             <div class="description">
                                 <small>We are on 24/7</small>
-                                <h5>Local: +(094) 125-4985-214-SAY HELLO</h5>
+                                <h5>Local: +(094) 125-4985-214</h5>
                             </div>
                         </div>
                     </div>
