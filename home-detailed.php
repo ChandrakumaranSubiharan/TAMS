@@ -362,27 +362,100 @@ foreach ($homedata as $homeinfo) {
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="hotel-write-review">
-                                    <form class="review-form">
+
+
+                                    <?php
+
+                                    if (isset($_POST['submit-rewiew'])) {
+
+                                        if (!$auth->is_logged_in()) {
+
+                                            $message = "Please Login Before Writing the Review !";
+                                            echo "<script type='text/javascript'>
+                                                alert('$message');
+                                                window.location.href = 'login.php';
+                                                </script>";
+                                        } else {
+                                            // Retrieve form input
+                                            $title = $_POST['title'];
+                                            $des = $_POST['description'];
+                                            $u_type = $_POST['user_type'];
+                                            $rating = $_POST['review_rating'];
+                                            $customerid = $_POST['cid'];
+                                            $serviceid = $_POST['sid'];
+
+                                            // Check for empty and invalid inputs
+                                            if (empty($title)) {
+                                                echo '<script>alert("Please enter a valid Title")</script>';
+                                            } elseif (empty($des)) {
+                                                echo '<script>alert("Please enter a valid Review")</script>';
+                                            } elseif (empty($u_type)) {
+                                                echo '<script>alert("Please Select a valid What sort of Trip was this.")</script>';
+                                            } elseif (empty($rating)) {
+                                                echo '<script>alert("Please Select a valid Rating.")</script>';
+                                            } else {
+
+                                                // Check if the user may send the review
+                                                if ($review->create_review($title, $des, $u_type, $rating, $cid, $sid)) {
+
+                                                    $message = "Review Successfully submitted !";
+                                                    echo "<script type='text/javascript'>
+                                                        alert('$message');
+                                                        </script>";
+                                                } else {
+                                                    $message = "Review Failed to submit !";
+                                                    echo "<script type='text/javascript'>
+                                                        alert('$message');
+                                                        </script>";
+                                                }
+                                            }
+                                        }
+                                    };
+
+                                    ?>
+
+
+
+
+
+                                    <form method="POST" class="review-form">
+                                    <input type="text" name="sid" hidden value="<?php echo $homeinfo['home_id']; ?>">
+                                    <input type="text" name="cid" hidden value="<?php echo $returned_row['customer_id']; ?>">
                                         <div class="form-group col-md-5 no-float no-padding">
                                             <h4 class="title">Title of your review</h4>
-                                            <input type="text" name="review-title" class="input-text full-width" value="" placeholder="enter a review title" />
+                                            <input type="text" name="title" class="input-text full-width" value="" placeholder="enter a review title" />
                                         </div>
                                         <div class="form-group">
                                             <h4 class="title">Your review</h4>
-                                            <textarea class="input-text full-width" placeholder="enter your review (minimum 200 characters)" rows="5"></textarea>
+                                            <textarea name="description" class="input-text full-width" placeholder="enter your review (minimum 200 characters)" rows="5"></textarea>
                                         </div>
                                         <div class="form-group">
                                             <h4 class="title">What sort of Trip was this?</h4>
-                                            <ul class="sort-trip clearfix">
-                                                <li><a href="#"><i class="soap-icon-businessbag circle"></i></a><span>Business</span></li>
-                                                <li><a href="#"><i class="soap-icon-couples circle"></i></a><span>Couples</span></li>
-                                                <li><a href="#"><i class="soap-icon-family circle"></i></a><span>Family</span></li>
-                                                <li><a href="#"><i class="soap-icon-friends circle"></i></a><span>Friends</span></li>
-                                                <li><a href="#"><i class="soap-icon-user circle"></i></a><span>Solo</span></li>
-                                            </ul>
+                                            <div class="selector">
+                                                <select name='user_type' class="full-width" id="select-u-type">
+                                                    <option value="Business">Business</option>
+                                                    <option value="Couples">Couples</option>
+                                                    <option value="Family">Family</option>
+                                                    <option value="Friends">Friends</option>
+                                                    <option value="Solo">Solo</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <h4 class="title">Your Overall Experience with the Service? (Rate out of 5)</h4>
+                                            <div class="selector">
+                                                <select name='review_rating' class="full-width">
+                                                    <option value="1">1 Star</option>
+                                                    <option value="2">2 Star</option>
+                                                    <option value="3">3 Star</option>
+                                                    <option value="4">4 Star</option>
+                                                    <option value="5">5 Star</option>
+                                                </select>
+                                            </div>
                                         </div>
                                         <div class="form-group col-md-5 no-float no-padding no-margin">
-                                            <button type="submit" class="btn-large full-width">SUBMIT REVIEW</button>
+                                            <button type="submit" name="submit-rewiew" class="btn-large full-width">SUBMIT REVIEW</button>
                                         </div>
                                     </form>
 

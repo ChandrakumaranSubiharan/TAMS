@@ -45,19 +45,6 @@ if (isset($_GET['success'])) {
 ?>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 

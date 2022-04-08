@@ -55,6 +55,10 @@ $earning = new earning($DB_con);
 include_once 'classes/class.tour.php';
 $tour = new tour($DB_con);
 
+//including review class 
+include_once 'classes/class.review.php';
+$review = new review($DB_con);
+
 ?>
 
 

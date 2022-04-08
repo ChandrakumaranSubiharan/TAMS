@@ -45,7 +45,7 @@ include_once 'includes/dbconfig.php';
                     </article>
                 </div>
                 <div class="large-block">
-                    <h2>Travelo Dedicated Team</h2>
+                    <h2>HappyHolidayss Dedicated Team</h2>
                     <div class="row image-box style1 team">
                         <div class="col-sm-6 col-md-3">
                             <article class="box">
