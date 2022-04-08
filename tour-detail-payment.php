@@ -52,15 +52,15 @@ if (isset($_REQUEST['book'])) {
         $kid_count = $_POST['ckid'];
         $total_persons_count = $_POST['cpersons'];
         $total_amount = $_POST['tamount'];
-        $card_holdername= $_POST['cardholdername'];
-        $card_number= $_POST['cardnumber'];
+        $card_holdername = $_POST['cardholdername'];
+        $card_number = $_POST['cardnumber'];
 
 
         $tourdata = $tour->displyaRecordById($serviceid);
         $pid = $tourdata['partner_id'];
-        $sdate = $tourdata['ava_start_date'];
-        $edate = $tourdata['ava_end_date'];
-        $snights = $tourdata['duration_nights'];
+        $booking_sdate = $tourdata['ava_start_date'];
+        $booking_edate = $tourdata['ava_end_date'];
+        $total_night = $tourdata['duration_nights'];
         $servicename = $tourdata['title'];
         $availabile_seats = $tourdata['availabile_seats'];
         $stype = 'Tour Package';
@@ -68,10 +68,12 @@ if (isset($_REQUEST['book'])) {
         $net_amount = $earning->TourPercentageCalculate($total_amount);
         $payout = $earning->Payout($total_amount, $net_amount);
         $tourUpdate = $tour->tour_update_after_booking($serviceid, $total_persons_count, $availabile_seats);
-        $insertBookingData = $booking->insertBookingData($total_amount, $cus_fname, $cus_lname, $cus_email, $cus_contact, $cus_card_type, $cus_id, $sdate, $edate, $snights, $total_persons_count, $pid, $kid_count, $adult_count, $serviceid, $servicename, $stype ,$card_holdername, $card_number);
+        $insertBookingData = $booking->insertBookingData($total_amount, $cus_fname, $cus_lname, $cus_email, $cus_contact, $cus_card_type, $card_holdername, $card_number, $cus_id, $booking_sdate, $booking_edate, $total_night, $total_persons_count, $adult_count, $kid_count, $serviceid, $servicename, $stype, $pid);
         $insertEarningData = $earning->insertEarningData($pid, $total_amount, $payout, $net_amount, $cus_id, $servicename, $serviceid, $stype);
 
         $LAST_INSERTED_ID = $insertBookingData['lastInsertedID'];
+
+        echo $LAST_INSERTED_ID;
 
         if ($insertBookingData && $insertEarningData && $tourUpdate) {
             $message = "Tour Reservation Success.";
@@ -239,7 +241,10 @@ if (isset($_REQUEST['book'])) {
                             <div class="details">
                                 <div class="feedback">
                                     <div data-placement="bottom" data-toggle="tooltip" class="five-stars-container" title="4 stars"><span style="width: 80%;" class="five-stars"></span></div>
-                                    <span class="review">270 reviews</span>
+                                    <?php
+                                    $reviewscount = $review->GetReviewsCount($tid)
+                                    ?>
+                                    <span class="review"><?php echo $reviewscount ?> reviews</span>
                                 </div>
                                 <div class="constant-column-3 timing clearfix">
                                     <div class="check-in">
@@ -310,9 +315,9 @@ if (isset($_REQUEST['book'])) {
                         <h4>Need HappyHolidayss Help?</h4>
                         <p>We would be more than happy to help you. Our team advisor are 24/7 at your service to help you.</p>
                         <address class="contact-details">
-                            <span class="contact-phone"><i class="soap-icon-phone"></i> 1-800-123-HELLO</span>
+                            <span class="contact-phone"><i class="soap-icon-phone"></i> +94 775 43035-HELLO</span>
                             <br>
-                            <a class="contact-email" href="#">help@travelo.com</a>
+                            <a class="contact-email" href="#">help@HappyHolidayss.com</a>
                         </address>
                     </div>
                 </div>

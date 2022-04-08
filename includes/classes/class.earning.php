@@ -19,8 +19,6 @@ class earning
     $emty = NULL;
 
 
-
-
     $query = "INSERT INTO tbl_earning(partner_id, total_amount, payout, net_amount, customer_id,created_date,service_name,service_id,service_type)
                  VALUES('$pid','$tot','$payout','$net','$cid','$cdate','$stitle','$sid','$type')";
     $sql = $this->db->query($query);

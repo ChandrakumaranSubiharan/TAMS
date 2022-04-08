@@ -126,16 +126,21 @@ foreach ($homedata as $homeinfo) {
                                                 <ul class="slides ">
                                                     <?php
                                                     $reviewdata = $review->displayReviewsLimit($hid);
-                                                    foreach ($reviewdata as $reviewinfo) {
+
+                                                    if ($reviewdata) {
+                                                        foreach ($reviewdata as $reviewinfo) {
                                                     ?>
-                                                        <li>
-                                                            <p class="description"><?php echo $reviewinfo['review_description']; ?></p>
-                                                            <div class="author clearfix">
-                                                                <a href="#"><img src="assets/images/user2.png" alt="" width="74" height="74" /></a>
-                                                                <h5 class="name"><?php echo $reviewinfo['customer_name']; ?><small>guest</small></h5>
-                                                            </div>
-                                                        </li>
+                                                            <li>
+                                                                <p class="description"><?php echo $reviewinfo['review_description']; ?></p>
+                                                                <div class="author clearfix">
+                                                                    <a href="#"><img src="assets/images/user2.png" alt="" width="74" height="74" /></a>
+                                                                    <h5 class="name"><?php echo $reviewinfo['customer_name']; ?><small>guest</small></h5>
+                                                                </div>
+                                                            </li>
                                                     <?php
+                                                        }
+                                                    } else {
+                                                        echo "No Reviews Found.";
                                                     }
                                                     ?>
                                                 </ul>
@@ -274,30 +279,34 @@ foreach ($homedata as $homeinfo) {
                                         <h2>Guest Reviews</h2>
                                         <?php
                                         $reviewdata = $review->displayReviews($hid);
-                                        foreach ($reviewdata as $reviewinfo) {
+                                        if ($reviewdata) {
+                                            foreach ($reviewdata as $reviewinfo) {
                                         ?>
-                                            <div class="guest-review table-wrapper">
-                                                <div class="col-xs-3 col-md-2 author table-cell">
-                                                    <a href="#"><img src="assets/images/user2.png" alt="" width="270" height="263" /></a>
-                                                    <p class="name"><?php echo $reviewinfo['customer_name']; ?></p>
-                                                    <p class="date"><?php echo date('jS F, Y', strtotime($reviewinfo['created_date'])); ?></p>
-                                                </div>
-                                                <div class="col-xs-9 col-md-10 table-cell comment-container">
-                                                    <div class="comment-header clearfix">
-                                                        <h4 class="comment-title"><?php echo $reviewinfo['review_title']; ?></h4>
-                                                        <div class="review-score">
-                                                            <div class="five-stars-container">
-                                                                <div class="five-stars" style="width: 80%;"></div>
+                                                <div class="guest-review table-wrapper">
+                                                    <div class="col-xs-3 col-md-2 author table-cell">
+                                                        <a href="#"><img src="assets/images/user2.png" alt="" width="270" height="263" /></a>
+                                                        <p class="name"><?php echo $reviewinfo['customer_name']; ?></p>
+                                                        <p class="date"><?php echo date('jS F, Y', strtotime($reviewinfo['created_date'])); ?></p>
+                                                    </div>
+                                                    <div class="col-xs-9 col-md-10 table-cell comment-container">
+                                                        <div class="comment-header clearfix">
+                                                            <h4 class="comment-title"><?php echo $reviewinfo['review_title']; ?></h4>
+                                                            <div class="review-score">
+                                                                <div class="five-stars-container">
+                                                                    <div class="five-stars" style="width: 80%;"></div>
+                                                                </div>
+                                                                <span class="score"><?php echo $reviewinfo['review_rating']; ?>/5</span>
                                                             </div>
-                                                            <span class="score"><?php echo $reviewinfo['review_rating']; ?>/5</span>
+                                                        </div>
+                                                        <div class="comment-content">
+                                                            <p><?php echo $reviewinfo['review_description']; ?></p>
                                                         </div>
                                                     </div>
-                                                    <div class="comment-content">
-                                                        <p><?php echo $reviewinfo['review_description']; ?></p>
-                                                    </div>
                                                 </div>
-                                            </div>
                                         <?php
+                                            }
+                                        } else {
+                                            echo "No Reviews Found.";
                                         }
                                         ?>
                                     </div>
@@ -448,7 +457,7 @@ foreach ($homedata as $homeinfo) {
                                             <textarea name="description" class="input-text full-width" placeholder="enter your review (minimum 200 characters)" rows="5"></textarea>
                                         </div>
                                         <div class="form-group">
-                                            <h4 class="title">What sort of Trip was this?</h4>
+                                            <h4 class="title">What sort of Stay was this?</h4>
                                             <div class="selector">
                                                 <select name='user_type' class="full-width" id="select-u-type">
                                                     <option value="Business">Business</option>
@@ -526,7 +535,7 @@ foreach ($homedata as $homeinfo) {
                                 <?php
                                 $reviewscount = $review->GetReviewsCount($hid)
                                 ?>
-                                <span class="review pull-right"><?php echo $reviewscount?> reviews</span>
+                                <span class="review pull-right"><?php echo $reviewscount ?> reviews</span>
                             </div>
                         </article>
                         <div class="travelo-box contact-box">

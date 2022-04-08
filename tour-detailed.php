@@ -98,6 +98,7 @@ foreach ($tourdata as $tourinfo) {
                                 <li><a href="#hotel-reviews" data-toggle="tab">Reviews</a></li>
                                 <li><a href="#hotel-faqs" data-toggle="tab">FAQs</a></li>
                                 <li><a href="#hotel-write-review" data-toggle="tab">Write a Review</a></li>
+                                <li><a href="#home-partner-info" data-toggle="tab">Host Info</a></li>
                             </ul>
                             <div class="tab-content">
                                 <div class="tab-pane fade in active" id="hotel-description">
@@ -111,9 +112,9 @@ foreach ($tourdata as $tourinfo) {
                                                 <li><label>Starting City:</label><?php echo $tourinfo['location']; ?></li>
                                                 <li><label>Assembly Point:</label><?php echo $tourinfo['gathering_location']; ?></li>
                                                 <li><label>Start Date:</label><?php echo $tourinfo['ava_start_date']; ?></li>
-                                                <li><label>Start Time:</label><?php echo date('h:i A', strtotime($tourinfo['s_time']));?></li>
+                                                <li><label>Start Time:</label><?php echo date('h:i A', strtotime($tourinfo['s_time'])); ?></li>
                                                 <li><label>End Date:</label><?php echo $tourinfo['ava_end_date']; ?></li>
-                                                <li><label>End Time:</label><?php echo date('h:i A', strtotime($tourinfo['e_time']));?></li>
+                                                <li><label>End Time:</label><?php echo date('h:i A', strtotime($tourinfo['e_time'])); ?></li>
                                                 <li><label>Duration:</label><?php echo $tourinfo['duration_nights']; ?> Nights</li>
                                                 <li><label>Cancellation:</label><?php
                                                                                 if ($tourinfo['cancellation'] == 1) {
@@ -126,12 +127,25 @@ foreach ($tourdata as $tourinfo) {
                                         <div class="col-sm-7 col-lg-8 table-cell testimonials">
                                             <div class="testimonial style1">
                                                 <ul class="slides ">
-                                                    <li>
-                                                        <p class="description">Always enjoyed my stay with Hilton Hotel and Resorts, top class room service and rooms have great outside views and luxury assessories. Thanks for great experience.</p>
-                                                        <div class="author clearfix">
-                                                            <h5 class="name">Jessica Brown<small>guest</small></h5>
-                                                        </div>
-                                                    </li>
+                                                    <?php
+                                                    $reviewdata = $review->displayReviewsLimit($tid);
+
+                                                    if ($reviewdata) {
+                                                        foreach ($reviewdata as $reviewinfo) {
+                                                    ?>
+                                                            <li>
+                                                                <p class="description"><?php echo $reviewinfo['review_description']; ?></p>
+                                                                <div class="author clearfix">
+                                                                    <a href="#"><img src="assets/images/user2.png" alt="" width="74" height="74" /></a>
+                                                                    <h5 class="name"><?php echo $reviewinfo['customer_name']; ?><small>guest</small></h5>
+                                                                </div>
+                                                            </li>
+                                                    <?php
+                                                        }
+                                                    } else {
+                                                        echo "No Reviews Found.";
+                                                    }
+                                                    ?>
                                                 </ul>
                                             </div>
                                         </div>
@@ -155,20 +169,20 @@ foreach ($tourdata as $tourinfo) {
                                                 <div class="row">
                                                     <div class="col-xs-6">
                                                         <label>Tour Start Date</label>
-                                                        <input type="date" name="sdate" value="<?php echo $tourinfo['ava_start_date']; ?>" disabled id="date1" class="input-text full-width"  />
+                                                        <input type="date" name="sdate" value="<?php echo $tourinfo['ava_start_date']; ?>" disabled id="date1" class="input-text full-width" />
                                                     </div>
                                                     <div class="col-xs-6">
                                                         <label>Tour End Date</label>
-                                                        <input type="date" name="edate" value="<?php echo $tourinfo['ava_end_date']; ?>" disabled id="date2" class="input-text full-width"  />
+                                                        <input type="date" name="edate" value="<?php echo $tourinfo['ava_end_date']; ?>" disabled id="date2" class="input-text full-width" />
                                                     </div>
                                                 </div>
                                             </div>
                                             <h3 id="ans"></h3>
                                             <div class="col-md-4">
                                                 <div class="row">
-                                                <div class="col-xs-4">
+                                                    <div class="col-xs-4">
                                                         <label>Tot Nights</label>
-                                                        <input type="number" disabled value="<?php echo $tourinfo['duration_nights']; ?>"  name="cduration" class="input-text full-width" />
+                                                        <input type="number" disabled value="<?php echo $tourinfo['duration_nights']; ?>" name="cduration" class="input-text full-width" />
                                                     </div>
                                                     <div class="col-xs-4">
                                                         <label>ADULTS</label>
@@ -246,128 +260,215 @@ foreach ($tourdata as $tourinfo) {
                                 <div class="tab-pane fade" id="hotel-reviews">
                                     <div class="guest-reviews">
                                         <h2>Guest Reviews</h2>
-                                        <div class="guest-review table-wrapper">
-                                            <div class="col-xs-3 col-md-2 author table-cell">
-                                                <a href="#"><img src="#" alt="" width="270" height="263" /></a>
-                                                <p class="name">Jessica Brown</p>
-                                                <p class="date">NOV, 12, 2013</p>
-                                            </div>
-                                            <div class="col-xs-9 col-md-10 table-cell comment-container">
-                                                <div class="comment-header clearfix">
-                                                    <h4 class="comment-title">We had great experience while our stay and Hilton Hotels!</h4>
-                                                    <div class="review-score">
-                                                        <div class="five-stars-container">
-                                                            <div class="five-stars" style="width: 80%;"></div>
+                                        <?php
+                                        $reviewdata = $review->displayReviews($tid);
+                                        if ($reviewdata) {
+                                            foreach ($reviewdata as $reviewinfo) {
+                                        ?>
+                                                <div class="guest-review table-wrapper">
+                                                    <div class="col-xs-3 col-md-2 author table-cell">
+                                                        <a href="#"><img src="assets/images/user2.png" alt="" width="270" height="263" /></a>
+                                                        <p class="name"><?php echo $reviewinfo['customer_name']; ?></p>
+                                                        <p class="date"><?php echo date('jS F, Y', strtotime($reviewinfo['created_date'])); ?></p>
+                                                    </div>
+                                                    <div class="col-xs-9 col-md-10 table-cell comment-container">
+                                                        <div class="comment-header clearfix">
+                                                            <h4 class="comment-title"><?php echo $reviewinfo['review_title']; ?></h4>
+                                                            <div class="review-score">
+                                                                <div class="five-stars-container">
+                                                                    <div class="five-stars" style="width: 80%;"></div>
+                                                                </div>
+                                                                <span class="score"><?php echo $reviewinfo['review_rating']; ?>/5</span>
+                                                            </div>
                                                         </div>
-                                                        <span class="score">4.0/5.0</span>
+                                                        <div class="comment-content">
+                                                            <p><?php echo $reviewinfo['review_description']; ?></p>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                <div class="comment-content">
-                                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's stand dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries.</p>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <?php
+                                            }
+                                        } else {
+                                            echo "No Reviews Found.";
+                                        }
+                                        ?>
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="hotel-faqs">
                                     <div class="toggle-container">
                                         <div class="panel style1 arrow-right">
                                             <h4 class="panel-title">
-                                                <a class="collapsed" href="#question1" data-toggle="collapse">How do I know a reservation is accepted or confirmed?</a>
+                                                <a class="collapsed" href="#question1" data-toggle="collapse">How do I confirm that I paid for my booking?</a>
                                             </h4>
                                             <div class="panel-collapse collapse" id="question1">
                                                 <div class="panel-content">
-
+                                                    <p> You’ll find payment confirmation in your dashboard bookings. In the bookings page, there's is a option to view the payment confirmation status.</p>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="panel style1 arrow-right">
                                             <h4 class="panel-title">
-                                                <a class="collapsed" href="#question2" data-toggle="collapse">What do I do after I receive a reservation request from a guest?</a>
+                                                <a class="collapsed" href="#question2" data-toggle="collapse">I can't find my booking in my account. What should I do?</a>
                                             </h4>
                                             <div class="panel-collapse collapse" id="question2">
                                                 <div class="panel-content">
-                                                    <p>Sed a justo enim. Vivamus volutpat ipsum ultrices augue porta lacinia. Proin in elementum enim. <span class="skin-color">Duis suscipit justo</span> non purus consequat molestie. Etiam pharetra ipsum sagittis sollicitudin ultricies. Praesent luctus, diam ut tempus aliquam, diam ante euismod risus, euismod viverra quam quam eget turpis. Nam <span class="skin-color">tristique congue</span> arcu, id bibendum diam. Ut hendrerit, leo a pellentesque porttitor, purus arcu tristique erat, in faucibus elit leo in turpis vitae luctus enim, a mollis nulla.</p>
+                                                    <p>If you were signed in when booking, it should appear in the Bookings section of your account. <br>
+                                                        If you weren't signed in when booking, the booking won't appear, and you can't add this booking to your account. </p>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="panel style1 arrow-right">
                                             <h4 class="panel-title">
-                                                <a class="" href="#question3" data-toggle="collapse">How much time do I have to respond to a reservation request?</a>
+                                                <a class="collapsed" href="#question3" data-toggle="collapse">Can I change the guest name for this booking?</a>
                                             </h4>
-                                            <div class="panel-collapse collapse in" id="question3">
+                                            <div class="panel-collapse collapse" id="question3">
                                                 <div class="panel-content">
-                                                    <p>Sed a justo enim. Vivamus volutpat ipsum ultrices augue porta lacinia. Proin in elementum enim. <span class="skin-color">Duis suscipit justo</span> non purus consequat molestie. Etiam pharetra ipsum sagittis sollicitudin ultricies. Praesent luctus, diam ut tempus aliquam, diam ante euismod risus, euismod viverra quam quam eget turpis. Nam <span class="skin-color">tristique congue</span> arcu, id bibendum diam. Ut hendrerit, leo a pellentesque porttitor, purus arcu tristique erat, in faucibus elit leo in turpis vitae luctus enim, a mollis nulla.</p>
+                                                    <p>It’s not possible to change any personal details like the guest's name or email address.</p>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="panel style1 arrow-right">
                                             <h4 class="panel-title">
-                                                <a class="collapsed" href="#question4" data-toggle="collapse">Why can’t I call or email hotel or host before booking?</a>
+                                                <a class="collapsed" href="#question4" data-toggle="collapse">Can I use credit to make this booking?</a>
                                             </h4>
                                             <div class="panel-collapse collapse" id="question4">
                                                 <div class="panel-content">
-
+                                                    <p>No, it’s not possible to use travel credit toward bookings facilitated by partner travel companies. Choose a different room or rate instead.</p>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="panel style1 arrow-right">
                                             <h4 class="panel-title">
-                                                <a class="collapsed" href="#question5" data-toggle="collapse">Am I allowed to decline reservation requests?</a>
+                                                <a class="collapsed" href="#question5" data-toggle="collapse">Can I use a coupon or promotional link to make this booking?</a>
                                             </h4>
                                             <div class="panel-collapse collapse" id="question5">
                                                 <div class="panel-content">
-
+                                                    <p>No, this booking can't be made with rewards or incentive programs. Even if you use a unique link or code to make this booking, you won't be rewarded for this stay.</p>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="panel style1 arrow-right">
-                                            <h4 class="panel-title">
-                                                <a class="collapsed" href="#question6" data-toggle="collapse">What happens if I let a reservation request expire?</a>
-                                            </h4>
-                                            <div class="panel-collapse collapse" id="question6">
-                                                <div class="panel-content">
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="panel style1 arrow-right">
-                                            <h4 class="panel-title">
-                                                <a class="collapsed" href="#question7" data-toggle="collapse">How do I set reservation requirements?</a>
-                                            </h4>
-                                            <div class="panel-collapse collapse" id="question7">
-                                                <div class="panel-content">
-
-                                                </div>
-                                            </div>
-                                        </div>
-
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="hotel-write-review">
-                                    <form class="review-form">
+
+
+                                    <?php
+
+                                    if (isset($_POST['submit-rewiew'])) {
+
+                                        if (!$auth->is_logged_in()) {
+
+                                            $message = "Please Login Before Writing the Review !";
+                                            echo "<script type='text/javascript'>
+            alert('$message');
+            window.location.href = 'login.php';
+            </script>";
+                                        } else {
+                                            // Retrieve form input
+                                            $title = $_POST['title'];
+                                            $des = $_POST['description'];
+                                            $u_type = $_POST['user_type'];
+                                            $rating = $_POST['review_rating'];
+                                            $customerid = $_POST['cid'];
+                                            $serviceid = $_POST['sid'];
+                                            $name = $_POST['cname'];
+
+                                            // Check for empty and invalid inputs
+                                            if (empty($title)) {
+                                                echo '<script>alert("Please enter a valid Title")</script>';
+                                            } elseif (empty($des)) {
+                                                echo '<script>alert("Please enter a valid Review")</script>';
+                                            } elseif (empty($u_type)) {
+                                                echo '<script>alert("Please Select a valid What sort of Trip was this.")</script>';
+                                            } elseif (empty($rating)) {
+                                                echo '<script>alert("Please Select a valid Rating.")</script>';
+                                            } else {
+
+                                                // Check if the user may send the review
+                                                if ($review->create_review($title, $des, $u_type, $rating, $customerid, $serviceid, $name)) {
+
+                                                    $message = "Review Successfully submitted !";
+                                                    echo "<script type='text/javascript'>
+                    alert('$message');
+                    </script>";
+                                                } else {
+                                                    $message = "Review Failed to submit !";
+                                                    echo "<script type='text/javascript'>
+                    alert('$message');
+                    </script>";
+                                                }
+                                            }
+                                        }
+                                    };
+
+                                    ?>
+
+
+                                    <form method="POST" class="review-form">
+                                        <input type="text" name="sid" hidden value="<?php echo $tourinfo['tour_id']; ?>">
+                                        <input type="text" name="cid" hidden value="<?php echo $returned_row['customer_id']; ?>">
+                                        <input type="text" name="cname" hidden value="<?php echo $returned_row['username']; ?>">
+
                                         <div class="form-group col-md-5 no-float no-padding">
                                             <h4 class="title">Title of your review</h4>
-                                            <input type="text" name="review-title" class="input-text full-width" value="" placeholder="enter a review title" />
+                                            <input type="text" name="title" class="input-text full-width" value="" placeholder="enter a review title" />
                                         </div>
                                         <div class="form-group">
                                             <h4 class="title">Your review</h4>
-                                            <textarea class="input-text full-width" placeholder="enter your review (minimum 200 characters)" rows="5"></textarea>
+                                            <textarea name="description" class="input-text full-width" placeholder="enter your review (minimum 200 characters)" rows="5"></textarea>
                                         </div>
                                         <div class="form-group">
                                             <h4 class="title">What sort of Trip was this?</h4>
-                                            <ul class="sort-trip clearfix">
-                                                <li><a href="#"><i class="soap-icon-businessbag circle"></i></a><span>Business</span></li>
-                                                <li><a href="#"><i class="soap-icon-couples circle"></i></a><span>Couples</span></li>
-                                                <li><a href="#"><i class="soap-icon-family circle"></i></a><span>Family</span></li>
-                                                <li><a href="#"><i class="soap-icon-friends circle"></i></a><span>Friends</span></li>
-                                                <li><a href="#"><i class="soap-icon-user circle"></i></a><span>Solo</span></li>
-                                            </ul>
+                                            <div class="selector">
+                                                <select name='user_type' class="full-width" id="select-u-type">
+                                                    <option value="Business">Business</option>
+                                                    <option value="Couples">Couples</option>
+                                                    <option value="Family">Family</option>
+                                                    <option value="Friends">Friends</option>
+                                                    <option value="Solo">Solo</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <h4 class="title">Your Overall Experience with the Service? (Rate out of 5)</h4>
+                                            <div class="selector">
+                                                <select name='review_rating' class="full-width">
+                                                    <option value="1">1 Star</option>
+                                                    <option value="2">2 Star</option>
+                                                    <option value="3">3 Star</option>
+                                                    <option value="4">4 Star</option>
+                                                    <option value="5">5 Star</option>
+                                                </select>
+                                            </div>
                                         </div>
                                         <div class="form-group col-md-5 no-float no-padding no-margin">
-                                            <button type="submit" class="btn-large full-width">SUBMIT REVIEW</button>
+                                            <button type="submit" name="submit-rewiew" class="btn-large full-width">SUBMIT REVIEW</button>
                                         </div>
                                     </form>
+
+                                </div>
+
+
+
+                                <div class="tab-pane fade" id="home-partner-info">
+
+                                    <h2>Service Host Details</h2>
+                                    <dl class="term-description">
+                                        <?php
+                                        $partnerid = $tourinfo['partner_id'];
+                                        $partnerdata = $partner->displyaRecordByIdviaArray($partnerid);
+                                        foreach ($partnerdata as $partnerinfo) {
+                                        }
+                                        ?>
+                                        <dt>Host Name:</dt>
+                                        <dd><?php echo $partnerinfo['first_name'];  ?> <?php echo $partnerinfo['last_name'];  ?></dd>
+                                        <dt>Contact:</dt>
+                                        <dd> <?php echo $partnerinfo['contact_number']; ?></dd>
+                                        <dt>Email:</dt>
+                                        <dd> <?php echo $partnerinfo['email_address']; ?></dd>
+                                    </dl>
+
 
                                 </div>
                             </div>
@@ -394,7 +495,7 @@ foreach ($tourdata as $tourinfo) {
                                 <?php
                                 $reviewscount = $review->GetReviewsCount($tid)
                                 ?>
-                                <span class="review pull-right"><?php echo $reviewscount?> reviews</span>
+                                <span class="review pull-right"><?php echo $reviewscount ?> reviews</span>
                             </div>
                         </article>
                         <div class="travelo-box contact-box">
