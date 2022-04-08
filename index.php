@@ -1,430 +1,718 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <!-- Meta Tags -->
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HappyHolidayss</title>
-    <meta name="keywords" content="happyholidayss" />
-    <meta name="description" content="HappyHolidayss | Accomodations & Tours">
-    <meta name="author" content="Subiharan">
+<?php
+// Include database file
+include_once 'includes/dbconfig.php';
+?>
 
-    <!-- Theme Styles -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/font-awesome.min.css">
-    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="css/animate.min.css">
-    
-    <!-- Current Page Styles -->
-    <link rel="stylesheet" type="text/css" href="components/revolution_slider/css/settings.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="components/revolution_slider/css/style.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="components/jquery.bxslider/jquery.bxslider.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="components/flexslider/flexslider.css" media="screen" />
-    
-    <!-- Main Style -->
-    <link id="main-style" rel="stylesheet" href="css/style.css">
-    
-    <!-- Custom Styles -->
-    <link rel="stylesheet" href="css/custom.css">
 
-    <!-- Updated Styles -->
-    <link rel="stylesheet" href="css/updates.css">
-    
-    <!-- Responsive Styles -->
-    <link rel="stylesheet" href="css/responsive.css">
-    
-</head>
-    <body>
-        <div id="page-wrapper">
-            <header id="header" class="navbar-static-top">
-                <div class="topnav hidden-xs">
-                    <div class="container">
-                        <ul class="quick-menu pull-right">
-                            <li><a href="#travelo-login" class="soap-popupbox">LOGIN</a></li>
-                            <li><a href="#travelo-signup" class="soap-popupbox">SIGNUP</a></li>
-                            <li><a href="#travelo-signup" class="#">Become a Partner</a></li>
-                        </ul>
-                        <ul class="quick-menu pull-left">
-                            <li><a href="#travelo-login" class="soap-popupbox">Phone: +(600) 125-4985-214</a></li>
-                            <li><a href="#travelo-signup" class="soap-popupbox">Email: info@yoursite.com</a></li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="main-header">
-                    
-                    <a href="#mobile-menu-01" data-toggle="collapse" class="mobile-menu-toggle">
-                        Mobile Menu Toggle
-                    </a>
 
-                    <div class="container">
-                        <h1 class=" logo-header navbar-brand">
-                            <a href="index.html" title="HappyHolidayss - home">
-                                <img src="images/logo2.png" alt="HappyHolidayss_Logo" width="125" height="50" />
-                            </a>
-                        </h1>
-                        
-                        <nav id="main-menu" role="navigation">
-                            <ul class="menu">
-                                <li class="menu-item-has-children">
-                                    <a href="index.html">Home</a>
-                                </li>
-                                <li class="menu-item-has-children">
-                                    <a href="hotel-index.html">Tours</a>
-                                </li>
-                                <li class="menu-item-has-children">
-                                    <a href="car-index.html">Stays</a>
-                                </li>
-                                <li class="menu-item-has-children">
-                                    <a href="cruise-index.html">About Us</a>
-                                </li>
-                                <li class="menu-item-has-children megamenu-menu">
-                                    <a href="#">Contact Us</a>
-                                </li>
-                                <li class="menu-item-has-children">
-                                    <a href="#">Special Offers</a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
-                    
-                    <nav id="mobile-menu-01" class="mobile-menu collapse">
-                        <ul id="mobile-primary-menu" class="menu">
-                            <li class="menu-item-has-children">
-                                <a href="index.html">Home</a>
-                                <ul>
-                                    <li><a href="index.html">Home Layout 1</a></li>
-                                    <li><a href="homepage2.html">Home Layout 2</a></li>
-                                    <li><a href="homepage3.html">Home Layout 3</a></li>
-                                    <li><a href="homepage4.html">Home Layout 4</a></li>
-                                    <li><a href="homepage5.html">Home Layout 5</a></li>
-                                    <li><a href="homepage6.html">Home Layout 6</a></li>
-                                    <li><a href="homepage7.html">Home Layout 7</a></li>
-                                    <li><a href="homepage8.html">Home Layout 8</a></li>
-                                    <li><a href="homepage9.html">Home Layout 9</a></li>
-                                    <li><a href="homepage10.html">Home Layout 10</a></li>
-                                    <li><a href="homepage11.html">Home Layout 11</a></li>
-                                </ul>
-                            </li>
-                            <li class="menu-item-has-children">
-                                <a href="hotel-index.html">Hotels</a>
-                                <ul>
-                                    <li><a href="hotel-index.html">Home Hotels</a></li>
-                                    <li><a href="hotel-list-view.html">List View</a></li>
-                                    <li><a href="hotel-grid-view.html">Grid View</a></li>
-                                    <li><a href="hotel-block-view.html">Block View</a></li>
-                                    <li><a href="hotel-detailed.html">Detailed</a></li>
-                                    <li><a href="hotel-booking.html">Booking</a></li>
-                                    <li><a href="hotel-thankyou.html">Thank You</a></li>
-                                </ul>
-                            </li>
-                            <li class="menu-item-has-children">
-                                <a href="flight-index.html">Flights</a>
-                                <ul>
-                                    <li><a href="flight-index.html">Home Flights</a></li>
-                                    <li><a href="flight-list-view.html">List View</a></li>
-                                    <li><a href="flight-grid-view.html">Grid View</a></li>
-                                    <li><a href="flight-block-view.html">Block View</a></li>
-                                    <li><a href="flight-detailed.html">Detailed</a></li>
-                                    <li><a href="flight-booking.html">Booking</a></li>
-                                    <li><a href="flight-thankyou.html">Thank You</a></li>
-                                </ul>
-                            </li>
-                            <li class="menu-item-has-children">
-                                <a href="car-index.html">Cars</a>
-                                <ul>
-                                    <li><a href="car-index.html">Home Cars</a></li>
-                                    <li><a href="car-list-view.html">List View</a></li>
-                                    <li><a href="car-grid-view.html">Grid View</a></li>
-                                    <li><a href="car-block-view.html">Block View</a></li>
-                                    <li><a href="car-detailed.html">Detailed</a></li>
-                                    <li><a href="car-booking.html">Booking</a></li>
-                                    <li><a href="car-thankyou.html">Thank You</a></li>
-                                </ul>
-                            </li>
-                            <li class="menu-item-has-children">
-                                <a href="cruise-index.html">Cruises</a>
-                                <ul>
-                                    <li><a href="cruise-index.html">Home Cruises</a></li>
-                                    <li><a href="cruise-list-view.html">List View</a></li>
-                                    <li><a href="cruise-grid-view.html">Grid View</a></li>
-                                    <li><a href="cruise-block-view.html">Block View</a></li>
-                                    <li><a href="cruise-detailed.html">Detailed</a></li>
-                                    <li><a href="cruise-booking.html">Booking</a></li>
-                                    <li><a href="cruise-thankyou.html">Thank You</a></li>
-                                </ul>
-                            </li>
-                            <li class="menu-item-has-children">
-                                <a href="#">Pages</a>
-                                <ul>
-                                    <li class="menu-item-has-children">
-                                        <a href="#">Standard Pages</a>
-                                        <ul>
-                                            <li><a href="pages-aboutus1.html">About Us 1</a></li>
-                                            <li><a href="pages-aboutus2.html">About Us 2</a></li>
-                                            <li><a href="pages-services1.html">Services 1</a></li>
-                                            <li><a href="pages-services2.html">Services 2</a></li>
-                                            <li><a href="pages-photogallery-4column.html">Gallery 4 Column</a></li>
-                                            <li><a href="pages-photogallery-3column.html">Gallery 3 Column</a></li>
-                                            <li><a href="pages-photogallery-2column.html">Gallery 2 Column</a></li>
-                                            <li><a href="pages-photogallery-fullview.html">Gallery Read</a></li>
-                                            <li><a href="pages-blog-rightsidebar.html">Blog Right Sidebar</a></li>
-                                            <li><a href="pages-blog-leftsidebar.html">Blog Left Sidebar</a></li>
-                                            <li><a href="pages-blog-fullwidth.html">Blog Full Width</a></li>
-                                            <li><a href="pages-blog-read.html">Blog Read</a></li>
-                                            <li><a href="pages-faq1.html">Faq 1</a></li>
-                                            <li><a href="pages-faq2.html">Faq 2</a></li>
-                                            <li><a href="pages-layouts-leftsidebar.html">Layouts Left Sidebar</a></li>
-                                            <li><a href="pages-layouts-rightsidebar.html">Layouts Right Sidebar</a></li>
-                                            <li><a href="pages-layouts-twosidebar.html">Layouts Two Sidebar</a></li>
-                                            <li><a href="pages-layouts-fullwidth.html">Layouts Full Width</a></li>
-                                            <li><a href="pages-contactus1.html">Contact Us 1</a></li>
-                                            <li><a href="pages-contactus2.html">Contact Us 2</a></li>
-                                            <li><a href="pages-contactus3.html">Contact Us 3</a></li>
-                                            <li><a href="pages-travelo-policies.html">Travelo Policies</a></li>
-                                            <li><a href="pages-sitemap.html">Site Map</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="menu-item-has-children">
-                                        <a href="#">Extra Pages</a>
-                                        <ul>
-                                            <li><a href="extra-pages-holidays.html">Holidays</a></li>
-                                            <li><a href="extra-pages-hotdeals.html">Hot Deals</a></li>
-                                            <li><a href="extra-pages-before-you-fly.html">Before You Fly</a></li>
-                                            <li><a href="extra-pages-inflight-experience.html">Inflight Experience</a></li>
-                                            <li><a href="extra-pages-things-todo1.html">Things To Do 1</a></li>
-                                            <li><a href="extra-pages-things-todo2.html">Things To Do 2</a></li>
-                                            <li><a href="extra-pages-travel-essentials.html">Travel Essentials</a></li>
-                                            <li><a href="extra-pages-travel-stories.html">Travel Stories</a></li>
-                                            <li><a href="extra-pages-travel-guide.html">Travel Guide</a></li>
-                                            <li><a href="extra-pages-travel-ideas.html">Travel Ideas</a></li>
-                                            <li><a href="extra-pages-travel-insurance.html">Travel Insurance</a></li>
-                                            <li><a href="extra-pages-group-booking.html">Group Bookings</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="menu-item-has-children">
-                                        <a href="#">Special Pages</a>
-                                        <ul>
-                                            <li><a href="pages-404-1.html">404 Page 1</a></li>
-                                            <li><a href="pages-404-2.html">404 Page 2</a></li>
-                                            <li><a href="pages-404-3.html">404 Page 3</a></li>
-                                            <li><a href="pages-coming-soon1.html">Coming Soon 1</a></li>
-                                            <li><a href="pages-coming-soon2.html">Coming Soon 2</a></li>
-                                            <li><a href="pages-coming-soon3.html">Coming Soon 3</a></li>
-                                            <li><a href="pages-loading1.html">Loading Page 1</a></li>
-                                            <li><a href="pages-loading2.html">Loading Page 2</a></li>
-                                            <li><a href="pages-loading3.html">Loading Page 3</a></li>
-                                            <li><a href="pages-login1.html">Login Page 1</a></li>
-                                            <li><a href="pages-login2.html">Login Page 2</a></li>
-                                            <li><a href="pages-login3.html">Login Page 3</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="menu-item-has-children">
-                                <a href="#">Shortcodes</a>
-                                <ul>
-                                    <li><a href="shortcode-accordions-toggles.html">Accordions &amp; Toggles</a></li>
-                                    <li><a href="shortcode-tabs.html">Tabs</a></li>
-                                    <li><a href="shortcode-buttons.html">Buttons</a></li>
-                                    <li><a href="shortcode-icon-boxes.html">Icon Boxes</a></li>
-                                    <li><a href="shortcode-gallery-styles.html">Image &amp; Gallery Styles</a></li>
-                                    <li><a href="shortcode-image-box-styles.html">Image Box Styles</a></li>
-                                    <li class="menu-item-has-children">
-                                        <a href="#">Listing Styles</a>
-                                        <ul>
-                                            <li><a href="shortcode-listing-style1.html">Listing Style 01</a></li>
-                                            <li><a href="shortcode-listing-style2.html">Listing Style 02</a></li>
-                                            <li><a href="shortcode-listing-style3.html">Listing Style 03</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="shortcode-dropdowns.html">Dropdowns</a></li>
-                                    <li><a href="shortcode-pricing-tables.html">Pricing Tables</a></li>
-                                    <li><a href="shortcode-testimonials.html">Testimonials</a></li>
-                                    <li><a href="shortcode-our-team.html">Our Team</a></li>
-                                    <li><a href="shortcode-gallery-popup.html">Gallery Popup</a></li>
-                                    <li><a href="shortcode-map-popup.html">Map Popup</a></li>
-                                    <li><a href="shortcode-style-changer.html">Style Changer</a></li>
-                                    <li><a href="shortcode-typography.html">Typography</a></li>
-                                    <li><a href="shortcode-animations.html">Animations</a></li>
-                                </ul>
-                            </li>
-                            <li class="menu-item-has-children">
-                                <a href="#">Bonus</a>
-                                <ul>
-                                    <li><a href="dashboard1.html">Dashboard 1</a></li>
-                                    <li><a href="dashboard2.html">Dashboard 2</a></li>
-                                    <li><a href="dashboard3.html">Dashboard 3</a></li>
-                                    <li class="menu-item-has-children">
-                                        <a href="#">7 Footer Styles</a>
-                                        <ul>
-                                            <li><a href="#">Default Style</a></li>
-                                            <li><a href="footer-style1.html">Footer Style 1</a></li>
-                                            <li><a href="footer-style2.html">Footer Style 2</a></li>
-                                            <li><a href="footer-style3.html">Footer Style 3</a></li>
-                                            <li><a href="footer-style4.html">Footer Style 4</a></li>
-                                            <li><a href="footer-style5.html">Footer Style 5</a></li>
-                                            <li><a href="footer-style6.html">Footer Style 6</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="menu-item-has-children">
-                                        <a href="#">8 Header Styles</a>
-                                        <ul>
-                                            <li><a href="#">Default Style</a></li>
-                                            <li><a href="header-style1.html">Header Style 1</a></li>
-                                            <li><a href="header-style2.html">Header Style 2</a></li>
-                                            <li><a href="header-style3.html">Header Style 3</a></li>
-                                            <li><a href="header-style4.html">Header Style 4</a></li>
-                                            <li><a href="header-style5.html">Header Style 5</a></li>
-                                            <li><a href="header-style6.html">Header Style 6</a></li>
-                                            <li><a href="header-style7.html">Header Style 7</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="menu-item-has-children">
-                                        <a href="#">7 Inner Start Styles</a>
-                                        <ul>
-                                            <li><a href="#">Default Style</a></li>
-                                            <li><a href="inner-starts-style1.html">Inner Start Style 1</a></li>
-                                            <li><a href="inner-starts-style2.html">Inner Start Style 2</a></li>
-                                            <li><a href="inner-starts-style3.html">Inner Start Style 3</a></li>
-                                            <li><a href="inner-starts-style4.html">Inner Start Style 4</a></li>
-                                            <li><a href="inner-starts-style5.html">Inner Start Style 5</a></li>
-                                            <li><a href="inner-starts-style6.html">Inner Start Style 6</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="menu-item-has-children">
-                                        <a href="#">3 Search Styles</a>
-                                        <ul>
-                                            <li><a href="search-style1.html">Search Style 1</a></li>
-                                            <li><a href="search-style2.html">Search Style 2</a></li>
-                                            <li><a href="search-style3.html">Search Style 3</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                        
-                        <ul class="mobile-topnav container">
-                            <li><a href="#">MY ACCOUNT</a></li>
-                            <li class="ribbon language menu-color-skin">
-                                <a href="#" data-toggle="collapse">ENGLISH</a>
-                                <ul class="menu mini">
-                                    <li><a href="#" title="Dansk">Dansk</a></li>
-                                    <li><a href="#" title="Deutsch">Deutsch</a></li>
-                                    <li class="active"><a href="#" title="English">English</a></li>
-                                    <li><a href="#" title="Español">Español</a></li>
-                                    <li><a href="#" title="Français">Français</a></li>
-                                    <li><a href="#" title="Italiano">Italiano</a></li>
-                                    <li><a href="#" title="Magyar">Magyar</a></li>
-                                    <li><a href="#" title="Nederlands">Nederlands</a></li>
-                                    <li><a href="#" title="Norsk">Norsk</a></li>
-                                    <li><a href="#" title="Polski">Polski</a></li>
-                                    <li><a href="#" title="Português">Português</a></li>
-                                    <li><a href="#" title="Suomi">Suomi</a></li>
-                                    <li><a href="#" title="Svenska">Svenska</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#travelo-login" class="soap-popupbox">LOGIN</a></li>
-                            <li><a href="#travelo-signup" class="soap-popupbox">SIGNUP</a></li>
-                            <li class="ribbon currency menu-color-skin">
-                                <a href="#">USD</a>
-                                <ul class="menu mini">
-                                    <li><a href="#" title="AUD">AUD</a></li>
-                                    <li><a href="#" title="BRL">BRL</a></li>
-                                    <li class="active"><a href="#" title="USD">USD</a></li>
-                                    <li><a href="#" title="CAD">CAD</a></li>
-                                    <li><a href="#" title="CHF">CHF</a></li>
-                                    <li><a href="#" title="CNY">CNY</a></li>
-                                    <li><a href="#" title="CZK">CZK</a></li>
-                                    <li><a href="#" title="DKK">DKK</a></li>
-                                    <li><a href="#" title="EUR">EUR</a></li>
-                                    <li><a href="#" title="GBP">GBP</a></li>
-                                    <li><a href="#" title="HKD">HKD</a></li>
-                                    <li><a href="#" title="HUF">HUF</a></li>
-                                    <li><a href="#" title="IDR">IDR</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                        
-                    </nav>
-                </div>
-                <div id="travelo-signup" class="travelo-signup-box travelo-box">
-                    <div class="login-social">
-                        <a href="#" class="button login-facebook"><i class="soap-icon-facebook"></i>Login with Facebook</a>
-                        <a href="#" class="button login-googleplus"><i class="soap-icon-googleplus"></i>Login with Google+</a>
-                    </div>
-                    <div class="seperator"><label>OR</label></div>
-                    <div class="simple-signup">
-                        <div class="text-center signup-email-section">
-                            <a href="#" class="signup-email"><i class="soap-icon-letter"></i>Sign up with Email</a>
-                        </div>
-                        <p class="description">By signing up, I agree to Travelo's Terms of Service, Privacy Policy, Guest Refund olicy, and Host Guarantee Terms.</p>
-                    </div>
-                    <div class="email-signup">
-                        <form>
-                            <div class="form-group">
-                                <input type="text" class="input-text full-width" placeholder="first name">
-                            </div>
-                            <div class="form-group">
-                                <input type="text" class="input-text full-width" placeholder="last name">
-                            </div>
-                            <div class="form-group">
-                                <input type="text" class="input-text full-width" placeholder="email address">
-                            </div>
-                            <div class="form-group">
-                                <input type="password" class="input-text full-width" placeholder="password">
-                            </div>
-                            <div class="form-group">
-                                <input type="password" class="input-text full-width" placeholder="confirm password">
-                            </div>
-                            <div class="form-group">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox"> Tell me about Travelo news
-                                    </label>
+<?php include('includes/header.php'); ?>
+
+
+
+<!-- slideshow -->
+<div id="slideshow">
+    <div class="fullwidthbanner-container">
+        <div class="revolution-slider" style="height: 0; overflow: hidden;">
+            <ul>
+                <!-- SLIDE  -->
+                <!-- Slide1 -->
+                <li data-transition="zoomin" data-slotamount="7" data-masterspeed="1500">
+                    <!-- MAIN IMAGE -->
+                    <img src="assets/images/slider/02.png" alt="">
+                </li>
+
+                <!-- Slide2 -->
+                <li data-transition="zoomout" data-slotamount="7" data-masterspeed="1500">
+                    <!-- MAIN IMAGE -->
+                    <img src="assets/images/slider/01.png" alt="">
+
+                </li>
+
+                <!-- Slide3 -->
+                <li data-transition="slidedown" data-slotamount="7" data-masterspeed="1500">
+                    <!-- MAIN IMAGE -->
+                    <img src="assets/images/slider/07.png" alt="">
+                </li>
+
+                <li data-transition="zoomout" data-slotamount="7" data-masterspeed="1500">
+                    <!-- MAIN IMAGE -->
+                    <img src="assets/images/slider/04.png" alt="">
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<section id="content">
+
+
+
+
+
+    <!-- Search bar -->
+    <div class="search-box-wrapper">
+        <div class="search-box container">
+            <ul class="search-tabs clearfix">
+                <li class="active"><a href="#hotels-tab" data-toggle="tab">STAYS</a></li>
+                <li><a href="#flights-tab" data-toggle="tab">TOURS</a></li>
+            </ul>
+            <div class="visible-mobile">
+                <ul id="mobile-search-tabs" class="search-tabs clearfix">
+                    <li class="active"><a href="#hotels-tab">STAYS</a></li>
+                    <li><a href="#online-checkin-tab">TOURS</a></li>
+                </ul>
+            </div>
+
+            <div class="search-tab-content">
+                <div class="tab-pane fade active in" id="hotels-tab">
+                    <form action="homes-search-list.php" method="post">
+                        <input type="text" name="adultpricerange" hidden value="50000" />
+                        <div class="row">
+                            <div class="form-group col-sm-6 col-md-2">
+                                <h4 class="title">Where</h4>
+                                <label>Select Destination</label>
+                                <div class="selector">
+                                    <select name="district" class="full-width">
+                                        <option value="Kandy">Kandy</option>
+                                        <option value="Colombo">Colombo</option>
+                                        <option value="Jaffna">Jaffna</option>
+                                    </select>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <p class="description">By signing up, I agree to Travelo's Terms of Service, Privacy Policy, Guest Refund Policy, and Host Guarantee Terms.</p>
+
+                            <div class="form-group col-sm-6 col-md-4">
+                                <h4 class="title">When</h4>
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <label>Check In</label>
+                                        <div class="datepicker-wrap">
+                                            <input type="date" name="sdate" class="input-text full-width" placeholder="mm/dd/yy" />
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <label>Check Out</label>
+                                        <div class="datepicker-wrap">
+                                            <input type="date" name="edate" class="input-text full-width" placeholder="mm/dd/yy" />
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <button type="submit" class="full-width btn-medium">SIGNUP</button>
-                        </form>
-                    </div>
-                    <div class="seperator"></div>
-                    <p>Already a Travelo member? <a href="#travelo-login" class="goto-login soap-popupbox">Login</a></p>
-                </div>
-                <div id="travelo-login" class="travelo-login-box travelo-box">
-                    <div class="login-social">
-                        <a href="#" class="button login-facebook"><i class="soap-icon-facebook"></i>Login with Facebook</a>
-                        <a href="#" class="button login-googleplus"><i class="soap-icon-googleplus"></i>Login with Google+</a>
-                    </div>
-                    <div class="seperator"><label>OR</label></div>
-                    <form>
-                        <div class="form-group">
-                            <input type="text" class="input-text full-width" placeholder="email address">
-                        </div>
-                        <div class="form-group">
-                            <input type="password" class="input-text full-width" placeholder="password">
-                        </div>
-                        <div class="form-group">
-                            <a href="#" class="forgot-password pull-right">Forgot password?</a>
-                            <div class="checkbox checkbox-inline">
-                                <label>
-                                    <input type="checkbox"> Remember me
-                                </label>
+
+                            <div class="form-group col-sm-8 col-md-4">
+                                <h4 class="title">Who and Space</h4>
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <label>Adults</label>
+                                        <div class="selector">
+                                            <select name="cadult" class="full-width">
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <label>Kids</label>
+                                        <div class="selector">
+                                            <select name="ckid" class="full-width">
+                                                <option value="0">No</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <label>Rooms</label>
+                                        <div class="selector">
+                                            <select name="croom" class="full-width">
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                                <option value="6">6</option>
+                                                <option value="7">7</option>
+                                                <option value="8">8</option>
+                                                <option value="9">9</option>
+                                                <option value="10">10</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-3">
+                                        <label>Home Type</label>
+                                        <div class="selector">
+                                            <select name="htype" class="full-width">
+                                                <option value="resort">Resort</option>
+                                                <option value="villa">Villa</option>
+                                                <option value="cabin">Cabin</option>
+                                                <option value="cottage">Cottage</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-6 col-md-2 fixheight">
+                                <label class="hidden-xs">&nbsp;</label>
+                                <button type="submit" name="homesubmit" class="full-width icon-check animated" data-animation-type="bounce" data-animation-duration="1">SEARCH NOW</button>
                             </div>
                         </div>
                     </form>
-                    <div class="seperator"></div>
-                    <p>Don't have an account? <a href="#travelo-signup" class="goto-signup soap-popupbox">Sign up</a></p>
                 </div>
-            </header>
+                <div class="tab-pane fade" id="flights-tab">
+                    <form action="tours-search-list.php" method="post">
+                        <input type="text" name="pricerange" hidden value="50000" />
+                        <div class="row">
+                            <div class="form-group col-sm-6 col-md-2">
+                                <h4 class="title">Where</h4>
+                                <label>Select Destination</label>
+                                <div class="selector">
+                                    <select name="tdistrict" class="full-width">
+                                        <option value="kandy">Kandy</option>
+                                        <option value="colombo">Colombo</option>
+                                        <option value="jaffna">Jaffna</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-6 col-md-2">
+                                <h4 class="title">When</h4>
+                                <label>from when onwards</label>
+                                <div class="datepicker-wrap">
+                                    <input type="date" name="sdate" class="input-text full-width" placeholder="mm/dd/yy" />
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-6 col-md-4">
+                                <h4 class="title">How</h4>
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <label>Select Tour Type</label>
+                                        <div class="selector">
+                                            <select name="ttype" class="full-width">
+                                                <option value="Active Adventure">Active Adventure</option>
+                                                <option value="2">Colombo</option>
+                                                <option value="3">Jaffna</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <label>Select Guide Language</label>
+                                        <div class="selector">
+                                            <select name="tlan" class="full-width">
+                                                <option value="english">English</option>
+                                                <option value="tamil">Tamil</option>
+                                                <option value="sinhala">Sinhala</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-sm-8 col-md-2">
+                                <h4 class="title">Who and Space</h4>
+                                <div class="row">
+                                    <div class="col-xs-5">
+                                        <label>Adults</label>
+                                        <div class="selector">
+                                            <select name="cadult" class="full-width">
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-5">
+                                        <label>Kids</label>
+                                        <div class="selector">
+                                            <select name="ckid" class="full-width">
+                                                <option value="0">No</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <div class="form-group col-sm-5 col-md-2 fixheight">
+                                <label class="hidden-xs">&nbsp;</label>
+                                <button type="submit" name="toursubmit" class="full-width icon-check animated" data-animation-type="bounce" data-animation-duration="1">SEARCH NOW</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
+    </div>
+
+    <!-- How Holidayss works container -->
+
+    <div class="global-map-area section parallax" data-stellar-background-ratio="0.5">
+        <div class="container description text-center">
+            <h1>How HappyHolidayss Works?</h1>
+            <br>
+            <div class="travelo-process">
+                <img src="assets/images/happyholidayss_process.png" alt="">
+                <div class="process first icon-box style12">
+                    <div class="details animated" data-animation-type="fadeInUp" data-animation-delay="1">
+                        <h4>Explore Destinations</h4>
+                    </div>
+                    <div class="icon-wrapper animated" data-animation-type="slideInLeft" data-animation-delay="0">
+                        <i class="soap-icon-beach circle"></i>
+                    </div>
+                </div>
+                <div class="process second icon-box style12">
+                    <div class="icon-wrapper animated" data-animation-type="slideInRight" data-animation-delay="1.5">
+                        <i class="soap-icon-availability circle"></i>
+                    </div>
+                    <div class="details animated" data-animation-type="fadeInUp" data-animation-delay="2.5">
+                        <h4>Check Availability</h4>
+                    </div>
+                </div>
+                <div class="process third icon-box style12">
+                    <div class="icon-wrapper animated" data-animation-type="slideInRight" data-animation-delay="2">
+                        <i class="soap-icon-stories circle"></i>
+                    </div>
+                    <div class="details animated" data-animation-type="fadeInUp" data-animation-delay="3">
+                        <h4>Book Online</h4>
+                    </div>
+                </div>
+                <div class="process forth icon-box style12">
+                    <div class="details animated" data-animation-type="fadeInUp" data-animation-delay="4.5">
+                        <h4>Travel to Destinations</h4>
+                    </div>
+                    <div class="icon-wrapper animated" data-animation-type="slideInLeft" data-animation-delay="3.5">
+                        <i class="soap-icon-adventure takeoff-effect1 circle"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Travel Services Category Cards -->
+
+    <div class="services-conter container">
+        <div class="row">
+
+
+            <div class="container-title">Explore HappyHolidayss</div>
+            <a href="listed-homes.php" target="_blank">
+                <div class="col-md-4 col-sm-6">
+                    <div class="service-card-single">
+                        <img src="assets/images/services card images/7b8f9425-f5e7-4c9e-9d6d-b39fa2f6e651.png" alt="">
+                        <h5 class="title">Homes</h5>
+                    </div>
+                </div>
+            </a>
+
+            <a href="listed-tours.php" target="_blank">
+                <div class="col-md-4 col-sm-6">
+                    <div class="service-card-single">
+                        <img src="assets/images/services card images/mantas-hesthaven-_g1WdcKcV3w-unsplash.jpg" alt="">
+                        <h5 class="title">Tour Packages</h5>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+
+    <div class="container">
+        <h2>Popular Homes</h2>
+        <div class="row image-box hotel listing-style1">
+            <?php
+            $homedata = $home->HomeActiveData();
+            foreach ($homedata as $homeinfo) {
+            ?>
+                <div class="col-sms-6 col-sm-6 col-md-3">
+                    <article class="box">
+                        <figure class="animated" data-animation-type="fadeInDown" data-animation-delay="0">
+                            <a title=""><img width="270" height="160" src="partner/includes/uploads/<?php echo $homeinfo['cover_img1']; ?>" alt=""></a>
+                        </figure>
+                        <div class="details">
+                            <span class="price">
+                                <small>avg/night</small>
+                                LKR <?php echo $homeinfo['ava_night_price_adult']; ?>
+                            </span>
+                            <h4 class="box-title"><?php echo $homeinfo['home_name']; ?><small><?php echo $homeinfo['district']; ?>, Sri Lanka</small></h4>
+                            <div class="feedback">
+                                <div title="4 stars" class="five-stars-container" data-toggle="tooltip" data-placement="bottom"><span class="five-stars" style="width: 80%;"></span></div>
+                                <span class="review"><?php echo $homeinfo['home_type']; ?></span>
+                            </div>
+
+                            <?php
+                            $string = $homeinfo['lg_desc'];
+
+                            // strip tags to avoid breaking any html
+                            $string = strip_tags($string);
+                            if (strlen($string) > 100) {
+
+                                // truncate string
+                                $stringCut = substr($string, 0, 100);
+                                $endPoint = strrpos($stringCut, ' ');
+
+                                //if the string doesn't contain any space then it will cut without word basis.
+                                $string = $endPoint ? substr($stringCut, 0, $endPoint) : substr($stringCut, 0);
+                                $string .= '... <a">Read More</a>';
+                            }
+                            ?>
+                            <p class="description"><?php echo $string; ?></p>
+
+                            <div class="action">
+                                <a class="button btn-small" href="home-detailed.php?homeid=<?php echo $homeinfo['home_id']; ?>">Details</a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+            <?php }
+            ?>
+        </div>
+    </div>
+
+
+    <div class="container">
+        <h2>Featured Destinations to Stay</h2>
+        <div class="flexslider image-carousel style2 row-2" data-animation="slide" data-item-width="370" data-item-margin="30">
+            <ul class="slides image-box style11">
+                <li>
+                    <article class="box">
+                        <figure>
+                            <a title="" href="listed-homes.php?district=kandy"><img width="370" height="160" alt="" src="assets/images/districs/kandy.png"></a>
+                            <figcaption>
+                                <h3 class="caption-title">Kandy</h3>
+                                <span>Kandy Homes</span>
+                            </figcaption>
+                        </figure>
+                    </article>
+                    <article class="box">
+                        <figure>
+                            <a title="" href="listed-homes.php?district=colombo"><img width="370" height="160" alt="" src="assets/images/districs/colombo.png"></a>
+                            <figcaption>
+                                <h3 class="caption-title">Colombo</h3>
+                                <span>Colombo Homes</span>
+                            </figcaption>
+                        </figure>
+                    </article>
+                </li>
+                <li>
+                    <article class="box">
+                        <figure>
+                            <a title="" href="listed-homes.php?district=jaffna"><img width="370" height="160" alt="" src="assets/images/districs/jaffna.png"></a>
+                            <figcaption>
+                                <h3 class="caption-title">Jaffna</h3>
+                                <span>Jaffna Homes</span>
+                            </figcaption>
+                        </figure>
+                    </article>
+                    <article class="box">
+                        <figure>
+                            <a title="" href="listed-homes.php?district=galle"><img width="370" height="160" alt="" src="assets/images/districs/galle.png"></a>
+                            <figcaption>
+                                <h3 class="caption-title">Galle</h3>
+                                <span>Galle Homes</span>
+                            </figcaption>
+                        </figure>
+                    </article>
+                </li>
+                <li>
+                    <article class="box">
+                        <figure>
+                            <a title="" href="listed-homes.php?district=trincomalee"><img width="370" height="160" alt="" src="assets/images/districs/trinco.png"></a>
+                            <figcaption>
+                                <h3 class="caption-title">Trincomalee</h3>
+                                <span>Trincomalee Homes</span>
+                            </figcaption>
+                        </figure>
+                    </article>
+                    <article class="box">
+                        <figure>
+                            <a title="" href="listed-homes.php?district=badulla"><img width="370" height="160" alt="" src="assets/images/districs/badulla.png"></a>
+                            <figcaption>
+                                <h3 class="caption-title">Badulla</h3>
+                                <span>Badulla Homes</span>
+                            </figcaption>
+                        </figure>
+                    </article>
+                </li>
+                <li>
+                    <article class="box">
+                        <figure>
+                            <a title="" href="listed-homes.php?district=nuwaraeliya"><img width="370" height="160" alt="" src="assets/images/districs/nuwaraliya.png"></a>
+                            <figcaption>
+                                <h3 class="caption-title">nuwara eliya</h3>
+                                <span>Nuwara eliya Homes</span>
+                            </figcaption>
+                        </figure>
+                    </article>
+                    <article class="box">
+                        <figure>
+                            <a title="" href="listed-homes.php?district=anuradhapura"><img width="370" height="160" alt="" src="assets/images/districs/anuradhapura.png"></a>
+                            <figcaption>
+                                <h3 class="caption-title">Anuradhapura</h3>
+                                <span>Anuradhapura Homes</span>
+                            </figcaption>
+                        </figure>
+                    </article>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>Popular Tour Packages</h2>
+        <div class="row image-box hotel listing-style1">
+            <?php
+            $tourdata = $tour->TourActiveData();
+            foreach ($tourdata as $tourinfo) {
+            ?>
+                <div class="col-sms-6 col-sm-6 col-md-3">
+                    <article class="box">
+                        <figure class="animated" data-animation-type="fadeInDown" data-animation-delay="0">
+                            <a title=""><img width="270" height="160" src="partner/includes/uploads/<?php echo $tourinfo['image']; ?>" alt=""></a>
+                        </figure>
+                        <div class="details">
+                            <span class="price">
+                                <small>Adult Price</small>
+                                LKR <?php echo $tourinfo['adult_price']; ?>
+                            </span>
+                            <h4 class="box-title"><?php echo $tourinfo['title']; ?><small>Starting From <?php echo $tourinfo['district']; ?></small></h4>
+                            <div class="feedback">
+                                <div class="five-stars-container">Total <?php echo $tourinfo['duration_nights']; ?> Nights</div>
+                                <span class="review"><?php echo $tourinfo['tour_type']; ?></span>
+                            </div>
+                            <?php
+                            $string = $tourinfo['details'];
+
+                            // strip tags to avoid breaking any html
+                            $string = strip_tags($string);
+                            if (strlen($string) > 100) {
+
+                                // truncate string
+                                $stringCut = substr($string, 0, 100);
+                                $endPoint = strrpos($stringCut, ' ');
+
+                                //if the string doesn't contain any space then it will cut without word basis.
+                                $string = $endPoint ? substr($stringCut, 0, $endPoint) : substr($stringCut, 0);
+                                $string .= '... <a">Read More</a>';
+                            }
+                            ?>
+                            <p class="description"><?php echo $string; ?></p>
+                            <div class="action">
+                                <a class="button btn-small" href="tour-detailed.php?tourid=<?php echo $tourinfo['tour_id']; ?>">Details</a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+            <?php }
+            ?>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>Top destinations for your next Trip</h2>
+        <div class="flexslider image-carousel style2 row-2" data-animation="slide" data-item-width="370" data-item-margin="30">
+            <ul class="slides image-box style11">
+                <li>
+                    <article class="box">
+                        <figure>
+                            <a title="" href="listed-tours.php?district=kandy"><img width="370" height="160" alt="" src="assets/images/tour district covers/kandy.png"></a>
+                            <figcaption>
+                                <h3 class="caption-title">Kandy</h3>
+                                <span>Kandy Tours</span>
+                            </figcaption>
+                        </figure>
+                    </article>
+                    <article class="box">
+                        <figure>
+                            <a title="" href="listed-tours.php?district=colombo"><img width="370" height="160" alt="" src="assets/images/tour district covers/colombo.png"></a>
+                            <figcaption>
+                                <h3 class="caption-title">Colombo</h3>
+                                <span>Colombo Tours</span>
+                            </figcaption>
+                        </figure>
+                    </article>
+                </li>
+                <li>
+                    <article class="box">
+                        <figure>
+                            <a title="" href="listed-tours.php?district=jaffna"><img width="370" height="160" alt="" src="assets/images/tour district covers/jaffna.png"></a>
+                            <figcaption>
+                                <h3 class="caption-title">Jaffna</h3>
+                                <span>Jaffna Tours</span>
+                            </figcaption>
+                        </figure>
+                    </article>
+                    <article class="box">
+                        <figure>
+                            <a title="" href="listed-tours.php?district=galle"><img width="370" height="160" alt="" src="assets/images/tour district covers/kegalle.png"></a>
+                            <figcaption>
+                                <h3 class="caption-title">Galle</h3>
+                                <span>kegalle Tours</span>
+                            </figcaption>
+                        </figure>
+                    </article>
+                </li>
+                <li>
+                    <article class="box">
+                        <figure>
+                            <a title="" href="listed-tours.php?district=trincomalee"><img width="370" height="160" alt="" src="assets/images/tour district covers/trinco.png"></a>
+                            <figcaption>
+                                <h3 class="caption-title">Trincomalee</h3>
+                                <span>Trincomalee Tours</span>
+                            </figcaption>
+                        </figure>
+                    </article>
+                    <article class="box">
+                        <figure>
+                            <a title="" href="listed-tours.php?district=badulla"><img width="370" height="160" alt="" src="assets/images/tour district covers/badulla.png"></a>
+                            <figcaption>
+                                <h3 class="caption-title">Badulla</h3>
+                                <span>Badulla Tours</span>
+                            </figcaption>
+                        </figure>
+                    </article>
+                </li>
+                <li>
+                    <article class="box">
+                        <figure>
+                            <a title="" href="listed-tours.php?district=nuwaraeliya"><img width="370" height="160" alt="" src="assets/images/tour district covers/nuwaraliya.png"></a>
+                            <figcaption>
+                                <h3 class="caption-title">nuwara eliya</h3>
+                                <span>Nuwara eliya Tours</span>
+                            </figcaption>
+                        </figure>
+                    </article>
+                    <article class="box">
+                        <figure>
+                            <a title="" href="listed-tours.php?district=anuradhapura"><img width="370" height="160" alt="" src="assets/images/tour district covers/anurathapuram.png"></a>
+                            <figcaption>
+                                <h3 class="caption-title">Anuradhapura</h3>
+                                <span>Anuradhapura Tours</span>
+                            </figcaption>
+                        </figure>
+                    </article>
+                </li>
+                <li>
+                    <article class="box">
+                        <figure>
+                            <a title="" href="listed-tours.php?district=polonnaruwa"><img width="370" height="160" alt="" src="assets/images/tour district covers/polannaruwa.png"></a>
+                            <figcaption>
+                                <h3 class="caption-title">Polonnaruwa</h3>
+                                <span>Polonnaruwa Tours</span>
+                            </figcaption>
+                        </figure>
+                    </article>
+                    <article class="box">
+                        <figure>
+                            <a title="" href="listed-tours.php?district=matale"><img width="370" height="160" alt="" src="assets/images/tour district covers/matale.png"></a>
+                            <figcaption>
+                                <h3 class="caption-title">Matale</h3>
+                                <span>Matale Tours</span>
+                            </figcaption>
+                        </figure>
+                    </article>
+                </li>
+            </ul>
+        </div>
+    </div>
 
 
 
 
-        
-    </body>
-</html>
+
+
+    <div>
+
+
+
+
+
+
+    </div>
+
+
+    <div class="global-map-area2 promo-box no-margin parallax" data-stellar-background-ratio="0.5">
+        <div class="container">
+            <div class="content-section description pull-right col-sm-9">
+                <div class="table-wrapper hidden-table-sm">
+                    <div class="table-cell">
+                        <h2 class="m-title animated" data-animation-type="fadeInDown" data-animation-duration="1.5">
+                            Tell us where you would like to go.<br /><em>1,000+ Cabins and Resorts Available!</em>
+                        </h2>
+                    </div>
+                    <div class="table-cell action-section col-md-4 no-float">
+                        <div class="row">
+                            <div class="col-xs-6 col-md-12">
+                                <a href="listed-homes.php"> <button href="listed-homes.php" class="full-width btn-large"> Homestays</button></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="image-container col-sm-4">
+                <img src="assets/images/services card images/hom01.png" alt="" width="342" height="258" class="animated" data-animation-type="fadeInUp" />
+            </div>
+        </div>
+    </div>
+
+    <div class="container section">
+        <h2>Our Investors Relations</h2>
+        <div class="investor-slideshow image-carousel style2 investor-list" data-animation="slide" data-item-width="170" data-item-margin="30">
+            <ul class="slides">
+                <li>
+                    <div class="travelo-box">
+                        <a href="#"><img src="assets/images/partners/01.png" alt=""></a>
+                    </div>
+                </li>
+                <li>
+                    <div class="travelo-box">
+                        <a href="#"><img src="assets/images/partners/02.png" alt=""></a>
+                    </div>
+                </li>
+                <li>
+                    <div class="travelo-box">
+                        <a href="#"><img src="assets/images/partners/03.png" alt=""></a>
+                    </div>
+                </li>
+                <li>
+                    <div class="travelo-box">
+                        <a href="#"><img src="assets/images/partners/04.png" alt=""></a>
+                    </div>
+                </li>
+                <li>
+                    <div class="travelo-box">
+                        <a href="#"><img src="assets/images/partners/05.png" alt=""></a>
+                    </div>
+                </li>
+                <li>
+                    <div class="travelo-box">
+                        <a href="#"><img src="assets/images/partners/06.png" alt=""></a>
+                    </div>
+                </li>
+                <li>
+                    <div class="travelo-box">
+                        <a href="#"><img src="assets/images/partners/07.png" alt=""></a>
+                    </div>
+                </li>
+                <li>
+                    <div class="travelo-box">
+                        <a href="#"><img src="assets/images/partners/08.png" alt=""></a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+</section>
+
+<?php include('includes/jsscripts.php'); ?>
+<?php include('includes/footer.php'); ?>
