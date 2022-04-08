@@ -97,7 +97,7 @@ foreach ($homedata as $homeinfo) {
                                 <li><a href="#home-reviews" data-toggle="tab">Reviews</a></li>
                                 <li><a href="#home-faqs" data-toggle="tab">FAQs</a></li>
                                 <li><a href="#home-write-review" data-toggle="tab">Write a Review</a></li>
-                                <li><a href="#home-partner-info" data-toggle="tab">Property Info</a></li>
+                                <li><a href="#home-partner-info" data-toggle="tab">Host Info</a></li>
                             </ul>
                             <div class="tab-content">
                                 <div class="tab-pane fade in active" id="hotel-description">
@@ -341,7 +341,7 @@ foreach ($homedata as $homeinfo) {
                                             </h4>
                                             <div class="panel-collapse collapse" id="question4">
                                                 <div class="panel-content">
-                                                <p>It’s not possible to change any personal details like the guest's name or email address.</p>
+                                                    <p>It’s not possible to change any personal details like the guest's name or email address.</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -351,7 +351,7 @@ foreach ($homedata as $homeinfo) {
                                             </h4>
                                             <div class="panel-collapse collapse" id="question5">
                                                 <div class="panel-content">
-                                                <p>To request a different check-in/-out time, contact the property directly 1 or 2 days before arrival. There's no guarantee, but they might be able to help.</p>
+                                                    <p>To request a different check-in/-out time, contact the property directly 1 or 2 days before arrival. There's no guarantee, but they might be able to help.</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -361,7 +361,7 @@ foreach ($homedata as $homeinfo) {
                                             </h4>
                                             <div class="panel-collapse collapse" id="question6">
                                                 <div class="panel-content">
-                                                <p>No, it’s not possible to use travel credit toward bookings facilitated by partner travel companies. Choose a different room or rate instead.</p>
+                                                    <p>No, it’s not possible to use travel credit toward bookings facilitated by partner travel companies. Choose a different room or rate instead.</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -371,7 +371,7 @@ foreach ($homedata as $homeinfo) {
                                             </h4>
                                             <div class="panel-collapse collapse" id="question7">
                                                 <div class="panel-content">
-                                                <p>No, this booking can't be made with rewards or incentive programs. Even if you use a unique link or code to make this booking, you won't be rewarded for this stay.</p>
+                                                    <p>No, this booking can't be made with rewards or incentive programs. Even if you use a unique link or code to make this booking, you won't be rewarded for this stay.</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -484,7 +484,21 @@ foreach ($homedata as $homeinfo) {
 
                                 <div class="tab-pane fade" id="home-partner-info">
 
-
+                                    <h2>Service Host Details</h2>
+                                    <dl class="term-description">
+                                        <?php
+                                        $partnerid = $homeinfo['partner_id'];
+                                        $partnerdata = $partner->displyaRecordByIdviaArray($partnerid);
+                                        foreach ($partnerdata as $partnerinfo) {
+                                        }
+                                        ?>
+                                        <dt>Host Name:</dt>
+                                        <dd><?php echo $partnerinfo['first_name'];  ?> <?php echo $partnerinfo['last_name'];  ?></dd>
+                                        <dt>Contact:</dt>
+                                        <dd> <?php echo $partnerinfo['contact_number']; ?></dd>
+                                        <dt>Email:</dt>
+                                        <dd> <?php echo $partnerinfo['email_address']; ?></dd>
+                                    </dl>
 
 
                                 </div>
@@ -509,7 +523,10 @@ foreach ($homedata as $homeinfo) {
                             </span>
                             <div class="feedback clearfix">
                                 <div title="4 stars" class="five-stars-container" data-toggle="tooltip" data-placement="bottom"><span class="five-stars" style="width: 80%;"></span></div>
-                                <span class="review pull-right">270 reviews</span>
+                                <?php
+                                $reviewscount = $review->GetReviewsCount($hid)
+                                ?>
+                                <span class="review pull-right"><?php echo $reviewscount ?> reviews</span>
                             </div>
                         </article>
                         <div class="travelo-box contact-box">

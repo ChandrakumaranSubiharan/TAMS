@@ -77,4 +77,13 @@ class review
             return false;
         }
     }
+    
+    public function GetReviewsCount($sid)
+    {
+      $sql = "SELECT review_id from tbl_review WHERE status = 1 AND service_id = $sid";
+      $query = $this->db->query($sql);
+      $cnt=$query->rowCount();
+      return $cnt;
+    }
+
 }
