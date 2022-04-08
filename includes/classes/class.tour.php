@@ -209,7 +209,7 @@ class tour
   // Fetch tour records for show listing
   public function TourActiveData()
   {
-    $sql = "SELECT * FROM tbl_tour where status = 1 AND ava_start_date >= CURDATE() order by rand()";
+    $sql = "SELECT * FROM tbl_tour where status = 1 AND ava_start_date >= CURDATE() order by rand() LIMIT 4";
     $query = $this->db->query($sql);
     $data = array();
     if ($query->rowCount() > 0) {

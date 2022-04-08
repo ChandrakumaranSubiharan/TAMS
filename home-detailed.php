@@ -92,11 +92,12 @@ foreach ($homedata as $homeinfo) {
                         <div id="hotel-features" class="tab-container">
                             <ul class="tabs">
                                 <li class="active"><a href="#hotel-description" data-toggle="tab">Description</a></li>
-                                <li><a href="#hotel-availability" data-toggle="tab">Booking</a></li>
-                                <li><a href="#hotel-amenities" data-toggle="tab">Amenities</a></li>
-                                <li><a href="#hotel-reviews" data-toggle="tab">Reviews</a></li>
-                                <li><a href="#hotel-faqs" data-toggle="tab">FAQs</a></li>
-                                <li><a href="#hotel-write-review" data-toggle="tab">Write a Review</a></li>
+                                <li><a href="#home-availability" data-toggle="tab">Booking</a></li>
+                                <li><a href="#home-amenities" data-toggle="tab">Amenities</a></li>
+                                <li><a href="#home-reviews" data-toggle="tab">Reviews</a></li>
+                                <li><a href="#home-faqs" data-toggle="tab">FAQs</a></li>
+                                <li><a href="#home-write-review" data-toggle="tab">Write a Review</a></li>
+                                <li><a href="#home-partner-info" data-toggle="tab">Property Info</a></li>
                             </ul>
                             <div class="tab-content">
                                 <div class="tab-pane fade in active" id="hotel-description">
@@ -123,12 +124,20 @@ foreach ($homedata as $homeinfo) {
                                         <div class="col-sm-7 col-lg-8 table-cell testimonials">
                                             <div class="testimonial style1">
                                                 <ul class="slides ">
-                                                    <li>
-                                                        <p class="description">Always enjoyed my stay with Hilton Hotel and Resorts, top class room service and rooms have great outside views and luxury assessories. Thanks for great experience.</p>
-                                                        <div class="author clearfix">
-                                                            <h5 class="name">Jessica Brown<small>guest</small></h5>
-                                                        </div>
-                                                    </li>
+                                                    <?php
+                                                    $reviewdata = $review->displayReviewsLimit($hid);
+                                                    foreach ($reviewdata as $reviewinfo) {
+                                                    ?>
+                                                        <li>
+                                                            <p class="description"><?php echo $reviewinfo['review_description']; ?></p>
+                                                            <div class="author clearfix">
+                                                                <a href="#"><img src="assets/images/user2.png" alt="" width="74" height="74" /></a>
+                                                                <h5 class="name"><?php echo $reviewinfo['customer_name']; ?><small>guest</small></h5>
+                                                            </div>
+                                                        </li>
+                                                    <?php
+                                                    }
+                                                    ?>
                                                 </ul>
                                             </div>
                                         </div>
@@ -140,7 +149,7 @@ foreach ($homedata as $homeinfo) {
                                         </p>
                                     </div>
                                 </div>
-                                <div class="tab-pane fade" id="hotel-availability">
+                                <div class="tab-pane fade" id="home-availability">
                                     <div class="update-search clearfix">
 
                                         <form action="home-detail-payment.php" method="post" enctype="multipart/form-data">
@@ -209,7 +218,7 @@ foreach ($homedata as $homeinfo) {
                                         </form>
                                     </div>
                                 </div>
-                                <div class="tab-pane fade" id="hotel-amenities">
+                                <div class="tab-pane fade" id="home-amenities">
                                     <h2>Amenities</h2>
 
                                     <ul class="amenities clearfix style1">
@@ -260,109 +269,115 @@ foreach ($homedata as $homeinfo) {
                                         </li>
                                     </ul>
                                 </div>
-                                <div class="tab-pane fade" id="hotel-reviews">
+                                <div class="tab-pane fade" id="home-reviews">
                                     <div class="guest-reviews">
                                         <h2>Guest Reviews</h2>
-                                        <div class="guest-review table-wrapper">
-                                            <div class="col-xs-3 col-md-2 author table-cell">
-                                                <a href="#"><img src="#" alt="" width="270" height="263" /></a>
-                                                <p class="name">Jessica Brown</p>
-                                                <p class="date">NOV, 12, 2013</p>
-                                            </div>
-                                            <div class="col-xs-9 col-md-10 table-cell comment-container">
-                                                <div class="comment-header clearfix">
-                                                    <h4 class="comment-title">We had great experience while our stay and Hilton Hotels!</h4>
-                                                    <div class="review-score">
-                                                        <div class="five-stars-container">
-                                                            <div class="five-stars" style="width: 80%;"></div>
+                                        <?php
+                                        $reviewdata = $review->displayReviews($hid);
+                                        foreach ($reviewdata as $reviewinfo) {
+                                        ?>
+                                            <div class="guest-review table-wrapper">
+                                                <div class="col-xs-3 col-md-2 author table-cell">
+                                                    <a href="#"><img src="assets/images/user2.png" alt="" width="270" height="263" /></a>
+                                                    <p class="name"><?php echo $reviewinfo['customer_name']; ?></p>
+                                                    <p class="date"><?php echo date('jS F, Y', strtotime($reviewinfo['created_date'])); ?></p>
+                                                </div>
+                                                <div class="col-xs-9 col-md-10 table-cell comment-container">
+                                                    <div class="comment-header clearfix">
+                                                        <h4 class="comment-title"><?php echo $reviewinfo['review_title']; ?></h4>
+                                                        <div class="review-score">
+                                                            <div class="five-stars-container">
+                                                                <div class="five-stars" style="width: 80%;"></div>
+                                                            </div>
+                                                            <span class="score"><?php echo $reviewinfo['review_rating']; ?>/5</span>
                                                         </div>
-                                                        <span class="score">4.0/5.0</span>
+                                                    </div>
+                                                    <div class="comment-content">
+                                                        <p><?php echo $reviewinfo['review_description']; ?></p>
                                                     </div>
                                                 </div>
-                                                <div class="comment-content">
-                                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's stand dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries.</p>
-                                                </div>
                                             </div>
-                                        </div>
+                                        <?php
+                                        }
+                                        ?>
                                     </div>
                                 </div>
-                                <div class="tab-pane fade" id="hotel-faqs">
+                                <div class="tab-pane fade" id="home-faqs">
                                     <div class="toggle-container">
                                         <div class="panel style1 arrow-right">
                                             <h4 class="panel-title">
-                                                <a class="collapsed" href="#question1" data-toggle="collapse">How do I know a reservation is accepted or confirmed?</a>
+                                                <a class="collapsed" href="#question1" data-toggle="collapse">How do I confirm that I paid for my booking?</a>
                                             </h4>
                                             <div class="panel-collapse collapse" id="question1">
                                                 <div class="panel-content">
-
+                                                    <p> You’ll find payment confirmation in your dashboard bookings. In the bookings page, there's is a option to view the payment confirmation status.</p>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="panel style1 arrow-right">
                                             <h4 class="panel-title">
-                                                <a class="collapsed" href="#question2" data-toggle="collapse">What do I do after I receive a reservation request from a guest?</a>
+                                                <a class="collapsed" href="#question2" data-toggle="collapse">I can't find my booking in my account. What should I do?</a>
                                             </h4>
                                             <div class="panel-collapse collapse" id="question2">
                                                 <div class="panel-content">
-                                                    <p>Sed a justo enim. Vivamus volutpat ipsum ultrices augue porta lacinia. Proin in elementum enim. <span class="skin-color">Duis suscipit justo</span> non purus consequat molestie. Etiam pharetra ipsum sagittis sollicitudin ultricies. Praesent luctus, diam ut tempus aliquam, diam ante euismod risus, euismod viverra quam quam eget turpis. Nam <span class="skin-color">tristique congue</span> arcu, id bibendum diam. Ut hendrerit, leo a pellentesque porttitor, purus arcu tristique erat, in faucibus elit leo in turpis vitae luctus enim, a mollis nulla.</p>
+                                                    <p>If you were signed in when booking, it should appear in the Bookings section of your account. <br>
+                                                        If you weren't signed in when booking, the booking won't appear, and you can't add this booking to your account. </p>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="panel style1 arrow-right">
                                             <h4 class="panel-title">
-                                                <a class="" href="#question3" data-toggle="collapse">How much time do I have to respond to a reservation request?</a>
+                                                <a class="" href="#question3" data-toggle="collapse">Can I get extra beds/cribs for children??</a>
                                             </h4>
                                             <div class="panel-collapse collapse in" id="question3">
                                                 <div class="panel-content">
-                                                    <p>Sed a justo enim. Vivamus volutpat ipsum ultrices augue porta lacinia. Proin in elementum enim. <span class="skin-color">Duis suscipit justo</span> non purus consequat molestie. Etiam pharetra ipsum sagittis sollicitudin ultricies. Praesent luctus, diam ut tempus aliquam, diam ante euismod risus, euismod viverra quam quam eget turpis. Nam <span class="skin-color">tristique congue</span> arcu, id bibendum diam. Ut hendrerit, leo a pellentesque porttitor, purus arcu tristique erat, in faucibus elit leo in turpis vitae luctus enim, a mollis nulla.</p>
+                                                    <p>It depends on the property’s policy. Typically, additional costs for children (including extra beds/cribs) aren't included in the price. Contact the property directly 1 to 2 days before your stay to find out more.</p>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="panel style1 arrow-right">
                                             <h4 class="panel-title">
-                                                <a class="collapsed" href="#question4" data-toggle="collapse">Why can’t I call or email hotel or host before booking?</a>
+                                                <a class="collapsed" href="#question4" data-toggle="collapse">Can I change the guest name for this booking?</a>
                                             </h4>
                                             <div class="panel-collapse collapse" id="question4">
                                                 <div class="panel-content">
-
+                                                <p>It’s not possible to change any personal details like the guest's name or email address.</p>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="panel style1 arrow-right">
                                             <h4 class="panel-title">
-                                                <a class="collapsed" href="#question5" data-toggle="collapse">Am I allowed to decline reservation requests?</a>
+                                                <a class="collapsed" href="#question5" data-toggle="collapse">How do I request early or late check-in/-out?</a>
                                             </h4>
                                             <div class="panel-collapse collapse" id="question5">
                                                 <div class="panel-content">
-
+                                                <p>To request a different check-in/-out time, contact the property directly 1 or 2 days before arrival. There's no guarantee, but they might be able to help.</p>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="panel style1 arrow-right">
                                             <h4 class="panel-title">
-                                                <a class="collapsed" href="#question6" data-toggle="collapse">What happens if I let a reservation request expire?</a>
+                                                <a class="collapsed" href="#question6" data-toggle="collapse">Can I use credit to make this booking?</a>
                                             </h4>
                                             <div class="panel-collapse collapse" id="question6">
                                                 <div class="panel-content">
-
+                                                <p>No, it’s not possible to use travel credit toward bookings facilitated by partner travel companies. Choose a different room or rate instead.</p>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="panel style1 arrow-right">
                                             <h4 class="panel-title">
-                                                <a class="collapsed" href="#question7" data-toggle="collapse">How do I set reservation requirements?</a>
+                                                <a class="collapsed" href="#question7" data-toggle="collapse">Can I use a coupon or promotional link to make this booking?</a>
                                             </h4>
                                             <div class="panel-collapse collapse" id="question7">
                                                 <div class="panel-content">
-
+                                                <p>No, this booking can't be made with rewards or incentive programs. Even if you use a unique link or code to make this booking, you won't be rewarded for this stay.</p>
                                                 </div>
                                             </div>
                                         </div>
-
                                     </div>
                                 </div>
-                                <div class="tab-pane fade" id="hotel-write-review">
-
+                                <div class="tab-pane fade" id="home-write-review">
 
                                     <?php
 
@@ -383,6 +398,7 @@ foreach ($homedata as $homeinfo) {
                                             $rating = $_POST['review_rating'];
                                             $customerid = $_POST['cid'];
                                             $serviceid = $_POST['sid'];
+                                            $name = $_POST['cname'];
 
                                             // Check for empty and invalid inputs
                                             if (empty($title)) {
@@ -396,7 +412,7 @@ foreach ($homedata as $homeinfo) {
                                             } else {
 
                                                 // Check if the user may send the review
-                                                if ($review->create_review($title, $des, $u_type, $rating, $cid, $sid)) {
+                                                if ($review->create_review($title, $des, $u_type, $rating, $customerid, $serviceid, $name)) {
 
                                                     $message = "Review Successfully submitted !";
                                                     echo "<script type='text/javascript'>
@@ -419,8 +435,10 @@ foreach ($homedata as $homeinfo) {
 
 
                                     <form method="POST" class="review-form">
-                                    <input type="text" name="sid" hidden value="<?php echo $homeinfo['home_id']; ?>">
-                                    <input type="text" name="cid" hidden value="<?php echo $returned_row['customer_id']; ?>">
+                                        <input type="text" name="sid" hidden value="<?php echo $homeinfo['home_id']; ?>">
+                                        <input type="text" name="cid" hidden value="<?php echo $returned_row['customer_id']; ?>">
+                                        <input type="text" name="cname" hidden value="<?php echo $returned_row['username']; ?>">
+
                                         <div class="form-group col-md-5 no-float no-padding">
                                             <h4 class="title">Title of your review</h4>
                                             <input type="text" name="title" class="input-text full-width" value="" placeholder="enter a review title" />
@@ -460,6 +478,16 @@ foreach ($homedata as $homeinfo) {
                                     </form>
 
                                 </div>
+
+
+
+
+                                <div class="tab-pane fade" id="home-partner-info">
+
+
+
+
+                                </div>
                             </div>
 
                         </div>
@@ -485,12 +513,12 @@ foreach ($homedata as $homeinfo) {
                             </div>
                         </article>
                         <div class="travelo-box contact-box">
-                            <h4>Need Travelo Help?</h4>
+                            <h4>Need HappyHolidayss Help?</h4>
                             <p>We would be more than happy to help you. Our team advisor are 24/7 at your service to help you.</p>
                             <address class="contact-details">
-                                <span class="contact-phone"><i class="soap-icon-phone"></i> 1-800-123-HELLO</span>
+                                <span class="contact-phone"><i class="soap-icon-phone"></i> +94 775 43035-HELLO</span>
                                 <br>
-                                <a class="contact-email" href="#">help@travelo.com</a>
+                                <a class="contact-email" href="#">help@HappyHolidayss.com</a>
                             </address>
                         </div>
                         <div class="travelo-box book-with-us-box">
@@ -499,17 +527,17 @@ foreach ($homedata as $homeinfo) {
                                 <li>
                                     <i class="soap-icon-hotel-1 circle"></i>
                                     <h5 class="title"><a href="#">135,00+ Hotels</a></h5>
-                                    <p>Nunc cursus libero pur congue arut nimspnty.</p>
+                                    <!-- <p>Nunc cursus libero pur congue arut nimspnty.</p> -->
                                 </li>
                                 <li>
                                     <i class="soap-icon-savings circle"></i>
                                     <h5 class="title"><a href="#">Low Rates &amp; Savings</a></h5>
-                                    <p>Nunc cursus libero pur congue arut nimspnty.</p>
+                                    <!-- <p>Nunc cursus libero pur congue arut nimspnty.</p> -->
                                 </li>
                                 <li>
                                     <i class="soap-icon-support circle"></i>
                                     <h5 class="title"><a href="#">Excellent Support</a></h5>
-                                    <p>Nunc cursus libero pur congue arut nimspnty.</p>
+                                    <!-- <p>Nunc cursus libero pur congue arut nimspnty.</p> -->
                                 </li>
                             </ul>
                         </div>
