@@ -62,12 +62,12 @@ if (isset($_GET['deleteId']) && !empty($_GET['deleteId'])) {
                     <div class="row">
                         <div class="col-md-6 col-sm-12">
                             <div class="title">
-                                <h4>Manage Homes</h4>
+                                <h4>Manage Tours</h4>
                             </div>
                             <nav aria-label="breadcrumb" role="navigation">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Manage home</li>
+                                    <li class="breadcrumb-item active" aria-current="page">Manage tour</li>
                                 </ol>
                             </nav>
 
@@ -99,20 +99,11 @@ if (isset($_GET['deleteId']) && !empty($_GET['deleteId'])) {
                                 <tr>
                                     <th class="table-plus datatable-nosort">Id</th>
                                     <th>Tour Name</th>
-                                    <th>Location</th>
                                     <th>Ava Start Date</th>
                                     <th>Ava End Date</th>
-                                    <th>Adult Price(LKR)</th>
-                                    <th>Description</th>
                                     <th>Status</th>
-                                    <th>Type</th>
                                     <th>Duration</th>
-                                    <th>Language</th>
                                     <th>Ava Seats</th>
-                                    <th>District</th>
-                                    <th>Cancellation</th>
-                                    <th>Image</th>
-                                    <th>Created Date</th>
                                     <th class="datatable-nosort">Action</th>
                                 </tr>
                             </thead>
@@ -127,34 +118,23 @@ if (isset($_GET['deleteId']) && !empty($_GET['deleteId'])) {
                                     <tr>
                                         <td><?php echo $tourinfo['tour_id']; ?></td>
                                         <td><?php echo $tourinfo['title']; ?></td>
-                                        <td><?php echo $tourinfo['location']; ?></td>
                                         <td><?php echo date('d-M-Y', strtotime($tourinfo['ava_start_date'])); ?></td>
                                         <td><?php echo date('d-M-Y', strtotime($tourinfo['ava_end_date'])); ?></td>
-                                        <td><?php echo $tourinfo['adult_price']; ?></td>
-                                        <td><?php echo $tourinfo['details']; ?></td>
                                         <td><?php if ($tourinfo['status'] == 0) {
                                                 echo "Inactive";
                                             } else {
                                                 echo "Active";
                                             } ?></td>
-                                        <td><?php echo $tourinfo['tour_type']; ?></td>
-                                        <td><?php echo $tourinfo['duration_days']; ?></td>
-                                        <td><?php echo $tourinfo['language']; ?></td>
+                                        <td><?php echo $tourinfo['duration_nights']; ?> Nights</td>
                                         <td><?php echo $tourinfo['availabile_seats']; ?></td>
-                                        <td><?php echo $tourinfo['district']; ?></td>
-                                        <td><?php if ($tourinfo['cancellation'] == 0) {
-                                                echo "Disabled";
-                                            } else {
-                                                echo "Enabled";
-                                            } ?></td>
-                                        <td><img src="<?php echo 'includes/uploads/' . $tourinfo['image'] ?>" width="150px"></td>
-                                        <td><?php echo date('d-M-Y', strtotime($tourinfo['created_date'])); ?></td>
                                         <td>
                                             <div class="dropdown">
+
                                                 <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
                                                     <i class="dw dw-more"></i>
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                                                    <a class="dropdown-item" data-toggle="modal" data-target="#Medium-modal" data-tour-id="<?php echo $tourinfo['tour_id'] ?>" href="#"><i class="dw dw-eye"></i> View</a>
                                                     <a class="dropdown-item" href="edit-tour.php?editId=<?php echo $tourinfo['tour_id'] ?>"><i class="dw dw-edit2" aria-hidden="true"></i> Edit</a>
                                                     <a href="manage-tour.php?deleteId=<?php echo $tourinfo['tour_id'] ?>" style="color:red" onclick="confirm('Are you sure want to delete this record')" class="dropdown-item"><i class="dw dw-delete-3"></i> Delete</a>
                                                 </div>
@@ -167,7 +147,36 @@ if (isset($_GET['deleteId']) && !empty($_GET['deleteId'])) {
                         </table>
                     </div>
                 </div>
+
                 <!-- Export Datatable End -->
+
+                <div class="row clearfix">
+                    <!-- Medium modal -->
+                    <div class="modal fade" id="Medium-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title" id="myLargeModalLabel">Large modal</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                </div>
+                                <div class="modal-body">
+                                <input type="text" name="tourId" value="" />
+
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                                        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
             </div>
             <div class="footer-wrap pd-20 mb-20 card-box">
@@ -176,9 +185,19 @@ if (isset($_GET['deleteId']) && !empty($_GET['deleteId'])) {
         </div>
     </div>
 
-    </div>
+
+
+
+
 
     <?php include('includes/scripts.php'); ?>
+
+    <script>
+        $('#Medium-modal').on('show.bs.modal', function(e) {
+            var tourId = $(e.relatedTarget).data('tour-id');
+            $(e.currentTarget).find('input[name="tourId"]').val(tourId);
+        });
+    </script>
 
 </body>
 
