@@ -487,8 +487,17 @@ foreach ($tourdata as $tourinfo) {
                                 <span class="pull-right">LKR<?php echo $tourinfo['adult_price']; ?></span>
                             </span>
                             <span class="price clearfix">
-                                <small class="pull-left">avg/kid price</small>
-                                <span class="pull-right">LKR<?php echo $tourinfo['kid_price']; ?></span>
+                                <?php if ($tourinfo['kid_status'] == 0) {
+                                ?>
+                                    <span class="pull-right">Kids Not Allowed</span>
+                                <?php
+                                } else {
+                                ?>
+                                    <small class="pull-left">avg/kid price</small>
+                                    <span class="pull-right">LKR<?php echo $tourinfo['kid_price']; ?></span>
+                                <?php
+                                }
+                                ?>
                             </span>
                             <div class="feedback clearfix">
                                 <div title="4 stars" class="five-stars-container" data-toggle="tooltip" data-placement="bottom"><span class="five-stars" style="width: 80%;"></span></div>

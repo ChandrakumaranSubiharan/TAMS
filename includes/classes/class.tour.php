@@ -12,7 +12,7 @@ class tour
 
 
   // Insert tour data into tour table
-  public function insertData($tour_title, $tour_location, $adult_price, $file, $tour_details, $tour_duration, $tour_type, $ava_seats, $tour_language, $district, $cancel, $str_date, $end_date, $pid)
+  public function insertData($tour_title, $tour_location, $adult_price, $kid_status, $kid_price, $file, $tour_details, $tour_duration, $tour_type, $ava_seats, $tour_language, $district, $cancel, $str_date ,$str_time, $end_date ,$end_time, $g_location , $pid)
   {
     $allow = array('jpg', 'jpeg', 'png');
     $exntension = explode('.', $file['name']);
@@ -33,8 +33,8 @@ class tour
           // variable to fetch null value
           $emty = NULL;
 
-          $query = "INSERT INTO tbl_tour(title,details,location,tour_type,duration_nights,adult_price,image,created_date,partner_id,status,language,district,availabile_seats,ava_start_date,ava_end_date,cancellation)
-                    VALUES('$tour_title','$tour_details','$tour_location','$tour_type','$tour_duration','$adult_price','$fileNew','$cdate','$pid','$sta','$tour_language','$district','$ava_seats','$str_date','$end_date','$cancel')";
+          $query = "INSERT INTO tbl_tour(title,details,location,tour_type,duration_nights,adult_price,kid_status,kid_price,image,created_date,partner_id,status,language,district,availabile_seats,ava_start_date,s_time,ava_end_date,e_time,gathering_location,cancellation)
+                    VALUES('$tour_title','$tour_details','$tour_location','$tour_type','$tour_duration','$adult_price','$kid_status','$kid_price','$fileNew','$cdate','$pid','$sta','$tour_language','$district','$ava_seats','$str_date','$str_time','$end_date','$end_time','$g_location','$cancel')";
           $sql = $this->db->query($query);
           if ($sql == true) {
             return true;
