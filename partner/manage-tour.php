@@ -103,7 +103,23 @@ if (isset($_GET['deleteId']) && !empty($_GET['deleteId'])) {
                                     <th>Ava End Date</th>
                                     <th>Status</th>
                                     <th>Duration</th>
-                                    <th hidden >Ava Seats</th>
+                                    <th>Ava Seats</th>
+
+                                    <!-- hidden -->
+                                    <th hidden>Tour Starting Location</th>
+                                    <th hidden>Adult Price(LKR)</th>
+                                    <th hidden>Tour Details</th>
+                                    <th hidden>Tour Type</th>
+                                    <th hidden>Tour Language</th>
+                                    <th hidden>Tour District</th>
+                                    <th hidden>Tour Start Time</th>
+                                    <th hidden>Tour End Time</th>
+                                    <th hidden>Gathering Location</th>
+                                    <th hidden>Kids Allowing Status</th>
+                                    <th hidden>Tour Kid Price</th>
+                                    <th hidden>Cancellation</th>
+                                    <th hidden>Image</th>
+                                    <th hidden>Tour Created Date</th>
                                     <th class="datatable-nosort">Action</th>
                                 </tr>
                             </thead>
@@ -126,16 +142,41 @@ if (isset($_GET['deleteId']) && !empty($_GET['deleteId'])) {
                                                 echo "Active";
                                             } ?></td>
                                         <td><?php echo $tourinfo['duration_nights']; ?> Nights</td>
-                                        <td hidden><?php echo $tourinfo['availabile_seats']; ?></td>
+                                        <td><?php echo $tourinfo['availabile_seats']; ?></td>
+
+
+<!-- hidden -->
+                                        <td hidden><?php echo $tourinfo['location']; ?></td>
+                                        <td hidden><?php echo $tourinfo['adult_price']; ?> LKR</td>
+                                        <td hidden><?php echo $tourinfo['details']; ?></td>
+                                        <td hidden><?php echo $tourinfo['tour_type']; ?></td>
+                                        <td hidden><?php echo $tourinfo['language']; ?></td>
+                                        <td hidden><?php echo $tourinfo['district']; ?></td>
+                                        <td hidden><?php echo date('h:i A', strtotime($tourinfo['s_time'])); ?></td>
+                                        <td hidden><?php echo date('h:i A', strtotime($tourinfo['e_time'])); ?></td>
+                                        <td hidden><?php echo $tourinfo['gathering_location']; ?></td>
+                                        <td hidden><?php if ($tourinfo['kid_status'] == 1) {
+                                                echo "Enabled";
+                                            } else {
+                                                echo "Disabled";
+                                            } ?></td>
+                                        <td hidden><?php echo $tourinfo['kid_price']; ?></td>
+                                        <td hidden><?php if ($tourinfo['cancellation'] == 0) {
+                                                echo "Disabled";
+                                            } else {
+                                                echo "Enabled";
+                                            } ?></td>
+                                        <td hidden><img src="<?php echo 'includes/uploads/' . $tourinfo['image'] ?>" width="150px"></td>
+                                        <td hidden><?php echo date('d-M-Y', strtotime($tourinfo['created_date'])); ?></td>
+
                                         <td>
                                             <div class="dropdown">
-
                                                 <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
                                                     <i class="dw dw-more"></i>
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
 
-                                                    <a class="dropdown-item" href="model.php?viewId=<?php echo $tourinfo['tour_id'] ?>"><i class="dw dw-eye"></i> View</a>
+                                                    <a class="dropdown-item" href="tour-view-model.php?viewId=<?php echo $tourinfo['tour_id'] ?>"><i class="dw dw-eye"></i> View</a>
                                                     <a class="dropdown-item" href="edit-tour.php?editId=<?php echo $tourinfo['tour_id'] ?>"><i class="dw dw-edit2" aria-hidden="true"></i> Edit</a>
                                                     <a href="manage-tour.php?deleteId=<?php echo $tourinfo['tour_id'] ?>" style="color:red" onclick="confirm('Are you sure want to delete this record')" class="dropdown-item"><i class="dw dw-delete-3"></i> Delete</a>
                                                 </div>
@@ -224,12 +265,12 @@ if (isset($_GET['deleteId']) && !empty($_GET['deleteId'])) {
 
     <?php include('includes/scripts.php'); ?>
 
-     <script>
-            $('#Medium-modal').on('show.bs.modal', function(e) {
-                var tourId = $(e.relatedTarget).data('tour-id');
-                $(e.currentTarget).find('input[name="tourId"]').val(tourId);
-            });
-        </script>
+    <script>
+        $('#Medium-modal').on('show.bs.modal', function(e) {
+            var tourId = $(e.relatedTarget).data('tour-id');
+            $(e.currentTarget).find('input[name="tourId"]').val(tourId);
+        });
+    </script>
 
 
 </body>

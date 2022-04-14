@@ -8,45 +8,7 @@ if (isset($_GET['viewId']) && !empty($_GET['viewId'])) {
     $viewId = $_GET['viewId'];
     $tourdata = $tour->displyaRecordById($viewId);
 }
-
-
-// Update Record in customer table
-if (isset($_POST['update'])) {
-    // $id = $_GET['editId'];
-    // $tourtitle = $_POST['ttitle'];
-    // $location = $_POST['tloc'];
-    // $price = $_POST['anprice'];
-    // $des = $_POST['detail'];
-    // $duration = $_POST['duration'];
-    // $type = $_POST['type'];
-    // $avaseats = $_POST['ava_seat'];
-    // $language = $_POST['language'];
-    // $district = $_POST['district'];
-    // $cancell = $_POST['cancel'];
-    // $ava_start = $_POST['start_date'];
-    // $ava_end = $_POST['end_date'];
-    // $sta = $_POST['stat'];
-
-
-    // $updateData = $tour->update($id,$tourtitle,$location,$price,$des,$duration,$type,$avaseats,$language,$district,$cancell,$ava_start,$ava_end,$sta);
-
-    // if ($updateData) {
-
-    //     $msg = "<div class='alert alert-info'>
-    //     <strong>WOW!</strong> Record was updated successfully!
-    //     </div>";
-    //     $tourdata = $tour->displyaRecordById($editId);
-
-    // } else {
-    //     $msg = "Failed to Create Home ";
-    //     echo "<script type='text/javascript'>alert('$msg');</script>";
-    // }
-
-}
-
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -255,16 +217,22 @@ if (isset($_POST['update'])) {
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-3 col-sm-12">
-                                <div class="form-group">
-                                    <label>Tour Kid Price</label>
-                                    <h6><?php if($tourdata['kid_price']){
-                                        echo $tourdata['kid_price'];
-                                    }else {
-                                        echo "0";
-                                    }?> LKR</h6>
+                            <?php
+                            if ($tourdata['kid_status'] == 1) {
+                            ?>
+                                <div class="col-md-3 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Tour Kid Price</label>
+                                        <h6><?php if ($tourdata['kid_price']) {
+                                                echo $tourdata['kid_price'];
+                                            } else {
+                                                echo "0";
+                                            } ?> LKR</h6>
+                                    </div>
                                 </div>
-                            </div>
+                            <?php
+                            }
+                            ?>
                             <div class="col-md-3 col-sm-12">
                                 <div class="form-group">
                                     <label>Tour Created Date and Time</label>
@@ -287,9 +255,9 @@ if (isset($_POST['update'])) {
                             </div>
                             <div class="col-md-3 col-sm-12">
                                 <div class="btn-list">
-								<a type="button" href="edit-tour.php?editId=<?php echo $tourdata['tour_id'] ?>"  class="btn btn-lg btn-primary">Edit Tour</a>
-								<a type="button" href="manage-tour.php" class="btn btn-secondary btn-lg">Go Back</a>
-							</div>
+                                    <a type="button" href="edit-tour.php?editId=<?php echo $tourdata['tour_id'] ?>" class="btn btn-lg btn-primary">Edit Tour</a>
+                                    <a type="button" href="manage-tour.php" class="btn btn-secondary btn-lg">Go Back</a>
+                                </div>
                             </div>
                         </div>
                     </form>

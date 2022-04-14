@@ -114,36 +114,46 @@ class tour
     }
   }
 
-  public function update($id, $tourtitle, $location, $price, $des, $duration, $type, $avaseats, $language, $district, $cancell, $ava_start, $ava_end, $sta)
+  public function update($id, $tourtitle, $location, $price,$k_status,$k_price, $des, $duration, $type, $avaseats,$glocation, $language, $district, $cancell, $ava_start,$start_time, $ava_end,$end_time, $sta)
   {
     try {
       $stmt = $this->db->prepare("UPDATE tbl_tour SET 
                 title=:ttitle, 
                 location=:location, 
                 adult_price=:price, 
+                kid_status=:kid_status,
+                kid_price=:kid_price,
                 details=:desc,
                 tour_type=:type,
-                duration_days=:duration,
+                duration_nights=:duration,
                 availabile_seats=:seats,
+                gathering_location=:glocation,
                 language=:lan,
                 district=:distri,
                 cancellation=:cancell,
                 ava_start_date=:sdate,
+                s_time=:stime,
                 ava_end_date=:edate,
+                e_time=:etime,
                 status=:st
              WHERE tour_id=:id ");
       $stmt->bindparam(":ttitle", $tourtitle);
       $stmt->bindparam(":location", $location);
       $stmt->bindparam(":price", $price);
+      $stmt->bindparam(":kid_status", $k_status);
+      $stmt->bindparam(":kid_price", $k_price);
       $stmt->bindparam(":desc", $des);
       $stmt->bindparam(":type", $type);
       $stmt->bindparam(":duration", $duration);
       $stmt->bindparam(":seats", $avaseats);
+      $stmt->bindparam(":glocation", $glocation);
       $stmt->bindparam(":lan", $language);
       $stmt->bindparam(":distri", $district);
       $stmt->bindparam(":cancell", $cancell);
       $stmt->bindparam(":sdate", $ava_start);
+      $stmt->bindparam(":stime", $start_time);
       $stmt->bindparam(":edate", $ava_end);
+      $stmt->bindparam(":etime", $end_time);
       $stmt->bindparam(":st", $sta);
       $stmt->bindparam(":id", $id);
       $stmt->execute();
