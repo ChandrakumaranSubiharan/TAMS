@@ -103,7 +103,7 @@ if (isset($_GET['deleteId']) && !empty($_GET['deleteId'])) {
                                     <th>Ava End Date</th>
                                     <th>Status</th>
                                     <th>Duration</th>
-                                    <th>Ava Seats</th>
+                                    <th hidden >Ava Seats</th>
                                     <th class="datatable-nosort">Action</th>
                                 </tr>
                             </thead>
@@ -126,7 +126,7 @@ if (isset($_GET['deleteId']) && !empty($_GET['deleteId'])) {
                                                 echo "Active";
                                             } ?></td>
                                         <td><?php echo $tourinfo['duration_nights']; ?> Nights</td>
-                                        <td><?php echo $tourinfo['availabile_seats']; ?></td>
+                                        <td hidden><?php echo $tourinfo['availabile_seats']; ?></td>
                                         <td>
                                             <div class="dropdown">
 
@@ -134,7 +134,8 @@ if (isset($_GET['deleteId']) && !empty($_GET['deleteId'])) {
                                                     <i class="dw dw-more"></i>
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                                                    <a class="dropdown-item" data-toggle="modal" data-target="#Medium-modal" data-tour-id="<?php echo $tourinfo['tour_id'] ?>" href="#"><i class="dw dw-eye"></i> View</a>
+
+                                                    <a class="dropdown-item" href="model.php?viewId=<?php echo $tourinfo['tour_id'] ?>"><i class="dw dw-eye"></i> View</a>
                                                     <a class="dropdown-item" href="edit-tour.php?editId=<?php echo $tourinfo['tour_id'] ?>"><i class="dw dw-edit2" aria-hidden="true"></i> Edit</a>
                                                     <a href="manage-tour.php?deleteId=<?php echo $tourinfo['tour_id'] ?>" style="color:red" onclick="confirm('Are you sure want to delete this record')" class="dropdown-item"><i class="dw dw-delete-3"></i> Delete</a>
                                                 </div>
@@ -151,23 +152,54 @@ if (isset($_GET['deleteId']) && !empty($_GET['deleteId'])) {
                 <!-- Export Datatable End -->
 
                 <div class="row clearfix">
-                    <!-- Medium modal -->
                     <div class="modal fade" id="Medium-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h4 class="modal-title" id="myLargeModalLabel">Large modal</h4>
+                                    <h4 class="modal-title" id="myLargeModalLabel">Tour Details</h4>
                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                                 </div>
                                 <div class="modal-body">
-                                <input type="text" name="tourId" value="" />
 
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                                        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                                    <form>
+                                        <input name="tourid" value="" />
+
+                                        <div class="form-group">
+                                            <label>Tour Id</label>
+                                            <h5>Johnny Brown</h5>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Tour Title</label>
+                                            <h5>Johnny Brown</h5>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Tour Details</label>
+                                            <textarea class="form-control"></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Tour Type</label>
+                                            <h5>Johnny Brown</h5>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Tour Image</label>
+                                            <div>
+                                                <img src="#" width="250" height="150">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Tour Language</label>
+                                            <h5>Johnny Brown</h5>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Tour Status</label>
+                                            <h5>Johnny Brown</h5>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Available Seats</label>
+                                            <h5>Johnny Brown</h5>
+                                        </div>
+                                    </form>
+
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -177,6 +209,7 @@ if (isset($_GET['deleteId']) && !empty($_GET['deleteId'])) {
                         </div>
                     </div>
                 </div>
+
 
             </div>
             <div class="footer-wrap pd-20 mb-20 card-box">
@@ -189,15 +222,15 @@ if (isset($_GET['deleteId']) && !empty($_GET['deleteId'])) {
 
 
 
-
     <?php include('includes/scripts.php'); ?>
 
-    <script>
-        $('#Medium-modal').on('show.bs.modal', function(e) {
-            var tourId = $(e.relatedTarget).data('tour-id');
-            $(e.currentTarget).find('input[name="tourId"]').val(tourId);
-        });
-    </script>
+     <script>
+            $('#Medium-modal').on('show.bs.modal', function(e) {
+                var tourId = $(e.relatedTarget).data('tour-id');
+                $(e.currentTarget).find('input[name="tourId"]').val(tourId);
+            });
+        </script>
+
 
 </body>
 
