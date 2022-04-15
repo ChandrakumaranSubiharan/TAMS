@@ -126,7 +126,9 @@ if (isset($_GET['deleteId']) && !empty($_GET['deleteId'])) {
                             <tbody>
 
                                 <?php
-                                $tourdata = $tour->displayData();
+
+                                $pid = $returned_row['partner_id'];
+                                $tourdata = $tour->displayDataAsPartner($pid);
 
                                 foreach ($tourdata as $tourinfo) {
 

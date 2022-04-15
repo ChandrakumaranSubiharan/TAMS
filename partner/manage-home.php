@@ -125,8 +125,9 @@ if (isset($_GET['deleteId']) && !empty($_GET['deleteId'])) {
                             <tbody>
 
                                 <?php
-                                $homedata = $home->displayData();
 
+                                $pid = $returned_row['partner_id'];
+                                $homedata = $home->displayDataAsPartner($pid);
                                 foreach ($homedata as $homes) {
 
                                 ?>

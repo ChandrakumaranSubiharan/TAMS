@@ -64,6 +64,22 @@ class tour
     }
   }
 
+  // Fetch tour records for show listing
+  public function displayDataAsPartner($pid)
+  {
+    $sql = "SELECT * FROM tbl_tour WHERE partner_id = $pid";
+    $query = $this->db->query($sql);
+    $data = array();
+    if ($query->rowCount() > 0) {
+      while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+        $data[] = $row;
+      }
+      return $data;
+    } else {
+      return false;
+    }
+  }
+
 
   // Fetch single data for edit from home table
   public function displyaRecordByIdviaArray($Id)
