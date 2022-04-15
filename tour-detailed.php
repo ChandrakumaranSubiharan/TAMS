@@ -188,10 +188,17 @@ foreach ($tourdata as $tourinfo) {
                                                         <label>ADULTS</label>
                                                         <input type="number" min="1" max="<?php echo $tourinfo['availabile_seats']; ?>" value="1" name="cadult" class="input-text full-width" />
                                                     </div>
-                                                    <div class="col-xs-4">
-                                                        <label>KIDS</label>
-                                                        <input type="number" min="0" max="<?php echo $tourinfo['availabile_seats']; ?>" value="0" name="ckids" class="input-text full-width">
-                                                    </div>
+                                                    <?php
+                                                    if ($tourinfo['kid_status'] == 1) {
+                                                        ?>
+                                                            <div class="col-xs-4">
+                                                                <label>KIDS</label>
+                                                                <input type="number" min="0" max="<?php echo $tourinfo['availabile_seats']; ?>" value="0" name="ckids" class="input-text full-width">
+                                                            </div>
+
+                                                        <?php
+                                                    }
+                                                    ?>
                                                 </div>
                                             </div>
 

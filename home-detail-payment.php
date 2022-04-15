@@ -65,10 +65,12 @@ if (isset($_REQUEST['book'])) {
         $payout = $earning->Payout($total_amount, $net_amount);
         $insertBookingData = $booking->insertBookingData($total_amount, $cus_card_type, $card_holdername, $card_number, $cus_id, $booking_sdate, $booking_edate, $total_night, $total_persons_count, $adult_count, $kid_count, $serviceid, $servicename, $stype, $pid);
         $homeUpdate = $home->home_update_after_booking($serviceid, $service_ava_sdate, $service_ava_edate, $total_night);
-        $insertEarningData = $earning->insertEarningData($pid, $total_amount, $payout, $net_amount, $cus_id, $servicename, $serviceid, $stype);
 
 
         $LAST_INSERTED_ID = $insertBookingData['lastInsertedID'];
+
+        $insertEarningData = $earning->insertEarningData($LAST_INSERTED_ID, $total_amount, $payout, $net_amount, $cus_id, $servicename, $serviceid, $stype);
+
 
         if ($insertBookingData && $insertEarningData && $homeUpdate) {
             $message = "Home Reservation Success.";

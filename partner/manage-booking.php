@@ -125,8 +125,6 @@ include_once '../includes/dbconfig.php';
                                 </tr>
                             </thead>
                             <tbody>
-
-
                                 <?php
                                 $pid = $returned_row['partner_id'];
                                 $bookingdata = $booking->displayBookingByPartner($pid);
@@ -144,6 +142,8 @@ include_once '../includes/dbconfig.php';
                                                 echo "Confirmed";
                                             } elseif ($bookings['status'] == 2) {
                                                 echo "Cancelled";
+                                            } elseif ($bookings['status'] == 3) {
+                                                echo "cancelled by Customer";
                                             } else {
                                                 echo "Booking Failed";
                                             } ?></td>
@@ -154,8 +154,14 @@ include_once '../includes/dbconfig.php';
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
                                                     <a class="dropdown-item" href="booking-view-model.php?viewId=<?php echo $bookings['booking_id'] ?>"><i class="dw dw-eye"></i> View</a>
-                                                    <a class="dropdown-item" href="home-view-model.php?editId=<?php echo $homes['home_id'] ?>"><i style="color:green" class="icon-copy ion-checkmark-circled"></i> Confirm Booking</a>
-                                                    <a class="dropdown-item" href="home-view-model.php?editId=<?php echo $homes['home_id'] ?>"><i style="color:red" class="icon-copy ion-close-circled"></i> Cancel Booking</a>
+                                                    <?php
+                                                        if ($bookings['status'] <= 2) {
+                                                        ?>
+                                                            <a class="dropdown-item" href="home-view-model.php?editId=<?php echo $homes['home_id'] ?>"><i style="color:green" class="icon-copy ion-checkmark-circled"></i> Confirm Booking</a>
+                                                            <a class="dropdown-item" href="home-view-model.php?editId=<?php echo $homes['home_id'] ?>"><i style="color:red" class="icon-copy ion-close-circled"></i> Cancel Booking</a>
+                                                        <?php
+                                                        }
+                                                    ?>
                                                 </div>
                                             </div>
                                         </td>

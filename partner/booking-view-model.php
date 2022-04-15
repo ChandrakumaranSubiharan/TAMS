@@ -153,84 +153,74 @@ if (isset($_GET['viewId']) && !empty($_GET['viewId'])) {
                                 </div>
                             </div>
 
-
-
-
-
-
-
-
-                            
                             <div class="col-md-3 col-sm-12">
                                 <div class="form-group">
-                                    <label>Home Cancellation</label>
-                                    <h6><?php if ($homedata['cancellation'] == 1) {
-                                            echo "Enabled";
-                                        } else {
-                                            echo "Disabled";
-                                        } ?></h6>
+                                    <label>Booking End Date</label>
+                                    <h6><?php echo date('jS F, Y', strtotime($bookingdata['end_date'])); ?></h6>
                                 </div>
                             </div>
+
                             <div class="col-md-3 col-sm-12">
                                 <div class="form-group">
-                                    <label>Stay Start Time</label>
-                                    <h6><?php echo date('h:i A', strtotime($homedata['s_time'])); ?></h6>
+                                    <label>Total Nights</label>
+                                    <h6><?php echo $bookingdata['total_nights']; ?></h6>
                                 </div>
                             </div>
+
                             <div class="col-md-3 col-sm-12">
                                 <div class="form-group">
-                                    <label>Stay End Time</label>
-                                    <h6><?php echo date('h:i A', strtotime($homedata['e_time'])); ?></h6>
+                                    <label>Total Persons</label>
+                                    <h6><?php echo $bookingdata['total_persons']; ?></h6>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-3 col-sm-12">
                                 <div class="form-group">
-                                    <label>Adult/Avg/Night Price</label>
-                                    <h6><?php echo $homedata['ava_night_price_adult']; ?> LKR</h6>
+                                    <label>Reserved Service Type</label>
+                                    <h6><?php echo $bookingdata['service_type']; ?></h6>
                                 </div>
                             </div>
                             <div class="col-md-3 col-sm-12">
                                 <div class="form-group">
-                                    <label>Kid/Avg/Night Price</label>
-                                    <h6><?php echo $homedata['ava_night_price_kid']; ?> LKR</h6>
+                                    <label>Reserved Service Name</label>
+                                    <h6><?php echo $bookingdata['service_name']; ?> </h6>
                                 </div>
                             </div>
                             <div class="col-md-3 col-sm-12">
                                 <div class="form-group">
-                                    <label>Max Adults</label>
-                                    <h6><?php echo $homedata['max_adults']; ?></h6>
+                                    <label>Adult Count</label>
+                                    <h6><?php echo $bookingdata['total_adults']; ?></h6>
                                 </div>
                             </div>
                             <div class="col-md-3 col-sm-12">
                                 <div class="form-group">
-                                <div class="form-group">
-                                    <label>Max Kids</label>
-                                    <h6><?php echo $homedata['max_kids']; ?></h6>
-                                </div>
+                                    <label>Kid Count</label>
+                                    <h6><?php echo $bookingdata['total_kids']; ?></h6>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-3 col-sm-12">
                                 <div class="form-group">
-                                    <label>Home Created Date and Time</label>
-                                    <h6><?php echo date('jS F, Y h:i A', strtotime($homedata['created_date'])); ?></h6>
+                                    <label>Booking Created Date and Time</label>
+                                    <h6><?php echo date('jS F, Y h:i A', strtotime($bookingdata['created_date'])); ?></h6>
                                 </div>
                             </div>
                             <div class="col-md-3 col-sm-12">
                                 <div class="form-group">
-                                    <label>Home Status</label>
-                                    <h6><?php if ($homedata['status'] == 1) {
-                                            echo "Active";
-                                        } elseif ($homedata['status'] == 2) {
-                                            echo "Not Verified Yet";
-                                        } elseif ($homedata['status'] == 3) {
-                                            echo "Verification Unsuccessful";
-                                        } else {
-                                            echo "InActive";
-                                        } ?></h6>
+                                    <label>Booking Status</label>
+                                    <h6><?php if ($bookingdata['status'] == 0) {
+                                                echo "Not Confirmed";
+                                            } elseif ($bookingdata['status'] == 1) {
+                                                echo "Confirmed";
+                                            } elseif ($bookingdata['status'] == 2) {
+                                                echo "Cancelled";
+                                            }elseif ($bookingdata['status'] == 3) {
+                                                echo "cancelled by Customer";
+                                            } else {
+                                                echo "Booking Failed";
+                                            } ?></h6>
                                 </div>
                             </div>
                             <div class="col-md-3 col-sm-12">

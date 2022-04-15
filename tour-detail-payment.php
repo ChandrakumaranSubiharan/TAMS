@@ -42,10 +42,6 @@ if (isset($_REQUEST['book'])) {
     if (isset($_POST['submit'])) {
 
         $cus_id = $_POST['cusid'];
-        $cus_fname = $_POST['fname'];
-        $cus_lname = $_POST['lname'];
-        $cus_email = $_POST['email'];
-        $cus_contact = $_POST['contact'];
         $cus_card_type = $_POST['cardtype'];
         $serviceid = $_POST['tourid'];
         $adult_count = $_POST['cadult'];
@@ -68,12 +64,12 @@ if (isset($_REQUEST['book'])) {
         $net_amount = $earning->TourPercentageCalculate($total_amount);
         $payout = $earning->Payout($total_amount, $net_amount);
         $tourUpdate = $tour->tour_update_after_booking($serviceid, $total_persons_count, $availabile_seats);
-        $insertBookingData = $booking->insertBookingData($total_amount, $cus_fname, $cus_lname, $cus_email, $cus_contact, $cus_card_type, $card_holdername, $card_number, $cus_id, $booking_sdate, $booking_edate, $total_night, $total_persons_count, $adult_count, $kid_count, $serviceid, $servicename, $stype, $pid);
-        $insertEarningData = $earning->insertEarningData($pid, $total_amount, $payout, $net_amount, $cus_id, $servicename, $serviceid, $stype);
+        $insertBookingData = $booking->insertBookingData($total_amount, $cus_card_type, $card_holdername, $card_number, $cus_id, $booking_sdate, $booking_edate, $total_night, $total_persons_count, $adult_count, $kid_count, $serviceid, $servicename, $stype, $pid);
 
         $LAST_INSERTED_ID = $insertBookingData['lastInsertedID'];
 
-        echo $LAST_INSERTED_ID;
+        $insertEarningData = $earning->insertEarningData($LAST_INSERTED_ID, $total_amount, $payout, $net_amount, $cus_id, $servicename, $serviceid, $stype);
+
 
         if ($insertBookingData && $insertEarningData && $tourUpdate) {
             $message = "Tour Reservation Success.";
