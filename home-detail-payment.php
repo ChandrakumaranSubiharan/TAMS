@@ -42,10 +42,6 @@ if (isset($_REQUEST['book'])) {
     if (isset($_POST['submit'])) {
 
         $cus_id = $_POST['cusid'];
-        $cus_fname = $_POST['fname'];
-        $cus_lname = $_POST['lname'];
-        $cus_email = $_POST['email'];
-        $cus_contact = $_POST['contact'];
         $cus_card_type = $_POST['cardtype'];
         $card_holdername = $_POST['cardholdername'];
         $card_number = $_POST['cardnumber'];
@@ -67,7 +63,7 @@ if (isset($_REQUEST['book'])) {
 
         $net_amount = $earning->HomePercentageCalculate($total_amount);
         $payout = $earning->Payout($total_amount, $net_amount);
-        $insertBookingData = $booking->insertBookingData($total_amount, $cus_fname, $cus_lname, $cus_email, $cus_contact, $cus_card_type, $card_holdername, $card_number, $cus_id, $booking_sdate, $booking_edate, $total_night, $total_persons_count, $adult_count, $kid_count, $serviceid, $servicename, $stype, $pid);
+        $insertBookingData = $booking->insertBookingData($total_amount, $cus_card_type, $card_holdername, $card_number, $cus_id, $booking_sdate, $booking_edate, $total_night, $total_persons_count, $adult_count, $kid_count, $serviceid, $servicename, $stype, $pid);
         $homeUpdate = $home->home_update_after_booking($serviceid, $service_ava_sdate, $service_ava_edate, $total_night);
         $insertEarningData = $earning->insertEarningData($pid, $total_amount, $payout, $net_amount, $cus_id, $servicename, $serviceid, $stype);
 

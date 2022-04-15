@@ -1,11 +1,11 @@
-<?php 
-      // Include database file
-      include_once '../includes/dbconfig.php';
+<?php
+// Include database file
+include_once '../includes/dbconfig.php';
 
 
-      ?>
+?>
 
-      
+
 
 
 <!DOCTYPE html>
@@ -66,93 +66,141 @@
                                     <li class="breadcrumb-item active" aria-current="page">Manage booking</li>
                                 </ol>
                             </nav>
+
+                            <?php
+                            if (isset($_GET['msg2']) == "active") {
+                                echo "<div class='alert alert-success alert-dismissible'>
+                                          <button type='button' class='close' data-dismiss='alert'>&times;</button>
+                                          Record activated successfully
+                                        </div>";
+                            }
+                            if (isset($_GET['msg3']) == "delete") {
+                                echo "<div class='alert alert-success alert-dismissible'>
+              <button type='button' class='close' data-dismiss='alert'>&times;</button>
+              Record deleted successfully
+            </div>";
+                            }
+                            ?>
+
+
+
                         </div>
                     </div>
                 </div>
 
 
-                <?php 
-      // Include database file
-
-      $customers = $home->displayData(); 
-
-      foreach ($customers as $homes) {
-       
-      ?>
-  <tr>
-    <td>#<?php echo $homes['home_id']; ?></td>
-    <td><?php echo $homes['home_name']; ?></td>
-    <td><?php echo $homes['location_address']; ?></td>
-    <td><?php echo date('d-M-Y', strtotime($homes['ava_start_date'])); ?></td>
-    <td><img src="<?php echo 'includes/uploads/'. $homes['cover_img1'] ?>" width="80px"></td>
-  </tr>
-<?php } ?>
-
-
-
-
 
                 <!-- Export Datatable start -->
-                <!-- <div class="card-box mb-30">
+                <div class="card-box mb-30">
                     <div class=" pt-20">
                         <table class=" table hover data-table-export nowrap ">
                             <thead>
                                 <tr>
-                                    <th class="table-plus datatable-nosort">Name</th>
-                                    <th>Age</th>
-                                    <th>Office</th>
-                                    <th>Address</th>
-                                    <th>Start Date</th>
-                                    <th>Start Date</th>
+                                    <th class="table-plus datatable-nosort">Id</th>
+                                    <th>Customer Name</th>
+                                    <th>Service Type</th>
+                                    <th>Service Name</th>
+                                    <th>Total Amount (LKR)</th>
+
+                                    <th>Status</th>
                                     <th class="datatable-nosort">Action</th>
+
+                                    <!-- hidden -->
+                                    <!-- <th>Booking Income</th>
+                                    <th>Booking Payout</th> -->
+                                    <!-- <th hidden>Rooms</th>
+                                    <th hidden>Location</th>
+                                    <th hidden>Start Time</th>
+                                    <th hidden>End Time</th>
+                                    <th hidden>Kid/Avg/Night(LKR)</th>
+                                    <th hidden>Description</th>
+                                    <th hidden>Max Adults</th>
+                                    <th hidden>Max Kids</th>
+                                    <th hidden>Home Type</th>
+                                    <th hidden>Province</th>
+                                    <th hidden>District</th>
+                                    <th hidden>Cancellation</th>
+                                    <th hidden>Image</th>
+                                    <th hidden>Created Date</th> -->
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td class="table-plus">Gloria F. Mead</td>
-                                    <td>25</td>
-                                    <td>Sagittarius</td>
-                                    <td>2829 Trainer Avenue Peoria, IL 61602 </td>
-                                    <td>29-03-2018</td>
-                                    <td>$162,700</td>
-                                    <td>
-										<div class="dropdown">
-											<a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-												<i class="dw dw-more"></i>
-											</a>
-											<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-												<a class="dropdown-item" href="#"><i class="dw dw-eye"></i> View</a>
-												<a class="dropdown-item" href="#"><i class="dw dw-edit2"></i> Edit</a>
-												<a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i> Delete</a>
-											</div>
-										</div>
-									</td>
-                                </tr>
-                                <tr>
-                                    <td class="table-plus">Andrea J. Cagle</td>
-                                    <td>30</td>
-                                    <td>Gemini</td>
-                                    <td>1280 Prospect Valley Road Long Beach, CA 90802 </td>
-                                    <td>29-03-2018</td>
-                                    <td>$162,700</td>
-                                    <td>
-										<div class="dropdown">
-											<a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-												<i class="dw dw-more"></i>
-											</a>
-											<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-												<a class="dropdown-item" href="#"><i class="dw dw-eye"></i> View</a>
-												<a class="dropdown-item" href="#"><i class="dw dw-edit2"></i> Edit</a>
-												<a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i> Delete</a>
-											</div>
-										</div>
-									</td>
-                                </tr>
+
+
+                                <?php
+                                $pid = $returned_row['partner_id'];
+                                $bookingdata = $booking->displayBookingByPartner($pid);
+                                foreach ($bookingdata as $bookings) {
+                                ?>
+                                    <tr>
+                                        <td><?php echo $bookings['booking_id']; ?></td>
+                                        <td><?php echo $bookings['first_name'], ' ', $bookings['last_name']; ?></td>
+                                        <td><?php echo $bookings['service_type']; ?></td>
+                                        <td><?php echo $bookings['service_name']; ?></td>
+                                        <td><?php echo $bookings['total_amount']; ?> LKR</td>
+                                        <td><?php if ($bookings['status'] == 0) {
+                                                echo "Not Confirmed";
+                                            } elseif ($bookings['status'] == 1) {
+                                                echo "Confirmed";
+                                            } elseif ($bookings['status'] == 2) {
+                                                echo "Cancelled";
+                                            } else {
+                                                echo "Booking Failed";
+                                            } ?></td>
+                                        <td>
+                                            <div class="dropdown">
+                                                <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                                                    <i class="dw dw-more"></i>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                                                    <a class="dropdown-item" href="home-view-model.php?viewId=<?php echo $homes['home_id'] ?>"><i class="dw dw-eye"></i> View</a>
+                                                    <a class="dropdown-item" href="home-view-model.php?editId=<?php echo $homes['home_id'] ?>"><i style="color:green" class="icon-copy ion-checkmark-circled"></i> Confirm Booking</a>
+                                                    <a class="dropdown-item" href="home-view-model.php?editId=<?php echo $homes['home_id'] ?>"><i style="color:red" class="icon-copy ion-close-circled"></i> Cancel Booking</a>
+                                                </div>
+                                            </div>
+                                        </td>
+
+                                        <!-- hidden -->
+                                        <!--<td><?php echo $bookings['payout']; ?> LKR</td> -->
+                                        <!-- <td><?php echo $bookings['net_amount']; ?> LKR</td> -->
+                                        <!-- <td hidden><?php echo $homes['rooms']; ?></td>
+                                        <td hidden><?php echo $homes['location_address']; ?></td>
+                                        <td hidden><?php echo date('h:i A', strtotime($homes['s_time'])); ?></td>
+                                        <td hidden><?php echo date('h:i A', strtotime($homes['e_time'])); ?></td>
+                                        <td hidden><?php echo $homes['ava_night_price_kid']; ?> LKR</td>
+                                        <td hidden><?php echo $homes['lg_desc']; ?></td>
+                                        <td hidden><?php echo $homes['max_adults']; ?></td>
+                                        <td hidden><?php echo $homes['max_kids']; ?></td>
+                                        <td hidden><?php echo $homes['home_type']; ?></td>
+                                        <td hidden><?php echo $homes['province']; ?></td>
+                                        <td hidden><?php echo $homes['district']; ?></td>
+                                        <td hidden><?php if ($homes['cancellation'] == 0) {
+                                                        echo "Disabled";
+                                                    } else {
+                                                        echo "Enabled";
+                                                    } ?></td>
+                                        <td hidden><img src="<?php echo 'includes/uploads/' . $homes['cover_img1'] ?>" width="150px"></td>
+                                        <td hidden><?php echo date('d-M-Y', strtotime($homes['created_date'])); ?></td> -->
+
+
+                                        <!-- <td><?php echo date('d-M-Y', strtotime($bookings['start_date'])); ?></td>
+                                        <td><?php echo date('d-M-Y', strtotime($bookings['end_date'])); ?></td> -->
+                                    </tr>
+                                <?php } ?>
+
                             </tbody>
                         </table>
                     </div>
-                </div> -->
+                </div>
                 <!-- Export Datatable End -->
+
+
+
+
+
+
+
+
 
             </div>
             <div class="footer-wrap pd-20 mb-20 card-box">

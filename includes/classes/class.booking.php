@@ -10,7 +10,7 @@ class booking
   }
 
   // Insert booking data into booking table
-  public function insertBookingData($total_amount, $cus_fname, $cus_lname, $cus_email, $cus_contact, $cus_card_type, $card_holdername, $card_number, $cus_id, $booking_sdate, $booking_edate, $total_night, $total_persons_count, $adult_count, $kid_count, $serviceid, $servicename, $stype, $pid)
+  public function insertBookingData($total_amount, $cus_card_type, $card_holdername, $card_number, $cus_id, $booking_sdate, $booking_edate, $total_night, $total_persons_count, $adult_count, $kid_count, $serviceid, $servicename, $stype, $pid)
   {
     // variable to fetch home active/inactive status by bool value
     $sta = "0";
@@ -26,10 +26,6 @@ class booking
 
     $query = "INSERT INTO tbl_booking(
       total_amount, 
-      cus_first_name, 
-      cus_last_name, 
-      cus_email, 
-      cus_contact, 
       cus_payment_card_type, 
       payment_card_holder_name,
       payment_card_number,
@@ -49,10 +45,6 @@ class booking
       partner_id)
            VALUES(
              '$total_amount',
-             '$cus_fname',
-             '$cus_lname',
-             '$cus_email',
-             '$cus_contact',
              '$cus_card_type',
              '$card_holdername',
              '$card_number',
@@ -102,7 +94,11 @@ class booking
     // Fetch single data for edit from home table
     public function displyaRecordByIdviaArray($Id)
     {
-      $query = "SELECT * FROM tbl_booking WHERE booking_id = '$Id'";
+      $query = "SELECT tbl_booking.booking_id,tbl_booking.service_type,tbl_booking.service_name,tbl_booking.total_amount,tbl_booking.payment_status,tbl_booking.cus_payment_card_type,tbl_booking.start_date,tbl_booking.end_date,tbl_booking.total_nights,tbl_booking.total_persons,tbl_booking.total_adults,tbl_booking.total_kids,tbl_booking.partner_id,tbl_customer.first_name,tbl_customer.last_name,tbl_customer.contact_number,tbl_customer.email_address
+      from tbl_booking
+      join tbl_customer on tbl_booking.cus_id=tbl_customer.customer_id 
+      where tbl_booking.booking_id = $Id";
+
       $result = $this->db->query($query);
       $data = array();
   
@@ -124,4 +120,25 @@ class booking
       $cnt=$query->rowCount();
       return $cnt;
     }
+
+    public function displayBookingByPartner($pid)
+   {
+
+    $sql = "SELECT tbl_booking.booking_id,tbl_booking.cus_id,tbl_booking.total_amount,tbl_booking.cus_payment_card_type,tbl_booking.start_date,tbl_booking.end_date,tbl_booking.status,tbl_booking.created_date,tbl_booking.payment_status,tbl_booking.total_nights,tbl_booking.total_persons,tbl_booking.total_kids,tbl_booking.total_adults,tbl_booking.payment_card_holder_name,tbl_booking.payment_card_number,tbl_booking.service_id,tbl_booking.service_name,tbl_booking.service_type, tbl_earning.earning_id,tbl_earning.net_amount,tbl_earning.payout,tbl_customer.first_name,tbl_customer.last_name,tbl_customer.email_address,tbl_customer.contact_number
+    from tbl_booking
+    join tbl_customer on tbl_booking.cus_id=tbl_customer.customer_id
+    join tbl_earning on tbl_booking.partner_id=tbl_earning.partner_id
+    where tbl_earning.partner_id= $pid";
+
+     $query = $this->db->query($sql);
+     $data = array();
+     if ($query->rowCount() > 0) {
+       while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+         $data[] = $row;
+       }
+       return $data;
+     } else {
+       return false;
+     }
+   }
 }

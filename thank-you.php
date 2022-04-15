@@ -58,13 +58,13 @@ foreach ($bookingdata as $bookinginfo) {
 
                         <dl class="term-description">
                             <dt>First name:</dt>
-                            <dd><?php echo $bookinginfo['cus_first_name']; ?></dd>
+                            <dd><?php echo $bookinginfo['first_name']; ?></dd>
                             <dt>Last name:</dt>
-                            <dd><?php echo $bookinginfo['cus_last_name']; ?></dd>
+                            <dd><?php echo $bookinginfo['last_name']; ?></dd>
                             <dt>E-mail address:</dt>
-                            <dd><?php echo $bookinginfo['cus_email']; ?></dd>
+                            <dd><?php echo $bookinginfo['email_address']; ?></dd>
                             <dt>Contact:</dt>
-                            <dd><?php echo $bookinginfo['cus_contact']; ?></dd>
+                            <dd><?php echo $bookinginfo['contact_number']; ?></dd>
                         </dl>
                         <hr />
                         <h2>Booking Details</h2>
