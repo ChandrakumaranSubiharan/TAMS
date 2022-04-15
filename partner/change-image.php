@@ -102,8 +102,9 @@ if (isset($_POST['submit'])) {
                             <nav aria-label="breadcrumb" role="navigation">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                                    <li class="breadcrumb-item"><a href="#">Manage Service</a></li>
                                     <li class="breadcrumb-item"><a href="#">Edit</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">change image</li>
+                                    <li class="breadcrumb-item active" aria-current="page">Change Image</li>
                                 </ol>
                             </nav>
                             <div class="container">
@@ -119,7 +120,7 @@ if (isset($_POST['submit'])) {
             </div>
 
 
-            <form class="form-horizontal" name="package" method="post" enctype="multipart/form-data">
+            <form class="form-horizontal spaced" name="package" method="post" enctype="multipart/form-data">
                 <?php
                 if (isset($_GET['tourimgid'])) {
 
@@ -128,14 +129,14 @@ if (isset($_POST['submit'])) {
 
                 ?>
                     <div class="form-group">
-                        <label for="focusedinput" class="col-sm-2 control-label"> Package Image </label>
+                        <h5 for="focusedinput" class="col-sm-2 control-label spaced"> Tour Image </h5>
                         <div class="col-sm-8">
-                            <img src="includes/uploads/<?php echo $tourdata['image'] ?>" width="300">
+                            <img src="includes/uploads/<?php echo $tourdata['image'] ?>" width="400">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="focusedinput" class="col-sm-2 control-label">New Image</label>
+                        <h6 for="focusedinput" class="col-sm-2 control-label spaced2">New Image</h6>
                         <div class="col-sm-8">
                             <input type="file" name="image" id="image" required>
                         </div>
@@ -163,12 +164,10 @@ if (isset($_POST['submit'])) {
                 <?php
                 }
                 ?>
-                <div class="row">
                     <div class="col-sm-8 col-sm-offset-2">
                         <button type="submit" name="submit" class="btn-primary btn">Update</button>
 
                     </div>
-                </div>
         </div>
 
         </form>

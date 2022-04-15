@@ -382,6 +382,20 @@ hr {
   font-size: 90%;
   color: #6c757d; }
 
+
+/* custom */
+
+.spaced {
+  margin: 20px 0;
+}
+
+.spaced2 {
+  margin: 10px 0;
+}
+
+
+
+
 code {
   font-size: 87.5%;
   color: #e83e8c;
