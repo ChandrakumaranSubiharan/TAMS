@@ -101,27 +101,25 @@ include_once '../includes/dbconfig.php';
                                     <th>Service Type</th>
                                     <th>Service Name</th>
                                     <th>Total Amount (LKR)</th>
-
                                     <th>Status</th>
                                     <th class="datatable-nosort">Action</th>
 
                                     <!-- hidden -->
-                                    <!-- <th>Booking Income</th>
-                                    <th>Booking Payout</th> -->
-                                    <!-- <th hidden>Rooms</th>
-                                    <th hidden>Location</th>
-                                    <th hidden>Start Time</th>
-                                    <th hidden>End Time</th>
-                                    <th hidden>Kid/Avg/Night(LKR)</th>
-                                    <th hidden>Description</th>
-                                    <th hidden>Max Adults</th>
-                                    <th hidden>Max Kids</th>
-                                    <th hidden>Home Type</th>
-                                    <th hidden>Province</th>
-                                    <th hidden>District</th>
-                                    <th hidden>Cancellation</th>
-                                    <th hidden>Image</th>
-                                    <th hidden>Created Date</th> -->
+                                    <th hidden>Customer Contact</th>
+                                    <th hidden>Customer Email</th>
+                                    <th hidden>Payment Status</th>
+                                    <th hidden>Payment Card Type</th>
+                                    <th hidden>Card Number</th>
+                                    <th hidden>Card Holder Name</th>
+                                    <th hidden>Booking Start Date</th>
+                                    <th hidden>Booking End Date</th>
+                                    <th hidden>Booking Income Amount</th>
+                                    <th hidden>Total Nights</th>
+                                    <th hidden>Total Persons</th>
+                                    <th hidden>Adult Count</th>
+                                    <th hidden>Kid Count</th>
+                                    <th hidden>Booking Created Date and Time</th>
+
                                 </tr>
                             </thead>
                             <tbody>
@@ -157,12 +155,12 @@ include_once '../includes/dbconfig.php';
                                                     <?php
                                                         if ($bookings['status'] <= 0) {
                                                         ?>
-                                                            <a class="dropdown-item" href="home-view-model.php?editId=<?php echo $homes['home_id'] ?>"><i style="color:green" class="icon-copy ion-checkmark-circled"></i> Confirm Booking</a>
-                                                            <a class="dropdown-item" href="home-view-model.php?editId=<?php echo $homes['home_id'] ?>"><i style="color:red" class="icon-copy ion-close-circled"></i> Cancel Booking</a>
+                                                            <a class="dropdown-item" href="home-view-model.php?editId=<?php echo $bookings['booking_id'] ?>"><i style="color:green" class="icon-copy ion-checkmark-circled"></i> Confirm Booking</a>
+                                                            <a class="dropdown-item" href="home-view-model.php?editId=<?php echo $bookings['booking_id'] ?>"><i style="color:red" class="icon-copy ion-close-circled"></i> Cancel Booking</a>
                                                         <?php
                                                         }elseif($bookings['status'] == 1) {
                                                     ?>
-                                                            <a class="dropdown-item" href="home-view-model.php?editId=<?php echo $homes['home_id'] ?>"><i style="color:green" class="icon-copy ion-checkmark-circled"></i> Confirm Booking</a>
+                                                            <a class="dropdown-item" href="home-view-model.php?editId=<?php echo $bookings['booking_id'] ?>"><i style="color:green" class="icon-copy ion-checkmark-circled"></i> Confirm Booking</a>
                                                             <?php
                                                         }
                                                     ?>
@@ -170,31 +168,28 @@ include_once '../includes/dbconfig.php';
                                             </div>
                                         </td>
 
-                                        <!-- hidden -->
-                                        <!--<td><?php echo $bookings['payout']; ?> LKR</td> -->
-                                        <!-- <td><?php echo $bookings['net_amount']; ?> LKR</td> -->
-                                        <!-- <td hidden><?php echo $homes['rooms']; ?></td>
-                                        <td hidden><?php echo $homes['location_address']; ?></td>
-                                        <td hidden><?php echo date('h:i A', strtotime($homes['s_time'])); ?></td>
-                                        <td hidden><?php echo date('h:i A', strtotime($homes['e_time'])); ?></td>
-                                        <td hidden><?php echo $homes['ava_night_price_kid']; ?> LKR</td>
-                                        <td hidden><?php echo $homes['lg_desc']; ?></td>
-                                        <td hidden><?php echo $homes['max_adults']; ?></td>
-                                        <td hidden><?php echo $homes['max_kids']; ?></td>
-                                        <td hidden><?php echo $homes['home_type']; ?></td>
-                                        <td hidden><?php echo $homes['province']; ?></td>
-                                        <td hidden><?php echo $homes['district']; ?></td>
-                                        <td hidden><?php if ($homes['cancellation'] == 0) {
-                                                        echo "Disabled";
-                                                    } else {
-                                                        echo "Enabled";
-                                                    } ?></td>
-                                        <td hidden><img src="<?php echo 'includes/uploads/' . $homes['cover_img1'] ?>" width="150px"></td>
-                                        <td hidden><?php echo date('d-M-Y', strtotime($homes['created_date'])); ?></td> -->
+                                    <!-- hidden -->
+                                    <td hidden><?php echo $bookings['contact_number']; ?> </td>
+                                    <td hidden><?php echo $bookings['email_address']; ?> </td>
+                                    <td hidden><?php if ($bookings['payment_status'] == 1) {
+                                            echo "Paid";
+                                        } else {
+                                            echo "Not Paid";
+                                        }
+                                        ?> </td>
+                                    <td hidden><?php echo $bookings['cus_payment_card_type']; ?> </td>
+                                    <td hidden><?php echo $bookings['payment_card_number']; ?> </td>
+                                    <td hidden><?php echo $bookings['payment_card_holder_name']; ?> </td>
+                                    <td hidden><?php echo date('jS F, Y ', strtotime($bookings['start_date'])); ?> </td>
+                                    <td hidden><?php echo date('jS F, Y ', strtotime($bookings['end_date'])); ?> </td>
+                                    <td hidden><?php echo $bookings['payout']; ?> LKR </td>
+                                    <td hidden><?php echo $bookings['total_nights']; ?> </td>
+                                    <td hidden><?php echo $bookings['total_persons']; ?> </td>
+                                    <td hidden><?php echo $bookings['total_adults']; ?> </td>
+                                    <td hidden><?php echo $bookings['total_kids']; ?> </td>
+                                    <td hidden><?php echo date('jS F, Y ', strtotime($bookings['created_date'])); ?></td>
 
-
-                                        <!-- <td><?php echo date('d-M-Y', strtotime($bookings['start_date'])); ?></td>
-                                        <td><?php echo date('d-M-Y', strtotime($bookings['end_date'])); ?></td> -->
+                                       
                                     </tr>
                                 <?php } ?>
 
