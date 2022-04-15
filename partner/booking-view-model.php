@@ -129,12 +129,12 @@ if (isset($_GET['viewId']) && !empty($_GET['viewId'])) {
                             <div class="col-md-3 col-sm-12">
                                 <div class="form-group">
                                     <label>Payment Status</label>
-                                    <h6><?php if($bookingdata['payment_status'] == 1){
-                                        echo "Paid";
-                                    }else{
-                                        echo "Not Paid";
-                                    }
-                                     ?></h6>
+                                    <h6><?php if ($bookingdata['payment_status'] == 1) {
+                                            echo "Paid";
+                                        } else {
+                                            echo "Not Paid";
+                                        }
+                                        ?></h6>
                                 </div>
                             </div>
                             <div class="col-md-3 col-sm-12">
@@ -211,24 +211,38 @@ if (isset($_GET['viewId']) && !empty($_GET['viewId'])) {
                                 <div class="form-group">
                                     <label>Booking Status</label>
                                     <h6><?php if ($bookingdata['status'] == 0) {
-                                                echo "Not Confirmed";
-                                            } elseif ($bookingdata['status'] == 1) {
-                                                echo "Confirmed";
-                                            } elseif ($bookingdata['status'] == 2) {
-                                                echo "Cancelled";
-                                            }elseif ($bookingdata['status'] == 3) {
-                                                echo "cancelled by Customer";
-                                            } else {
-                                                echo "Booking Failed";
-                                            } ?></h6>
+                                            echo "Not Confirmed";
+                                        } elseif ($bookingdata['status'] == 1) {
+                                            echo "Cancelled";
+                                        } elseif ($bookingdata['status'] == 2) {
+                                            echo "Confirmed";
+                                        } elseif ($bookingdata['status'] == 3) {
+                                            echo "cancelled by Customer";
+                                        } else {
+                                            echo "Booking Failed";
+                                        } ?></h6>
                                 </div>
                             </div>
-                            <div class="col-md-3 col-sm-12">
-                            </div>
-                            <div class="col-md-3 col-sm-12">
+
+                            <div class="col-md-6 col-sm-12">
                                 <div class="btn-list">
-                                    <a type="button" href="edit-home.php?editId=<?php echo $homedata['home_id'] ?>" class="btn btn-lg btn-primary">Edit home</a>
-                                    <a type="button" href="manage-home.php" class="btn btn-secondary btn-lg">Go Back</a>
+                                    <?php
+                                    if ($bookingdata['status'] == 0) {
+                                    ?>
+                                        <a type="button" href="edit-home.php?editId=<?php echo $homedata['home_id'] ?>" class="btn btn-success">Confirm Booking</a>
+                                        <a type="button" href="edit-home.php?editId=<?php echo $homedata['home_id'] ?>" class="btn btn-danger">Cancel Booking</a>
+                                    <?php
+                                    } elseif ($bookingdata['status'] == 1) {
+                                    ?>
+                                        <a type="button" href="edit-home.php?editId=<?php echo $homedata['home_id'] ?>" class="btn btn-success">Confirm Booking</a>
+                                    <?php
+                                    } elseif ($bookingdata['status'] == 2) {
+                                    ?>
+                                        <a type="button" href="edit-home.php?editId=<?php echo $homedata['home_id'] ?>" class="btn btn-primary">View Earning</a>
+                                    <?php
+                                    }
+                                    ?>
+                                    <a type="button" href="manage-booking.php" class="btn btn-secondary">Go Back</a>
                                 </div>
                             </div>
                         </div>
