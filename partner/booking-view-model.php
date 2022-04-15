@@ -155,6 +155,39 @@ if (isset($_GET['viewId']) && !empty($_GET['viewId'])) {
 
                             <div class="col-md-3 col-sm-12">
                                 <div class="form-group">
+                                    <label>Booking Income Amount</label>
+                                    <h6>
+                                        <?php if ($bookingdata['status'] == 1) {
+                                            echo "0";
+                                        } elseif ($bookingdata['status'] == 3) {
+                                            echo "0";
+                                        } else {
+                                            echo $bookingdata['payout'];
+                                        } ?>
+                                        <?php
+                                        ?> LKR</h6>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3 col-sm-12">
+                                <div class="form-group">
+                                    <label>Card Number</label>
+                                    <h6><?php echo $bookingdata['payment_card_number']; ?></h6>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3 col-sm-12">
+                                <div class="form-group">
+                                    <label>Card Holder Name</label>
+                                    <h6><?php echo $bookingdata['payment_card_holder_name']; ?></h6>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3 col-sm-12">
+                                <div class="form-group">
                                     <label>Booking End Date</label>
                                     <h6><?php echo date('jS F, Y', strtotime($bookingdata['end_date'])); ?></h6>
                                 </div>
@@ -172,6 +205,14 @@ if (isset($_GET['viewId']) && !empty($_GET['viewId'])) {
                                     <label>Total Persons</label>
                                     <h6><?php echo $bookingdata['total_persons']; ?></h6>
                                 </div>
+
+                            </div>
+                            <div class="col-md-3 col-sm-12">
+                                <div class="form-group">
+                                    <label>Adult Count</label>
+                                    <h6><?php echo $bookingdata['total_adults']; ?></h6>
+                                </div>
+
                             </div>
                         </div>
                         <div class="row">
@@ -189,8 +230,8 @@ if (isset($_GET['viewId']) && !empty($_GET['viewId'])) {
                             </div>
                             <div class="col-md-3 col-sm-12">
                                 <div class="form-group">
-                                    <label>Adult Count</label>
-                                    <h6><?php echo $bookingdata['total_adults']; ?></h6>
+                                    <label>Booking Created Date and Time</label>
+                                    <h6><?php echo date('jS F, Y h:i A', strtotime($bookingdata['created_date'])); ?></h6>
                                 </div>
                             </div>
                             <div class="col-md-3 col-sm-12">
@@ -199,14 +240,10 @@ if (isset($_GET['viewId']) && !empty($_GET['viewId'])) {
                                     <h6><?php echo $bookingdata['total_kids']; ?></h6>
                                 </div>
                             </div>
+
+
                         </div>
                         <div class="row">
-                            <div class="col-md-3 col-sm-12">
-                                <div class="form-group">
-                                    <label>Booking Created Date and Time</label>
-                                    <h6><?php echo date('jS F, Y h:i A', strtotime($bookingdata['created_date'])); ?></h6>
-                                </div>
-                            </div>
                             <div class="col-md-3 col-sm-12">
                                 <div class="form-group">
                                     <label>Booking Status</label>
@@ -223,8 +260,7 @@ if (isset($_GET['viewId']) && !empty($_GET['viewId'])) {
                                         } ?></h6>
                                 </div>
                             </div>
-
-                            <div class="col-md-6 col-sm-12">
+                            <div class="col-md-9 col-sm-12 text-right">
                                 <div class="btn-list">
                                     <?php
                                     if ($bookingdata['status'] == 0) {
