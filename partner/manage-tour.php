@@ -138,14 +138,18 @@ if (isset($_GET['deleteId']) && !empty($_GET['deleteId'])) {
                                         <td><?php echo date('d-M-Y', strtotime($tourinfo['ava_end_date'])); ?></td>
                                         <td><?php if ($tourinfo['status'] == 0) {
                                                 echo "Inactive";
-                                            } else {
+                                            } elseif ($tourinfo['status'] == 1) {
                                                 echo "Active";
+                                            } elseif ($tourinfo['status'] == 2) {
+                                                echo "Not Verified Yet";
+                                            } else {
+                                                echo "Verification Failed";
                                             } ?></td>
                                         <td><?php echo $tourinfo['duration_nights']; ?> Nights</td>
                                         <td><?php echo $tourinfo['availabile_seats']; ?></td>
 
 
-<!-- hidden -->
+                                        <!-- hidden -->
                                         <td hidden><?php echo $tourinfo['location']; ?></td>
                                         <td hidden><?php echo $tourinfo['adult_price']; ?> LKR</td>
                                         <td hidden><?php echo $tourinfo['details']; ?></td>
@@ -156,16 +160,16 @@ if (isset($_GET['deleteId']) && !empty($_GET['deleteId'])) {
                                         <td hidden><?php echo date('h:i A', strtotime($tourinfo['e_time'])); ?></td>
                                         <td hidden><?php echo $tourinfo['gathering_location']; ?></td>
                                         <td hidden><?php if ($tourinfo['kid_status'] == 1) {
-                                                echo "Enabled";
-                                            } else {
-                                                echo "Disabled";
-                                            } ?></td>
+                                                        echo "Enabled";
+                                                    } else {
+                                                        echo "Disabled";
+                                                    } ?></td>
                                         <td hidden><?php echo $tourinfo['kid_price']; ?></td>
                                         <td hidden><?php if ($tourinfo['cancellation'] == 0) {
-                                                echo "Disabled";
-                                            } else {
-                                                echo "Enabled";
-                                            } ?></td>
+                                                        echo "Disabled";
+                                                    } else {
+                                                        echo "Enabled";
+                                                    } ?></td>
                                         <td hidden><img src="<?php echo 'includes/uploads/' . $tourinfo['image'] ?>" width="150px"></td>
                                         <td hidden><?php echo date('d-M-Y', strtotime($tourinfo['created_date'])); ?></td>
 
@@ -191,76 +195,12 @@ if (isset($_GET['deleteId']) && !empty($_GET['deleteId'])) {
                 </div>
 
                 <!-- Export Datatable End -->
-
-                <div class="row clearfix">
-                    <div class="modal fade" id="Medium-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h4 class="modal-title" id="myLargeModalLabel">Tour Details</h4>
-                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                </div>
-                                <div class="modal-body">
-
-                                    <form>
-                                        <input name="tourid" value="" />
-
-                                        <div class="form-group">
-                                            <label>Tour Id</label>
-                                            <h5>Johnny Brown</h5>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Tour Title</label>
-                                            <h5>Johnny Brown</h5>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Tour Details</label>
-                                            <textarea class="form-control"></textarea>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Tour Type</label>
-                                            <h5>Johnny Brown</h5>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Tour Image</label>
-                                            <div>
-                                                <img src="#" width="250" height="150">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Tour Language</label>
-                                            <h5>Johnny Brown</h5>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Tour Status</label>
-                                            <h5>Johnny Brown</h5>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Available Seats</label>
-                                            <h5>Johnny Brown</h5>
-                                        </div>
-                                    </form>
-
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary">Save changes</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
             </div>
             <div class="footer-wrap pd-20 mb-20 card-box">
                 HappyHolidayss Pvt(Ltd).</a>
             </div>
         </div>
     </div>
-
-
-
 
 
     <?php include('includes/scripts.php'); ?>

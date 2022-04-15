@@ -9,20 +9,24 @@ if(isset($_POST['submit'])) {
 
     $home_name = $_POST['hname'];
     $location_address = $_POST['laddress'];
-    $ava_night_price = $_POST['anprice'];
+    $adult_price = $_POST['anprice'];
+    $kid_price = $_POST['kidprice'];
+    $max_adult = $_POST['madult'];
+    $max_kid = $_POST['mkid'];
     $lg_desc = $_POST['lgdesc'];
     $home_type = $_POST['type'];
     $home_room = $_POST['rooms'];
-    $extra_people = $_POST['e_people'];
     $district = $_POST['district'];
     $province = $_POST['province'];
     $cancel = $_POST['cancel'];
     $str_date = $_POST['start_date'];
     $end_date = $_POST['end_date'];
+    $str_time = $_POST['start_time'];
+    $end_time = $_POST['end_time'];
     $file = $_FILES['image'];
     $pid = $_POST['partnerid'];
 
-    $insertData = $home->insertData($home_name, $location_address, $ava_night_price, $lg_desc, $home_type,$home_room, $extra_people, $district, $province, $cancel, $str_date, $end_date, $file,$pid);
+    $insertData = $home->insertData($home_name, $location_address, $adult_price, $kid_price, $max_adult, $max_kid, $lg_desc, $home_type,$home_room, $district, $province, $cancel, $str_date, $end_date, $str_time, $end_time, $file,$pid);
 
     if ($insertData){
         $msg = "Home successfully created ";
@@ -90,7 +94,7 @@ if(isset($_POST['submit'])) {
                             <nav aria-label="breadcrumb" role="navigation">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">create home</li>
+                                    <li class="breadcrumb-item active" aria-current="page">Create Home</li>
                                 </ol>
                             </nav>
                         </div>
@@ -111,8 +115,45 @@ if(isset($_POST['submit'])) {
                             <input class="form-control" name="laddress" placeholder="Enter Home Location" type="text">
                         </div>
                         <div class="form-group">
-                            <label>Avarage Night Price(LKR)</label>
-                            <input placeholder="Enter Avarage Night Price in LKR" class="form-control" name="anprice" type="number">
+                            <label>Adult/Avg/Night Price(LKR)</label>
+                            <input placeholder="Enter Avarage Adult Night Price in LKR" class="form-control" name="anprice" type="number">
+                        </div>
+                        <div class="form-group">
+                            <label>Kid/Avg/Night Price(LKR)</label>
+                            <input placeholder="Enter Avarage Kid Night Price in LKR" class="form-control" name="kidprice" type="number">
+                        </div>
+                        <div class="form-group">
+                            <label>Max Adults</label>
+							<select name="madult" class="custom-select col-12">
+									<option selected="">Choose...</option>
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5">5</option>
+									<option value="6">6</option>
+									<option value="7">7</option>
+									<option value="8">8</option>
+									<option value="9">9</option>
+									<option value="10">10</option>
+							</select>
+                        </div>
+                        <div class="form-group">
+                            <label>Max Kids</label>
+							<select name="mkid" class="custom-select col-12">
+									<option selected="">Choose...</option>
+									<option value="0">0</option>
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5">5</option>
+                                    <option value="6">6</option>
+									<option value="7">7</option>
+									<option value="8">8</option>
+									<option value="9">9</option>
+									<option value="10">10</option>
+							</select>
                         </div>
                         <div class="form-group">
                             <label>Home Image</label>
@@ -150,10 +191,6 @@ if(isset($_POST['submit'])) {
 							</select>
 						</div>
                         <div class="form-group">
-                        <label>Extra People</label>
-                        <input placeholder="ex: no charge" type="text" class="form-control" name="e_people" >
-                        </div>
-                        <div class="form-group">
 							<label>Province</label>
 							<select name="province" class="custom-select col-12">
 									<option selected="">Choose...</option>
@@ -186,6 +223,14 @@ if(isset($_POST['submit'])) {
                         <div class="form-group">
                         <label>Availability End Date</label>
                         <input type="date" class="form-control" name="end_date" >
+                        </div>
+                        <div class="form-group">
+                        <label>Stay Start Time</label>
+                        <input type="time" class="form-control" name="start_time" >
+                        </div>
+                        <div class="form-group">
+                        <label>Stay End Time</label>
+                        <input type="time" class="form-control" name="end_time" >
                         </div>
                         <input class="btn btn-primary" name="submit" type="submit" value="Submit">
                         <input class="btn btn-info" type="reset" value="Reset">

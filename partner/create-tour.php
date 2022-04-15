@@ -98,7 +98,7 @@ if (isset($_POST['submit'])) {
                             <nav aria-label="breadcrumb" role="navigation">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="dashboard.php">Tour</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">create tour</li>
+                                    <li class="breadcrumb-item active" aria-current="page">Create Tour</li>
                                 </ol>
                             </nav>
                         </div>
@@ -215,7 +215,7 @@ if (isset($_POST['submit'])) {
                         </div>
                         <div class="form-group">
                             <label>Gathering Location</label>
-                            <input type="text" class="form-control" name="gatherlocation">
+                            <input type="text" class="form-control" name="gatherlocation" placeholder="Enter Gathering Location">
                         </div>
                         <input class="btn btn-primary" name="submit" type="submit" value="Submit">
                         <input class="btn btn-info" type="reset" value="Reset">

@@ -234,7 +234,8 @@ if (isset($_POST['update'])) {
                             </select>
                         </div>
                         <input class="btn btn-primary" name="update" type="submit" value="Update">
-                        <input class="btn btn-info" type="reset" value="Reset">
+                        <a type="button" href="manage-home.php" class="btn btn-secondary">Go Back</a>
+
                     </form>
                 </div>
             </div>

@@ -138,8 +138,12 @@ if (isset($_GET['deleteId']) && !empty($_GET['deleteId'])) {
                                         <td><?php echo date('d-M-Y', strtotime($homes['ava_end_date'])); ?></td>
                                         <td><?php if ($homes['status'] == 0) {
                                                 echo "Inactive";
-                                            } else {
+                                            } elseif ($homes['status'] == 1) {
                                                 echo "Active";
+                                            } elseif ($homes['status'] == 2) {
+                                                echo "Not Verified Yet";
+                                            } else {
+                                                echo "Verification Failed";
                                             } ?></td>
 
 
@@ -190,7 +194,6 @@ if (isset($_GET['deleteId']) && !empty($_GET['deleteId'])) {
             </div>
         </div>
     </div>
-
     </div>
 
     <?php include('includes/scripts.php'); ?>
