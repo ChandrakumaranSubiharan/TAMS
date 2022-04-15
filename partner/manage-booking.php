@@ -153,7 +153,7 @@ include_once '../includes/dbconfig.php';
                                                     <i class="dw dw-more"></i>
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                                                    <a class="dropdown-item" href="home-view-model.php?viewId=<?php echo $homes['home_id'] ?>"><i class="dw dw-eye"></i> View</a>
+                                                    <a class="dropdown-item" href="booking-view-model.php?viewId=<?php echo $bookings['booking_id'] ?>"><i class="dw dw-eye"></i> View</a>
                                                     <a class="dropdown-item" href="home-view-model.php?editId=<?php echo $homes['home_id'] ?>"><i style="color:green" class="icon-copy ion-checkmark-circled"></i> Confirm Booking</a>
                                                     <a class="dropdown-item" href="home-view-model.php?editId=<?php echo $homes['home_id'] ?>"><i style="color:red" class="icon-copy ion-close-circled"></i> Cancel Booking</a>
                                                 </div>
