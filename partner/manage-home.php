@@ -99,20 +99,27 @@ if (isset($_GET['deleteId']) && !empty($_GET['deleteId'])) {
                                 <tr>
                                     <th class="table-plus datatable-nosort">Id</th>
                                     <th>Home Name</th>
-                                    <th>Location</th>
+                                    <th>Adult/Avg/Night(LKR)</th>
                                     <th>Ava Start Date</th>
                                     <th>Ava End Date</th>
-                                    <th>Avg/Night(LKR)</th>
-                                    <th>Description</th>
                                     <th>Status</th>
-                                    <th>Type</th>
-                                    <th>Extra people</th>
-                                    <th>Province</th>
-                                    <th>District</th>
-                                    <th>Cancellation</th>
-                                    <th>Image</th>
-                                    <th>Created Date</th>
                                     <th class="datatable-nosort">Action</th>
+
+                                    <!-- hidden -->
+                                    <th hidden>Rooms</th>
+                                    <th hidden>Location</th>
+                                    <th hidden>Start Time</th>
+                                    <th hidden>End Time</th>
+                                    <th hidden>Kid/Avg/Night(LKR)</th>
+                                    <th hidden>Description</th>
+                                    <th hidden>Max Adults</th>
+                                    <th hidden>Max Kids</th>
+                                    <th hidden>Home Type</th>
+                                    <th hidden>Province</th>
+                                    <th hidden>District</th>
+                                    <th hidden>Cancellation</th>
+                                    <th hidden>Image</th>
+                                    <th hidden>Created Date</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -126,38 +133,48 @@ if (isset($_GET['deleteId']) && !empty($_GET['deleteId'])) {
                                     <tr>
                                         <td><?php echo $homes['home_id']; ?></td>
                                         <td><?php echo $homes['home_name']; ?></td>
-                                        <td><?php echo $homes['location_address']; ?></td>
+                                        <td><?php echo $homes['ava_night_price_adult']; ?> LKR</td>
                                         <td><?php echo date('d-M-Y', strtotime($homes['ava_start_date'])); ?></td>
                                         <td><?php echo date('d-M-Y', strtotime($homes['ava_end_date'])); ?></td>
-                                        <td><?php echo $homes['ava_night_price']; ?></td>
-                                        <td><?php echo $homes['lg_desc']; ?></td>
                                         <td><?php if ($homes['status'] == 0) {
                                                 echo "Inactive";
                                             } else {
                                                 echo "Active";
                                             } ?></td>
-                                        <td><?php echo $homes['home_type']; ?></td>
-                                        <td><?php echo $homes['extra_people']; ?></td>
-                                        <td><?php echo $homes['province']; ?></td>
-                                        <td><?php echo $homes['district']; ?></td>
-                                        <td><?php if ($homes['cancellation'] == 0) {
-                                                echo "Disabled";
-                                            } else {
-                                                echo "Enabled";
-                                            } ?></td>
-                                        <td><img src="<?php echo 'includes/uploads/' . $homes['cover_img1'] ?>" width="150px"></td>
-                                        <td><?php echo date('d-M-Y', strtotime($homes['created_date'])); ?></td>
+
+
                                         <td>
                                             <div class="dropdown">
                                                 <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
                                                     <i class="dw dw-more"></i>
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                                                    <a class="dropdown-item" href="home-view-model.php?viewId=<?php echo $homes['home_id'] ?>"><i class="dw dw-eye"></i> View</a>
                                                     <a class="dropdown-item" href="edit-home.php?editId=<?php echo $homes['home_id'] ?>"><i class="dw dw-edit2" aria-hidden="true"></i> Edit</a>
                                                     <a href="manage-home.php?deleteId=<?php echo $homes['home_id'] ?>" style="color:red" onclick="confirm('Are you sure want to delete this record')" class="dropdown-item"><i class="dw dw-delete-3"></i> Delete</a>
                                                 </div>
                                             </div>
                                         </td>
+
+                                        <!-- hidden -->
+                                        <td hidden><?php echo $homes['rooms']; ?></td>
+                                        <td hidden><?php echo $homes['location_address']; ?></td>
+                                        <td hidden><?php echo date('h:i A', strtotime($homes['s_time'])); ?></td>
+                                        <td hidden><?php echo date('h:i A', strtotime($homes['e_time'])); ?></td>
+                                        <td hidden><?php echo $homes['ava_night_price_kid']; ?> LKR</td>
+                                        <td hidden><?php echo $homes['lg_desc']; ?></td>
+                                        <td hidden><?php echo $homes['max_adults']; ?></td>
+                                        <td hidden><?php echo $homes['max_kids']; ?></td>
+                                        <td hidden><?php echo $homes['home_type']; ?></td>
+                                        <td hidden><?php echo $homes['province']; ?></td>
+                                        <td hidden><?php echo $homes['district']; ?></td>
+                                        <td hidden><?php if ($homes['cancellation'] == 0) {
+                                                        echo "Disabled";
+                                                    } else {
+                                                        echo "Enabled";
+                                                    } ?></td>
+                                        <td hidden><img src="<?php echo 'includes/uploads/' . $homes['cover_img1'] ?>" width="150px"></td>
+                                        <td hidden><?php echo date('d-M-Y', strtotime($homes['created_date'])); ?></td>
                                     </tr>
                                 <?php } ?>
 

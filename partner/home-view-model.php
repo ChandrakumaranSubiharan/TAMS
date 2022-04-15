@@ -3,11 +3,14 @@
 // Include database file
 include_once '../includes/dbconfig.php';
 
+
 // display record
 if (isset($_GET['viewId']) && !empty($_GET['viewId'])) {
     $viewId = $_GET['viewId'];
-    $tourdata = $tour->displyaRecordById($viewId);
+    $homedata = $home->displyaRecordById($viewId);
 }
+
+
 ?>
 
 <!DOCTYPE html>
@@ -60,13 +63,13 @@ if (isset($_GET['viewId']) && !empty($_GET['viewId'])) {
                     <div class="row">
                         <div class="col-md-6 col-sm-12">
                             <div class="title">
-                                <h4>View Tour Details</h4>
+                                <h4>View Home Details</h4>
                             </div>
                             <nav aria-label="breadcrumb" role="navigation">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.html">Tour</a></li>
-                                    <li class="breadcrumb-item" aria-current="page">manage tour</li>
-                                    <li class="breadcrumb-item active" aria-current="page">view tour</li>
+                                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                                    <li class="breadcrumb-item" aria-current="page">manage home</li>
+                                    <li class="breadcrumb-item active" aria-current="page">view home</li>
                                 </ol>
                             </nav>
                             <div class="container">
@@ -80,31 +83,30 @@ if (isset($_GET['viewId']) && !empty($_GET['viewId'])) {
                     </div>
                 </div>
                 <div class="pd-20 bg-white border-radius-4 box-shadow mb-30">
-
                     <form>
                         <div class="row">
                             <div class="col-md-3 col-sm-12">
                                 <div class="form-group">
-                                    <label>Tour Id</label>
+                                    <label>Home Id</label>
                                     <h6><?php echo $viewId; ?></h6>
                                 </div>
                             </div>
                             <div class="col-md-3 col-sm-12">
                                 <div class="form-group">
-                                    <label>Tour Title</label>
-                                    <h6><?php echo $tourdata['title']; ?></h6>
+                                    <label>Home Name</label>
+                                    <h6><?php echo $homedata['home_name']; ?></h6>
                                 </div>
                             </div>
                             <div class="col-md-3 col-sm-12">
                                 <div class="form-group">
-                                    <label>Tour Type</label>
-                                    <h6><?php echo $tourdata['tour_type']; ?></h6>
+                                    <label>Home Type</label>
+                                    <h6><?php echo $homedata['home_type']; ?></h6>
                                 </div>
                             </div>
                             <div class="col-md-3 col-sm-12">
                                 <div class="form-group">
-                                    <label>Tour Language</label>
-                                    <h6><?php echo $tourdata['language']; ?></h6>
+                                    <label>Rooms Included</label>
+                                    <h6><?php echo $homedata['rooms']; ?></h6>
                                 </div>
                             </div>
                         </div>
@@ -112,15 +114,15 @@ if (isset($_GET['viewId']) && !empty($_GET['viewId'])) {
                         <div class="row">
                             <div class="col-md-9 col-sm-12">
                                 <div class="form-group">
-                                    <label>Tour Details</label>
-                                    <h6 style="text-align: justify;"><?php echo $tourdata['details']; ?></h6>
+                                    <label>Home Details</label>
+                                    <h6 style="text-align: justify;"><?php echo $homedata['lg_desc']; ?></h6>
                                 </div>
                             </div>
                             <div class="col-md-3 col-sm-12">
                                 <div class="form-group">
-                                    <label>Tour Image</label>
+                                    <label>Home Image</label>
                                     <div>
-                                        <img src="includes/uploads/<?php echo $tourdata['image']; ?>" width="250">
+                                        <img src="includes/uploads/<?php echo $homedata['cover_img1']; ?>" width="250">
 
                                     </div>
                                 </div>
@@ -131,26 +133,26 @@ if (isset($_GET['viewId']) && !empty($_GET['viewId'])) {
                         <div class="row">
                             <div class="col-md-3 col-sm-12">
                                 <div class="form-group">
-                                    <label>Tour District</label>
-                                    <h6><?php echo $tourdata['district']; ?></h6>
+                                    <label>Home District</label>
+                                    <h6><?php echo $homedata['district']; ?></h6>
                                 </div>
                             </div>
                             <div class="col-md-3 col-sm-12">
                                 <div class="form-group">
-                                    <label>Tour Starting Location</label>
-                                    <h6><?php echo $tourdata['location']; ?></h6>
+                                    <label>Home Location</label>
+                                    <h6><?php echo $homedata['location_address']; ?></h6>
                                 </div>
                             </div>
                             <div class="col-md-3 col-sm-12">
                                 <div class="form-group">
-                                    <label>Tour Start Date</label>
-                                    <h6><?php echo $tourdata['ava_start_date']; ?></h6>
+                                    <label>Availability Start Date</label>
+                                    <h6><?php echo $homedata['ava_start_date']; ?></h6>
                                 </div>
                             </div>
                             <div class="col-md-3 col-sm-12">
                                 <div class="form-group">
-                                    <label>Tour End Date</label>
-                                    <h6><?php echo $tourdata['ava_end_date']; ?></h6>
+                                    <label>Availability End Date</label>
+                                    <h6><?php echo $homedata['ava_end_date']; ?></h6>
                                 </div>
                             </div>
                         </div>
@@ -158,14 +160,14 @@ if (isset($_GET['viewId']) && !empty($_GET['viewId'])) {
                         <div class="row">
                             <div class="col-md-3 col-sm-12">
                                 <div class="form-group">
-                                    <label>Tour Duration</label>
-                                    <h6><?php echo $tourdata['duration_nights']; ?> Nights</h6>
+                                    <label>Home Province</label>
+                                    <h6><?php echo $homedata['province']; ?></h6>
                                 </div>
                             </div>
                             <div class="col-md-3 col-sm-12">
                                 <div class="form-group">
-                                    <label>Tour Cancellation</label>
-                                    <h6><?php if ($tourdata['cancellation'] == 1) {
+                                    <label>Home Cancellation</label>
+                                    <h6><?php if ($homedata['cancellation'] == 1) {
                                             echo "Enabled";
                                         } else {
                                             echo "Disabled";
@@ -174,79 +176,60 @@ if (isset($_GET['viewId']) && !empty($_GET['viewId'])) {
                             </div>
                             <div class="col-md-3 col-sm-12">
                                 <div class="form-group">
-                                    <label>Tour Start Time</label>
-                                    <h6><?php echo date('h:i A', strtotime($tourdata['s_time'])); ?></h6>
+                                    <label>Stay Start Time</label>
+                                    <h6><?php echo date('h:i A', strtotime($homedata['s_time'])); ?></h6>
                                 </div>
                             </div>
                             <div class="col-md-3 col-sm-12">
                                 <div class="form-group">
-                                    <label>Tour End Time</label>
-                                    <h6><?php echo date('h:i A', strtotime($tourdata['e_time'])); ?></h6>
+                                    <label>Stay End Time</label>
+                                    <h6><?php echo date('h:i A', strtotime($homedata['e_time'])); ?></h6>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3 col-sm-12">
+                                <div class="form-group">
+                                    <label>Adult/Avg/Night Price</label>
+                                    <h6><?php echo $homedata['ava_night_price_adult']; ?> LKR</h6>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-12">
+                                <div class="form-group">
+                                    <label>Kid/Avg/Night Price</label>
+                                    <h6><?php echo $homedata['ava_night_price_kid']; ?> LKR</h6>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-12">
+                                <div class="form-group">
+                                    <label>Max Adults</label>
+                                    <h6><?php echo $homedata['max_adults']; ?></h6>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-12">
+                                <div class="form-group">
+                                <div class="form-group">
+                                    <label>Max Kids</label>
+                                    <h6><?php echo $homedata['max_kids']; ?></h6>
+                                </div>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-3 col-sm-12">
                                 <div class="form-group">
-                                    <label>Available Seats</label>
-                                    <h6><?php echo $tourdata['availabile_seats']; ?></h6>
+                                    <label>Home Created Date and Time</label>
+                                    <h6><?php echo date('jS F, Y h:i A', strtotime($homedata['created_date'])); ?></h6>
                                 </div>
                             </div>
                             <div class="col-md-3 col-sm-12">
                                 <div class="form-group">
-                                    <label>Tour Gather Location</label>
-                                    <h6><?php echo $tourdata['gathering_location']; ?></h6>
-                                </div>
-                            </div>
-                            <div class="col-md-3 col-sm-12">
-                                <div class="form-group">
-                                    <label>Tour Adult Price</label>
-                                    <h6><?php echo $tourdata['adult_price']; ?> LKR</h6>
-                                </div>
-                            </div>
-                            <div class="col-md-3 col-sm-12">
-                                <div class="form-group">
-                                    <label>Kids Allowing Status</label>
-                                    <h6> <?php if ($tourdata['kid_status'] == 1) {
-                                                echo "Enabled";
-                                            } else {
-                                                echo "Disabled";
-                                            } ?>
-                                    </h6>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <?php
-                            if ($tourdata['kid_status'] == 1) {
-                            ?>
-                                <div class="col-md-3 col-sm-12">
-                                    <div class="form-group">
-                                        <label>Tour Kid Price</label>
-                                        <h6><?php if ($tourdata['kid_price']) {
-                                                echo $tourdata['kid_price'];
-                                            } else {
-                                                echo "0";
-                                            } ?> LKR</h6>
-                                    </div>
-                                </div>
-                            <?php
-                            }
-                            ?>
-                            <div class="col-md-3 col-sm-12">
-                                <div class="form-group">
-                                    <label>Tour Created Date and Time</label>
-                                    <h6><?php echo date('jS F, Y h:i A', strtotime($tourdata['created_date'])); ?></h6>
-                                </div>
-                            </div>
-                            <div class="col-md-3 col-sm-12">
-                                <div class="form-group">
-                                    <label>Tour Status</label>
-                                    <h6><?php if ($tourdata['status'] == 1) {
+                                    <label>Home Status</label>
+                                    <h6><?php if ($homedata['status'] == 1) {
                                             echo "Active";
-                                        } elseif ($tourdata['status'] == 2) {
+                                        } elseif ($homedata['status'] == 2) {
                                             echo "Not Verified Yet";
-                                        } elseif ($tourdata['status'] == 3) {
+                                        } elseif ($homedata['status'] == 3) {
                                             echo "Verification Unsuccessful";
                                         } else {
                                             echo "InActive";
@@ -254,9 +237,11 @@ if (isset($_GET['viewId']) && !empty($_GET['viewId'])) {
                                 </div>
                             </div>
                             <div class="col-md-3 col-sm-12">
+                            </div>
+                            <div class="col-md-3 col-sm-12">
                                 <div class="btn-list">
-                                    <a type="button" href="edit-tour.php?editId=<?php echo $tourdata['tour_id'] ?>" class="btn btn-lg btn-primary">Edit Tour</a>
-                                    <a type="button" href="manage-tour.php" class="btn btn-secondary btn-lg">Go Back</a>
+                                    <a type="button" href="edit-home.php?editId=<?php echo $homedata['home_id'] ?>" class="btn btn-lg btn-primary">Edit home</a>
+                                    <a type="button" href="manage-home.php" class="btn btn-secondary btn-lg">Go Back</a>
                                 </div>
                             </div>
                         </div>

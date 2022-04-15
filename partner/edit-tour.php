@@ -106,8 +106,8 @@ if (isset($_POST['update'])) {
                             <nav aria-label="breadcrumb" role="navigation">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="index.html">Tour</a></li>
-                                    <li class="breadcrumb-item" aria-current="page">manage tour</li>
-                                    <li class="breadcrumb-item active" aria-current="page">edit tour</li>
+                                    <li class="breadcrumb-item" aria-current="page">Manage Tour</li>
+                                    <li class="breadcrumb-item active" aria-current="page">Edit Tour</li>
                                 </ol>
                             </nav>
                             <div class="container">

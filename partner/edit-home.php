@@ -15,19 +15,24 @@ if (isset($_POST['update'])) {
     $id = $_GET['editId'];
     $homename = $_POST['hname'];
     $location = $_POST['laddress'];
-    $price = $_POST['anprice'];
+    $aprice = $_POST['anprice'];
+    $kprice = $_POST['kidprice'];
+    $madult = $_POST['madult'];
+    $mkid = $_POST['mkid'];
+    $room = $_POST['rooms'];
     $des = $_POST['lgdesc'];
     $type = $_POST['type'];
-    $people = $_POST['e_people'];
     $province = $_POST['province'];
     $district = $_POST['district'];
     $cancell = $_POST['cancel'];
     $ava_start = $_POST['start_date'];
     $ava_end = $_POST['end_date'];
+    $s_time = $_POST['starttime'];
+    $e_time = $_POST['endtime'];
     $sta = $_POST['stat'];
 
 
-    $updateData = $home->update($id, $homename, $location, $price, $des, $type, $people, $province, $district, $cancell, $ava_start, $ava_end, $sta);
+    $updateData = $home->update($id, $homename, $location, $aprice, $kprice, $madult, $mkid, $room, $des, $type, $province, $district, $cancell, $ava_start, $ava_end, $s_time, $e_time, $sta);
 
     if ($updateData) {
 
@@ -104,7 +109,8 @@ if (isset($_POST['update'])) {
                             <nav aria-label="breadcrumb" role="navigation">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">edit home</li>
+                                    <li class="breadcrumb-item"><a href="index.html">Manage Home</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Edit Home</li>
                                 </ol>
                             </nav>
                             <div class="container">
@@ -128,10 +134,25 @@ if (isset($_POST['update'])) {
                             <input class="form-control" name="laddress" placeholder="Enter Home Location" value="<?php echo $homedata['location_address']; ?>" type="text">
                         </div>
                         <div class="form-group">
-                            <label>Avarage Night Price(LKR)</label>
-                            <input class="form-control" name="anprice" type="number" value="<?php echo $homedata['ava_night_price']; ?>">
+                            <label>Adult/Avg/Night Price(LKR)</label>
+                            <input class="form-control" name="anprice" type="number" value="<?php echo $homedata['ava_night_price_adult']; ?>">
                         </div>
-
+                        <div class="form-group">
+                            <label>Kid/Avg/Night Price(LKR)</label>
+                            <input class="form-control" name="kidprice" type="number" value="<?php echo $homedata['ava_night_price_kid']; ?>">
+                        </div>
+                        <div class="form-group">
+                            <label>Max Adults</label>
+                            <input class="form-control" name="madult" type="number" value="<?php echo $homedata['max_adults']; ?>">
+                        </div>
+                        <div class="form-group">
+                            <label>Max Kids</label>
+                            <input class="form-control" name="mkid" type="number" value="<?php echo $homedata['max_kids']; ?>">
+                        </div>
+                        <div class="form-group">
+                            <label>Rooms Included</label>
+                            <input class="form-control" name="rooms" type="number" value="<?php echo $homedata['rooms']; ?>">
+                        </div>
                         <div class="form-group">
                             <label for="focusedinput">Home Image</label>
                             <div>
@@ -154,10 +175,6 @@ if (isset($_POST['update'])) {
                                 <option value="Villa">Villa</option>
                                 <option value="Hostel">Hostel</option>
                             </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Extra People</label>
-                            <input type="text" value="<?php echo $homedata['extra_people']; ?>" class="form-control" name="e_people">
                         </div>
                         <div class="form-group">
                             <label>Province</label>
@@ -196,6 +213,14 @@ if (isset($_POST['update'])) {
                         <div class="form-group">
                             <label>Availability End Date</label>
                             <input type="date" value="<?php echo $homedata['ava_end_date']; ?>" class="form-control" name="end_date">
+                        </div>
+                        <div class="form-group">
+                            <label>Stay Start Time</label>
+                            <input type="time" value="<?php echo $homedata['s_time']; ?>" class="form-control" name="starttime">
+                        </div>
+                        <div class="form-group">
+                            <label>Stay End Time</label>
+                            <input type="time" value="<?php echo $homedata['e_time']; ?>" class="form-control" name="endtime">
                         </div>
                         <div class="form-group">
                             <label>Status</label>

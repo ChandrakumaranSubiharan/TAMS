@@ -98,34 +98,44 @@ class home
   }
 
 
-  public function update($id, $homename, $location, $price, $des, $type, $people, $province, $district, $cancell, $ava_start, $ava_end, $sta)
+  public function update($id, $homename, $location, $aprice, $kprice, $madult, $mkid, $room, $des, $type, $province, $district, $cancell, $ava_start, $ava_end, $s_time, $e_time, $sta)
   {
     try {
       $stmt = $this->db->prepare("UPDATE tbl_home SET 
                 home_name=:hname, 
                 location_address=:address, 
-                ava_night_price=:price, 
+                ava_night_price_adult=:aprice, 
+                ava_night_price_kid=:kprice, 
+                max_adults=:madult, 
+                max_kids=:mkid, 
+                rooms=:room, 
                 lg_desc=:desc,
                 home_type=:type,
-                extra_people=:people,
                 province=:pro,
                 district=:distri,
                 cancellation=:cancell,
                 ava_start_date=:sdate,
                 ava_end_date=:edate,
+                s_time=:stime,
+                e_time=:etime,
                 status=:st
              WHERE home_id=:id ");
       $stmt->bindparam(":hname", $homename);
       $stmt->bindparam(":address", $location);
-      $stmt->bindparam(":price", $price);
+      $stmt->bindparam(":aprice", $aprice);
+      $stmt->bindparam(":kprice", $kprice);
+      $stmt->bindparam(":madult", $madult);
+      $stmt->bindparam(":mkid", $mkid);
+      $stmt->bindparam(":room", $room);
       $stmt->bindparam(":desc", $des);
       $stmt->bindparam(":type", $type);
-      $stmt->bindparam(":people", $people);
       $stmt->bindparam(":pro", $province);
       $stmt->bindparam(":distri", $district);
       $stmt->bindparam(":cancell", $cancell);
       $stmt->bindparam(":sdate", $ava_start);
       $stmt->bindparam(":edate", $ava_end);
+      $stmt->bindparam(":stime", $s_time);
+      $stmt->bindparam(":etime", $e_time);
       $stmt->bindparam(":st", $sta);
       $stmt->bindparam(":id", $id);
       $stmt->execute();
