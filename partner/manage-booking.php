@@ -3,6 +3,31 @@
 include_once '../includes/dbconfig.php';
 
 
+// display edit record
+if (isset($_GET['confirmId']) && !empty($_GET['confirmId'])) {
+    $editId = $_GET['confirmId'];
+    $CurrentStatus = $_GET['status'];
+
+    if ($CurrentStatus == 0) {
+        $bookingdata = $booking->updatestatusConfirm($editId);
+    } elseif ($CurrentStatus == 1) {
+        $bookingdata = $booking->updatestatusCancel($editId);
+    }
+
+
+    if ($bookingdata) {
+
+        // $msg = "<div class='alert alert-info'>
+        // <strong>WOW!</strong> Record was updated successfully!
+        // </div>";
+
+    } else {
+        // $msg = "Failed to Create Home ";
+        // echo "<script type='text/javascript'>alert('$msg');</script>";
+    }
+}
+
+
 ?>
 
 
@@ -58,7 +83,7 @@ include_once '../includes/dbconfig.php';
                     <div class="row">
                         <div class="col-md-6 col-sm-12">
                             <div class="title">
-                                <h4>Manage Bookings</h4>
+                                <h4>Manage Bookings </h4>
                             </div>
                             <nav aria-label="breadcrumb" role="navigation">
                                 <ol class="breadcrumb">
@@ -67,20 +92,29 @@ include_once '../includes/dbconfig.php';
                                 </ol>
                             </nav>
 
-                            <?php
-                            if (isset($_GET['msg2']) == "active") {
-                                echo "<div class='alert alert-success alert-dismissible'>
+
+                            <div class="container">
+                                <?php
+                                if (isset($msg)) {
+                                    echo $msg;
+                                }
+                                ?>
+                            </div>
+
+                            <!-- <?php
+                                    if (isset($_GET['msg2']) == "active") {
+                                        echo "<div class='alert alert-success alert-dismissible'>
                                           <button type='button' class='close' data-dismiss='alert'>&times;</button>
                                           Record activated successfully
                                         </div>";
-                            }
-                            if (isset($_GET['msg3']) == "delete") {
-                                echo "<div class='alert alert-success alert-dismissible'>
+                                    }
+                                    if (isset($_GET['msg3']) == "delete") {
+                                        echo "<div class='alert alert-success alert-dismissible'>
               <button type='button' class='close' data-dismiss='alert'>&times;</button>
               Record deleted successfully
             </div>";
-                            }
-                            ?>
+                                    }
+                                    ?> -->
 
 
 
@@ -119,7 +153,6 @@ include_once '../includes/dbconfig.php';
                                     <th hidden>Adult Count</th>
                                     <th hidden>Kid Count</th>
                                     <th hidden>Booking Created Date and Time</th>
-
                                 </tr>
                             </thead>
                             <tbody>
@@ -153,43 +186,43 @@ include_once '../includes/dbconfig.php';
                                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
                                                     <a class="dropdown-item" href="booking-view-model.php?viewId=<?php echo $bookings['booking_id'] ?>"><i class="dw dw-eye"></i> View</a>
                                                     <?php
-                                                        if ($bookings['status'] <= 0) {
-                                                        ?>
-                                                            <a class="dropdown-item" href="home-view-model.php?editId=<?php echo $bookings['booking_id'] ?>"><i style="color:green" class="icon-copy ion-checkmark-circled"></i> Confirm Booking</a>
-                                                            <a class="dropdown-item" href="home-view-model.php?editId=<?php echo $bookings['booking_id'] ?>"><i style="color:red" class="icon-copy ion-close-circled"></i> Cancel Booking</a>
-                                                        <?php
-                                                        }elseif($bookings['status'] == 1) {
+                                                    if ($bookings['status'] <= 0) {
                                                     ?>
-                                                            <a class="dropdown-item" href="home-view-model.php?editId=<?php echo $bookings['booking_id'] ?>"><i style="color:green" class="icon-copy ion-checkmark-circled"></i> Confirm Booking</a>
-                                                            <?php
-                                                        }
+                                                        <a class="dropdown-item" href="?confirmId=<?php echo $bookings['booking_id'] ?>&status=0"><i style="color:green" class="icon-copy ion-checkmark-circled"></i> Confirm Booking</a>
+                                                        <a class="dropdown-item" href="?confirmId=<?php echo $bookings['booking_id'] ?>&status=1"><i style="color:red" class="icon-copy ion-close-circled"></i> Cancel Booking</a>
+                                                    <?php
+                                                    } elseif ($bookings['status'] == 1) {
+                                                    ?>
+                                                        <a class="dropdown-item" href="?confirmId=<?php echo $bookings['booking_id'] ?>&status=0"><i style="color:green" class="icon-copy ion-checkmark-circled"></i> Confirm Booking</a>
+                                                    <?php
+                                                    }
                                                     ?>
                                                 </div>
                                             </div>
                                         </td>
 
-                                    <!-- hidden -->
-                                    <td hidden><?php echo $bookings['contact_number']; ?> </td>
-                                    <td hidden><?php echo $bookings['email_address']; ?> </td>
-                                    <td hidden><?php if ($bookings['payment_status'] == 1) {
-                                            echo "Paid";
-                                        } else {
-                                            echo "Not Paid";
-                                        }
-                                        ?> </td>
-                                    <td hidden><?php echo $bookings['cus_payment_card_type']; ?> </td>
-                                    <td hidden><?php echo $bookings['payment_card_number']; ?> </td>
-                                    <td hidden><?php echo $bookings['payment_card_holder_name']; ?> </td>
-                                    <td hidden><?php echo date('jS F, Y ', strtotime($bookings['start_date'])); ?> </td>
-                                    <td hidden><?php echo date('jS F, Y ', strtotime($bookings['end_date'])); ?> </td>
-                                    <td hidden><?php echo $bookings['payout']; ?> LKR </td>
-                                    <td hidden><?php echo $bookings['total_nights']; ?> </td>
-                                    <td hidden><?php echo $bookings['total_persons']; ?> </td>
-                                    <td hidden><?php echo $bookings['total_adults']; ?> </td>
-                                    <td hidden><?php echo $bookings['total_kids']; ?> </td>
-                                    <td hidden><?php echo date('jS F, Y ', strtotime($bookings['created_date'])); ?></td>
+                                        <!-- hidden -->
+                                        <td hidden><?php echo $bookings['contact_number']; ?> </td>
+                                        <td hidden><?php echo $bookings['email_address']; ?> </td>
+                                        <td hidden><?php if ($bookings['payment_status'] == 1) {
+                                                        echo "Paid";
+                                                    } else {
+                                                        echo "Not Paid";
+                                                    }
+                                                    ?> </td>
+                                        <td hidden><?php echo $bookings['cus_payment_card_type']; ?> </td>
+                                        <td hidden><?php echo $bookings['payment_card_number']; ?> </td>
+                                        <td hidden><?php echo $bookings['payment_card_holder_name']; ?> </td>
+                                        <td hidden><?php echo date('jS F, Y ', strtotime($bookings['start_date'])); ?> </td>
+                                        <td hidden><?php echo date('jS F, Y ', strtotime($bookings['end_date'])); ?> </td>
+                                        <td hidden><?php echo $bookings['payout']; ?> LKR </td>
+                                        <td hidden><?php echo $bookings['total_nights']; ?> </td>
+                                        <td hidden><?php echo $bookings['total_persons']; ?> </td>
+                                        <td hidden><?php echo $bookings['total_adults']; ?> </td>
+                                        <td hidden><?php echo $bookings['total_kids']; ?> </td>
+                                        <td hidden><?php echo date('jS F, Y ', strtotime($bookings['created_date'])); ?></td>
 
-                                       
+
                                     </tr>
                                 <?php } ?>
 
