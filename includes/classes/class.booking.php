@@ -142,12 +142,11 @@ class booking
 
   public function displayBookingByPartner($pid)
   {
-
     $sql = "SELECT DISTINCT tbl_booking.booking_id,tbl_booking.cus_id,tbl_booking.total_amount,tbl_booking.cus_payment_card_type,tbl_booking.start_date,tbl_booking.end_date,tbl_booking.status,tbl_booking.created_date,tbl_booking.payment_status,tbl_booking.total_nights,tbl_booking.total_persons,tbl_booking.total_kids,tbl_booking.total_adults,tbl_booking.payment_card_holder_name,tbl_booking.payment_card_number,tbl_booking.service_id,tbl_booking.service_name,tbl_booking.service_type, tbl_earning.earning_id,tbl_earning.net_amount,tbl_earning.payout,tbl_customer.first_name,tbl_customer.last_name,tbl_customer.email_address,tbl_customer.contact_number
     from tbl_booking
     join tbl_customer on tbl_booking.cus_id=tbl_customer.customer_id
-    join tbl_earning on tbl_booking.cus_id=tbl_earning.customer_id
-    where tbl_booking.partner_id= $pid";
+    join tbl_earning on tbl_booking.booking_id=tbl_earning.booking_id
+    where tbl_booking.partner_id= $pid ";
 
     $query = $this->db->query($sql);
     $data = array();

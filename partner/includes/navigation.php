@@ -39,6 +39,11 @@
 							<i class="micon icon-copy fa fa-list-ol" aria-hidden="true"></i><span class="mtext">Manage Bookings</span>
 						</a>
 					</li>
+					<li>
+						<a href="earning.php" class="dropdown-toggle no-arrow">
+							<i class="micon icon-copy fa fa-money" aria-hidden="true"></i><span class="mtext">Earnings</span>
+						</a>
+					</li>
                     <li>
 						<a href="#" class="dropdown-toggle no-arrow">
 							<i class="micon icon-copy fa fa-bar-chart" aria-hidden="true"></i></i><span class="mtext">Reports</span>

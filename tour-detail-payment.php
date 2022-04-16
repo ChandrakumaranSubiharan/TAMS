@@ -61,14 +61,17 @@ if (isset($_REQUEST['book'])) {
         $availabile_seats = $tourdata['availabile_seats'];
         $stype = 'Tour Package';
 
-        $net_amount = $earning->TourPercentageCalculate($total_amount);
+        $calculate_net_amount = $earning->TourPercentageCalculate($total_amount);
+        $Profit_Percentage = $calculate_net_amount['percentage'];
+        $net_amount =  $calculate_net_amount['net_amount'];
+
         $payout = $earning->Payout($total_amount, $net_amount);
         $tourUpdate = $tour->tour_update_after_booking($serviceid, $total_persons_count, $availabile_seats);
         $insertBookingData = $booking->insertBookingData($total_amount, $cus_card_type, $card_holdername, $card_number, $cus_id, $booking_sdate, $booking_edate, $total_night, $total_persons_count, $adult_count, $kid_count, $serviceid, $servicename, $stype, $pid);
 
         $LAST_INSERTED_ID = $insertBookingData['lastInsertedID'];
 
-        $insertEarningData = $earning->insertEarningData($LAST_INSERTED_ID, $total_amount, $payout, $net_amount, $cus_id, $servicename, $serviceid, $stype);
+        $insertEarningData = $earning->insertEarningData($LAST_INSERTED_ID, $total_amount, $payout, $net_amount, $cus_id, $servicename, $serviceid, $stype, $Profit_Percentage);
 
 
         if ($insertBookingData && $insertEarningData && $tourUpdate) {

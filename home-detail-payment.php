@@ -61,7 +61,11 @@ if (isset($_REQUEST['book'])) {
         $service_ava_sdate = $homedata['ava_start_date'];
         $service_ava_edate = $homedata['ava_end_date'];
 
-        $net_amount = $earning->HomePercentageCalculate($total_amount);
+
+        $calculate_net_amount = $earning->TourPercentageCalculate($total_amount);
+        $Profit_Percentage = $calculate_net_amount['percentage'];
+        $net_amount =  $calculate_net_amount['net_amount'];
+
         $payout = $earning->Payout($total_amount, $net_amount);
         $insertBookingData = $booking->insertBookingData($total_amount, $cus_card_type, $card_holdername, $card_number, $cus_id, $booking_sdate, $booking_edate, $total_night, $total_persons_count, $adult_count, $kid_count, $serviceid, $servicename, $stype, $pid);
         $homeUpdate = $home->home_update_after_booking($serviceid, $service_ava_sdate, $service_ava_edate, $total_night);
@@ -69,7 +73,7 @@ if (isset($_REQUEST['book'])) {
 
         $LAST_INSERTED_ID = $insertBookingData['lastInsertedID'];
 
-        $insertEarningData = $earning->insertEarningData($LAST_INSERTED_ID, $total_amount, $payout, $net_amount, $cus_id, $servicename, $serviceid, $stype);
+        $insertEarningData = $earning->insertEarningData($LAST_INSERTED_ID, $total_amount, $payout, $net_amount, $cus_id, $servicename, $serviceid, $stype, $Profit_Percentage);
 
 
         if ($insertBookingData && $insertEarningData && $homeUpdate) {
