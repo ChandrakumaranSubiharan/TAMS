@@ -138,15 +138,14 @@ if (isset($_GET['deleteId']) && !empty($_GET['deleteId'])) {
                                         <td><?php echo date('d-M-Y', strtotime($homes['ava_start_date'])); ?></td>
                                         <td><?php echo date('d-M-Y', strtotime($homes['ava_end_date'])); ?></td>
                                         <td><?php if ($homes['status'] == 0) {
-                                                echo "Inactive";
+                                                echo "<span style='color: red;'>Inactive</span>";
                                             } elseif ($homes['status'] == 1) {
-                                                echo "Active";
+                                                echo "<span style='color: green;'>Active</span>";
                                             } elseif ($homes['status'] == 2) {
-                                                echo "Not Verified Yet";
+                                                echo "<span style='color: firebrick;'>Not Verified Yet</span>";
                                             } else {
                                                 echo "Verification Failed";
                                             } ?></td>
-
 
                                         <td>
                                             <div class="dropdown">

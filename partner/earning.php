@@ -113,20 +113,13 @@ include_once '../includes/dbconfig.php';
                                     <th class="datatable-nosort">Action</th>
 
                                     <!-- hidden -->
-                                    <!-- <th hidden>Customer Contact</th>
+                                    <th hidden>Customer Contact</th>
                                     <th hidden>Customer Email</th>
-                                    <th hidden>Payment Status</th>
-                                    <th hidden>Payment Card Type</th>
-                                    <th hidden>Card Number</th>
+                                    <th hidden>Service Name</th>
                                     <th hidden>Card Holder Name</th>
-                                    <th hidden>Booking Start Date</th>
-                                    <th hidden>Booking End Date</th>
-                                    <th hidden>Booking Income Amount</th>
-                                    <th hidden>Total Nights</th>
-                                    <th hidden>Total Persons</th>
-                                    <th hidden>Adult Count</th>
-                                    <th hidden>Kid Count</th>
-                                    <th hidden>Booking Created Date and Time</th> -->
+                                    <th hidden>Card Number</th>
+                                    <th hidden>Payment Card Type</th>
+                                    <th hidden>Earning Created Date</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -144,9 +137,9 @@ include_once '../includes/dbconfig.php';
                                         <td><?php echo $earnings['profit_percentage']; ?> %</td>
                                         <td><?php echo $earnings['net_amount']; ?> LKR</td>
                                         <td><?php if ($earnings['payment_status'] == 0) {
-                                                echo "Not Paid";
+                                                echo "<span style='color: red;'>Not Paid</span>";
                                             } elseif ($earnings['payment_status'] == 1) {
-                                                echo "Paid";
+                                                echo "<span style='color: green;'>Paid</span>";
                                             } else {
                                                 echo "Payment Failed";
                                             } ?></td>
@@ -162,25 +155,13 @@ include_once '../includes/dbconfig.php';
                                         </td>
 
                                         <!-- hidden -->
-                                        <!-- <td hidden><?php echo $bookings['contact_number']; ?> </td>
-                                        <td hidden><?php echo $bookings['email_address']; ?> </td>
-                                        <td hidden><?php if ($bookings['payment_status'] == 1) {
-                                                        echo "Paid";
-                                                    } else {
-                                                        echo "Not Paid";
-                                                    }
-                                                    ?> </td>
-                                        <td hidden><?php echo $bookings['cus_payment_card_type']; ?> </td>
-                                        <td hidden><?php echo $bookings['payment_card_number']; ?> </td>
-                                        <td hidden><?php echo $bookings['payment_card_holder_name']; ?> </td>
-                                        <td hidden><?php echo date('jS F, Y ', strtotime($bookings['start_date'])); ?> </td>
-                                        <td hidden><?php echo date('jS F, Y ', strtotime($bookings['end_date'])); ?> </td>
-                                        <td hidden><?php echo $bookings['payout']; ?> LKR </td>
-                                        <td hidden><?php echo $bookings['total_nights']; ?> </td>
-                                        <td hidden><?php echo $bookings['total_persons']; ?> </td>
-                                        <td hidden><?php echo $bookings['total_adults']; ?> </td>
-                                        <td hidden><?php echo $bookings['total_kids']; ?> </td>
-                                        <td hidden><?php echo date('jS F, Y ', strtotime($bookings['created_date'])); ?></td> -->
+                                        <td hidden><?php echo $earnings['contact_number']; ?> </td>
+                                        <td hidden><?php echo $earnings['email_address']; ?> </td>
+                                        <td hidden><?php echo $earnings['service_name']; ?> </td>
+                                        <td hidden><?php echo $earnings['payment_card_holder_name']; ?> </td>
+                                        <td hidden><?php echo $earnings['payment_card_number']; ?> </td>
+                                        <td hidden><?php echo $earnings['cus_payment_card_type']; ?> </td>
+                                        <td hidden><?php echo date('jS F, Y ', strtotime($earnings['created_date'])); ?></td>
 
 
                                     </tr>

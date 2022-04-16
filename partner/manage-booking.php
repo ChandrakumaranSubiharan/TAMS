@@ -124,7 +124,7 @@ if (isset($_GET['confirmId']) && !empty($_GET['confirmId'])) {
                                     <th hidden>Total Persons</th>
                                     <th hidden>Adult Count</th>
                                     <th hidden>Kid Count</th>
-                                    <th hidden>Booking Created Date and Time</th>
+                                    <th style="color: firebrick;" hidden>Booking Created Date and Time</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -140,13 +140,13 @@ if (isset($_GET['confirmId']) && !empty($_GET['confirmId'])) {
                                         <td><?php echo $bookings['service_name']; ?></td>
                                         <td><?php echo $bookings['total_amount']; ?> LKR</td>
                                         <td><?php if ($bookings['status'] == 0) {
-                                                echo "Not Confirmed";
+                                                echo "<span style='color: teal;'>Not Confirmed</span>";
                                             } elseif ($bookings['status'] == 1) {
-                                                echo "Cancelled";
+                                                echo "<span style='color: firebrick;'>Cancelled</span>";
                                             } elseif ($bookings['status'] == 2) {
-                                                echo "Confirmed";
+                                                echo "<span style='color: green;'>Confirmed</span>";
                                             } elseif ($bookings['status'] == 3) {
-                                                echo "Cancelled by Customer";
+                                                echo "<span style='color: red;'>Cancelled by Customer</span>";
                                             } else {
                                                 echo "Booking Failed";
                                             } ?></td>

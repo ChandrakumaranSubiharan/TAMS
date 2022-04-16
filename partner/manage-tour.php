@@ -139,11 +139,11 @@ if (isset($_GET['deleteId']) && !empty($_GET['deleteId'])) {
                                         <td><?php echo date('d-M-Y', strtotime($tourinfo['ava_start_date'])); ?></td>
                                         <td><?php echo date('d-M-Y', strtotime($tourinfo['ava_end_date'])); ?></td>
                                         <td><?php if ($tourinfo['status'] == 0) {
-                                                echo "Inactive";
+                                                echo "<span style='color: red;'>Inactive</span>";
                                             } elseif ($tourinfo['status'] == 1) {
-                                                echo "Active";
+                                                echo "<span style='color: green;'>Active</span>";
                                             } elseif ($tourinfo['status'] == 2) {
-                                                echo "Not Verified Yet";
+                                                echo "<span style='color: firebrick;'>Not Verified Yet</span>";
                                             } else {
                                                 echo "Verification Failed";
                                             } ?></td>

@@ -115,7 +115,7 @@ class booking
 
   public function displyaRecordById($Id)
   {
-    $query = "SELECT tbl_booking.booking_id,tbl_booking.service_type,tbl_booking.service_name,tbl_booking.total_amount,tbl_booking.payment_status,tbl_booking.cus_payment_card_type,tbl_booking.start_date,tbl_booking.end_date,tbl_booking.total_nights,tbl_booking.total_persons,tbl_booking.total_adults,tbl_booking.total_kids,tbl_booking.partner_id,tbl_booking.created_date,tbl_booking.status,tbl_booking.payment_card_holder_name,tbl_booking.payment_card_number,tbl_customer.first_name,tbl_customer.last_name,tbl_customer.contact_number,tbl_customer.email_address,tbl_earning.payout
+    $query = "SELECT tbl_booking.booking_id,tbl_booking.service_type,tbl_booking.service_name,tbl_booking.total_amount,tbl_booking.payment_status,tbl_booking.cus_payment_card_type,tbl_booking.start_date,tbl_booking.end_date,tbl_booking.total_nights,tbl_booking.total_persons,tbl_booking.total_adults,tbl_booking.total_kids,tbl_booking.partner_id,tbl_booking.created_date,tbl_booking.status,tbl_booking.payment_card_holder_name,tbl_booking.payment_card_number,tbl_customer.first_name,tbl_customer.last_name,tbl_customer.contact_number,tbl_customer.email_address,tbl_earning.payout,tbl_earning.earning_id
       from tbl_booking
       join tbl_customer on tbl_booking.cus_id=tbl_customer.customer_id 
       join tbl_earning on tbl_booking.cus_id=tbl_earning.customer_id 
