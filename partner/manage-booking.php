@@ -3,31 +3,25 @@
 include_once '../includes/dbconfig.php';
 
 
-// display edit record
 if (isset($_GET['confirmId']) && !empty($_GET['confirmId'])) {
     $editId = $_GET['confirmId'];
     $CurrentStatus = $_GET['status'];
 
     if ($CurrentStatus == 0) {
-        $bookingdata = $booking->updatestatusConfirm($editId);
+        $bookingdataconfirm = $booking->updatestatusConfirm($editId);
+        $msg = "<div class='alert alert-success alert-dismissible'>
+        <button type='button' class='close' data-dismiss='alert'>&times;</button>
+        Booking Confirmed Successfully
+      </div>";
+
     } elseif ($CurrentStatus == 1) {
-        $bookingdata = $booking->updatestatusCancel($editId);
-    }
-
-
-    if ($bookingdata) {
-
-        // $msg = "<div class='alert alert-info'>
-        // <strong>WOW!</strong> Record was updated successfully!
-        // </div>";
-
-    } else {
-        // $msg = "Failed to Create Home ";
-        // echo "<script type='text/javascript'>alert('$msg');</script>";
+        $bookingdatacancel = $booking->updatestatusCancel($editId);
+        $msg = "<div class='alert alert-danger alert-dismissible'>
+        <button type='button' class='close' data-dismiss='alert'>&times;</button>
+        Booking Cancelled Successfully
+      </div>";
     }
 }
-
-
 ?>
 
 
@@ -91,33 +85,11 @@ if (isset($_GET['confirmId']) && !empty($_GET['confirmId'])) {
                                     <li class="breadcrumb-item active" aria-current="page">Manage booking</li>
                                 </ol>
                             </nav>
-
-
-                            <div class="container">
                                 <?php
                                 if (isset($msg)) {
                                     echo $msg;
                                 }
                                 ?>
-                            </div>
-
-                            <!-- <?php
-                                    if (isset($_GET['msg2']) == "active") {
-                                        echo "<div class='alert alert-success alert-dismissible'>
-                                          <button type='button' class='close' data-dismiss='alert'>&times;</button>
-                                          Record activated successfully
-                                        </div>";
-                                    }
-                                    if (isset($_GET['msg3']) == "delete") {
-                                        echo "<div class='alert alert-success alert-dismissible'>
-              <button type='button' class='close' data-dismiss='alert'>&times;</button>
-              Record deleted successfully
-            </div>";
-                                    }
-                                    ?> -->
-
-
-
                         </div>
                     </div>
                 </div>

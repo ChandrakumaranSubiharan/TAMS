@@ -11,6 +11,30 @@ if (isset($_GET['viewId']) && !empty($_GET['viewId'])) {
 }
 
 
+if (isset($_GET['confirmId']) && !empty($_GET['confirmId'])) {
+    $editId = $_GET['confirmId'];
+    $CurrentStatus = $_GET['status'];
+
+    if ($CurrentStatus == 0) {
+        $bookingdataconfirm = $booking->updatestatusConfirm($editId);
+        $msg = "<div class='alert alert-success alert-dismissible'>
+        <button type='button' class='close' data-dismiss='alert'>&times;</button>
+        Booking Confirmed Successfully
+      </div>";
+        $bookingdata = $booking->displyaRecordById($viewId);
+
+    } elseif ($CurrentStatus == 1) {
+        $bookingdatacancel = $booking->updatestatusCancel($editId);
+        $msg = "<div class='alert alert-danger alert-dismissible'>
+        <button type='button' class='close' data-dismiss='alert'>&times;</button>
+        Booking Cancelled Successfully
+      </div>";
+      $bookingdata = $booking->displyaRecordById($viewId);
+
+    }
+}
+
+
 
 
 ?>
@@ -74,13 +98,11 @@ if (isset($_GET['viewId']) && !empty($_GET['viewId'])) {
                                     <li class="breadcrumb-item active" aria-current="page">View Booking</li>
                                 </ol>
                             </nav>
-                            <div class="container">
-                                <?php
-                                if (isset($msg)) {
-                                    echo $msg;
-                                }
-                                ?>
-                            </div>
+                            <?php
+                            if (isset($msg)) {
+                                echo $msg;
+                            }
+                            ?>
                         </div>
                     </div>
                 </div>
@@ -265,16 +287,16 @@ if (isset($_GET['viewId']) && !empty($_GET['viewId'])) {
                                     <?php
                                     if ($bookingdata['status'] == 0) {
                                     ?>
-                                        <a type="button" href="edit-home.php?editId=<?php echo $homedata['home_id'] ?>" class="btn btn-success">Confirm Booking</a>
-                                        <a type="button" href="edit-home.php?editId=<?php echo $homedata['home_id'] ?>" class="btn btn-danger">Cancel Booking</a>
+                                        <a type="button" href="?viewId=<?php echo $bookingdata['booking_id'] ?>&confirmId=<?php echo $bookingdata['booking_id'] ?>&status=0" class="btn btn-success">Confirm Booking</a>
+                                        <a type="button" href="?viewId=<?php echo $bookingdata['booking_id'] ?>&confirmId=<?php echo $bookingdata['booking_id'] ?>&status=1" class="btn btn-danger">Cancel Booking</a>
                                     <?php
                                     } elseif ($bookingdata['status'] == 1) {
                                     ?>
-                                        <a type="button" href="edit-home.php?editId=<?php echo $homedata['home_id'] ?>" class="btn btn-success">Confirm Booking</a>
+                                        <a type="button" href="?viewId=<?php echo $bookingdata['booking_id'] ?>&confirmId=<?php echo $bookingdata['booking_id'] ?>&status=0" class="btn btn-success">Confirm Booking</a>
                                     <?php
                                     } elseif ($bookingdata['status'] == 2) {
                                     ?>
-                                        <a type="button" href="edit-home.php?editId=<?php echo $homedata['home_id'] ?>" class="btn btn-primary">View Earning</a>
+                                        <a type="button" href="earning-view-model.php?viewId=<?php echo $bookingdata['booking_id'] ?>" class="btn btn-primary">View Earning</a>
                                     <?php
                                     }
                                     ?>
