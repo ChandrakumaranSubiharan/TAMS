@@ -7,6 +7,30 @@ include_once '../includes/dbconfig.php';
 if (isset($_GET['deleteId']) && !empty($_GET['deleteId'])) {
     $deleteId = $_GET['deleteId'];
     $tour->deleteRecord($deleteId);
+    $msg = "<div class='alert alert-danger alert-dismissible'>
+    <button type='button' class='close' data-dismiss='alert'>&times;</button>
+    Record deleted successfully
+  </div>";
+}
+
+
+if (isset($_GET['confirmId']) && !empty($_GET['confirmId'])) {
+    $editId = $_GET['confirmId'];
+    $CurrentStatus = $_GET['status'];
+
+    if ($CurrentStatus == 1) {
+        $tourataactive = $tour->updatestatusActive($editId);
+        $msg = "<div class='alert alert-success alert-dismissible'>
+        <button type='button' class='close' data-dismiss='alert'>&times;</button>
+        Tour Activated Successfully
+      </div>";
+    } elseif ($CurrentStatus == 0) {
+        $tourddataeactive = $tour->updatestatusDeactive($editId);
+        $msg = "<div class='alert alert-danger alert-dismissible'>
+        <button type='button' class='close' data-dismiss='alert'>&times;</button>
+        Tour Deactivated Successfully
+      </div>";
+    }
 }
 ?>
 
@@ -70,24 +94,11 @@ if (isset($_GET['deleteId']) && !empty($_GET['deleteId'])) {
                                     <li class="breadcrumb-item active" aria-current="page">Manage tour</li>
                                 </ol>
                             </nav>
-
-
                             <?php
-                            if (isset($_GET['msg2']) == "active") {
-                                echo "<div class='alert alert-success alert-dismissible'>
-                                          <button type='button' class='close' data-dismiss='alert'>&times;</button>
-                                          Record activated successfully
-                                        </div>";
-                            }
-                            if (isset($_GET['msg3']) == "delete") {
-                                echo "<div class='alert alert-success alert-dismissible'>
-              <button type='button' class='close' data-dismiss='alert'>&times;</button>
-              Record deleted successfully
-            </div>";
+                            if (isset($msg)) {
+                                echo $msg;
                             }
                             ?>
-
-
                         </div>
                     </div>
                 </div>
@@ -144,8 +155,10 @@ if (isset($_GET['deleteId']) && !empty($_GET['deleteId'])) {
                                                 echo "<span style='color: green;'>Active</span>";
                                             } elseif ($tourinfo['status'] == 2) {
                                                 echo "<span style='color: firebrick;'>Not Verified Yet</span>";
+                                            }elseif ($tourinfo['status'] == 3) {
+                                                echo "<span style='color: red;'>Verification Failed</span>";
                                             } else {
-                                                echo "Verification Failed";
+                                                echo "<span style='color: red;'>Disabled by Admin</span>";
                                             } ?></td>
                                         <td><?php echo $tourinfo['duration_nights']; ?> Nights</td>
                                         <td><?php echo $tourinfo['availabile_seats']; ?></td>
@@ -185,6 +198,17 @@ if (isset($_GET['deleteId']) && !empty($_GET['deleteId'])) {
                                                     <a class="dropdown-item" href="tour-view-model.php?viewId=<?php echo $tourinfo['tour_id'] ?>"><i class="dw dw-eye"></i> View</a>
                                                     <a class="dropdown-item" href="edit-tour.php?editId=<?php echo $tourinfo['tour_id'] ?>"><i class="dw dw-edit2" aria-hidden="true"></i> Edit</a>
                                                     <a href="manage-tour.php?deleteId=<?php echo $tourinfo['tour_id'] ?>" style="color:red" onclick="confirm('Are you sure want to delete this record')" class="dropdown-item"><i class="dw dw-delete-3"></i> Delete</a>
+                                                    <?php
+                                                    if ($tourinfo['status'] == 0) {
+                                                    ?>
+                                                        <a class="dropdown-item" href="?confirmId=<?php echo $tourinfo['tour_id'] ?>&status=1"><i style="color:green" class="icon-copy ion-checkmark-circled"></i>Activate</a>
+                                                    <?php
+                                                    } elseif ($tourinfo['status'] == 1) {
+                                                    ?>
+                                                        <a class="dropdown-item" href="?confirmId=<?php echo $tourinfo['tour_id'] ?>&status=0"><i style="color:red" class="icon-copy ion-close-circled"></i>Deactivate</a>
+                                                    <?php
+                                                    }
+                                                    ?>
                                                 </div>
                                             </div>
                                         </td>

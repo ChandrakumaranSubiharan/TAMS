@@ -160,7 +160,6 @@ class booking
     }
   }
 
-
   public function updatestatusConfirm($id)
   {
     try {

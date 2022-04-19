@@ -201,36 +201,18 @@ class tour
     }
   }
 
-
-  // Delete customer data from home table
-  public function deleteRecord($id)
-  {
-    $stmt = $this->db->prepare("DELETE FROM tbl_tour WHERE tour_id = '$id'");
-    $stmt->bindparam(":id", $id);
-    $stmt->execute();
-    if ($stmt == true) {
-      header("Location:manage-tour.php?msg3=delete");
-    } else {
-      echo "Record does not delete try again";
+    public function deleteRecord($id)
+    {
+      try {
+        $stmt = $this->db->prepare("DELETE FROM tbl_tour WHERE tour_id = '$id'");
+        $stmt->bindparam(":id", $id);
+        $stmt->execute();
+        return true;
+      } catch (PDOException $e) {
+        echo $e->getMessage();
+        return false;
+      }
     }
-  }
-
-  // Update Status data from home table
-  public function activeRecord($id)
-  {
-    $stmt = $this->db->prepare("UPDATE tbl_tour SET 
-      status=:sta
-      WHERE tour_id=:id ");
-    $sta = 1;
-    $stmt->bindparam(":sta", $sta);
-    $stmt->bindparam(":id", $id);
-    $stmt->execute();
-    if ($stmt == true) {
-      header("Location:manage-tour.php?msg2=active");
-    } else {
-      echo "Record does not delete try again";
-    }
-  }
 
   // Fetch tour records for show listing
   public function TourActiveData()
@@ -371,6 +353,42 @@ class tour
     $query = $this->db->query($sql);
     $cnt=$query->rowCount();
     return $cnt;
+  }
+
+  public function updatestatusActive($id)
+  {
+    try {
+      $sta = 1;
+      $stmt = $this->db->prepare("UPDATE tbl_tour SET 
+                status=:st
+             WHERE tour_id=:id ");
+      $stmt->bindparam(":st", $sta);
+      $stmt->bindparam(":id", $id);
+      $stmt->execute();
+
+      return true;
+    } catch (PDOException $e) {
+      echo $e->getMessage();
+      return false;
+    }
+  }
+
+  public function updatestatusDeactive($id)
+  {
+    try {
+      $sta = 0;
+      $stmt = $this->db->prepare("UPDATE tbl_tour SET 
+                status=:st
+             WHERE tour_id=:id ");
+      $stmt->bindparam(":st", $sta);
+      $stmt->bindparam(":id", $id);
+      $stmt->execute();
+
+      return true;
+    } catch (PDOException $e) {
+      echo $e->getMessage();
+      return false;
+    }
   }
 
 }

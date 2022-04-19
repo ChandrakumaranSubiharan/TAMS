@@ -272,13 +272,13 @@ if (isset($_GET['confirmId']) && !empty($_GET['confirmId'])) {
                                     <h6><?php if ($bookingdata['status'] == 0) {
                                                 echo "<span style='color: teal;'>Not Confirmed</span>";
                                             } elseif ($bookingdata['status'] == 1) {
-                                                echo "<span style='color: firebrick;'>Cancelled</span>";
+                                                echo "<span style='color: firebrick;'>Cancelled by Host</span>";
                                             } elseif ($bookingdata['status'] == 2) {
                                                 echo "<span style='color: green;'>Confirmed</span>";
                                             } elseif ($bookingdata['status'] == 3) {
                                                 echo "<span style='color: red;'>Cancelled by Customer</span>";
                                             } else {
-                                                echo "Booking Failed";
+                                                echo "<span style='color: red;'>Booking Failed</span>";
                                             } ?></h6>
                                 </div>
                             </div>

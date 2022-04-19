@@ -7,6 +7,29 @@ include_once '../includes/dbconfig.php';
 if (isset($_GET['deleteId']) && !empty($_GET['deleteId'])) {
     $deleteId = $_GET['deleteId'];
     $home->deleteRecord($deleteId);
+    $msg = "<div class='alert alert-danger alert-dismissible'>
+    <button type='button' class='close' data-dismiss='alert'>&times;</button>
+    Record deleted successfully
+  </div>";
+}
+
+if (isset($_GET['confirmId']) && !empty($_GET['confirmId'])) {
+    $editId = $_GET['confirmId'];
+    $CurrentStatus = $_GET['status'];
+
+    if ($CurrentStatus == 1) {
+        $homedataactive = $home->updatestatusActive($editId);
+        $msg = "<div class='alert alert-success alert-dismissible'>
+        <button type='button' class='close' data-dismiss='alert'>&times;</button>
+        Home Activated Successfully
+      </div>";
+    } elseif ($CurrentStatus == 0) {
+        $homeddataeactive = $home->updatestatusDeactive($editId);
+        $msg = "<div class='alert alert-danger alert-dismissible'>
+        <button type='button' class='close' data-dismiss='alert'>&times;</button>
+        Home Deactivated Successfully
+      </div>";
+    }
 }
 
 ?>
@@ -70,24 +93,11 @@ if (isset($_GET['deleteId']) && !empty($_GET['deleteId'])) {
                                     <li class="breadcrumb-item active" aria-current="page">Manage home</li>
                                 </ol>
                             </nav>
-
-
                             <?php
-                            if (isset($_GET['msg2']) == "active") {
-                                echo "<div class='alert alert-success alert-dismissible'>
-                                          <button type='button' class='close' data-dismiss='alert'>&times;</button>
-                                          Record activated successfully
-                                        </div>";
-                            }
-                            if (isset($_GET['msg3']) == "delete") {
-                                echo "<div class='alert alert-success alert-dismissible'>
-              <button type='button' class='close' data-dismiss='alert'>&times;</button>
-              Record deleted successfully
-            </div>";
+                            if (isset($msg)) {
+                                echo $msg;
                             }
                             ?>
-
-
                         </div>
                     </div>
                 </div>
@@ -143,8 +153,10 @@ if (isset($_GET['deleteId']) && !empty($_GET['deleteId'])) {
                                                 echo "<span style='color: green;'>Active</span>";
                                             } elseif ($homes['status'] == 2) {
                                                 echo "<span style='color: firebrick;'>Not Verified Yet</span>";
+                                            } elseif ($homes['status'] == 3) {
+                                                echo "<span style='color: red;'>Verification Failed</span>";
                                             } else {
-                                                echo "Verification Failed";
+                                                echo "<span style='color: red;'>Disabled by Admin</span>";
                                             } ?></td>
 
                                         <td>
@@ -156,6 +168,17 @@ if (isset($_GET['deleteId']) && !empty($_GET['deleteId'])) {
                                                     <a class="dropdown-item" href="home-view-model.php?viewId=<?php echo $homes['home_id'] ?>"><i class="dw dw-eye"></i> View</a>
                                                     <a class="dropdown-item" href="edit-home.php?editId=<?php echo $homes['home_id'] ?>"><i class="dw dw-edit2" aria-hidden="true"></i> Edit</a>
                                                     <a href="manage-home.php?deleteId=<?php echo $homes['home_id'] ?>" style="color:red" onclick="confirm('Are you sure want to delete this record')" class="dropdown-item"><i class="dw dw-delete-3"></i> Delete</a>
+                                                    <?php
+                                                    if ($homes['status'] == 0) {
+                                                    ?>
+                                                        <a class="dropdown-item" href="?confirmId=<?php echo $homes['home_id'] ?>&status=1"><i style="color:green" class="icon-copy ion-checkmark-circled"></i>Activate</a>
+                                                    <?php
+                                                    } elseif ($homes['status'] == 1) {
+                                                    ?>
+                                                        <a class="dropdown-item" href="?confirmId=<?php echo $homes['home_id'] ?>&status=0"><i style="color:red" class="icon-copy ion-close-circled"></i>Deactivate</a>
+                                                    <?php
+                                                    }
+                                                    ?>
                                                 </div>
                                             </div>
                                         </td>

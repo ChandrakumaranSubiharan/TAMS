@@ -10,7 +10,7 @@ class home
   }
 
   // Insert customer data into customer table
-  public function insertData($home_name, $location_address, $adult_price, $kid_price, $max_adult, $max_kid, $lg_desc, $home_type,$home_room, $district, $province, $cancel, $str_date, $end_date, $str_time, $end_time, $file,$pid)
+  public function insertData($home_name, $location_address, $adult_price, $kid_price, $max_adult, $max_kid, $lg_desc, $home_type, $home_room, $district, $province, $cancel, $str_date, $end_date, $str_time, $end_time, $file, $pid)
   {
     $allow = array('jpg', 'jpeg', 'png');
     $exntension = explode('.', $file['name']);
@@ -50,7 +50,7 @@ class home
 
   public function displayData()
   {
-    $sql = "SELECT * FROM tbl_home " ;
+    $sql = "SELECT * FROM tbl_home ";
     $query = $this->db->query($sql);
     $data = array();
     if ($query->rowCount() > 0) {
@@ -65,20 +65,20 @@ class home
 
 
 
-   public function displayDataAsPartner($pid)
-   {
-     $sql = "SELECT * FROM tbl_home WHERE partner_id = $pid " ;
-     $query = $this->db->query($sql);
-     $data = array();
-     if ($query->rowCount() > 0) {
-       while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
-         $data[] = $row;
-       }
-       return $data;
-     } else {
-       return false;
-     }
-   }
+  public function displayDataAsPartner($pid)
+  {
+    $sql = "SELECT * FROM tbl_home WHERE partner_id = $pid ";
+    $query = $this->db->query($sql);
+    $data = array();
+    if ($query->rowCount() > 0) {
+      while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+        $data[] = $row;
+      }
+      return $data;
+    } else {
+      return false;
+    }
+  }
 
 
   // Fetch single data for edit from home table
@@ -167,35 +167,16 @@ class home
   // Delete customer data from home table
   public function deleteRecord($id)
   {
-    $stmt = $this->db->prepare("DELETE FROM tbl_home WHERE home_id = '$id'");
-    $stmt->bindparam(":id", $id);
-    $stmt->execute();
-    if ($stmt == true) {
-      header("Location:manage-home.php?msg3=delete");
-    } else {
-      echo "Record does not delete try again";
+    try {
+      $stmt = $this->db->prepare("DELETE FROM tbl_home WHERE home_id = '$id'");
+      $stmt->bindparam(":id", $id);
+      $stmt->execute();
+      return true;
+    } catch (PDOException $e) {
+      echo $e->getMessage();
+      return false;
     }
   }
-
-
-  // Update Status data from home table
-  public function activeRecord($id)
-  {
-    $stmt = $this->db->prepare("UPDATE tbl_home SET 
-      status=:sta
-      WHERE home_id=:id ");
-    $sta = 1;
-    $stmt->bindparam(":sta", $sta);
-    $stmt->bindparam(":id", $id);
-    $stmt->execute();
-    if ($stmt == true) {
-      header("Location:manage-home.php?msg2=active");
-    } else {
-      echo "Record does not delete try again";
-    }
-  }
-
-
 
 
   public function home_update_after_booking($id, $sdate, $edate, $ncount)
@@ -372,8 +353,43 @@ class home
   {
     $sql = "SELECT home_id from tbl_home";
     $query = $this->db->query($sql);
-    $cnt=$query->rowCount();
+    $cnt = $query->rowCount();
     return $cnt;
   }
 
+  public function updatestatusActive($id)
+  {
+    try {
+      $sta = 1;
+      $stmt = $this->db->prepare("UPDATE tbl_home SET 
+                status=:st
+             WHERE home_id=:id ");
+      $stmt->bindparam(":st", $sta);
+      $stmt->bindparam(":id", $id);
+      $stmt->execute();
+
+      return true;
+    } catch (PDOException $e) {
+      echo $e->getMessage();
+      return false;
+    }
+  }
+
+  public function updatestatusDeactive($id)
+  {
+    try {
+      $sta = 0;
+      $stmt = $this->db->prepare("UPDATE tbl_home SET 
+                status=:st
+             WHERE home_id=:id ");
+      $stmt->bindparam(":st", $sta);
+      $stmt->bindparam(":id", $id);
+      $stmt->execute();
+
+      return true;
+    } catch (PDOException $e) {
+      echo $e->getMessage();
+      return false;
+    }
+  }
 }

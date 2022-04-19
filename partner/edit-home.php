@@ -40,12 +40,10 @@ if (isset($_POST['update'])) {
         <strong>WOW!</strong> Record was updated successfully!
         </div>";
         $homedata = $home->displyaRecordById($editId);
-
     } else {
         $msg = "Failed to Create Home ";
         echo "<script type='text/javascript'>alert('$msg');</script>";
     }
-    
 }
 
 
@@ -222,17 +220,25 @@ if (isset($_POST['update'])) {
                             <label>Stay End Time</label>
                             <input type="time" value="<?php echo $homedata['e_time']; ?>" class="form-control" name="endtime">
                         </div>
-                        <div class="form-group">
-                            <label>Status</label>
-                            <select name="stat" class="custom-select col-12">
-                                <option value="<?php echo $homedata['status']; ?>"><?php if($homedata['status'] == 1)
-                                                {echo"Active";} 
-                                                else
-                                                {echo"Deactive";} ?></option>
-                                <option value="1">Active</option>
-                                <option value="0">Inactive</option>
-                            </select>
-                        </div>
+                        <?php
+                        if ($homedata['status'] <= 1) {
+                        ?>
+                            <div class="form-group">
+                                <label>Status</label>
+                                <select name="stat" class="custom-select col-12">
+                                    <option value="<?php echo $homedata['status']; ?>"><?php if ($homedata['status'] == 1) {
+                                                                                            echo "Active";
+                                                                                        } else {
+                                                                                            echo "Deactive";
+                                                                                        } ?></option>
+                                    <option value="1">Active</option>
+                                    <option value="0">Inactive</option>
+                                </select>
+                            </div>
+                        <?php
+                        }
+                        ?>
+                        
                         <input class="btn btn-primary" name="update" type="submit" value="Update">
                         <a type="button" href="manage-home.php" class="btn btn-secondary">Go Back</a>
 
@@ -252,4 +258,3 @@ if (isset($_POST['update'])) {
 </body>
 
 </html>
-

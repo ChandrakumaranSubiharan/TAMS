@@ -11,6 +11,29 @@ if (isset($_GET['viewId']) && !empty($_GET['viewId'])) {
 }
 
 
+if (isset($_GET['confirmId']) && !empty($_GET['confirmId'])) {
+    $editId = $_GET['confirmId'];
+    $CurrentStatus = $_GET['status'];
+
+    if ($CurrentStatus == 1) {
+        $homedataactive = $home->updatestatusActive($editId);
+        $msg = "<div class='alert alert-success alert-dismissible'>
+        <button type='button' class='close' data-dismiss='alert'>&times;</button>
+        Home Activated Successfully
+      </div>";
+        $homedata = $home->displyaRecordById($viewId);
+    } elseif ($CurrentStatus == 0) {
+        $homeddataeactive = $home->updatestatusDeactive($editId);
+        $msg = "<div class='alert alert-danger alert-dismissible'>
+        <button type='button' class='close' data-dismiss='alert'>&times;</button>
+        Home Deactivated Successfully
+      </div>";
+        $homedata = $home->displyaRecordById($viewId);
+    }
+}
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -72,13 +95,11 @@ if (isset($_GET['viewId']) && !empty($_GET['viewId'])) {
                                     <li class="breadcrumb-item active" aria-current="page">view home</li>
                                 </ol>
                             </nav>
-                            <div class="container">
-                                <?php
-                                if (isset($msg)) {
-                                    echo $msg;
-                                }
-                                ?>
-                            </div>
+                            <?php
+                            if (isset($msg)) {
+                                echo $msg;
+                            }
+                            ?>
                         </div>
                     </div>
                 </div>
@@ -223,23 +244,34 @@ if (isset($_GET['viewId']) && !empty($_GET['viewId'])) {
                             <div class="col-md-3 col-sm-12">
                                 <div class="form-group">
                                     <label>Home Status</label>
-                                    <h6><?php if ($homedata['status'] == 1) {
-                                            echo "Active";
+                                    <h6><?php if ($homedata['status'] == 0) {
+                                            echo "<span style='color: red;'>Inactive</span>";
+                                        } elseif ($homedata['status'] == 1) {
+                                            echo "<span style='color: green;'>Active</span>";
                                         } elseif ($homedata['status'] == 2) {
-                                            echo "Not Verified Yet";
+                                            echo "<span style='color: firebrick;'>Not Verified Yet</span>";
                                         } elseif ($homedata['status'] == 3) {
-                                            echo "Verification Unsuccessful";
+                                            echo "<span style='color: red;'>Verification Failed</span>";
                                         } else {
-                                            echo "InActive";
+                                            echo "<span style='color: red;'>Disabled by Admin</span>";
                                         } ?></h6>
                                 </div>
                             </div>
-                            <div class="col-md-3 col-sm-12">
-                            </div>
-                            <div class="col-md-3 col-sm-12">
+                            <div class="col-md-6 col-sm-12 text-right">
                                 <div class="btn-list">
-                                    <a type="button" href="edit-home.php?editId=<?php echo $homedata['home_id'] ?>" class="btn btn-lg btn-primary">Edit home</a>
-                                    <a type="button" href="manage-home.php" class="btn btn-secondary btn-lg">Go Back</a>
+                                    <?php
+                                    if ($homedata['status'] == 0) {
+                                    ?>
+                                        <a type="button" href="?viewId=<?php echo $homedata['home_id'] ?>&confirmId=<?php echo $homedata['home_id'] ?>&status=1" class="btn btn-success">Activate Home</a>
+                                    <?php
+                                    } elseif ($homedata['status'] == 1) {
+                                    ?>
+                                        <a type="button" href="?viewId=<?php echo $homedata['home_id'] ?>&confirmId=<?php echo $homedata['home_id'] ?>&status=0" class="btn btn-danger">Deactivate Home</a>
+                                    <?php
+                                    }
+                                    ?>
+                                    <a type="button" href="edit-home.php?editId=<?php echo $homedata['home_id'] ?>" class="btn btn-primary">Edit home</a>
+                                    <a type="button" href="manage-home.php" class="btn btn-secondary">Go Back</a>
                                 </div>
                             </div>
                         </div>

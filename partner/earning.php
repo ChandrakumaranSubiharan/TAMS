@@ -2,26 +2,6 @@
 // Include database file
 include_once '../includes/dbconfig.php';
 
-
-// if (isset($_GET['confirmId']) && !empty($_GET['confirmId'])) {
-//     $editId = $_GET['confirmId'];
-//     $CurrentStatus = $_GET['status'];
-
-//     if ($CurrentStatus == 0) {
-//         $bookingdataconfirm = $booking->updatestatusConfirm($editId);
-//         $msg = "<div class='alert alert-success alert-dismissible'>
-//         <button type='button' class='close' data-dismiss='alert'>&times;</button>
-//         Booking Confirmed Successfully
-//       </div>";
-
-//     } elseif ($CurrentStatus == 1) {
-//         $bookingdatacancel = $booking->updatestatusCancel($editId);
-//         $msg = "<div class='alert alert-danger alert-dismissible'>
-//         <button type='button' class='close' data-dismiss='alert'>&times;</button>
-//         Booking Cancelled Successfully
-//       </div>";
-//     }
-// }
 ?>
 
 
@@ -85,11 +65,6 @@ include_once '../includes/dbconfig.php';
                                     <li class="breadcrumb-item active" aria-current="page">Earnings</li>
                                 </ol>
                             </nav>
-                            <?php
-                            if (isset($msg)) {
-                                echo $msg;
-                            }
-                            ?>
                         </div>
                     </div>
                 </div>

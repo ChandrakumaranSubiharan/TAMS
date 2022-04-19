@@ -239,7 +239,10 @@ if (isset($_POST['update'])) {
                             <label>Tour End Time</label>
                             <input type="time" value="<?php echo $tourdata['e_time']; ?>" class="form-control" name="end_time">
                         </div>
-                        <div class="form-group">
+                        <?php
+                        if ($tourdata['status'] <= 1) {
+                        ?>
+                            <div class="form-group">
                             <label>Tour Status</label>
                             <select name="stat" class="custom-select col-12">
                                 <option value="<?php echo $tourdata['status']; ?>"><?php if ($tourdata['status'] == 1) {
@@ -251,6 +254,9 @@ if (isset($_POST['update'])) {
                                 <option value="0">Inactive</option>
                             </select>
                         </div>
+                        <?php
+                        }
+                        ?>
                         <input class="btn btn-primary" name="update" type="submit" value="Update">
                         <a type="button" href="manage-tour.php" class="btn btn-secondary">Go Back</a>
                     </form>
