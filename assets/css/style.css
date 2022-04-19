@@ -126,8 +126,6 @@
 
 /* Custom */
 
-
-
 .signup-section .col-md-6:first-child {
   padding: 0 10px 15px 0 !important;
 
@@ -10299,13 +10297,13 @@ text-align: center;
   font-size: 2em;
 }
 #dashboard .fact.blue {
-  background: #963d8a;
+  background: #01b7f2;
 }
 #dashboard .fact.blue .description {
   background: #6a175f;
 }
 #dashboard .fact.yellow {
-  background: #963d8a;
+  background: #fdb714;
 }
 #dashboard .fact.yellow .description {
   background: #f5b010;
@@ -10438,10 +10436,10 @@ text-align: center;
 }
 #booking .booking-info {
   border-top: 1px solid #f5f5f5;
-  padding: 10px;
+  padding: 20px;
 }
 #booking .booking-info:last-child {
-  border-bottom: 1px solid #f5f5f5;
+  border-bottom: 1px solid #dadada;
 }
 #booking .booking-info div.date {
   width: 72px;
@@ -10491,9 +10489,28 @@ text-align: center;
 }
 #booking .booking-info .status {
   float: right;
-  margin-right: 15px;
-  background: #98ce44;
+  margin-right: 10px;
 }
+
+#booking .booking-info .green {
+  background: #98ce44;
+  cursor: default;
+}
+
+#booking .booking-info .red {
+  background: #e01a33;
+  cursor: default;
+}
+
+#booking .booking-info .yellow {
+  background: #fdb714;
+  cursor: default;
+}
+
+#booking .booking-info .blue {
+  background: #01b7f2;
+}
+
 #booking .booking-info .info {
   float: right;
   padding-left: 15px;
@@ -10501,14 +10518,14 @@ text-align: center;
   text-transform: uppercase;
   padding-top: 2px;
   margin-bottom: 0;
-  width: 140px;
+  width: 100px;
 }
 #booking .booking-info .info * {
   font-size: 0.8333em;
   font-weight: normal;
 }
 #booking .booking-info .info dt {
-  color: #e44049;
+  color: darkmagenta;
 }
 #booking .booking-info.cancelled div.date > .month {
   background: #d9d9d9;

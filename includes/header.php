@@ -157,10 +157,8 @@
             <div class="topnav hidden-xs">
                 <div class="container">
                     <ul class="quick-menu pull-right">
-                        <!-- <li><a href="#" class="#">Welcome &nbsp; UserName</a></li>
-                        <li><a  href="?logout=true" class="#">Dashboard</a></li> -->
                         <li><a href="#" class="#">Welcome ! <?= $returned_row['username']; ?></a></li>
-                        <li><a href="customer/dashboard.php">dashboard</a></li>
+                        <li><a href="customer-dashboard.php">dashboard</a></li>
                         <li><a href="?logout=true">Log Out</a></li>
                     </ul>
                     <ul class="quick-menu pull-left">

@@ -160,6 +160,21 @@ class booking
     }
   }
 
+  public function displayBookingByCustomer($cid)
+  {
+    $sql = "SELECT  *  FROM tbl_booking where cus_id = $cid order by created_date desc limit 5";
+    $query = $this->db->query($sql);
+    $data = array();
+    if ($query->rowCount() > 0) {
+      while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+        $data[] = $row;
+      }
+      return $data;
+    } else {
+      return false;
+    }
+  }
+
   public function updatestatusConfirm($id)
   {
     try {
@@ -195,4 +210,42 @@ class booking
       return false;
     }
   }
+
+
+  public function GetUnconfirmedBookingCount($uid)
+  {
+    $sql = "SELECT booking_id from tbl_booking WHERE cus_id = $uid AND status = 0";
+    $query = $this->db->query($sql);
+    $cnt = $query->rowCount();
+    return $cnt;
+  }
+
+  public function GetConfirmedBookingCount($uid)
+  {
+    $sql = "SELECT booking_id from tbl_booking WHERE cus_id = $uid AND status = 2";
+    $query = $this->db->query($sql);
+    $cnt = $query->rowCount();
+    return $cnt;
+  }
+
+  public function GetCancelledBookingCount($uid)
+  {
+    $sql = "SELECT booking_id from tbl_booking WHERE cus_id = $uid AND status = 1";
+    $query = $this->db->query($sql);
+    $cnt = $query->rowCount();
+    return $cnt;
+  }
+
+  public function GetRefundedBookingCount($uid)
+  {
+    $sql = "SELECT booking_id from tbl_booking WHERE cus_id = $uid AND payment_status >= 2";
+    $query = $this->db->query($sql);
+    $cnt = $query->rowCount();
+    return $cnt;
+  }
+
+
+
+
+  
 }

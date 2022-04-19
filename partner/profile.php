@@ -106,13 +106,11 @@ if (isset($_POST['update'])) {
                                     <li class="breadcrumb-item active" aria-current="page">Profile</li>
                                 </ol>
                             </nav>
-                            <div class="container">
                                 <?php
                                 if (isset($msg)) {
                                     echo $msg;
                                 }
                                 ?>
-                            </div>
                         </div>
                     </div>
                 </div>

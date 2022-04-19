@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 15, 2022 at 02:42 PM
+-- Generation Time: Apr 20, 2022 at 12:17 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.27
 
@@ -60,18 +60,14 @@ INSERT INTO `tbl_admin` (`admin_id`, `avatar`, `full_name`, `username`, `passwor
 CREATE TABLE `tbl_booking` (
   `booking_id` int(10) NOT NULL,
   `total_amount` float DEFAULT NULL,
-  `cus_first_name` varchar(100) DEFAULT NULL,
-  `cus_last_name` varchar(100) DEFAULT NULL,
-  `cus_email` varchar(100) DEFAULT NULL,
-  `cus_contact` varchar(100) DEFAULT NULL,
   `cus_payment_card_type` varchar(100) DEFAULT NULL,
   `cus_id` int(10) DEFAULT NULL,
   `start_date` date DEFAULT NULL,
   `end_date` date DEFAULT NULL,
-  `status` tinyint(1) DEFAULT NULL,
+  `status` tinyint(1) DEFAULT NULL COMMENT '0 = not confirmed,\r\n1 = cancelled by host,\r\n2 = confirmed,\r\n3 = cancelled by customer',
   `created_date` timestamp NULL DEFAULT NULL,
   `updated_date` timestamp NULL DEFAULT NULL,
-  `payment_status` tinyint(1) DEFAULT NULL,
+  `payment_status` tinyint(1) DEFAULT NULL COMMENT '0 = unpaid,\r\n1 = paid,\r\n2 = refunded by host,\r\n3 = refunded by admin',
   `total_nights` int(20) DEFAULT NULL,
   `total_persons` int(20) DEFAULT NULL,
   `partner_id` int(10) NOT NULL,
@@ -88,11 +84,9 @@ CREATE TABLE `tbl_booking` (
 -- Dumping data for table `tbl_booking`
 --
 
-INSERT INTO `tbl_booking` (`booking_id`, `total_amount`, `cus_first_name`, `cus_last_name`, `cus_email`, `cus_contact`, `cus_payment_card_type`, `cus_id`, `start_date`, `end_date`, `status`, `created_date`, `updated_date`, `payment_status`, `total_nights`, `total_persons`, `partner_id`, `total_kids`, `total_adults`, `service_id`, `service_name`, `service_type`, `payment_card_holder_name`, `payment_card_number`) VALUES
-(1086, 20000, 'admin', 'admin', 'admin', 'admin', 'Master Card', 37, '2022-04-13', '2022-04-18', 0, '2022-04-08 16:04:55', NULL, 1, 5, 2, 5, 1, 1, 9, 'Madulkelle Tea and Eco Lodge', 'Home Stay', 'admin', 123124),
-(1087, 4000, 'admin', 'admin', 'admin', 'admin', 'Visa Card', 37, '2022-04-18', '2022-04-19', 0, '2022-04-08 16:08:05', NULL, 1, 1, 2, 5, 1, 1, 9, 'Madulkelle Tea and Eco Lodge', 'Home Stay', 'admin', 142),
-(1088, 15000, 'admin', 'admin', 'admin', 'admin', 'Master Card', 2022, '0000-00-00', '0000-00-00', 0, '2022-04-08 16:08:33', NULL, 1, 5, 2, 14, 3, 2, 0, 'Tour Package', 'admin', '37', 2022),
-(1089, 15000, 'admin', 'admin', 'admin', 'admin', 'Master Card', 37, '2022-04-10', '2022-04-30', 0, '2022-04-08 16:15:09', NULL, 1, 9, 4, 5, 2, 2, 3, 'One Life Adventure', 'Tour Package', 'admin', 14);
+INSERT INTO `tbl_booking` (`booking_id`, `total_amount`, `cus_payment_card_type`, `cus_id`, `start_date`, `end_date`, `status`, `created_date`, `updated_date`, `payment_status`, `total_nights`, `total_persons`, `partner_id`, `total_kids`, `total_adults`, `service_id`, `service_name`, `service_type`, `payment_card_holder_name`, `payment_card_number`) VALUES
+(1098, 2500, 'Amercian Express', 37, '2022-04-21', '2022-04-22', 1, '2022-04-13 07:51:25', NULL, 0, 1, 1, 5, 0, 1, 9, 'Madulkelle Tea and Eco Lodge', 'Home Stay', 'sdfsd', 124),
+(1099, 15000, 'Amercian Express', 37, '2022-04-25', '2022-05-05', 2, '2022-04-16 08:27:22', NULL, 3, 9, 4, 5, 2, 2, 4, 'Sri Lanka Uncovered', 'Tour Package', 'sdfasf', 1412);
 
 -- --------------------------------------------------------
 
@@ -120,7 +114,7 @@ CREATE TABLE `tbl_customer` (
 --
 
 INSERT INTO `tbl_customer` (`customer_id`, `first_name`, `last_name`, `address`, `email_address`, `contact_number`, `username`, `password`, `image_profile`, `created_date`, `updated_date`, `status`) VALUES
-(37, 'admin', 'admin', 'admin', 'admin', 'admin', 'admin', '$2y$10$khByQXAcewuduTY1sfAdXehO2AVRLFz2swPe61nxfsq5.hSor/cIK', NULL, '2022-03-15 07:37:29', NULL, 1),
+(37, 'admin', 'admin', 'admin', 'admin@xmail.com', '14124124', 'adminsanju', '$2y$10$4aSwPX.ZZHbd8MBUcEZnfeNDTH4ofW3hgzgMe7swfqXwP4X4Isw1C', NULL, '2022-03-15 07:37:29', '2022-04-19 21:12:35', 1),
 (38, 'asfds', 'asfds', 'asfds', 'asfds', 'asfds', 'asfds', '$2y$10$OvDv2QBFMWR5lZar3Ot7h.hSFLCBktCrNpUYoMEuBJDLmOXB65sQ.', NULL, '2022-03-15 07:48:56', NULL, 1);
 
 -- --------------------------------------------------------
@@ -131,7 +125,7 @@ INSERT INTO `tbl_customer` (`customer_id`, `first_name`, `last_name`, `address`,
 
 CREATE TABLE `tbl_earning` (
   `earning_id` int(11) NOT NULL,
-  `partner_id` int(11) DEFAULT NULL,
+  `booking_id` int(11) DEFAULT NULL,
   `total_amount` float DEFAULT NULL,
   `payout` float DEFAULT NULL,
   `net_amount` float DEFAULT NULL,
@@ -139,26 +133,17 @@ CREATE TABLE `tbl_earning` (
   `created_date` timestamp NULL DEFAULT NULL,
   `service_type` varchar(100) DEFAULT NULL,
   `service_id` int(11) DEFAULT NULL,
-  `service_name` varchar(100) DEFAULT NULL
+  `service_name` varchar(100) DEFAULT NULL,
+  `profit_percentage` decimal(10,0) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbl_earning`
 --
 
-INSERT INTO `tbl_earning` (`earning_id`, `partner_id`, `total_amount`, `payout`, `net_amount`, `customer_id`, `created_date`, `service_type`, `service_id`, `service_name`) VALUES
-(39, 5, 16000, 14400, 1600, 37, '2022-04-06 16:26:05', 'Home Stay', 9, 'Madulkelle Tea and Eco Lodge'),
-(40, 5, 8000, 7200, 800, 37, '2022-04-06 16:27:58', 'Home Stay', 9, 'Madulkelle Tea and Eco Lodge'),
-(41, 5, 4000, 3600, 400, 37, '2022-04-06 16:44:50', 'Home Stay', 9, 'Madulkelle Tea and Eco Lodge'),
-(42, 5, 4000, 3600, 400, 37, '2022-04-07 03:49:58', 'Home Stay', 9, 'Madulkelle Tea and Eco Lodge'),
-(43, 5, 4000, 3600, 400, 37, '2022-04-08 04:59:30', 'Home Stay', 9, 'Madulkelle Tea and Eco Lodge'),
-(44, 5, 4000, 3600, 400, 37, '2022-04-08 14:02:29', 'Home Stay', 9, 'Madulkelle Tea and Eco Lodge'),
-(45, 5, 30000, 24000, 6000, 37, '2022-04-08 15:57:41', 'Tour Package', 3, 'One Life Adventure'),
-(46, 5, 15000, 12000, 3000, 37, '2022-04-08 16:01:12', 'Tour Package', 3, 'One Life Adventure'),
-(47, 5, 20000, 18000, 2000, 37, '2022-04-08 16:04:55', 'Home Stay', 9, 'Madulkelle Tea and Eco Lodge'),
-(48, 5, 4000, 3600, 400, 37, '2022-04-08 16:08:06', 'Home Stay', 9, 'Madulkelle Tea and Eco Lodge'),
-(49, 5, 15000, 12000, 3000, 37, '2022-04-08 16:08:33', 'Tour Package', 3, 'One Life Adventure'),
-(50, 5, 15000, 12000, 3000, 37, '2022-04-08 16:15:09', 'Tour Package', 3, 'One Life Adventure');
+INSERT INTO `tbl_earning` (`earning_id`, `booking_id`, `total_amount`, `payout`, `net_amount`, `customer_id`, `created_date`, `service_type`, `service_id`, `service_name`, `profit_percentage`) VALUES
+(59, 1098, 2500, 2250, 250, 37, '2022-04-16 07:51:26', 'Home Stay', 9, 'Madulkelle Tea and Eco Lodge', '10'),
+(60, 1099, 15000, 13500, 1500, 37, '2022-04-16 08:27:22', 'Tour Package', 4, 'Sri Lanka Uncovered', '10');
 
 -- --------------------------------------------------------
 
@@ -181,7 +166,7 @@ CREATE TABLE `tbl_home` (
   `ava_end_date` date DEFAULT NULL,
   `created_date` timestamp NULL DEFAULT NULL,
   `updated_date` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
-  `status` tinyint(1) DEFAULT NULL COMMENT '0=inactive, 1=active, 2=not verified, 3=verification failed ',
+  `status` tinyint(1) DEFAULT NULL COMMENT '0=inactive, 1=active, 2=not verified, 3=verification failed,\r\n4 = disabled by admin 	 ',
   `partner_id` int(20) DEFAULT NULL,
   `rooms` int(10) NOT NULL,
   `max_adults` int(10) DEFAULT NULL,
@@ -196,13 +181,10 @@ CREATE TABLE `tbl_home` (
 --
 
 INSERT INTO `tbl_home` (`home_id`, `home_name`, `cover_img1`, `location_address`, `ava_night_price_adult`, `lg_desc`, `home_type`, `district`, `province`, `cancellation`, `ava_start_date`, `ava_end_date`, `created_date`, `updated_date`, `status`, `partner_id`, `rooms`, `max_adults`, `max_kids`, `ava_night_price_kid`, `s_time`, `e_time`) VALUES
-(9, 'Madulkelle Tea and Eco Lodge', 'hom01.png', 'Madulkelle', 2500, 'Located in Madulkelle in the Kandy District region, Eco Lodge  features a garden. The property is 7 miles.', 'Resort', 'Kandy', 'Central Province', 0, '2022-04-19', '2022-04-22', '2022-03-20 15:54:35', '2022-04-15 09:11:58', 1, 5, 3, 6, 2, 1500, '08:00:00', '08:00:00'),
-(10, 'Occazia Residence', '135527753.jpg', 'Poorwarama Mawatha', 20000, 'Located in Colombo, 2.9 km from Mount Lavinia Beach, Occazia Residence has accommodations with free bikes.', 'Villa', 'Colombo', 'Western', 0, '2022-04-13', '2022-04-30', '2022-03-20 16:14:44', '2022-04-08 08:03:29', 1, 5, 7, 5, 3, NULL, NULL, NULL),
-(11, 'subiharan', '1876813897.jpg', 'subiharan', 21431, 'wfageshdgm', 'Cabin', 'Colombo', 'Western Province', 1, '2022-03-02', '2022-03-31', '2022-03-23 05:23:23', '2022-04-02 14:04:43', 0, 0, 9, NULL, NULL, NULL, NULL, NULL),
-(12, 'fgshfdgjf', '2126121636.png', 'dgsh', 2354, 'sfadsgfdh', 'Cottage', 'Jaffna', 'Northern Province', 1, '2022-03-02', '2022-03-31', '2022-03-23 05:25:59', '2022-04-02 14:04:41', 0, 0, 4, NULL, NULL, NULL, NULL, NULL),
-(13, 'asdfdgsfd', '69506495.jpg', 'sgfhdgjhj', 24343, 'dvsfd', 'Villa', 'Jaffna', 'Western Province', 1, '2022-03-01', '2022-03-31', '2022-03-23 05:38:36', '2022-04-02 14:04:37', 0, 5, 8, NULL, NULL, NULL, NULL, NULL),
-(14, 'blue moon', '1177411604.png', 'blue moon', 13243, 'blue moon', 'Resort', 'Kandy', 'Northern Province', 0, '2022-04-05', '2022-04-30', '2022-03-23 06:48:11', '2022-04-02 14:04:33', 0, 5, 9, 1, 1, NULL, NULL, NULL),
-(4040, 'sdfd', '41110856.jpg', 'sdfd', 21421, 'asdasd', 'Resort', 'Jaffna', 'Western Province', 1, '2022-04-05', '2022-04-29', '2022-04-15 07:06:43', '2022-04-15 10:46:12', 2, 4, 8, 8, 2, 21412, '05:55:00', '05:55:00');
+(9, 'Madulkelle Tea and Eco Lodge', 'hom01.png', 'Madulkelle', 2500, 'Located in Madulkelle in the Kandy District region, Eco Lodge  features a garden. The property is 7 miles.', 'Resort', 'Kandy', 'Central Province', 0, '2022-04-21', '2022-04-22', '2022-03-20 15:54:35', '2022-04-19 11:41:51', 0, 5, 3, 6, 2, 1500, '08:00:00', '08:00:00'),
+(10, 'Occazia Residence', '135527753.jpg', 'Poorwarama Mawatha', 20000, 'Located in Colombo, 2.9 km from Mount Lavinia Beach, Occazia Residence has accommodations with free bikes.', 'Villa', 'Colombo', 'Western', 0, '2022-04-13', '2022-04-30', '2022-03-20 16:14:44', '2022-04-19 11:27:22', 1, 5, 7, 5, 3, NULL, NULL, NULL),
+(4041, 'aedas', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2022-04-19 11:06:30', 1, NULL, 0, NULL, NULL, NULL, NULL, NULL),
+(4042, 'dasd', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 4, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -261,7 +243,7 @@ INSERT INTO `tbl_partner` (`partner_id`, `first_name`, `last_name`, `username`, 
 (2, 'dwesrdhtf', 'dwesrdhtf', 'dwesrdhtf', '$2y$10$KVsJIOBrmJ30YbN4NJ3GhulsaHXVg6CwIQ6xjGXItB/2K65Adcd9.', 'dwesrdhtf', 'dwesrdhtf', 'dwesrdhtf', 0, '3', 0, '2022-03-15 09:00:27', NULL, '4'),
 (3, 'dgfhgjhkjk', 'dgfhgjhkjk', 'dgfhgjhkjk', '$2y$10$CBd8LB3/wkNwrGCko1ki/.jyveMjho2PfY4lbLyjXoddz5he95sU.', 'dgfhgjhkjk', 'dgfhgjhkjk', 'dgfhgjhkjk', 0, '2', 1412, '2022-03-15 12:06:32', NULL, '4'),
 (4, 'asgsa', 'asgsa', 'asgsa', '$2y$10$NYHEwOuKLpt7PEwEMl4R6uxwkbGy4Bf9p8juHpHVMyj.5GCuKvhr6', 'asgsa', 'asgsa', 'asgsa', 0, 'prefered not to say', 2125, '2022-03-15 12:10:12', NULL, 'Uva'),
-(5, 'partner', 'partner', 'partner', '$2y$10$urO7KTGMCkaOf1PggnrLdO5iRjgc6mhxJVo/03.usTE5xF7bIMifW', 'partner', 'partner@mail.com', 'partner', 1, 'male', 21324, '2022-03-15 13:32:08', '2022-04-15 12:40:15', 'Northern');
+(5, 'partnerd', 'partner', 'partner', '$2y$10$u8Mo99gw/Cx63n73bfepcuS5m.yCFtiWv6ijBV4cEw/oIeMBAUAVa', 'partner', 'partner@mail.com', 'partner', 1, 'male', 21324, '2022-03-15 13:32:08', '2022-04-19 19:57:31', 'Northern');
 
 -- --------------------------------------------------------
 
@@ -312,7 +294,7 @@ CREATE TABLE `tbl_tour` (
   `created_date` timestamp NULL DEFAULT NULL,
   `updated_date` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
   `partner_id` int(10) DEFAULT NULL,
-  `status` tinyint(1) DEFAULT NULL COMMENT '0=inactive,\r\n1=active,\r\n2=not verified,\r\n3=verification failed',
+  `status` tinyint(1) DEFAULT NULL COMMENT '0=inactive,\r\n1=active,\r\n2=not verified,\r\n3=verification failed,\r\n4 = disabled by admin',
   `language` varchar(100) DEFAULT NULL,
   `availabile_seats` int(11) DEFAULT NULL,
   `ava_start_date` date DEFAULT NULL,
@@ -331,8 +313,8 @@ CREATE TABLE `tbl_tour` (
 --
 
 INSERT INTO `tbl_tour` (`tour_id`, `title`, `details`, `location`, `tour_type`, `duration_nights`, `adult_price`, `image`, `created_date`, `updated_date`, `partner_id`, `status`, `language`, `availabile_seats`, `ava_start_date`, `ava_end_date`, `cancellation`, `district`, `gathering_location`, `s_time`, `e_time`, `kid_price`, `kid_status`) VALUES
-(3, 'One Life Adventure', 'Start in paradeniya and end in Colombo! With the Active Adventure tour Sri Lanka One Life Adventures - 12 Days, you have a 12 days tour package taking you through paradeniya, Sri Lanka and 9 other destinations in Sri Lanka. Sri Lanka One Life Adventures - 12 Days includes accommodation in a hotel as well as an expert guide, meals, transport and more.\r\n', 'paradeniya', 'Active Adventure', 9, 5000, '926926904.jpg', '2022-04-05 16:15:05', '2022-04-15 10:40:05', 5, 2, 'English', 2, '2022-04-10', '2022-04-30', 0, 'Kandy', 'hillcity hotel', '08:00:00', '16:00:00', 1000, 0),
-(4, 'Sri Lanka Uncovered', 'Start in Negombo and end in Unawatuna! With the Active Adventure tour Sri Lanka Uncovered, you have a 10 days tour package taking you through Negombo, Sri Lanka and 7 other destinations in Sri Lanka. Sri Lanka Uncovered includes accommodation, an expert guide, meals, transport and more. ', 'Negombo', 'Explorer', 9, 5000, '110771948.jpg', '2022-04-14 05:17:52', '2022-04-15 10:48:22', 4, 1, 'English', 50, '2022-04-25', '2022-05-05', 0, 'Colombo', 'lily hotel', '08:00:00', '20:00:00', 2500, 1);
+(3, 'One Life Adventure', 'Start in paradeniya and end in Colombo! With the Active Adventure tour Sri Lanka One Life Adventures - 12 Days, you have a 12 days tour package taking you through paradeniya, Sri Lanka and 9 other destinations in Sri Lanka. Sri Lanka One Life Adventures - 12 Days includes accommodation in a hotel as well as an expert guide, meals, transport and more.\r\n', 'paradeniya', 'Active Adventure', 9, 5000, '926926904.jpg', '2022-04-05 16:15:05', '2022-04-19 11:41:01', 5, 3, 'English', 2, '2022-04-10', '2022-04-30', 0, 'Kandy', 'hillcity hotel', '08:00:00', '16:00:00', 1000, 0),
+(4, 'Sri Lanka Uncovered', 'Start in Negombo and end in Unawatuna! With the Active Adventure tour Sri Lanka Uncovered, you have a 10 days tour package taking you through Negombo, Sri Lanka and 7 other destinations in Sri Lanka. Sri Lanka Uncovered includes accommodation, an expert guide, meals, transport and more. ', 'Negombo', 'Explorer', 9, 5000, '110771948.jpg', '2022-04-14 05:17:52', '2022-04-19 11:46:59', 5, 1, 'English', 3, '2022-04-25', '2022-05-05', 0, 'Colombo', 'lily hotel', '08:00:00', '20:00:00', 2500, 1);
 
 --
 -- Indexes for dumped tables
@@ -406,7 +388,7 @@ ALTER TABLE `tbl_admin`
 -- AUTO_INCREMENT for table `tbl_booking`
 --
 ALTER TABLE `tbl_booking`
-  MODIFY `booking_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1090;
+  MODIFY `booking_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1100;
 
 --
 -- AUTO_INCREMENT for table `tbl_customer`
@@ -418,13 +400,13 @@ ALTER TABLE `tbl_customer`
 -- AUTO_INCREMENT for table `tbl_earning`
 --
 ALTER TABLE `tbl_earning`
-  MODIFY `earning_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `earning_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
 -- AUTO_INCREMENT for table `tbl_home`
 --
 ALTER TABLE `tbl_home`
-  MODIFY `home_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4041;
+  MODIFY `home_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4044;
 
 --
 -- AUTO_INCREMENT for table `tbl_inquiry`

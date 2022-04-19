@@ -60,5 +60,41 @@ class customer
    $cnt=$query->rowCount();
    return $cnt;
  }
+
+
+ 
+ public function UpdateInfo($uname,$fname,$lname,$address,$email,$contact,$pass,$uid)
+ {
+
+   try {
+
+// Hash password
+$user_hashed_password = password_hash($pass, PASSWORD_DEFAULT);
+
+     $stmt = $this->db->prepare("UPDATE tbl_customer SET 
+               first_name=:fname,
+               last_name=:lname,
+               username=:uname,
+               address=:address,
+               email_address=:mail,
+               contact_number=:contact,
+               password=:pass
+            WHERE customer_id=:id ");
+     $stmt->bindparam(":fname", $fname);
+     $stmt->bindparam(":lname", $lname);
+     $stmt->bindparam(":uname", $uname);
+     $stmt->bindparam(":address", $address);
+     $stmt->bindparam(":mail", $email);
+     $stmt->bindparam(":pass", $user_hashed_password);
+     $stmt->bindparam(":contact", $contact);
+     $stmt->bindparam(":id", $uid);
+     $stmt->execute();
+
+     return true;
+   } catch (PDOException $e) {
+     echo $e->getMessage();
+     return false;
+   }
+ }
  
 }
