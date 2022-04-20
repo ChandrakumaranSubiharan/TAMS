@@ -25,15 +25,8 @@ class home
           // variable to fetch home active/inactive status by bool value
           $sta = "2";
 
-          // variable to fetch current date time
-          $cdate = Date("y-m-d H:i:s");
-
-          // variable to fetch null value
-          $emty = NULL;
-
-
-          $query = "INSERT INTO tbl_home(home_name, location_address, ava_night_price_adult, ava_night_price_kid, max_adults, max_kids, lg_desc, home_type, rooms, district, province, cancellation, ava_start_date, ava_end_date, s_time, e_time,created_date,status, cover_img1,partner_id)
-                 VALUES('$home_name','$location_address','$adult_price','$kid_price','$max_adult','$max_kid','$lg_desc','$home_type','$home_room','$district','$province','$cancel','$str_date','$end_date','$str_time','$end_time','$cdate','$sta','$fileNew','$pid')";
+          $query = "INSERT INTO tbl_home(home_name, location_address, ava_night_price_adult, ava_night_price_kid, max_adults, max_kids, lg_desc, home_type, rooms, district, province, cancellation, ava_start_date, ava_end_date, s_time, e_time,status, cover_img1,partner_id)
+                 VALUES('$home_name','$location_address','$adult_price','$kid_price','$max_adult','$max_kid','$lg_desc','$home_type','$home_room','$district','$province','$cancel','$str_date','$end_date','$str_time','$end_time','$sta','$fileNew','$pid')";
           $sql = $this->db->query($query);
           if ($sql == true) {
             return true;

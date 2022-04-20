@@ -12,15 +12,8 @@ class earning
   // Insert booking data into booking table
   public function insertEarningData($bid,$tot,$payout,$net,$cid,$stitle,$sid,$type,$Profit_Percentage)
   {
-    // variable to fetch current date time
-    $cdate = Date("y-m-d H:i:s");
-
-    // variable to fetch null value
-    $emty = NULL;
-
-
-    $query = "INSERT INTO tbl_earning(booking_id, total_amount, payout, net_amount, customer_id,created_date,service_name,service_id,service_type,profit_percentage)
-                 VALUES('$bid','$tot','$payout','$net','$cid','$cdate','$stitle','$sid','$type','$Profit_Percentage')";
+    $query = "INSERT INTO tbl_earning(booking_id, total_amount, payout, net_amount, customer_id,service_name,service_id,service_type,profit_percentage)
+                 VALUES('$bid','$tot','$payout','$net','$cid','$stitle','$sid','$type','$Profit_Percentage')";
     $sql = $this->db->query($query);
     if ($sql == true) {
       return true;

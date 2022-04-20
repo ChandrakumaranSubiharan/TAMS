@@ -85,7 +85,7 @@ if (isset($_GET['confirmId']) && !empty($_GET['confirmId'])) {
                                             <?php
 
                                             //current date time
-                                            $current_timedate = date("Y-m-d H:i:s", strtotime('+3 hours +30 minutes'));
+                                            $current_timedate = date("Y-m-d H:i:s", strtotime('+4 hours +30 minutes'));
                                             //Booking Created date time
                                             $created_timedate = date("Y-m-d H:i:s", strtotime($bookingdata['created_date']));
 

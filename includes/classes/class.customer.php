@@ -20,13 +20,10 @@ class customer
     
     // Prepare the statement to insert values into the customer table
 
-   $stmt = $this->db->prepare("INSERT INTO tbl_customer(first_name,last_name,address,username,email_address,contact_number,password,status,created_date) VALUES(:fname, :lname,:address,:uname,:email_id,:contact,:pass,:status,:date)");
+   $stmt = $this->db->prepare("INSERT INTO tbl_customer(first_name,last_name,address,username,email_address,contact_number,password,status) VALUES(:fname, :lname,:address,:uname,:email_id,:contact,:pass,:status)");
    
     // variable to fetch customer active/inactive status by bool value
     $sta = "1";
-
-    // variable to fetch current date time
-    $regdate =Date("y-m-d H:i:s");
 
     // Bind parameters
    $stmt->bindparam(":fname",$fname);
@@ -37,8 +34,6 @@ class customer
    $stmt->bindparam(":contact",$contact);
    $stmt->bindparam(":pass",$user_hashed_password);
    $stmt->bindparam(":status",$sta);
-   $stmt->bindparam(":date",$regdate);
-
 
     // Execute the query
    $stmt->execute();

@@ -18,12 +18,6 @@ class booking
     // variable to fetch home active/inactive status by bool value
     $paymentsta = "1";
 
-    // variable to fetch current date time
-    $cdate = Date("y-m-d H:i:s");
-
-    // variable to fetch null value
-    $emty = NULL;
-
     $query = "INSERT INTO tbl_booking(
       total_amount, 
       cus_payment_card_type, 
@@ -33,7 +27,6 @@ class booking
       start_date, 
       end_date, 
       status, 
-      created_date, 
       payment_status, 
       total_nights, 
       total_persons, 
@@ -53,7 +46,6 @@ class booking
              '$booking_sdate',
              '$booking_edate',
              '$sta',
-             '$cdate',
              '$paymentsta',
              '$total_night',
              '$total_persons_count',

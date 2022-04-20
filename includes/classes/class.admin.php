@@ -20,13 +20,10 @@ class admin
 
             // Prepare the statement to insert values into the admin table
 
-            $stmt = $this->db->prepare("INSERT INTO tbl_admin(avatar,full_name,username,password,contact_number,staff_id,department,email,user_category,status,created_date) VALUES(:avatar,:fname,:uname,:pass,:contact,:staffid,:dep,:mail,:usercat,:status,:cdate)");
+            $stmt = $this->db->prepare("INSERT INTO tbl_admin(avatar,full_name,username,password,contact_number,staff_id,department,email,user_category,status) VALUES(:avatar,:fname,:uname,:pass,:contact,:staffid,:dep,:mail,:usercat,:status)");
 
             // variable to fetch customer active/inactive status by bool value
             $sta = "1";
-
-            // variable to fetch current date time
-            $cdate = Date("y-m-d H:i:s");
 
             // variable to fetch null value
             $emty = NULL;
@@ -42,7 +39,6 @@ class admin
             $stmt->bindparam(":mail", $email);
             $stmt->bindparam(":usercat", $category);
             $stmt->bindparam(":status", $sta);
-            $stmt->bindparam(":cdate", $cdate);
 
             // Execute the query
             $stmt->execute();

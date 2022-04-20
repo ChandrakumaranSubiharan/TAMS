@@ -20,13 +20,10 @@ class partner
 
       // Prepare the statement to insert values into the customer table
 
-      $stmt = $this->db->prepare("INSERT INTO tbl_partner(first_name,last_name,address,username,email_address,contact_number,password,status,province,zipcode,gender,created_date) VALUES(:fname, :lname,:address,:uname,:email_id,:contact,:pass,:status,:province,:zipcode,:gender,:date)");
+      $stmt = $this->db->prepare("INSERT INTO tbl_partner(first_name,last_name,address,username,email_address,contact_number,password,status,province,zipcode,gender) VALUES(:fname, :lname,:address,:uname,:email_id,:contact,:pass,:status,:province,:zipcode,:gender)");
 
       // variable to fetch customer active/inactive status by bool value
       $sta = "0";
-
-      // variable to fetch current date time
-      $regdate = Date("y-m-d H:i:s");
 
       // variable to fetch null value
       $emty = NULL;
@@ -43,7 +40,6 @@ class partner
       $stmt->bindparam(":province", $province);
       $stmt->bindparam(":zipcode", $zipcode);
       $stmt->bindparam(":gender", $gender);
-      $stmt->bindparam(":date", $regdate);
 
       // Execute the query
       $stmt->execute();

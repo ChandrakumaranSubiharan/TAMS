@@ -18,13 +18,10 @@ class review
 
             // Prepare the statement to insert values into the inquiry table
 
-            $stmt = $this->db->prepare("INSERT INTO tbl_review(review_title, review_description, review_user_type, customer_id, service_id, review_rating, created_date, status, customer_name) VALUES(:title,:des,:type,:cid,:sid,:rate,:cdate,:status,:name)");
+            $stmt = $this->db->prepare("INSERT INTO tbl_review(review_title, review_description, review_user_type, customer_id, service_id, review_rating, status, customer_name) VALUES(:title,:des,:type,:cid,:sid,:rate,:status,:name)");
 
             // variable to fetch inquiry active/inactive status by bool value
             $sta = '0';
-
-            // variable to fetch current date time
-            $cdate = Date("y-m-d H:i:s");
 
             // Bind parameters
             $stmt->bindparam(":title", $title);
@@ -33,7 +30,6 @@ class review
             $stmt->bindparam(":cid", $cid);
             $stmt->bindparam(":sid", $sid);
             $stmt->bindparam(":rate", $rating);
-            $stmt->bindparam(":cdate", $cdate);
             $stmt->bindparam(":status", $sta);
             $stmt->bindparam(":name", $name);
 
