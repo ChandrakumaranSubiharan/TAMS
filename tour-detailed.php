@@ -195,7 +195,6 @@ foreach ($tourdata as $tourinfo) {
                                                                 <label>KIDS</label>
                                                                 <input type="number" min="0" max="<?php echo $tourinfo['availabile_seats']; ?>" value="0" name="ckids" class="input-text full-width">
                                                             </div>
-
                                                         <?php
                                                     }
                                                     ?>

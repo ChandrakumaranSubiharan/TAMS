@@ -20,7 +20,7 @@ class partner
 
       // Prepare the statement to insert values into the customer table
 
-      $stmt = $this->db->prepare("INSERT INTO tbl_partner(avatar,first_name,last_name,address,username,email_address,contact_number,password,status,province,zipcode,gender,created_date) VALUES(:avatar,:fname, :lname,:address,:uname,:email_id,:contact,:pass,:status,:province,:zipcode,:gender,:date)");
+      $stmt = $this->db->prepare("INSERT INTO tbl_partner(first_name,last_name,address,username,email_address,contact_number,password,status,province,zipcode,gender,created_date) VALUES(:fname, :lname,:address,:uname,:email_id,:contact,:pass,:status,:province,:zipcode,:gender,:date)");
 
       // variable to fetch customer active/inactive status by bool value
       $sta = "0";
@@ -32,7 +32,6 @@ class partner
       $emty = NULL;
 
       // Bind parameters
-      $stmt->bindparam(":avatar", $emty);
       $stmt->bindparam(":fname", $fname);
       $stmt->bindparam(":lname", $lname);
       $stmt->bindparam(":address", $address);

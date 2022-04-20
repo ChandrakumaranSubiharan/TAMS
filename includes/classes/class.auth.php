@@ -74,7 +74,7 @@ class auth
 
                 if ($returned_row['status'] == 0) {
                     echo "<script>alert('sorry for the inconvenience your account has been not verified yet, please contact us or wait and try again.');
-                window.location.href='../../contact-us.php';
+                window.location.href='../contact-us.php';
                 </script>";
                 }
 

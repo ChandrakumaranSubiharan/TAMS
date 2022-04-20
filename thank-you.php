@@ -83,6 +83,12 @@ foreach ($bookingdata as $bookinginfo) {
                                 } else {
                                     echo "UNPAID";
                                 } ?></dd>
+                            <dt>Cancellation Status:</dt>
+                            <dd><?php if ($bookinginfo['cancellation_ava'] == 0) {
+                                    echo "Available for 24Hr";
+                                } else {
+                                    echo "Unavailable";
+                                } ?></dd>
                             <dt>Card Payment Method:</dt>
                             <dd><?php echo $bookinginfo['cus_payment_card_type'];  ?></dd>
                             <dt>Booking Start Date:</dt>
@@ -129,22 +135,22 @@ foreach ($bookingdata as $bookinginfo) {
                         </address>
                     </div>
                     <div class="travelo-box book-with-us-box">
-                            <h4>Why Book with us?</h4>
-                            <ul>
-                                <li>
-                                    <i class="soap-icon-hotel-1 circle"></i>
-                                    <h5 class="title"><a href="#">135,00+ Hotels</a></h5>
-                                </li>
-                                <li>
-                                    <i class="soap-icon-savings circle"></i>
-                                    <h5 class="title"><a href="#">Low Rates &amp; Savings</a></h5>
-                                </li>
-                                <li>
-                                    <i class="soap-icon-support circle"></i>
-                                    <h5 class="title"><a href="#">Excellent Support</a></h5>
-                                </li>
-                            </ul>
-                        </div>
+                        <h4>Why Book with us?</h4>
+                        <ul>
+                            <li>
+                                <i class="soap-icon-hotel-1 circle"></i>
+                                <h5 class="title"><a href="#">135,00+ Hotels</a></h5>
+                            </li>
+                            <li>
+                                <i class="soap-icon-savings circle"></i>
+                                <h5 class="title"><a href="#">Low Rates &amp; Savings</a></h5>
+                            </li>
+                            <li>
+                                <i class="soap-icon-support circle"></i>
+                                <h5 class="title"><a href="#">Excellent Support</a></h5>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>

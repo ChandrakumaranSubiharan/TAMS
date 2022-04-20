@@ -24,6 +24,19 @@ if (isset($_REQUEST['book'])) {
     $tcprice = $_REQUEST['toprice'];
     $tourprice = $tour->TourPriceCalculation($tcadult, $tckid, $tcprice);
     $tourdata = $tour->displyaRecordById($tid);
+
+    $neededseat = $tcadult + $tckid;
+    $avaseat = $tourdata['availabile_seats'];
+
+    if ($neededseat > $avaseat) {
+
+        $message = "Tour Reservation unSuccessful. Entered Tourists Count Greater than Available Seats Count !";
+
+        echo "<script type='text/javascript'>
+        alert('$message');
+        window.location.href = 'tour-detailed.php?tourid=$tid';
+        </script>";
+    }
 }
 ?>
 
@@ -59,6 +72,7 @@ if (isset($_REQUEST['book'])) {
         $total_night = $tourdata['duration_nights'];
         $servicename = $tourdata['title'];
         $availabile_seats = $tourdata['availabile_seats'];
+        $cancell_ava = $tourdata['cancellation'];
         $stype = 'Tour Package';
 
         $calculate_net_amount = $earning->TourPercentageCalculate($total_amount);
@@ -67,7 +81,7 @@ if (isset($_REQUEST['book'])) {
 
         $payout = $earning->Payout($total_amount, $net_amount);
         $tourUpdate = $tour->tour_update_after_booking($serviceid, $total_persons_count, $availabile_seats);
-        $insertBookingData = $booking->insertBookingData($total_amount, $cus_card_type, $card_holdername, $card_number, $cus_id, $booking_sdate, $booking_edate, $total_night, $total_persons_count, $adult_count, $kid_count, $serviceid, $servicename, $stype, $pid);
+        $insertBookingData = $booking->insertBookingData($total_amount, $cus_card_type, $card_holdername, $card_number, $cus_id, $booking_sdate, $booking_edate, $total_night, $total_persons_count, $adult_count, $kid_count, $serviceid, $servicename, $stype, $pid, $cancell_ava);
 
         $LAST_INSERTED_ID = $insertBookingData['lastInsertedID'];
 
@@ -81,7 +95,7 @@ if (isset($_REQUEST['book'])) {
         window.location.href = 'thank-you.php?bookingid=$LAST_INSERTED_ID';
         </script>";
         } else {
-            $message = "Tour Reservation unSuccessful. Entered Tourists Count Greater than Available Seats Count";
+            $message = "Tour Reservation Failed.";
             echo "<script type='text/javascript'>
         alert('$message');
         window.location.href = 'tour-detailed.php?tourid=$serviceid';

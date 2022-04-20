@@ -60,6 +60,7 @@ if (isset($_REQUEST['book'])) {
         $stype = 'Home Stay';
         $service_ava_sdate = $homedata['ava_start_date'];
         $service_ava_edate = $homedata['ava_end_date'];
+        $cancell_ava = $homedata['cancellation'];
 
 
         $calculate_net_amount = $earning->TourPercentageCalculate($total_amount);
@@ -67,7 +68,7 @@ if (isset($_REQUEST['book'])) {
         $net_amount =  $calculate_net_amount['net_amount'];
 
         $payout = $earning->Payout($total_amount, $net_amount);
-        $insertBookingData = $booking->insertBookingData($total_amount, $cus_card_type, $card_holdername, $card_number, $cus_id, $booking_sdate, $booking_edate, $total_night, $total_persons_count, $adult_count, $kid_count, $serviceid, $servicename, $stype, $pid);
+        $insertBookingData = $booking->insertBookingData($total_amount, $cus_card_type, $card_holdername, $card_number, $cus_id, $booking_sdate, $booking_edate, $total_night, $total_persons_count, $adult_count, $kid_count, $serviceid, $servicename, $stype, $pid, $cancell_ava);
         $homeUpdate = $home->home_update_after_booking($serviceid, $service_ava_sdate, $service_ava_edate, $total_night);
 
 

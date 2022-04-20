@@ -22,15 +22,13 @@ if (isset($_GET['confirmId']) && !empty($_GET['confirmId'])) {
         Booking Confirmed Successfully
       </div>";
         $bookingdata = $booking->displyaRecordById($viewId);
-
     } elseif ($CurrentStatus == 1) {
         $bookingdatacancel = $booking->updatestatusCancel($editId);
         $msg = "<div class='alert alert-danger alert-dismissible'>
         <button type='button' class='close' data-dismiss='alert'>&times;</button>
         Booking Cancelled Successfully
       </div>";
-      $bookingdata = $booking->displyaRecordById($viewId);
-
+        $bookingdata = $booking->displyaRecordById($viewId);
     }
 }
 
@@ -152,9 +150,11 @@ if (isset($_GET['confirmId']) && !empty($_GET['confirmId'])) {
                                 <div class="form-group">
                                     <label>Payment Status</label>
                                     <h6><?php if ($bookingdata['payment_status'] == 1) {
-                                            echo "Paid";
+                                            echo "<span style='color: green;'>Paid</span>";
+                                        } elseif ($bookingdata['payment_status'] >= 2) {
+                                            echo "<span style='color: blue;'>Refunded</span>";
                                         } else {
-                                            echo "Not Paid";
+                                            echo "<span style='color: red;'>Not Paid</span>";
                                         }
                                         ?></h6>
                                 </div>
@@ -270,16 +270,16 @@ if (isset($_GET['confirmId']) && !empty($_GET['confirmId'])) {
                                 <div class="form-group">
                                     <label>Booking Status</label>
                                     <h6><?php if ($bookingdata['status'] == 0) {
-                                                echo "<span style='color: teal;'>Not Confirmed</span>";
-                                            } elseif ($bookingdata['status'] == 1) {
-                                                echo "<span style='color: firebrick;'>Cancelled by Host</span>";
-                                            } elseif ($bookingdata['status'] == 2) {
-                                                echo "<span style='color: green;'>Confirmed</span>";
-                                            } elseif ($bookingdata['status'] == 3) {
-                                                echo "<span style='color: red;'>Cancelled by Customer</span>";
-                                            } else {
-                                                echo "<span style='color: red;'>Booking Failed</span>";
-                                            } ?></h6>
+                                            echo "<span style='color: teal;'>Not Confirmed</span>";
+                                        } elseif ($bookingdata['status'] == 1) {
+                                            echo "<span style='color: firebrick;'>Cancelled by Host</span>";
+                                        } elseif ($bookingdata['status'] == 2) {
+                                            echo "<span style='color: green;'>Confirmed</span>";
+                                        } elseif ($bookingdata['status'] == 3) {
+                                            echo "<span style='color: red;'>Cancelled by Customer</span>";
+                                        } else {
+                                            echo "<span style='color: red;'>Booking Failed</span>";
+                                        } ?></h6>
                                 </div>
                             </div>
                             <div class="col-md-9 col-sm-12 text-right">

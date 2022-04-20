@@ -126,6 +126,34 @@
 
 /* Custom */
 
+
+.top-margin {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.top-margin button {
+  margin: 0 5px;
+}
+
+.top-margin button {
+  background-color: rgb(230, 69, 69) !important;
+}
+
+.top-margin button:hover {
+  background-color: rgb(211, 36, 36) !important;
+}
+
+.top-margin .dark {
+  background-color: rgb(93, 93, 93) !important;
+}
+
+.top-margin .dark:hover {
+  background-color: rgb(39, 35, 35) !important;
+}
+
 .signup-section .col-md-6:first-child {
   padding: 0 10px 15px 0 !important;
 
@@ -4743,6 +4771,11 @@ ul.check-circle li:before {
   float: left;
   width: 86%;
 }
+
+.tab-container.full-width-style .tab-content-full {
+  width: 100% !important;
+}
+
 .tab-container.full-width-style .tab-content .tab-content-title {
   color: #963d8a;
 }

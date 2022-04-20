@@ -10,7 +10,7 @@ class booking
   }
 
   // Insert booking data into booking table
-  public function insertBookingData($total_amount, $cus_card_type, $card_holdername, $card_number, $cus_id, $booking_sdate, $booking_edate, $total_night, $total_persons_count, $adult_count, $kid_count, $serviceid, $servicename, $stype, $pid)
+  public function insertBookingData($total_amount, $cus_card_type, $card_holdername, $card_number, $cus_id, $booking_sdate, $booking_edate, $total_night, $total_persons_count, $adult_count, $kid_count, $serviceid, $servicename, $stype, $pid, $cancell_ava)
   {
     // variable to fetch home active/inactive status by bool value
     $sta = "0";
@@ -42,7 +42,8 @@ class booking
       service_id,
       service_name,
       service_type,
-      partner_id)
+      partner_id,
+      cancellation_ava)
            VALUES(
              '$total_amount',
              '$cus_card_type',
@@ -61,7 +62,8 @@ class booking
              '$serviceid',
              '$servicename',
              '$stype',
-             '$pid')";
+             '$pid',
+             '$cancell_ava')";
 
     $sql = $this->db->exec($query);
     if ($sql == true) {
@@ -94,7 +96,7 @@ class booking
   // Fetch single data for edit from home table
   public function displyaRecordByIdviaArray($Id)
   {
-    $query = "SELECT tbl_booking.booking_id,tbl_booking.service_type,tbl_booking.service_name,tbl_booking.total_amount,tbl_booking.payment_status,tbl_booking.cus_payment_card_type,tbl_booking.start_date,tbl_booking.end_date,tbl_booking.total_nights,tbl_booking.total_persons,tbl_booking.total_adults,tbl_booking.total_kids,tbl_booking.partner_id,tbl_customer.first_name,tbl_customer.last_name,tbl_customer.contact_number,tbl_customer.email_address
+    $query = "SELECT tbl_booking.booking_id,tbl_booking.service_type,tbl_booking.service_name,tbl_booking.total_amount,tbl_booking.payment_status,tbl_booking.cus_payment_card_type,tbl_booking.start_date,tbl_booking.end_date,tbl_booking.total_nights,tbl_booking.total_persons,tbl_booking.total_adults,tbl_booking.total_kids,tbl_booking.partner_id,tbl_booking.cancellation_ava,tbl_customer.first_name,tbl_customer.last_name,tbl_customer.contact_number,tbl_customer.email_address
       from tbl_booking
       join tbl_customer on tbl_booking.cus_id=tbl_customer.customer_id 
       where tbl_booking.booking_id = $Id";
@@ -115,7 +117,7 @@ class booking
 
   public function displyaRecordById($Id)
   {
-    $query = "SELECT tbl_booking.booking_id,tbl_booking.service_type,tbl_booking.service_name,tbl_booking.total_amount,tbl_booking.payment_status,tbl_booking.cus_payment_card_type,tbl_booking.start_date,tbl_booking.end_date,tbl_booking.total_nights,tbl_booking.total_persons,tbl_booking.total_adults,tbl_booking.total_kids,tbl_booking.partner_id,tbl_booking.created_date,tbl_booking.status,tbl_booking.payment_card_holder_name,tbl_booking.payment_card_number,tbl_customer.first_name,tbl_customer.last_name,tbl_customer.contact_number,tbl_customer.email_address,tbl_earning.payout,tbl_earning.earning_id
+    $query = "SELECT tbl_booking.booking_id,tbl_booking.service_type,tbl_booking.service_name,tbl_booking.total_amount,tbl_booking.payment_status,tbl_booking.cus_payment_card_type,tbl_booking.start_date,tbl_booking.end_date,tbl_booking.total_nights,tbl_booking.total_persons,tbl_booking.total_adults,tbl_booking.total_kids,tbl_booking.partner_id,tbl_booking.created_date,tbl_booking.status,tbl_booking.payment_card_holder_name,tbl_booking.payment_card_number,tbl_booking.cancellation_ava,tbl_customer.first_name,tbl_customer.last_name,tbl_customer.contact_number,tbl_customer.email_address,tbl_earning.payout,tbl_earning.earning_id
       from tbl_booking
       join tbl_customer on tbl_booking.cus_id=tbl_customer.customer_id 
       join tbl_earning on tbl_booking.cus_id=tbl_earning.customer_id 
@@ -142,7 +144,7 @@ class booking
 
   public function displayBookingByPartner($pid)
   {
-    $sql = "SELECT DISTINCT tbl_booking.booking_id,tbl_booking.cus_id,tbl_booking.total_amount,tbl_booking.cus_payment_card_type,tbl_booking.start_date,tbl_booking.end_date,tbl_booking.status,tbl_booking.created_date,tbl_booking.payment_status,tbl_booking.total_nights,tbl_booking.total_persons,tbl_booking.total_kids,tbl_booking.total_adults,tbl_booking.payment_card_holder_name,tbl_booking.payment_card_number,tbl_booking.service_id,tbl_booking.service_name,tbl_booking.service_type, tbl_earning.earning_id,tbl_earning.net_amount,tbl_earning.payout,tbl_customer.first_name,tbl_customer.last_name,tbl_customer.email_address,tbl_customer.contact_number
+    $sql = "SELECT DISTINCT tbl_booking.booking_id,tbl_booking.cus_id,tbl_booking.total_amount,tbl_booking.cus_payment_card_type,tbl_booking.start_date,tbl_booking.end_date,tbl_booking.status,tbl_booking.created_date,tbl_booking.payment_status,tbl_booking.total_nights,tbl_booking.total_persons,tbl_booking.total_kids,tbl_booking.total_adults,tbl_booking.payment_card_holder_name,tbl_booking.payment_card_number,tbl_booking.service_id,tbl_booking.service_name,tbl_booking.service_type,tbl_booking.cancellation_ava, tbl_earning.earning_id,tbl_earning.net_amount,tbl_earning.payout,tbl_customer.first_name,tbl_customer.last_name,tbl_customer.email_address,tbl_customer.contact_number
     from tbl_booking
     join tbl_customer on tbl_booking.cus_id=tbl_customer.customer_id
     join tbl_earning on tbl_booking.booking_id=tbl_earning.booking_id
@@ -242,6 +244,48 @@ class booking
     $query = $this->db->query($sql);
     $cnt = $query->rowCount();
     return $cnt;
+  }
+
+  public function UpdateCancellation($id)
+  {
+    try {
+      $CancellationSta = 0;
+      $stmt = $this->db->prepare("UPDATE tbl_booking SET 
+                cancellation_ava=:Cst
+             WHERE booking_id=:id ");
+      $stmt->bindparam(":Cst", $CancellationSta);
+      $stmt->bindparam(":id", $id);
+      $stmt->execute();
+
+      return true;
+    } catch (PDOException $e) {
+      echo $e->getMessage();
+      return false;
+    }
+  }
+
+  public function UpdateCancellationWithRefund($id)
+  {
+    try {
+      $CancellationSta = 0;
+      $PaymentSta = 3;
+      $BookingSta = 3;
+      $stmt = $this->db->prepare("UPDATE tbl_booking SET 
+                cancellation_ava=:Cst,
+                status=:Bst,
+                payment_status=:Pst
+             WHERE booking_id=:id ");
+      $stmt->bindparam(":Cst", $CancellationSta);
+      $stmt->bindparam(":Bst", $PaymentSta);
+      $stmt->bindparam(":Pst", $BookingSta);
+      $stmt->bindparam(":id", $id);
+      $stmt->execute();
+
+      return true;
+    } catch (PDOException $e) {
+      echo $e->getMessage();
+      return false;
+    }
   }
 
 
