@@ -1,7 +1,5 @@
 <?php
-session_start();
 include_once '../includes/dbconfig.php';
-
 
 //Post the inputs
 if (isset($_POST['btn-admin-login'])) {
@@ -77,6 +75,7 @@ if (isset($_POST['btn-admin-login'])) {
                     </div>
 
                     <button type="submit" name="btn-admin-login" class="full-width btn-medium form-btn-custom">LOG IN</button>
+                    <a href="../index.php" type="button" class="">GO BACK</a>
 
                 </form>
             </div>

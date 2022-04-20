@@ -81,7 +81,7 @@ if (isset($_POST['btn-partner-login'])) {
                     </div>
 
                     <button type="submit" name="btn-partner-login" class="full-width btn-medium form-btn-custom">LOG IN</button>
-
+                    <a href="../index.php" type="button" class="">GO BACK</a>
                 </form>
             </div>
 

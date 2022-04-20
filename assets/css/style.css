@@ -226,6 +226,13 @@
   height: auto;
 }
 
+.user-login-form-container a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 5px;
+}
+
 .user-login-form-container .sign {
   display: flex;
   flex-direction: column;
