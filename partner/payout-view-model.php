@@ -63,13 +63,13 @@ if (isset($_GET['viewId']) && !empty($_GET['viewId'])) {
                     <div class="row">
                         <div class="col-md-6 col-sm-12">
                             <div class="title">
-                                <h4>View Earning Details</h4>
+                                <h4>View Payout Details</h4>
                             </div>
                             <nav aria-label="breadcrumb" role="navigation">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                                    <li class="breadcrumb-item" aria-current="page">Earnings</li>
-                                    <li class="breadcrumb-item active" aria-current="page">View Earning</li>
+                                    <li class="breadcrumb-item" aria-current="page">Payouts</li>
+                                    <li class="breadcrumb-item active" aria-current="page">View Payout</li>
                                 </ol>
                             </nav>
                             <?php
@@ -85,7 +85,7 @@ if (isset($_GET['viewId']) && !empty($_GET['viewId'])) {
                         <div class="row">
                             <div class="col-md-3 col-sm-12">
                                 <div class="form-group">
-                                    <label>Earning Id</label>
+                                    <label>Payout Id</label>
                                     <h6><?php echo $viewId; ?></h6>
                                 </div>
                             </div>
@@ -93,27 +93,6 @@ if (isset($_GET['viewId']) && !empty($_GET['viewId'])) {
                                 <div class="form-group">
                                     <label>Booking ID</label>
                                     <h6><?php echo $earningdata['booking_id']; ?></h6>
-                                </div>
-                            </div>
-                            <div class="col-md-3 col-sm-12">
-                                <div class="form-group">
-                                    <label>Customer Full Name</label>
-                                    <h6><?php echo $earningdata['first_name']; ?> <?php echo $earningdata['last_name']; ?></h6>
-                                </div>
-                            </div>
-                            <div class="col-md-3 col-sm-12">
-                                <div class="form-group">
-                                    <label>Customer Contact</label>
-                                    <h6><?php echo $earningdata['contact_number']; ?></h6>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-3 col-sm-12">
-                                <div class="form-group">
-                                    <label>Customer Email</label>
-                                    <h6><?php echo $earningdata['email_address']; ?></h6>
                                 </div>
                             </div>
                             <div class="col-md-3 col-sm-12">
@@ -128,27 +107,28 @@ if (isset($_GET['viewId']) && !empty($_GET['viewId'])) {
                                     <h6><?php echo $earningdata['service_name']; ?></h6>
                                 </div>
                             </div>
+
+                        </div>
+
+                        <div class="row">
                             <div class="col-md-3 col-sm-12">
                                 <div class="form-group">
                                     <label>Total Amount (LKR)</label>
                                     <h6><?php echo $earningdata['total_amount']; ?> LKR</h6>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="row">
                             <div class="col-md-3 col-sm-12">
                                 <div class="form-group">
-                                    <label>Income (LKR)</label>
-                                    <h6><?php echo $earningdata['payout']; ?> LKR</h6>
+                                    <label>Payout Percentage %</label>
+                                    <h6><?php echo $earningdata['profit_percentage']; ?> %<h6>
                                 </div>
                             </div>
 
                             <div class="col-md-3 col-sm-12">
                                 <div class="form-group">
-                                    <label>Income Percentage %</label>
-                                    <?php $incomePercent = 100 -$earningdata['profit_percentage']   ?>
-                                    <h6><?php echo $incomePercent; ?> %<h6>
+                                    <label>Payout (LKR)</label>
+                                    <h6><?php echo $earningdata['net_amount']; ?> LKR</h6>
                                 </div>
                             </div>
 
@@ -156,7 +136,7 @@ if (isset($_GET['viewId']) && !empty($_GET['viewId'])) {
                                 <div class="form-group">
                                     <label>Status</label>
                                     <h6><?php if ($earningdata['payment_status'] == 1) {
-                                            echo "<span style='color: green;'>Received</span>";
+                                            echo "<span style='color: green;'>Paid</span>";
                                         } elseif ($earningdata['payment_status'] >= 2) {
                                             echo "<span style='color: blue;'>Refunded</span>";
                                         } else {
@@ -165,44 +145,21 @@ if (isset($_GET['viewId']) && !empty($_GET['viewId'])) {
                                         ?></h6>
                                 </div>
                             </div>
-
-                            <div class="col-md-3 col-sm-12">
-                                <div class="form-group">
-                                    <label>Card Holder Name</label>
-                                    <h6><?php echo $earningdata['payment_card_holder_name']; ?></h6>
-                                </div>
-                            </div>
-
                         </div>
+
                         <div class="row">
-
-                            
-
                             <div class="col-md-3 col-sm-12">
                                 <div class="form-group">
-                                    <label>Card Number</label>
-                                    <h6><?php echo $earningdata['payment_card_number']; ?></h6>
-                                </div>
-                            </div>
-
-                            <div class="col-md-3 col-sm-12">
-                                <div class="form-group">
-                                    <label>Card Type</label>
-                                    <h6><?php echo $earningdata['cus_payment_card_type']; ?></h6>
-                                </div>
-                            </div>
-                            <div class="col-md-3 col-sm-12">
-                                <div class="form-group">
-                                    <label>Earning Created Date and Time</label>
+                                    <label>Payout Created Date and Time</label>
                                     <h6><?php echo date('jS F, Y h:i A', strtotime($earningdata['created_date'])); ?></h6>
                                 </div>
                             </div>
                         </div>
-                       
+
                         <div class="row">
                             <div class="col-md-12 col-sm-12 text-right">
                                 <div class="btn-list">
-                                    <a type="button" href="earning.php" class="btn btn-secondary">Go Back</a>
+                                    <a type="button" href="payout.php" class="btn btn-secondary">Go Back</a>
                                 </div>
                             </div>
                         </div>

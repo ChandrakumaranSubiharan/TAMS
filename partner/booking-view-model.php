@@ -300,7 +300,7 @@ if (isset($_GET['confirmId']) && !empty($_GET['confirmId'])) {
                                     <?php
                                     }
                                     ?>
-                                    <a type="button" href="manage-booking.php" class="btn btn-secondary">Go Back</a>
+                                    <a type="button" href="manage-booking.php?viewId=1" class="btn btn-secondary">Go Back</a>
                                 </div>
                             </div>
                         </div>

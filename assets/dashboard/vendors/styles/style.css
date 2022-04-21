@@ -657,6 +657,29 @@ p {
     box-shadow: 0 0 28px rgba(0, 0, 0, .08)
 }
 
+.card-box1 {
+    background-color: #fff;
+    width: 860px !important;
+    padding: 20px;
+    height: auto;
+    border-radius: 10px;
+    -webkit-box-shadow: 0 0 28px rgba(0, 0, 0, .08);
+    box-shadow: 0 0 28px rgba(0, 0, 0, .08)
+}
+
+.dashfirst {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+
+}
+
+.dashcol {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
 .card-img-top {
     border-radius: 10px 10px 0 0
 }

@@ -1,55 +1,106 @@
 <div class="left-side-bar">
-		<div class="brand-logo">
-			<a href="index.html">
-				<img src="../assets/dashboard/vendors/images/deskapp-logo.svg" alt="" class="dark-logo">
-				<img src="../assets/images/white logo small.svg" alt="" class="light-logo">
-			</a>
-			<div class="close-sidebar" data-toggle="left-sidebar-close">
-				<i class="ion-close-round"></i>
-			</div>
+	<div class="brand-logo">
+		<a href="index.html">
+			<img src="../assets/dashboard/vendors/images/deskapp-logo.svg" alt="" class="dark-logo">
+			<img src="../assets/images/white logo small.svg" alt="" class="light-logo">
+		</a>
+		<div class="close-sidebar" data-toggle="left-sidebar-close">
+			<i class="ion-close-round"></i>
 		</div>
-		<div class="menu-block customscroll">
-			<div class="sidebar-menu">
-				<ul id="accordion-menu">
-					<li>
-						<a href="dashboard.php" class="dropdown-toggle no-arrow">
-							<span class="micon dw dw-house-1"></span><span class="mtext">Home</span>
-						</a>
-					</li>
-					 <li class="dropdown">
-						<a href="javascript:;" class="dropdown-toggle">
-							<span class="micon icon-copy ti-map-alt "></span><span class="mtext">Tour Packages</span>
-						</a>
-						<ul class="submenu">
-							<li><a href="create-tour.php">Create</a></li>
-							<li><a href="manage-tour.php">Manage</a></li>
-						</ul>
-					</li>
-                    <li class="dropdown">
-						<a href="javascript:;" class="dropdown-toggle">
-							<span class="micon icon-copy ti-home"></span></span><span class="mtext">Homes</span>
-						</a>
-						<ul class="submenu">
-							<li><a href="create-home.php">Create</a></li>
-							<li><a href="manage-home.php">Manage</a></li>
-						</ul>
-					</li>
-                    <li>
-						<a href="manage-booking.php" class="dropdown-toggle no-arrow">
-							<i class="micon icon-copy fa fa-list-ol" aria-hidden="true"></i><span class="mtext">Manage Bookings</span>
-						</a>
-					</li>
-					<li>
-						<a href="earning.php" class="dropdown-toggle no-arrow">
-							<i class="micon icon-copy fa fa-money" aria-hidden="true"></i><span class="mtext">Earnings</span>
-						</a>
-					</li>
-                    <li>
-						<a href="#" class="dropdown-toggle no-arrow">
-							<i class="micon icon-copy fa fa-bar-chart" aria-hidden="true"></i></i><span class="mtext">Reports</span>
-						</a>
-					</li>
-			<!--		<li class="dropdown">
+	</div>
+	<div class="menu-block customscroll">
+		<div class="sidebar-menu">
+			<ul id="accordion-menu">
+				<li>
+					<a href="dashboard.php" class="dropdown-toggle no-arrow">
+						<span class="micon dw dw-house-1"></span><span class="mtext">Home</span>
+					</a>
+				</li>
+
+				<li class="dropdown">
+					<a href="javascript:;" class="dropdown-toggle">
+						<span class="micon icon-copy dw dw-user-11 "></span><span class="mtext">Internal Users</span>
+					</a>
+					<ul class="submenu">
+						<li><a href="create-tour.php">Create</a></li>
+						<li><a href="manage-tour.php">Manage</a></li>
+					</ul>
+				</li>
+
+				<li class="dropdown">
+					<a href="javascript:;" class="dropdown-toggle">
+						<span class="micon icon-copy dw dw-deal "></span><span class="mtext">Partners</span>
+					</a>
+					<ul class="submenu">
+						<li><a href="create-tour.php">Create</a></li>
+						<li><a href="manage-tour.php">Manage</a></li>
+					</ul>
+				</li>
+
+				<li class="dropdown">
+					<a href="javascript:;" class="dropdown-toggle">
+						<span class="micon icon-copy dw dw-group "></span><span class="mtext">Customers</span>
+					</a>
+					<ul class="submenu">
+						<li><a href="create-tour.php">Create</a></li>
+						<li><a href="manage-tour.php">Manage</a></li>
+					</ul>
+				</li>
+
+				<li class="dropdown">
+					<a href="javascript:;" class="dropdown-toggle">
+						<span class="micon icon-copy ti-map-alt "></span><span class="mtext">Tour Packages</span>
+					</a>
+					<ul class="submenu">
+						<li><a href="create-tour.php">Create</a></li>
+						<li><a href="manage-tour.php">Manage</a></li>
+					</ul>
+				</li>
+				<li class="dropdown">
+					<a href="javascript:;" class="dropdown-toggle">
+						<span class="micon icon-copy ti-home"></span></span><span class="mtext">Homes</span>
+					</a>
+					<ul class="submenu">
+						<li><a href="create-home.php">Create</a></li>
+						<li><a href="manage-home.php">Manage</a></li>
+					</ul>
+				</li>
+				<li>
+					<a href="earning.php" class="dropdown-toggle no-arrow">
+						<i class="micon icon-copy dw dw-meeting" aria-hidden="true"></i><span class="mtext">Manage Reviews</span>
+					</a>
+				</li>
+				<li>
+					<a href="manage-booking.php" class="dropdown-toggle no-arrow">
+						<i class="micon icon-copy fa fa-list-ol" aria-hidden="true"></i><span class="mtext">Manage Bookings</span>
+					</a>
+				</li>
+				<li>
+					<a href="earning.php" class="dropdown-toggle no-arrow">
+						<i class="micon icon-copy fa fa-money" aria-hidden="true"></i><span class="mtext">Earnings</span>
+					</a>
+				</li>
+
+				<li>
+					<a href="earning.php" class="dropdown-toggle no-arrow">
+						<i class="micon icon-copy dw dw-file-63" aria-hidden="true"></i><span class="mtext">Payouts</span>
+					</a>
+				</li>
+
+				<li>
+					<a href="earning.php" class="dropdown-toggle no-arrow">
+						<i class="micon icon-copy dw dw-chat-11" aria-hidden="true"></i><span class="mtext">Enquiries</span>
+					</a>
+				</li>
+
+
+
+				<li>
+					<a href="#" class="dropdown-toggle no-arrow">
+						<i class="micon icon-copy fa fa-bar-chart" aria-hidden="true"></i></i><span class="mtext">Reports</span>
+					</a>
+				</li>
+				<!--		<li class="dropdown">
 						<a href="javascript:;" class="dropdown-toggle">
 							<span class="micon dw dw-library"></span><span class="mtext">Tables</span>
 						</a>
@@ -208,8 +259,8 @@
 							<span class="mtext">Landing Page <img src="vendors/images/coming-soon.png" alt="" width="25"></span>
 						</a>
 					</li> -->
-				</ul>
-			</div>
+			</ul>
 		</div>
 	</div>
-	<div class="mobile-menu-overlay"></div>
+</div>
+<div class="mobile-menu-overlay"></div>

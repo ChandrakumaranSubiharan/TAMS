@@ -57,12 +57,12 @@ include_once '../includes/dbconfig.php';
                     <div class="row">
                         <div class="col-md-6 col-sm-12">
                             <div class="title">
-                                <h4>Earnings</h4>
+                                <h4>Payouts</h4>
                             </div>
                             <nav aria-label="breadcrumb" role="navigation">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Earnings</li>
+                                    <li class="breadcrumb-item active" aria-current="page">Payouts</li>
                                 </ol>
                             </nav>
                         </div>
@@ -77,47 +77,35 @@ include_once '../includes/dbconfig.php';
                         <table class=" table hover data-table-export nowrap ">
                             <thead>
                                 <tr>
-                                    <th class="table-plus datatable-nosort">Earning Id</th>
-                                    <th>Booking Id</th>
-                                    <th>Customer</th>
+                                    <th class="table-plus datatable-nosort">Booking ID</th>
                                     <th>Service</th>
+                                    <th>Service Name</th>
                                     <th>Full Amount</th>
-                                    <th>Income</th>
-                                    <th>Income <br> Percentage%</th>
+                                    <th>Payout Percentage %</th>
+                                    <th>Payout</th>
                                     <th>Status</th>
                                     <th class="datatable-nosort">Action</th>
-
-                                    <!-- hidden -->
-                                    <th hidden>Customer Contact</th>
-                                    <th hidden>Customer Email</th>
-                                    <th hidden>Service Name</th>
-                                    <th hidden>Card Holder Name</th>
-                                    <th hidden>Card Number</th>
-                                    <th hidden>Payment Card Type</th>
-                                    <th hidden>Earning Created Date</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
-                               $pid = $returned_row['partner_id'];
-                               $earningdata = $earning->displayEarningByPartner($pid);
-                               foreach ($earningdata as $earnings) {
+                                $pid = $returned_row['partner_id'];
+                                $earningdata = $earning->displayEarningByPartner($pid);
+                                foreach ($earningdata as $earnings) {
                                 ?>
                                     <tr>
-                                        <td><?php echo $earnings['earning_id']; ?></td>
                                         <td><?php echo $earnings['booking_id']; ?></td>
-                                        <td><?php echo $earnings['first_name'], ' ', $earnings['last_name']; ?></td>
                                         <td><?php echo $earnings['service_type']; ?></td>
+                                        <td><?php echo $earnings['service_name']; ?></td>
                                         <td><?php echo $earnings['total_amount']; ?> LKR</td>
-                                        <td><?php echo $earnings['payout']; ?> LKR</td>
-                                        <?php $incomePercent = 100 -$earnings['profit_percentage']   ?>
-                                        <td><?php echo $incomePercent ?> %</td>
+                                        <td><?php echo $earnings['profit_percentage']; ?> %</td>
+                                        <td><?php echo $earnings['net_amount']; ?> LKR</td>
                                         <td><?php if ($earnings['payment_status'] == 1) {
-                                                echo "<span style='color: green;'>Received</span>";
+                                                echo "<span style='color: green;'>Paid</span>";
                                             } elseif ($earnings['payment_status'] >= 2) {
                                                 echo "<span style='color: blue;'>Refunded</span>";
                                             } else {
-                                                echo "<span style='color: red;'>Proccessing</span>";
+                                                echo "<span style='color: red;'>Not Paid</span>";
                                             }
                                             ?></td>
                                         <td>
@@ -126,21 +114,10 @@ include_once '../includes/dbconfig.php';
                                                     <i class="dw dw-more"></i>
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                                                    <a class="dropdown-item" href="earning-view-model.php?viewId=<?php echo $earnings['earning_id'] ?>"><i class="dw dw-eye"></i> View</a>
+                                                    <a class="dropdown-item" href="payout-view-model.php?viewId=<?php echo $earnings['earning_id'] ?>"><i class="dw dw-eye"></i> View</a>
                                                 </div>
                                             </div>
                                         </td>
-
-                                        <!-- hidden -->
-                                        <td hidden><?php echo $earnings['contact_number']; ?> </td>
-                                        <td hidden><?php echo $earnings['email_address']; ?> </td>
-                                        <td hidden><?php echo $earnings['service_name']; ?> </td>
-                                        <td hidden><?php echo $earnings['payment_card_holder_name']; ?> </td>
-                                        <td hidden><?php echo $earnings['payment_card_number']; ?> </td>
-                                        <td hidden><?php echo $earnings['cus_payment_card_type']; ?> </td>
-                                        <td hidden><?php echo date('jS F, Y ', strtotime($earnings['created_date'])); ?></td>
-
-
                                     </tr>
                                 <?php } ?>
 

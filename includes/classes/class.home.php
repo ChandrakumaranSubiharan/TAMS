@@ -385,4 +385,13 @@ class home
       return false;
     }
   }
+
+
+  public function PartnerGetHomeCount($pid)
+  {
+    $sql = "SELECT home_id from tbl_home WHERE partner_id = $pid AND status = 1";
+    $query = $this->db->query($sql);
+    $cnt = $query->rowCount();
+    return $cnt;
+  }
 }

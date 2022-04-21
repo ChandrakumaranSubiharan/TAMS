@@ -134,13 +134,25 @@ class booking
     return $cnt;
   }
 
-  public function displayBookingByPartner($pid)
+  public function displayBookingByPartner($pid, $viewId)
   {
+
+
+    $sql = '';
     $sql = "SELECT DISTINCT tbl_booking.booking_id,tbl_booking.cus_id,tbl_booking.total_amount,tbl_booking.cus_payment_card_type,tbl_booking.start_date,tbl_booking.end_date,tbl_booking.status,tbl_booking.created_date,tbl_booking.payment_status,tbl_booking.total_nights,tbl_booking.total_persons,tbl_booking.total_kids,tbl_booking.total_adults,tbl_booking.payment_card_holder_name,tbl_booking.payment_card_number,tbl_booking.service_id,tbl_booking.service_name,tbl_booking.service_type,tbl_booking.cancellation_ava, tbl_earning.earning_id,tbl_earning.net_amount,tbl_earning.payout,tbl_customer.first_name,tbl_customer.last_name,tbl_customer.email_address,tbl_customer.contact_number
-    from tbl_booking
-    join tbl_customer on tbl_booking.cus_id=tbl_customer.customer_id
-    join tbl_earning on tbl_booking.booking_id=tbl_earning.booking_id
-    where tbl_booking.partner_id= $pid ";
+        from tbl_booking
+        join tbl_customer on tbl_booking.cus_id=tbl_customer.customer_id
+        join tbl_earning on tbl_booking.booking_id=tbl_earning.booking_id
+        where ";
+    if ($viewId == 1) {
+      $sql .= "tbl_booking.partner_id= $pid ";
+    } elseif ($viewId == 2) {
+      $sql .= "tbl_booking.partner_id= $pid AND payment_status >= 2 ";
+    } elseif ($viewId == 3) {
+      $sql .= "tbl_booking.partner_id= $pid order by tbl_booking.created_date desc limit 5";
+    };
+
+    $sql .= ";";
 
     $query = $this->db->query($sql);
     $data = array();
@@ -168,6 +180,7 @@ class booking
       return false;
     }
   }
+
 
   public function updatestatusConfirm($id)
   {
@@ -206,6 +219,8 @@ class booking
   }
 
 
+  //  Customer Dashboard Querys Start
+
   public function GetUnconfirmedBookingCount($uid)
   {
     $sql = "SELECT booking_id from tbl_booking WHERE cus_id = $uid AND status = 0";
@@ -237,6 +252,9 @@ class booking
     $cnt = $query->rowCount();
     return $cnt;
   }
+
+  //  Customer Dashboard Querys End
+
 
   public function UpdateCancellation($id)
   {
@@ -280,8 +298,131 @@ class booking
     }
   }
 
+  //  Partner Dashboard Querys Start
+
+  public function PartnerGetRefundedBookingCount($pid)
+  {
+    $sql = "SELECT booking_id from tbl_booking WHERE partner_id = $pid AND payment_status >= 2";
+    $query = $this->db->query($sql);
+    $cnt = $query->rowCount();
+    return $cnt;
+  }
+
+
+  public function PartnerGetCompletedBookingCount($pid)
+  {
+    $sql = "SELECT booking_id from tbl_booking WHERE partner_id = $pid AND status = 4";
+    $query = $this->db->query($sql);
+    $cnt = $query->rowCount();
+    return $cnt;
+  }
+
+
+  public function PartnerGetConfirmedBookingCount($pid)
+  {
+    $sql = "SELECT booking_id from tbl_booking WHERE partner_id = $pid AND status = 2";
+    $query = $this->db->query($sql);
+    $cnt = $query->rowCount();
+    return $cnt;
+  }
+
+  public function PartnerGetUnConfirmedBookingCount($pid)
+  {
+    $sql = "SELECT booking_id from tbl_booking WHERE partner_id = $pid AND status = 0";
+    $query = $this->db->query($sql);
+    $cnt = $query->rowCount();
+    return $cnt;
+  }
+
+  public function PartnerTotTourBookingCount($pid)
+  {
+    $sql = "SELECT booking_id from tbl_booking WHERE partner_id = $pid AND service_type = 'Tour Package'";
+    $query = $this->db->query($sql);
+    $cnt = $query->rowCount();
+    return $cnt;
+  }
+
+  public function PartnerTotHomeBookingCount($pid)
+  {
+    $sql = "SELECT booking_id from tbl_booking WHERE partner_id = $pid AND service_type = 'Home Stay'";
+    $query = $this->db->query($sql);
+    $cnt = $query->rowCount();
+    return $cnt;
+  }
+
+  //  Partner Dashboard Querys End
 
 
 
-  
+  // Auto Updates
+
+  public function UpdateBookingStatusProgressByDate()
+  {
+
+    try {
+
+  //     $current_timedate = date("Y-m-d", strtotime('+4 hours +30 minutes'));
+
+      $PaymentSta = 1;
+      $CurrentSta = 2;
+      $ProgressSta = 5;
+      $stmt = $this->db->prepare("UPDATE tbl_booking SET status=:St WHERE status=:CSta AND payment_status=:PSta AND  SYSDATE() >= 'start_date' ");
+      $stmt->bindparam(":St", $ProgressSta);
+      $stmt->bindparam(":CSta", $CurrentSta);
+      $stmt->bindparam(":PSta", $PaymentSta);
+      $stmt->execute();
+
+    } catch (PDOException $e) {
+      echo $e->getMessage();
+    }
+  }
+
+  public function UpdateBookingStatusCompletedByDate()
+  {
+
+    try {
+
+      $PaymentSta = 1;
+      // $CurrentSta = 5;
+      $CompletedSta = 4;
+      $stmt = $this->db->prepare("UPDATE tbl_booking SET status=:St WHERE payment_status=:PSta AND SYSDATE() >= 'end_date' ");
+      // $stmt = $this->db->prepare("UPDATE tbl_booking SET status=:St WHERE status=:CSta AND payment_status=:PSta AND SYSDATE() >= 'end_date' ");
+      $stmt->bindparam(":St", $CompletedSta);
+      // $stmt->bindparam(":CSta", $CurrentSta);
+      $stmt->bindparam(":PSta", $PaymentSta);
+      $stmt->execute();
+
+      return true;
+    } catch (PDOException $e) {
+      echo $e->getMessage();
+      return false;
+    }
+  }
+
+
+  // public function UpdateBookingStatusCompletedByDate()
+  // {
+  //   try {
+  //     $current_timedate = date("Y-m-d", strtotime('+4 hours +30 minutes'));
+  //     $PaymentSta = 1;
+  //     $CompletedSta = 5;
+  //     $stmt = $this->db->prepare("UPDATE tbl_booking SET 
+  //               status=:St,
+  //            WHERE payment_status=:PSta AND end_date <= $current_timedate");
+  //     $stmt->bindparam(":St", $CompletedSta);
+  //     $stmt->bindparam(":PSta", $PaymentSta);
+  //     $stmt->execute();
+
+  //     return true;
+  //   } catch (PDOException $e) {
+  //     echo $e->getMessage();
+  //     return false;
+  //   }
+  // }
+
+
+
+
+
+
 }

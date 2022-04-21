@@ -3,6 +3,8 @@
 include_once '../includes/dbconfig.php';
 
 
+$viewId = $_GET['viewId'];
+
 if (isset($_GET['confirmId']) && !empty($_GET['confirmId'])) {
     $editId = $_GET['confirmId'];
     $CurrentStatus = $_GET['status'];
@@ -13,7 +15,6 @@ if (isset($_GET['confirmId']) && !empty($_GET['confirmId'])) {
         <button type='button' class='close' data-dismiss='alert'>&times;</button>
         Booking Confirmed Successfully
       </div>";
-
     } elseif ($CurrentStatus == 1) {
         $bookingdatacancel = $booking->updatestatusCancel($editId);
         $msg = "<div class='alert alert-danger alert-dismissible'>
@@ -85,11 +86,11 @@ if (isset($_GET['confirmId']) && !empty($_GET['confirmId'])) {
                                     <li class="breadcrumb-item active" aria-current="page">Manage booking</li>
                                 </ol>
                             </nav>
-                                <?php
-                                if (isset($msg)) {
-                                    echo $msg;
-                                }
-                                ?>
+                            <?php
+                            if (isset($msg)) {
+                                echo $msg;
+                            }
+                            ?>
                         </div>
                     </div>
                 </div>
@@ -106,14 +107,15 @@ if (isset($_GET['confirmId']) && !empty($_GET['confirmId'])) {
                                     <th>Customer Name</th>
                                     <th>Service Type</th>
                                     <th>Service Name</th>
-                                    <th>Total Amount (LKR)</th>
+                                    <th>Total Amount</th>
                                     <th>Status</th>
+                                    <th>Payment Status</th>
+
                                     <th class="datatable-nosort">Action</th>
 
                                     <!-- hidden -->
                                     <th hidden>Customer Contact</th>
                                     <th hidden>Customer Email</th>
-                                    <th hidden>Payment Status</th>
                                     <th hidden>Payment Card Type</th>
                                     <th hidden>Card Number</th>
                                     <th hidden>Card Holder Name</th>
@@ -130,7 +132,7 @@ if (isset($_GET['confirmId']) && !empty($_GET['confirmId'])) {
                             <tbody>
                                 <?php
                                 $pid = $returned_row['partner_id'];
-                                $bookingdata = $booking->displayBookingByPartner($pid);
+                                $bookingdata = $booking->displayBookingByPartner($pid, $viewId);
                                 foreach ($bookingdata as $bookings) {
                                 ?>
                                     <tr>
@@ -150,6 +152,14 @@ if (isset($_GET['confirmId']) && !empty($_GET['confirmId'])) {
                                             } else {
                                                 echo "Booking Failed";
                                             } ?></td>
+                                        <td><?php if ($bookings['payment_status'] == 1) {
+                                                echo "<span style='color: green;'>Paid</span>";
+                                            } elseif ($bookings['payment_status'] >= 2) {
+                                                echo "<span style='color: blue;'>Refunded</span>";
+                                            } else {
+                                                echo "<span style='color: red;'>Not Paid</span>";
+                                            }
+                                            ?> </td>
                                         <td>
                                             <div class="dropdown">
                                                 <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
@@ -173,15 +183,11 @@ if (isset($_GET['confirmId']) && !empty($_GET['confirmId'])) {
                                             </div>
                                         </td>
 
+
                                         <!-- hidden -->
                                         <td hidden><?php echo $bookings['contact_number']; ?> </td>
                                         <td hidden><?php echo $bookings['email_address']; ?> </td>
-                                        <td hidden><?php if ($bookings['payment_status'] == 1) {
-                                                        echo "Paid";
-                                                    } else {
-                                                        echo "Not Paid";
-                                                    }
-                                                    ?> </td>
+
                                         <td hidden><?php echo $bookings['cus_payment_card_type']; ?> </td>
                                         <td hidden><?php echo $bookings['payment_card_number']; ?> </td>
                                         <td hidden><?php echo $bookings['payment_card_holder_name']; ?> </td>

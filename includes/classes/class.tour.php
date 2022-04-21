@@ -12,7 +12,7 @@ class tour
 
 
   // Insert tour data into tour table
-  public function insertData($tour_title, $tour_location, $adult_price, $kid_status, $kid_price, $file, $tour_details, $tour_duration, $tour_type, $ava_seats, $tour_language, $district, $cancel, $str_date ,$str_time, $end_date ,$end_time, $g_location , $pid)
+  public function insertData($tour_title, $tour_location, $adult_price, $kid_status, $kid_price, $file, $tour_details, $tour_duration, $tour_type, $ava_seats, $tour_language, $district, $cancel, $str_date, $str_time, $end_date, $end_time, $g_location, $pid)
   {
     $allow = array('jpg', 'jpeg', 'png');
     $exntension = explode('.', $file['name']);
@@ -124,7 +124,7 @@ class tour
     }
   }
 
-  public function update($id, $tourtitle, $location, $price,$k_status,$k_price, $des, $duration, $type, $avaseats,$glocation, $language, $district, $cancell, $ava_start,$start_time, $ava_end,$end_time, $sta)
+  public function update($id, $tourtitle, $location, $price, $k_status, $k_price, $des, $duration, $type, $avaseats, $glocation, $language, $district, $cancell, $ava_start, $start_time, $ava_end, $end_time, $sta)
   {
     try {
       $stmt = $this->db->prepare("UPDATE tbl_tour SET 
@@ -195,18 +195,18 @@ class tour
     }
   }
 
-    public function deleteRecord($id)
-    {
-      try {
-        $stmt = $this->db->prepare("DELETE FROM tbl_tour WHERE tour_id = '$id'");
-        $stmt->bindparam(":id", $id);
-        $stmt->execute();
-        return true;
-      } catch (PDOException $e) {
-        echo $e->getMessage();
-        return false;
-      }
+  public function deleteRecord($id)
+  {
+    try {
+      $stmt = $this->db->prepare("DELETE FROM tbl_tour WHERE tour_id = '$id'");
+      $stmt->bindparam(":id", $id);
+      $stmt->execute();
+      return true;
+    } catch (PDOException $e) {
+      echo $e->getMessage();
+      return false;
     }
+  }
 
   // Fetch tour records for show listing
   public function TourActiveData()
@@ -289,12 +289,12 @@ class tour
   }
 
 
-  public function tour_update_after_booking($serviceid,$total_persons_count,$availabile_seats)
+  public function tour_update_after_booking($serviceid, $total_persons_count, $availabile_seats)
   {
 
-    $avaseats = $availabile_seats - $total_persons_count ;
+    $avaseats = $availabile_seats - $total_persons_count;
 
-    if ($total_persons_count < $availabile_seats ) {
+    if ($total_persons_count < $availabile_seats) {
 
       try {
         $stmt = $this->db->prepare("UPDATE tbl_tour SET 
@@ -309,9 +309,7 @@ class tour
         echo $e->getMessage();
         return false;
       }
-
-
-    } elseif($total_persons_count == $availabile_seats) {
+    } elseif ($total_persons_count == $availabile_seats) {
 
       $sta = "0";
 
@@ -331,11 +329,9 @@ class tour
         echo $e->getMessage();
         return false;
       }
+    } else {
 
-
-    }else {
-
-        return false;
+      return false;
     }
   }
 
@@ -345,7 +341,7 @@ class tour
   {
     $sql = "SELECT tour_id from tbl_tour";
     $query = $this->db->query($sql);
-    $cnt=$query->rowCount();
+    $cnt = $query->rowCount();
     return $cnt;
   }
 
@@ -385,4 +381,12 @@ class tour
     }
   }
 
+
+  public function PartnerGetTourCount($pid)
+  {
+    $sql = "SELECT tour_id from tbl_tour WHERE partner_id = $pid AND status = 1";
+    $query = $this->db->query($sql);
+    $cnt = $query->rowCount();
+    return $cnt;
+  }
 }

@@ -310,13 +310,13 @@ var options5 = {
 	},
 	series: [{
 		name: 'In Progress',
-		data: [40, 28, 47, 22, 34, 25]
+		data: [40, 28, 47, 22, 34, 25,30, 20, 37, 10, 28, 11]
 	}, {
 		name: 'Complete',
-		data: [30, 20, 37, 10, 28, 11]
+		data: [30, 20, 37, 10, 28, 11,30, 20, 37, 10, 28, 11]
 	}],
 	xaxis: {
-		categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+		categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun','Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
 		labels: {
 			style: {
 				colors: ['#353535'],

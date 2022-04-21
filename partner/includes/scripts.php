@@ -8,7 +8,12 @@
 	<script src="../assets/dashboard/src/plugins/datatables/js/dataTables.bootstrap4.min.js"></script>
 	<script src="../assets/dashboard/src/plugins/datatables/js/dataTables.responsive.min.js"></script>
 	<script src="../assets/dashboard/src/plugins/datatables/js/responsive.bootstrap4.min.js"></script>
-	<script src="../assets/dashboard/vendors/scripts/dashboard.js"></script>
+	<script src="../assets/dashboard/src/plugins/jQuery-Knob-master/jquery.knob.min.js"></script>
+	<script src="../assets/dashboard/src/plugins/highcharts-6.0.7/code/highcharts.js"></script>
+	<script src="../assets/dashboard/src/plugins/highcharts-6.0.7/code/highcharts-more.js"></script>
+	<script src="../assets/dashboard/src/plugins/jvectormap/jquery-jvectormap-2.0.3.min.js"></script>
+	<script src="../assets/dashboard/src/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+
 	<!-- buttons for Export datatable -->
 	<script src="../assets/dashboard/src/plugins/datatables/js/dataTables.buttons.min.js"></script>
 	<script src="../assets/dashboard/src/plugins/datatables/js/buttons.bootstrap4.min.js"></script>
@@ -19,3 +24,8 @@
 	<script src="../assets/dashboard/src/plugins/datatables/js/vfs_fonts.js"></script>
 	<!-- Datatable Setting js -->
 	<script src="../assets/dashboard/vendors/scripts/datatable-setting.js"></script></body>
+
+
+
+
+	
