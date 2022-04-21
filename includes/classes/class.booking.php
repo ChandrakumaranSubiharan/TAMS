@@ -361,17 +361,12 @@ class booking
 
     try {
 
-  //     $current_timedate = date("Y-m-d", strtotime('+4 hours +30 minutes'));
-
       $PaymentSta = 1;
-      $CurrentSta = 2;
       $ProgressSta = 5;
-      $stmt = $this->db->prepare("UPDATE tbl_booking SET status=:St WHERE status=:CSta AND payment_status=:PSta AND  SYSDATE() >= 'start_date' ");
+      $stmt = $this->db->prepare("UPDATE tbl_booking SET status=:St WHERE payment_status=:PSta AND DATE(NOW()) >= DATE(start_date) AND DATE(NOW()) <= DATE(end_date)");
       $stmt->bindparam(":St", $ProgressSta);
-      $stmt->bindparam(":CSta", $CurrentSta);
       $stmt->bindparam(":PSta", $PaymentSta);
       $stmt->execute();
-
     } catch (PDOException $e) {
       echo $e->getMessage();
     }
@@ -383,12 +378,9 @@ class booking
     try {
 
       $PaymentSta = 1;
-      // $CurrentSta = 5;
       $CompletedSta = 4;
-      $stmt = $this->db->prepare("UPDATE tbl_booking SET status=:St WHERE payment_status=:PSta AND SYSDATE() >= 'end_date' ");
-      // $stmt = $this->db->prepare("UPDATE tbl_booking SET status=:St WHERE status=:CSta AND payment_status=:PSta AND SYSDATE() >= 'end_date' ");
+      $stmt = $this->db->prepare("UPDATE tbl_booking SET status=:St WHERE payment_status=:PSta AND DATE(NOW()) > DATE(end_date)");
       $stmt->bindparam(":St", $CompletedSta);
-      // $stmt->bindparam(":CSta", $CurrentSta);
       $stmt->bindparam(":PSta", $PaymentSta);
       $stmt->execute();
 
@@ -400,29 +392,21 @@ class booking
   }
 
 
-  // public function UpdateBookingStatusCompletedByDate()
-  // {
-  //   try {
-  //     $current_timedate = date("Y-m-d", strtotime('+4 hours +30 minutes'));
-  //     $PaymentSta = 1;
-  //     $CompletedSta = 5;
-  //     $stmt = $this->db->prepare("UPDATE tbl_booking SET 
-  //               status=:St,
-  //            WHERE payment_status=:PSta AND end_date <= $current_timedate");
-  //     $stmt->bindparam(":St", $CompletedSta);
-  //     $stmt->bindparam(":PSta", $PaymentSta);
-  //     $stmt->execute();
 
-  //     return true;
-  //   } catch (PDOException $e) {
-  //     echo $e->getMessage();
-  //     return false;
-  //   }
-  // }
+  function BookingCountByMonth()
+  {
 
+    $sql = "SELECT MONTH(created_date), COUNT(MONTH(created_date)) FROM tbl_customer GROUP BY MONTH(created_date)";
+    $query = $this->db->query($sql);
 
-
-
-
-
+    $data = array();
+    if ($query->rowCount() > 0) {
+      while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+        $data[] = $row;
+      }
+        return $data;
+    } else {
+      return false;
+    }
+  }
 }

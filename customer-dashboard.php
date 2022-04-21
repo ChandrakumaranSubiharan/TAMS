@@ -294,6 +294,8 @@ if (isset($_GET['logout']) && ($_GET['logout'] == 'true')) {
                             <h2>Travel Services You have Booked!</h2>
                             <?php
                             $cid = $returned_row['customer_id'];
+                            $StatusProgressAutoUpdate = $booking->UpdateBookingStatusProgressByDate();
+							$StatusCompleteAutoUpdate = $booking->UpdateBookingStatusCompletedByDate();
                             $bookingdata = $booking->displayBookingByCustomer($cid);
                             if ($bookingdata) {
                                 foreach ($bookingdata as $bookings) {

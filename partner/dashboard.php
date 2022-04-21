@@ -260,14 +260,8 @@
 							$viewId = 3;
 
 
-							// fix it
-							// $StatusProgressAutoUpdate = $booking->UpdateBookingStatusProgressByDate();
-							// $StatusProgressAutoUpdate = $booking->UpdateBookingStatusCompletedByDate();
-
-
-
-
-
+							$StatusProgressAutoUpdate = $booking->UpdateBookingStatusProgressByDate();
+							$StatusCompleteAutoUpdate = $booking->UpdateBookingStatusCompletedByDate();
 							$bookingdata = $booking->displayBookingByPartner($pid, $viewId);
 
 							if ($bookingdata) {
@@ -335,6 +329,7 @@
 			</div>
 			<!-- Responsive tables End -->
 
+
 			<div class="row">
 				<div class="col-xl-12 mb-30">
 					<div class="card-box height-100-p pd-20">
@@ -351,11 +346,16 @@
 
 	<?php include('includes/scripts.php'); ?>
 
-	<?php
 
-	$d1 = 10;
+	<?php
+	$bookingcount = $booking->BookingCountByMonth();
+
+	$var = print_r($bookingcount[1]['MONTH(created_date)'], true);
+	$var2 = print_r($bookingcount[1]['COUNT(MONTH(created_date))'], true);
 
 	?>
+
+
 
 	<!-- booking bar chart -->
 	<script>
@@ -391,10 +391,10 @@
 			},
 			series: [{
 				name: 'In Progress',
-				data: [<?php echo $d1 ?>, 28, 47, 22, 34, 25, 30, 20, 37, 10, 28, 11]
+				data: [<?php echo $var ?>, 28, 47, 22, 34, 25, 30, 20, 37, 10, 28, 11]
 			}, {
 				name: 'Complete',
-				data: [30, 20, 37, 10, 28, 11, 30, 20, 37, 10, 28, 11]
+				data: [<?php echo $var2 ?>, 20, 37, 10, 28, 11, 30, 20, 37, 10, 28, 11]
 			}],
 			xaxis: {
 				categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
