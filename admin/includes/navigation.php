@@ -70,10 +70,14 @@
 						<i class="micon icon-copy dw dw-meeting" aria-hidden="true"></i><span class="mtext">Manage Reviews</span>
 					</a>
 				</li>
-				<li>
-					<a href="manage-booking.php" class="dropdown-toggle no-arrow">
-						<i class="micon icon-copy fa fa-list-ol" aria-hidden="true"></i><span class="mtext">Manage Bookings</span>
+				<li class="dropdown">
+					<a href="javascript:;" class="dropdown-toggle">
+						<span class="micon icon-copy fa fa-list-ol"></span></span><span class="mtext">Bookings</span>
 					</a>
+					<ul class="submenu">
+						<li><a href="manage-booking.php?viewId=1">View All Bookings</a></li>
+						<li><a href="manage-booking.php?viewId=2">View Refunded Bookings</a></li>
+					</ul>
 				</li>
 				<li>
 					<a href="earning.php" class="dropdown-toggle no-arrow">

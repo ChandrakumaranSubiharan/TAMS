@@ -64,7 +64,31 @@
 					<ul class="submenu">
 						<li class="dropdown">
 							<a href="javascript:;" class="dropdown-toggle">
-								<span class="micon fa fa-plug"></span><span class="mtext">Customer Reports</span>
+								<span class="micon fa fa-plug"></span><span class="mtext">Booking Reports</span>
+							</a>
+							<ul class="submenu child">
+								<li><a href="javascript:;">B/W Dates</a></li>
+								<li><a href="javascript:;">By Month</a></li>
+								<li><a href="javascript:;">By Year</a></li>
+							</ul>
+						</li>
+					</ul>
+					<ul class="submenu">
+						<li class="dropdown">
+							<a href="javascript:;" class="dropdown-toggle">
+								<span class="micon fa fa-plug"></span><span class="mtext">Earning Reports</span>
+							</a>
+							<ul class="submenu child">
+								<li><a href="javascript:;">B/W Dates</a></li>
+								<li><a href="javascript:;">By Month</a></li>
+								<li><a href="javascript:;">By Year</a></li>
+							</ul>
+						</li>
+					</ul>
+					<ul class="submenu">
+						<li class="dropdown">
+							<a href="javascript:;" class="dropdown-toggle">
+								<span class="micon fa fa-plug"></span><span class="mtext">Services Reports</span>
 							</a>
 							<ul class="submenu child">
 								<li><a href="javascript:;">B/W Dates</a></li>

@@ -647,6 +647,12 @@ textarea.form-control{
 	padding: 10px;
 }
 
+/* .flexit {
+	display: flex !important;
+	flex-direction: row !important;
+} */
+
+
 /*-------------------------------- datepicker style ----------------*/
 .datepicker{
 	z-index: 1060;

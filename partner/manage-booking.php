@@ -142,16 +142,20 @@ if (isset($_GET['confirmId']) && !empty($_GET['confirmId'])) {
                                         <td><?php echo $bookings['service_name']; ?></td>
                                         <td><?php echo $bookings['total_amount']; ?> LKR</td>
                                         <td><?php if ($bookings['status'] == 0) {
-                                                echo "<span style='color: teal;'>Not Confirmed</span>";
-                                            } elseif ($bookings['status'] == 1) {
-                                                echo "<span style='color: firebrick;'>Cancelled</span>";
-                                            } elseif ($bookings['status'] == 2) {
-                                                echo "<span style='color: green;'>Confirmed</span>";
-                                            } elseif ($bookings['status'] == 3) {
-                                                echo "<span style='color: red;'>Cancelled by Customer</span>";
-                                            } else {
-                                                echo "Booking Failed";
-                                            } ?></td>
+												echo "<span style='color: teal;'>Not Confirmed</span>";
+											} elseif ($bookings['status'] == 1) {
+												echo "<span style='color: firebrick;'>Cancelled</span>";
+											} elseif ($bookings['status'] == 2) {
+												echo "<span style='color: green;'>Confirmed</span>";
+											} elseif ($bookings['status'] == 3) {
+												echo "<span style='color: red;'>Cancelled by You</span>";
+											} elseif ($bookings['status'] == 4) {
+												echo "<span style='color: green;'>Completed</span>";
+											} elseif ($bookings['status'] == 5) {
+												echo "<span style='color: blue;'>Inprogress</span>";
+											} else {
+												echo "Booking Failed";
+											} ?></td>
                                         <td><?php if ($bookings['payment_status'] == 1) {
                                                 echo "<span style='color: green;'>Paid</span>";
                                             } elseif ($bookings['payment_status'] >= 2) {
