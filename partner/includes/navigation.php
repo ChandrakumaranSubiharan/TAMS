@@ -58,45 +58,15 @@
 
 
 				<li class="dropdown">
-					<a href="javascript:;" class="dropdown-toggle">
-						<span class="micon icon-copy fa fa-bar-chart"></span><span class="mtext">Reports</span>
-					</a>
-					<ul class="submenu">
-						<li class="dropdown">
-							<a href="javascript:;" class="dropdown-toggle">
-								<span class="micon fa fa-plug"></span><span class="mtext">Booking Reports</span>
-							</a>
-							<ul class="submenu child">
-								<li><a href="javascript:;">B/W Dates</a></li>
-								<li><a href="javascript:;">By Month</a></li>
-								<li><a href="javascript:;">By Year</a></li>
-							</ul>
-						</li>
-					</ul>
-					<ul class="submenu">
-						<li class="dropdown">
-							<a href="javascript:;" class="dropdown-toggle">
-								<span class="micon fa fa-plug"></span><span class="mtext">Earning Reports</span>
-							</a>
-							<ul class="submenu child">
-								<li><a href="javascript:;">B/W Dates</a></li>
-								<li><a href="javascript:;">By Month</a></li>
-								<li><a href="javascript:;">By Year</a></li>
-							</ul>
-						</li>
-					</ul>
-					<ul class="submenu">
-						<li class="dropdown">
-							<a href="javascript:;" class="dropdown-toggle">
-								<span class="micon fa fa-plug"></span><span class="mtext">Services Reports</span>
-							</a>
-							<ul class="submenu child">
-								<li><a href="javascript:;">B/W Dates</a></li>
-								<li><a href="javascript:;">By Month</a></li>
-								<li><a href="javascript:;">By Year</a></li>
-							</ul>
-						</li>
-					</ul>
+					<li class="dropdown">
+						<a href="javascript:;" class="dropdown-toggle">
+							<span class="micon fa fa-bar-chart"></span><span class="mtext">Reports</span>
+						</a>
+						<ul class="submenu">
+							<li><a href="reports.php?viewId=1">Earning Reports</a></li>
+							<li><a href="reports.php?viewId=2">Services Reports</a></li>
+						</ul>
+					</li>
 				</li>
 			</ul>
 		</div>

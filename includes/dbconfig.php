@@ -59,6 +59,10 @@ $tour = new tour($DB_con);
 include_once 'classes/class.review.php';
 $review = new review($DB_con);
 
+//including reports class 
+include_once 'classes/class.reports.php';
+$reports = new reports($DB_con);
+
 ?>
 
 
