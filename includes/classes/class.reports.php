@@ -9,10 +9,11 @@ class reports
         $this->db = $DB_con;
     }
 
+
+    // Partner Earning Report
+
     public function EarningReport($Rtype, $SDate, $EDate, $pid)
     {
-        $HTypeString = 'Home_Stay';
-        $TTypeString = 'Tour_Package';
         $sql = '';
         $sql = "SELECT DISTINCT 
          tbl_earning.earning_id,tbl_earning.total_amount,tbl_earning.profit_percentage,tbl_earning.net_amount,tbl_earning.payout,tbl_earning.created_date,tbl_earning.service_type,tbl_earning.service_name,
@@ -22,34 +23,28 @@ class reports
          join tbl_customer on tbl_earning.customer_id=tbl_customer.customer_id
          join tbl_booking on tbl_earning.booking_id=tbl_booking.booking_id
          where ";
+
+        $TTypeString = 'Tour_Package';
+        $HTypeString = 'Home_Stay';
+        $Amount = 15000;
+        $Percentage = 15;
+
         if ($Rtype == 1) {
-            $sql .= "DATE(tbl_earning.created_date) BETWEEN '$SDate' AND '$EDate' AND tbl_booking.partner_id= $pid ORDER BY created_date DESC ";
+            $sql .= "DATE(tbl_earning.created_date) BETWEEN '$SDate' AND '$EDate' AND tbl_booking.partner_id= '$pid' ORDER BY created_date DESC ";
         } elseif ($Rtype == 2) {
-            $sql .= "DATE(tbl_earning.created_date) BETWEEN '$SDate' AND '$EDate' AND tbl_booking.partner_id= $pid AND tbl_earning.service_type= $TTypeString ORDER BY created_date DESC";
-        } else {
-            return false;
+            $sql .= "DATE(tbl_earning.created_date) BETWEEN '$SDate' AND '$EDate' AND tbl_booking.partner_id= '$pid' AND tbl_earning.service_type= '$TTypeString' ORDER BY created_date DESC ";
+        } elseif ($Rtype == 3) {
+            $sql .= "DATE(tbl_earning.created_date) BETWEEN '$SDate' AND '$EDate' AND tbl_booking.partner_id= '$pid' AND tbl_earning.service_type= '$HTypeString' ORDER BY created_date DESC ";
+        } elseif ($Rtype == 4) {
+            $sql .= "DATE(tbl_earning.created_date) BETWEEN '$SDate' AND '$EDate' AND tbl_booking.partner_id= '$pid' AND tbl_earning.total_amount>= '$Amount' ORDER BY created_date DESC ";
+        } elseif ($Rtype == 5) {
+            $sql .= "DATE(tbl_earning.created_date) BETWEEN '$SDate' AND '$EDate' AND tbl_booking.partner_id= '$pid' AND tbl_earning.total_amount<= '$Amount' ORDER BY created_date DESC ";
+        } elseif ($Rtype == 6) {
+            $sql .= "DATE(tbl_earning.created_date) BETWEEN '$SDate' AND '$EDate' AND tbl_booking.partner_id= '$pid' AND tbl_earning.profit_percentage<= '$Percentage' ORDER BY created_date DESC ";
+        } elseif ($Rtype == 7) {
+            $sql .= "DATE(tbl_earning.created_date) BETWEEN '$SDate' AND '$EDate' AND tbl_booking.partner_id= '$pid' AND tbl_earning.profit_percentage>= '$Percentage' ORDER BY created_date DESC ";
         };
 
-
-
-        // elseif ($Rtype == 3) {
-        //     $sql .= "tbl_booking.partner_id= $pid order by tbl_booking.created_date desc";
-        // };
-
-
-
-        // if ($Rtype == 1) {
-        //     $sql .= "tbl_booking.payment_status = 1 AND 
-        //     tbl_booking.status = 2 OR 
-        //     tbl_booking.status >= 3 AND 
-        //     DATE(tbl_earning.created_date) BETWEEN 
-        //     $SDate AND 
-        //     $EDate AND 
-        //     tbl_booking.partner_id = $Pid";
-
-        // } elseif ($Rtype == 2) {
-        //     $sql .= "DATE(created_date) BETWEEN '$SDate' AND '$EDate' AND partner_id = '$Pid' AND service_type = 'Tour Package' ORDER BY created_date DESC LIMIT 5";
-        // };
         $sql .= ";";
         $query = $this->db->query($sql);
         $data = array();
@@ -63,5 +58,3 @@ class reports
         }
     }
 }
-
-// where date(BookingDate) between '$fdate' and '$tdate'

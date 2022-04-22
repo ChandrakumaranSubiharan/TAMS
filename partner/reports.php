@@ -90,14 +90,6 @@ if (isset($_GET['viewId']) && !empty($_GET['viewId'])) {
                     $EDate = $_POST['Edate'];
 
                     $ReportView = $reports->EarningReport($Rtype, $SDate, $EDate, $pid);
-
-                    if ($ReportView) {
-                        $msg = "Report Successufully Generated";
-                        echo "<script type='text/javascript'>alert('$msg');</script>";
-                    } else {
-                        $msg = "Report Failed to Generated";
-                        echo "<script type='text/javascript'>alert('$msg');</script>";
-                    }
                 }
                 ?>
 
@@ -105,28 +97,56 @@ if (isset($_GET['viewId']) && !empty($_GET['viewId'])) {
                 <div class="pd-20 card-box mb-30">
                     <div class="clearfix">
                         <div class="pull-left">
-                            <h4 class="text-blue h4">Select Report Type</h4>
+                            <h4 class="text-blue h4">Filter</h4>
                         </div>
                     </div>
                     <form method="POST">
                         <div class="row">
                             <div class="col-md-3 col-sm-12">
                                 <div class="form-group">
-                                    <label>Type</label>
+                                    <label>Status</label>
                                     <select class="custom-select2 form-control" name="ReportType" style=" height: 38px;">
-                                        <option value="1">Recevied Earning Report</option>
+                                        <?php if (isset($_POST['submit'])) {
+                                        ?>
+                                            <option value="<?php if (isset($_POST['submit'])) {
+                                                                echo $Rtype;
+                                                            }; ?>" <?php if (isset($_POST['submit'])) {
+                                                                        echo 'selected="selected"';
+                                                                    }; ?>>
+                                                <?php if (isset($_POST['submit']) && $Rtype == 1) {
+                                                    echo 'Earning Report : Selected';
+                                                } elseif ($Rtype == 2) {
+                                                    echo 'Tour Services Earnings Report : Selected';
+                                                } elseif ($Rtype == 3) {
+                                                    echo 'HomeStay Services Earnings Report : Selected';
+                                                } elseif ($Rtype == 4) {
+                                                    echo 'Earnings Greaterthan 15K Report : Selected';
+                                                } elseif ($Rtype == 5) {
+                                                    echo 'Earnings Lowerthan 15K Report : Selected';
+                                                } elseif ($Rtype == 6) {
+                                                    echo 'Profit Percentage Greaterthan 85% Report : Selected';
+                                                } elseif ($Rtype == 7) {
+                                                    echo 'Profit Percentage Lowerthan 85% Report : Selected';
+                                                }; ?>
+                                            </option>
+                                        <?php
+                                        }
+                                        ?>
+
+                                        <option value="1">Earning Report</option>
                                         <option value="2">Tour Services Earnings Report</option>
                                         <option value="3">HomeStay Services Earnings Report</option>
-                                        <option value="4">Earnings Graterthan 15K Report</option>
+                                        <option value="4">Earnings Greaterthan 15K Report</option>
                                         <option value="5">Earnings Lowerthan 15K Report</option>
-                                        <option value="6">Profit Percentage Graterthan 15% Report</option>
-                                        <option value="7">Profit Percentage Lowerthan 15% Report</option>
+
+                                        <option value="6">Profit Percentage Greaterthan 85% Report</option>
+                                        <option value="7">Profit Percentage Lowerthan 85% Report</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="col-md-3 col-sm-12">
                                 <div class="form-group">
-                                    <label>From</label>
+                                    <label>Date From</label>
                                     <input class="form-control" placeholder="Select Date" name="Sdate" type="date" value="<?php if (isset($_POST['submit'])) {
                                                                                                                                 echo $SDate;
                                                                                                                             }; ?>">
@@ -134,15 +154,16 @@ if (isset($_GET['viewId']) && !empty($_GET['viewId'])) {
                             </div>
                             <div class="col-md-3 col-sm-12">
                                 <div class="form-group">
-                                    <label>To</label>
+                                    <label>Date To</label>
                                     <input class="form-control" placeholder="Select Date" name="Edate" type="date" value="<?php if (isset($_POST['submit'])) {
                                                                                                                                 echo $EDate;
                                                                                                                             }; ?>">
                                 </div>
                             </div>
                             <div class="col-md-3 col-sm-12">
-                                <div class="btn-list">
-                                    <button type="submit" name="submit" class="btn btn-primary btn-lg btn-block">Generate</button>
+                                <div class="btn-list" style="display: flex; padding-top: 20px;">
+                                    <button type="submit" name="submit" class="btn btn-primary btn-lg btn-block">FILTER</button>
+                                    <button type="submit" class="btn btn-success">PRINT</button>
                                 </div>
                             </div>
                         </div>
@@ -158,9 +179,46 @@ if (isset($_GET['viewId']) && !empty($_GET['viewId'])) {
 
             <!-- multiple select row Datatable start -->
             <div class="card-box mb-30">
-                <div class="pd-20">
-                    <h4 class="text-blue h4">Earning Report (Dynamic)</h4>
+
+
+
+
+
+                <!-- <div class="pd-20">
+                    <h4 class="text-blue h4">Earning Report</h4>
+                </div> -->
+
+                <div class="row pd-20">
+                    <style>
+                        #sys_logo {
+                            object-fit: cover;
+                            object-position: center center;
+                            width: 10em;
+                            height: 4em;
+                        }
+                    </style>
+                    <div class="col-2 d-flex justify-content-center align-items-center">
+                        <img src="../assets/images/logo.svg" class="img-circle" id="sys_logo" alt="System Logo">
+                    </div>
+                    <div class="col-8">
+                        <h4 class="text-center"> HappyHolidayss Travel & Accommodation Marketplace </h4>
+                        <h3 class="text-center">Date-wise Earning Report</h3>
+                        <h5 class="text-center">as of</h5>
+                        <h5 class="text-center">November 30, 2021 - April 23, 2022</h5>
+                    </div>
+                    <div class="col-2"></div>
                 </div>
+
+
+
+
+
+
+
+
+
+
+
                 <div class="pb-20">
                     <table class="data-table table hover multiple-select-row nowrap">
                         <thead>
@@ -217,7 +275,7 @@ if (isset($_GET['viewId']) && !empty($_GET['viewId'])) {
                                     }
                                 } else {
                                     ?>
-                                <td colspan="12" style="padding-left: 400px;">No Records Found.</td>
+                                    <td colspan="9" style="text-align: center;">No Records Found.</td>
                             <?php
 
                                 }
