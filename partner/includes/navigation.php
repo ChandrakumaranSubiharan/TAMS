@@ -58,7 +58,6 @@
 
 
 				<li class="dropdown">
-				<li class="dropdown">
 					<a href="javascript:;" class="dropdown-toggle">
 						<span class="micon fa fa-bar-chart"></span><span class="mtext">Reports</span>
 					</a>
@@ -100,7 +99,6 @@
 							</ul>
 						</li> -->
 					</ul>
-				</li>
 				</li>
 
 			</ul>
