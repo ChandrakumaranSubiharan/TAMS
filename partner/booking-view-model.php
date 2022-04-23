@@ -270,16 +270,20 @@ if (isset($_GET['confirmId']) && !empty($_GET['confirmId'])) {
                                 <div class="form-group">
                                     <label>Booking Status</label>
                                     <h6><?php if ($bookingdata['status'] == 0) {
-                                            echo "<span style='color: teal;'>Not Confirmed</span>";
-                                        } elseif ($bookingdata['status'] == 1) {
-                                            echo "<span style='color: firebrick;'>Cancelled by Host</span>";
-                                        } elseif ($bookingdata['status'] == 2) {
-                                            echo "<span style='color: green;'>Confirmed</span>";
-                                        } elseif ($bookingdata['status'] == 3) {
-                                            echo "<span style='color: red;'>Cancelled by Customer</span>";
-                                        } else {
-                                            echo "<span style='color: red;'>Booking Failed</span>";
-                                        } ?></h6>
+												echo "<span style='color: teal;'>Not Confirmed</span>";
+											} elseif ($bookingdata['status'] == 1) {
+												echo "<span style='color: firebrick;'>Cancelled</span>";
+											} elseif ($bookingdata['status'] == 2) {
+												echo "<span style='color: green;'>Confirmed</span>";
+											} elseif ($bookingdata['status'] == 3) {
+												echo "<span style='color: red;'>Cancelled by You</span>";
+											} elseif ($bookingdata['status'] == 4) {
+												echo "<span style='color: green;'>Completed</span>";
+											} elseif ($bookingdata['status'] == 5) {
+												echo "<span style='color: blue;'>Inprogress</span>";
+											} else {
+												echo "Booking Failed";
+											} ?></h6>
                                 </div>
                             </div>
                             <div class="col-md-9 col-sm-12 text-right">

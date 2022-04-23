@@ -4,9 +4,17 @@ include_once '../includes/dbconfig.php';
 
 
 // display record
-if (isset($_GET['viewId']) && !empty($_GET['viewId'])) {
-    $viewId = $_GET['viewId'];
+if (isset($_GET['type']) && !empty($_GET['type'])) {
+    $Type = $_GET['type'];
+
+    if ($Type == 'DateWise') {
+        $SDate = isset($_POST['Sdate']) ? $_POST['Sdate'] : date("Y-m-d", strtotime(date("Y-m-d") . " -1 week"));
+        $EDate = isset($_POST['Edate']) ? $_POST['Edate'] : date("Y-m-d", strtotime(date("Y-m-d")));
+    } elseif ($Type == 'Daily') {
+        $SDate = isset($_POST['Sdate']) ? $_POST['Sdate'] : date("Y-m-d", strtotime(date("Y-m-d")));
+    }
 }
+
 
 ?>
 
@@ -61,35 +69,35 @@ if (isset($_GET['viewId']) && !empty($_GET['viewId'])) {
                     <div class="row">
                         <div class="col-md-6 col-sm-12">
                             <div class="title">
-                                <h4><?php if ($viewId == 1) {
-                                        echo "Earning Reports";
-                                    } elseif ($viewId == 2) {
-                                        echo "Services Reports";
-                                    } ?></h4>
+                                <h4><?php if ($Type == 'DateWise') {
+                                        echo "Date-Wise";
+                                    } elseif ($Type == 'Daily') {
+                                        echo "Daily";
+                                    } ?> Booking Reports</h4>
                             </div>
                             <nav aria-label="breadcrumb" role="navigation">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="dashboard.php">Home</a></li>
                                     <li class="breadcrumb-item active" aria-current="page">Reports</li>
+                                    <li class="breadcrumb-item active" aria-current="page">Booking Category</li>
                                 </ol>
                             </nav>
                         </div>
                     </div>
                 </div>
 
-
-
-
                 <?php
                 // Insert Record in home table
                 if (isset($_POST['submit'])) {
-
                     $pid = $returned_row['partner_id'];
                     $Rtype = $_POST['ReportType'];
-                    $SDate = $_POST['Sdate'];
-                    $EDate = $_POST['Edate'];
 
-                    $ReportView = $reports->EarningReport($Rtype, $SDate, $EDate, $pid);
+                    if ($Type == 'DateWise') {
+                        $EDate = $_POST['Edate'];
+                    } else {
+                        $EDate = '';
+                    }
+                    $ReportView = $reports->BookingReport($Rtype, $SDate, $EDate, $pid, $Type);
                 }
                 ?>
 
@@ -114,52 +122,70 @@ if (isset($_GET['viewId']) && !empty($_GET['viewId'])) {
                                                                         echo 'selected="selected"';
                                                                     }; ?>>
                                                 <?php if (isset($_POST['submit']) && $Rtype == 1) {
-                                                    echo 'Earning Report : Selected';
+                                                    echo 'Bookings Report : Selected';
                                                 } elseif ($Rtype == 2) {
-                                                    echo 'Tour Services Earnings Report : Selected';
+                                                    echo 'Tour Services Bookings Report : Selected';
                                                 } elseif ($Rtype == 3) {
-                                                    echo 'HomeStay Services Earnings Report : Selected';
+                                                    echo 'HomeStay Services Bookings Report : Selected';
                                                 } elseif ($Rtype == 4) {
-                                                    echo 'Earnings Greaterthan 15K Report : Selected';
+                                                    echo 'Unconfirmed Bookings Report : Selected';
                                                 } elseif ($Rtype == 5) {
-                                                    echo 'Earnings Lowerthan 15K Report : Selected';
+                                                    echo 'Confirmed Bookings Report : Selected';
                                                 } elseif ($Rtype == 6) {
-                                                    echo 'Profit Percentage Greaterthan 85% Report : Selected';
+                                                    echo 'Inprogress Bookings Report : Selected';
                                                 } elseif ($Rtype == 7) {
-                                                    echo 'Profit Percentage Lowerthan 85% Report : Selected';
+                                                    echo 'Cancelled Bookings Report : Selected';
+                                                } elseif ($Rtype == 8) {
+                                                    echo 'Refunded Bookings Report : Selected';
+                                                } elseif ($Rtype == 9) {
+                                                    echo 'Completed Bookings Report : Selected';
                                                 }; ?>
                                             </option>
                                         <?php
                                         }
                                         ?>
-
-                                        <option value="1">Earning Report</option>
-                                        <option value="2">Tour Services Earnings Report</option>
-                                        <option value="3">HomeStay Services Earnings Report</option>
-                                        <option value="4">Earnings Greaterthan 15K Report</option>
-                                        <option value="5">Earnings Lowerthan 15K Report</option>
-
-                                        <option value="6">Profit Percentage Greaterthan 85% Report</option>
-                                        <option value="7">Profit Percentage Lowerthan 85% Report</option>
+                                        <option value="1">Bookings Report</option>
+                                        <option value="2">Tour Services Bookings Report</option>
+                                        <option value="3">HomeStay Services Bookings Report</option>
+                                        <option value="4">Unconfirmed Bookings Report</option>
+                                        <option value="5">Confirmed Bookings Report</option>
+                                        <option value="6">Inprogress Bookings Report</option>
+                                        <option value="7">Cancelled Bookings Report</option>
+                                        <option value="8">Refunded Bookings Report</option>
+                                        <option value="9">Completed Bookings Report</option>
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-md-3 col-sm-12">
-                                <div class="form-group">
-                                    <label>Date From</label>
-                                    <input class="form-control" placeholder="Select Date" name="Sdate" type="date" value="<?php if (isset($_POST['submit'])) {
-                                                                                                                                echo $SDate;
-                                                                                                                            }; ?>">
+
+                            <?php
+
+                            if ($Type == 'Daily') {
+                            ?>
+                                <div class="col-md-4 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Date</label>
+                                        <input class="form-control" placeholder="Select Date" name="Sdate" type="date" value="<?= $SDate; ?>">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-3 col-sm-12">
-                                <div class="form-group">
-                                    <label>Date To</label>
-                                    <input class="form-control" placeholder="Select Date" name="Edate" type="date" value="<?php if (isset($_POST['submit'])) {
-                                                                                                                                echo $EDate;
-                                                                                                                            }; ?>">
+                            <?php
+                            } elseif ($Type == 'DateWise') {
+                            ?>
+                                <div class="col-md-3 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Date From</label>
+                                        <input class="form-control" placeholder="Select Date" name="Sdate" type="date" value="<?= $SDate; ?>">
+                                    </div>
                                 </div>
-                            </div>
+                                <div class="col-md-3 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Date To</label>
+                                        <input class="form-control" placeholder="Select Date" name="Edate" type="date" value="<?= $EDate; ?>">
+                                    </div>
+                                </div>
+                            <?php
+                            };
+                            ?>
+
                             <div class="col-md-3 col-sm-12">
                                 <div class="btn-list" style="display: flex; padding-top: 20px;">
                                     <button type="submit" name="submit" class="btn btn-primary btn-lg btn-block">FILTER</button>
@@ -176,17 +202,8 @@ if (isset($_GET['viewId']) && !empty($_GET['viewId'])) {
             </div>
 
 
-
             <!-- multiple select row Datatable start -->
             <div class="card-box mb-30">
-
-
-
-
-
-                <!-- <div class="pd-20">
-                    <h4 class="text-blue h4">Earning Report</h4>
-                </div> -->
 
                 <div class="row pd-20">
                     <style>
@@ -202,35 +219,63 @@ if (isset($_GET['viewId']) && !empty($_GET['viewId'])) {
                     </div>
                     <div class="col-8">
                         <h4 class="text-center"> HappyHolidayss Travel & Accommodation Marketplace </h4>
-                        <h3 class="text-center">Date-wise Earning Report</h3>
+                        <h3 class="text-center">
+                            <?php if ($Type == 'Daily') {
+
+                                echo 'Daily';
+                            } else {
+                                echo 'Date-wise';
+                            } ?>
+                            <?php if (isset($_POST['submit'])) {
+
+                                if ($Rtype == 2) {
+                                    echo 'Tour Services';
+                                } elseif ($Rtype == 3) {
+                                    echo 'HomeStay Services';
+                                } elseif ($Rtype == 4) {
+                                    echo 'Unconfirmed';
+                                } elseif ($Rtype == 5) {
+                                    echo 'Confirmed';
+                                } elseif ($Rtype == 6) {
+                                    echo 'Inprogress';
+                                } elseif ($Rtype == 7) {
+                                    echo 'Cancelled';
+                                } elseif ($Rtype == 7) {
+                                    echo 'Refunded';
+                                } elseif ($Rtype == 7) {
+                                    echo 'Completed';
+                                };
+                            }
+                            ?>
+
+                            Booking Report</h3>
                         <h5 class="text-center">as of</h5>
-                        <h5 class="text-center">November 30, 2021 - April 23, 2022</h5>
+                        <?php if ($Type == 'Daily') {
+                        ?>
+                            <h5 class="text-center"><?= $SDate ?></h5>
+                        <?php
+                        } else {
+                        ?>
+                            <h5 class="text-center"><?= $SDate ?> - <?= $EDate ?> </h5>
+
+                        <?php
+                        } ?>
                     </div>
                     <div class="col-2"></div>
                 </div>
-
-
-
-
-
-
-
-
-
 
 
                 <div class="pb-20">
                     <table class="data-table table hover multiple-select-row nowrap">
                         <thead>
                             <tr>
-                                <th class="table-plus datatable-nosort">Earning Id</th>
-                                <th>Booking Id</th>
-                                <th>Customer</th>
-                                <th>Service</th>
-                                <th>Full Amount</th>
-                                <th>Income</th>
-                                <th>Income <br> Percentage%</th>
+                                <th class="table-plus datatable-nosort">Booking Id</th>
+                                <th>Customer Name</th>
+                                <th>Service Type</th>
+                                <th>Service Name</th>
+                                <th>Total Amount</th>
                                 <th>Status</th>
+                                <th>Payment Status</th>
                                 <th class="datatable-nosort">Action</th>
                             </tr>
                         </thead>
@@ -238,20 +283,32 @@ if (isset($_GET['viewId']) && !empty($_GET['viewId'])) {
                             <?php
                             if (isset($_POST['submit'])) {
 
-                                $Reportdata = $reports->EarningReport($Rtype, $SDate, $EDate, $pid);
+                                $Reportdata = $reports->BookingReport($Rtype, $SDate, $EDate, $pid, $Type);
                                 if ($Reportdata) {
 
                                     foreach ($Reportdata as $Reportdatas) {
                             ?>
                                         <tr>
-                                            <td><?php echo $Reportdatas['earning_id']; ?></td>
                                             <td><?php echo $Reportdatas['booking_id']; ?></td>
                                             <td><?php echo $Reportdatas['first_name'], ' ', $Reportdatas['last_name']; ?></td>
                                             <td><?php echo $Reportdatas['service_type']; ?></td>
+                                            <td><?php echo $Reportdatas['service_name']; ?></td>
                                             <td><?php echo $Reportdatas['total_amount']; ?> LKR</td>
-                                            <td><?php echo $Reportdatas['payout']; ?> LKR</td>
-                                            <?php $incomePercent = 100 - $Reportdatas['profit_percentage']   ?>
-                                            <td><?php echo $incomePercent ?> %</td>
+                                            <td><?php if ($Reportdatas['status'] == 0) {
+												echo "<span style='color: teal;'>Not Confirmed</span>";
+											} elseif ($Reportdatas['status'] == 1) {
+												echo "<span style='color: firebrick;'>Cancelled</span>";
+											} elseif ($Reportdatas['status'] == 2) {
+												echo "<span style='color: green;'>Confirmed</span>";
+											} elseif ($Reportdatas['status'] == 3) {
+												echo "<span style='color: red;'>Cancelled by You</span>";
+											} elseif ($Reportdatas['status'] == 4) {
+												echo "<span style='color: green;'>Completed</span>";
+											} elseif ($Reportdatas['status'] == 5) {
+												echo "<span style='color: blue;'>Inprogress</span>";
+											} else {
+												echo "Booking Failed";
+											} ?></td>
                                             <td><?php if ($Reportdatas['payment_status'] == 1) {
                                                     echo "<span style='color: green;'>Received</span>";
                                                 } elseif ($Reportdatas['payment_status'] >= 2) {
@@ -271,6 +328,7 @@ if (isset($_GET['viewId']) && !empty($_GET['viewId'])) {
                                                 </div>
                                             </td>
                                         </tr>
+
                                     <?php
                                     }
                                 } else {
@@ -281,12 +339,12 @@ if (isset($_GET['viewId']) && !empty($_GET['viewId'])) {
                                 }
                             }
                             ?>
+
                         </tbody>
                     </table>
                 </div>
             </div>
             <!-- multiple select row Datatable End -->
-
 
         </div>
         <div class="footer-wrap pd-20 mb-20 card-box">
