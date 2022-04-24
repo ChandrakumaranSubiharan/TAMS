@@ -44,6 +44,10 @@ if (isset($_GET['type']) && !empty($_GET['type'])) {
     <link rel="stylesheet" type="text/css" href="../assets/dashboard/src/plugins/datatables/css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" type="text/css" href="../assets/dashboard/vendors/styles/style.css">
 
+    <!-- pdf script -->
+    <script src="../assets/dashboard/vendors/scripts/jspdfmin.js"></script>
+
+
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-119386393-1"></script>
 	<script>
@@ -189,21 +193,15 @@ if (isset($_GET['type']) && !empty($_GET['type'])) {
                             <div class="col-md-3 col-sm-12">
                                 <div class="btn-list" style="display: flex; padding-top: 20px;">
                                     <button type="submit" name="submit" class="btn btn-primary btn-lg btn-block">FILTER</button>
-                                    <button type="submit" class="btn btn-success">PRINT</button>
+                                    <button class="btn btn-success" onclick="printDiv('pdf','Title')">PRINT</button>
                                 </div>
                             </div>
                         </div>
-
                 </div>
-
-
-
                 </form>
             </div>
 
-
-            <!-- multiple select row Datatable start -->
-            <div class="card-box mb-30">
+            <div id="pdf" class="card-box mb-30">
 
                 <div class="row pd-20">
                     <style>
@@ -264,19 +262,19 @@ if (isset($_GET['type']) && !empty($_GET['type'])) {
                     <div class="col-2"></div>
                 </div>
 
-
-                <div class="pb-20">
-                    <table class="data-table table hover multiple-select-row nowrap">
+                <!-- Bordered table  start -->
+                <div class="pd-20 card-box mb-30">
+                    <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <th class="table-plus datatable-nosort">Booking Id</th>
-                                <th>Customer Name</th>
-                                <th>Service Type</th>
-                                <th>Service Name</th>
-                                <th>Total Amount</th>
-                                <th>Status</th>
-                                <th>Payment Status</th>
-                                <th class="datatable-nosort">Action</th>
+                                <th scope="col">Booking Id</th>
+                                <th scope="col">Customer Name</th>
+                                <th scope="col">Service Type</th>
+                                <th scope="col">Service Name</th>
+                                <th scope="col">Total Amount</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Payment Status</th>
+                                <th scope="col">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -289,26 +287,26 @@ if (isset($_GET['type']) && !empty($_GET['type'])) {
                                     foreach ($Reportdata as $Reportdatas) {
                             ?>
                                         <tr>
-                                            <td><?php echo $Reportdatas['booking_id']; ?></td>
+                                            <td scope="row"><?php echo $Reportdatas['booking_id']; ?></td>
                                             <td><?php echo $Reportdatas['first_name'], ' ', $Reportdatas['last_name']; ?></td>
                                             <td><?php echo $Reportdatas['service_type']; ?></td>
                                             <td><?php echo $Reportdatas['service_name']; ?></td>
                                             <td><?php echo $Reportdatas['total_amount']; ?> LKR</td>
                                             <td><?php if ($Reportdatas['status'] == 0) {
-												echo "<span style='color: teal;'>Not Confirmed</span>";
-											} elseif ($Reportdatas['status'] == 1) {
-												echo "<span style='color: firebrick;'>Cancelled</span>";
-											} elseif ($Reportdatas['status'] == 2) {
-												echo "<span style='color: green;'>Confirmed</span>";
-											} elseif ($Reportdatas['status'] == 3) {
-												echo "<span style='color: red;'>Cancelled by You</span>";
-											} elseif ($Reportdatas['status'] == 4) {
-												echo "<span style='color: green;'>Completed</span>";
-											} elseif ($Reportdatas['status'] == 5) {
-												echo "<span style='color: blue;'>Inprogress</span>";
-											} else {
-												echo "Booking Failed";
-											} ?></td>
+                                                    echo "<span style='color: teal;'>Not Confirmed</span>";
+                                                } elseif ($Reportdatas['status'] == 1) {
+                                                    echo "<span style='color: firebrick;'>Cancelled</span>";
+                                                } elseif ($Reportdatas['status'] == 2) {
+                                                    echo "<span style='color: green;'>Confirmed</span>";
+                                                } elseif ($Reportdatas['status'] == 3) {
+                                                    echo "<span style='color: red;'>Cancelled by You</span>";
+                                                } elseif ($Reportdatas['status'] == 4) {
+                                                    echo "<span style='color: green;'>Completed</span>";
+                                                } elseif ($Reportdatas['status'] == 5) {
+                                                    echo "<span style='color: blue;'>Inprogress</span>";
+                                                } else {
+                                                    echo "Booking Failed";
+                                                } ?></td>
                                             <td><?php if ($Reportdatas['payment_status'] == 1) {
                                                     echo "<span style='color: green;'>Received</span>";
                                                 } elseif ($Reportdatas['payment_status'] >= 2) {
@@ -356,7 +354,28 @@ if (isset($_GET['type']) && !empty($_GET['type'])) {
     </div>
 
     <?php include('includes/scripts.php'); ?>
+    <script>
+        var doc = new jsPDF();
 
+        function printDiv(divId,
+            title) {
+
+            let mywindow = window.open('', 'PRINT', '"width=1000,height=900,left=300,top=50');
+
+            mywindow.document.write(`<html><head><title>Booking Report</title>`);
+            mywindow.document.write('</head><body >');
+            mywindow.document.write(document.getElementById(divId).innerHTML);
+            mywindow.document.write('</body></html>');
+
+            mywindow.document.close(); // necessary for IE >= 10
+            mywindow.focus(); // necessary for IE >= 10*/
+
+            mywindow.print();
+            mywindow.close();
+
+            return true;
+        }
+    </script>
 </body>
 
 </html>

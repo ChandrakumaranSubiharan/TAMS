@@ -99,50 +99,70 @@ include_once '../includes/dbconfig.php';
                             </thead>
                             <tbody>
                                 <?php
-                               $pid = $returned_row['partner_id'];
-                               $earningdata = $earning->displayEarningByPartner($pid);
-                               foreach ($earningdata as $earnings) {
+                                $pid = $returned_row['partner_id'];
+                                $earningdata = $earning->displayEarningByPartner($pid);
+                                $TotalIncome = 0;
+
+                                if ($earningdata) {
+                                    foreach ($earningdata as $earnings) {
                                 ?>
-                                    <tr>
-                                        <td><?php echo $earnings['earning_id']; ?></td>
-                                        <td><?php echo $earnings['booking_id']; ?></td>
-                                        <td><?php echo $earnings['first_name'], ' ', $earnings['last_name']; ?></td>
-                                        <td><?php echo $earnings['service_type']; ?></td>
-                                        <td><?php echo $earnings['total_amount']; ?> LKR</td>
-                                        <td><?php echo $earnings['payout']; ?> LKR</td>
-                                        <?php $incomePercent = 100 -$earnings['profit_percentage']   ?>
-                                        <td><?php echo $incomePercent ?> %</td>
-                                        <td><?php if ($earnings['payment_status'] == 1) {
-                                                echo "<span style='color: green;'>Received</span>";
-                                            } elseif ($earnings['payment_status'] >= 2) {
-                                                echo "<span style='color: blue;'>Refunded</span>";
-                                            } else {
-                                                echo "<span style='color: red;'>Proccessing</span>";
+                                        <tr>
+                                            <td><?php echo $earnings['earning_id']; ?></td>
+                                            <td><?php echo $earnings['booking_id']; ?></td>
+                                            <td><?php echo $earnings['first_name'], ' ', $earnings['last_name']; ?></td>
+                                            <td><?php echo $earnings['service_type']; ?></td>
+                                            <td><?php echo $earnings['total_amount']; ?> LKR</td>
+                                            <td><?php echo $earnings['payout']; ?> LKR</td>
+                                            <?php $incomePercent = 100 - $earnings['profit_percentage']   ?>
+                                            <td><?php echo $incomePercent ?> %</td>
+                                            <td><?php if ($earnings['payment_status'] == 1) {
+                                                    echo "<span style='color: green;'>Received</span>";
+                                                } elseif ($earnings['payment_status'] >= 2) {
+                                                    echo "<span style='color: blue;'>Refunded</span>";
+                                                } else {
+                                                    echo "<span style='color: red;'>Proccessing</span>";
+                                                }
+                                                ?></td>
+                                            <?php
+                                            if ($earnings) {
+                                                $TotalIncome += $earnings['payout'];
                                             }
-                                            ?></td>
-                                        <td>
-                                            <div class="dropdown">
-                                                <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-                                                    <i class="dw dw-more"></i>
-                                                </a>
-                                                <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                                                    <a class="dropdown-item" href="earning-view-model.php?viewId=<?php echo $earnings['earning_id'] ?>"><i class="dw dw-eye"></i> View</a>
+                                            ?>
+                                            <td>
+                                                <div class="dropdown">
+                                                    <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                                                        <i class="dw dw-more"></i>
+                                                    </a>
+                                                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                                                        <a class="dropdown-item" href="earning-view-model.php?viewId=<?php echo $earnings['earning_id'] ?>"><i class="dw dw-eye"></i> View</a>
+                                                    </div>
                                                 </div>
-                                            </div>
+                                            </td>
+
+                                            <!-- hidden -->
+                                            <td hidden><?php echo $earnings['contact_number']; ?> </td>
+                                            <td hidden><?php echo $earnings['email_address']; ?> </td>
+                                            <td hidden><?php echo $earnings['service_name']; ?> </td>
+                                            <td hidden><?php echo $earnings['payment_card_holder_name']; ?> </td>
+                                            <td hidden><?php echo $earnings['payment_card_number']; ?> </td>
+                                            <td hidden><?php echo $earnings['cus_payment_card_type']; ?> </td>
+                                            <td hidden><?php echo date('jS F, Y ', strtotime($earnings['created_date'])); ?></td>
+                                        </tr>
+                                    <?php }
+                                    ?>
+                                    <tr>
+                                        <td colspan="10" style="text-align: center; font-weight: bold;">
+                                            <h4> <span style="color: green;">Total Income</span> : LKR
+                                                <?php echo $TotalIncome ?>
+                                            </h4>
                                         </td>
-
-                                        <!-- hidden -->
-                                        <td hidden><?php echo $earnings['contact_number']; ?> </td>
-                                        <td hidden><?php echo $earnings['email_address']; ?> </td>
-                                        <td hidden><?php echo $earnings['service_name']; ?> </td>
-                                        <td hidden><?php echo $earnings['payment_card_holder_name']; ?> </td>
-                                        <td hidden><?php echo $earnings['payment_card_number']; ?> </td>
-                                        <td hidden><?php echo $earnings['cus_payment_card_type']; ?> </td>
-                                        <td hidden><?php echo date('jS F, Y ', strtotime($earnings['created_date'])); ?></td>
-
-
                                     </tr>
-                                <?php } ?>
+                                <?php
+                                } else {
+                                ?>
+                                    <td colspan="9" style="text-align: center;">No Records Found.</td>
+                                <?php
+                                } ?>
 
                             </tbody>
                         </table>

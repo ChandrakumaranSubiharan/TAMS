@@ -44,6 +44,9 @@ if (isset($_GET['type']) && !empty($_GET['type'])) {
     <link rel="stylesheet" type="text/css" href="../assets/dashboard/src/plugins/datatables/css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" type="text/css" href="../assets/dashboard/vendors/styles/style.css">
 
+    <!-- pdf script -->
+    <script src="../assets/dashboard/vendors/scripts/jspdfmin.js"></script>
+
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-119386393-1"></script>
 	<script>
@@ -53,6 +56,9 @@ if (isset($_GET['type']) && !empty($_GET['type'])) {
 
 		gtag('config', 'UA-119386393-1');
 	</script> -->
+
+
+
 </head>
 
 <body>
@@ -185,21 +191,18 @@ if (isset($_GET['type']) && !empty($_GET['type'])) {
                             <div class="col-md-3 col-sm-12">
                                 <div class="btn-list" style="display: flex; padding-top: 20px;">
                                     <button type="submit" name="submit" class="btn btn-primary btn-lg btn-block">FILTER</button>
-                                    <button type="submit" class="btn btn-success">PRINT</button>
+                                    <button class="btn btn-success" onclick="printDiv('pdf','Title')">PRINT</button>
+
                                 </div>
                             </div>
                         </div>
 
                 </div>
-
-
-
                 </form>
             </div>
 
 
-            <!-- multiple select row Datatable start -->
-            <div class="card-box mb-30">
+            <div id="pdf" class="card-box mb-30">
 
                 <div class="row pd-20">
                     <style>
@@ -255,20 +258,20 @@ if (isset($_GET['type']) && !empty($_GET['type'])) {
                     <div class="col-2"></div>
                 </div>
 
-
-                <div class="pb-20">
-                    <table class="data-table table hover multiple-select-row nowrap">
+                <!-- Bordered table  start -->
+                <div class="pd-20 card-box mb-30">
+                    <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <th class="table-plus datatable-nosort">Earning Id</th>
-                                <th>Booking Id</th>
-                                <th>Customer</th>
-                                <th>Service</th>
-                                <th>Full Amount</th>
-                                <th>Income</th>
-                                <th>Income <br> Percentage%</th>
-                                <th>Status</th>
-                                <th class="datatable-nosort">Action</th>
+                                <th scope="col">Earning Id</th>
+                                <th scope="col">Booking Id</th>
+                                <th scope="col">Customer</th>
+                                <th scope="col">Service</th>
+                                <th scope="col">Full Amount</th>
+                                <th scope="col">Income</th>
+                                <th scope="col">Income <br> Percentage%</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -276,9 +279,11 @@ if (isset($_GET['type']) && !empty($_GET['type'])) {
                             if (isset($_POST['submit'])) {
 
                                 $Reportdata = $reports->EarningReport($Rtype, $SDate, $EDate, $pid, $Type);
-                                if ($Reportdata) {
 
+                                $TotalIncome = 0;
+                                if ($Reportdata) {
                                     foreach ($Reportdata as $Reportdatas) {
+
                             ?>
                                         <tr>
                                             <td><?php echo $Reportdatas['earning_id']; ?></td>
@@ -297,6 +302,11 @@ if (isset($_GET['type']) && !empty($_GET['type'])) {
                                                     echo "<span style='color: red;'>Proccessing</span>";
                                                 }
                                                 ?></td>
+                                            <?php
+                                            if ($Reportdata) {
+                                                $TotalIncome += $Reportdatas['payout'];
+                                            }
+                                            ?>
                                             <td>
                                                 <div class="dropdown">
                                                     <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
@@ -307,15 +317,22 @@ if (isset($_GET['type']) && !empty($_GET['type'])) {
                                                     </div>
                                                 </div>
                                             </td>
-
-
-
                                         </tr>
-
                                     <?php
                                     }
-                                } else {
                                     ?>
+                                    <tr>
+                                        <td colspan="10" style="text-align: center; font-weight: bold;">
+                                            <h4> <span style="color: green;">Total Income</span> : LKR
+                                                <?php echo $TotalIncome ?>
+                                            </h4>
+                                        </td>
+                                    </tr>
+                                <?php
+
+
+                                } else {
+                                ?>
                                     <td colspan="9" style="text-align: center;">No Records Found.</td>
                             <?php
 
@@ -327,24 +344,12 @@ if (isset($_GET['type']) && !empty($_GET['type'])) {
                     </table>
                 </div>
             </div>
-            <!-- multiple select row Datatable End -->
-
-            <!-- <tr>
-             <?php
-                // $totalIncome += $Reportdatas['payout'];
-
-                ?>
-                                <td colspan="10" style="text-align: center; font-weight: bold;">
-                                    <h4> <span style="color: green;">Total Income</span> : LKR 
-                                    <?= $totalIncome ?>
-                                </h4>
-                                </td>
-                            </tr> -->
 
         </div>
         <div class="footer-wrap pd-20 mb-20 card-box">
             HappyHolidayss By <a href="https://github.com/dropways" target="_blank">Chandrakumaran Subiharan</a>
         </div>
+
     </div>
     </div>
 
@@ -352,6 +357,28 @@ if (isset($_GET['type']) && !empty($_GET['type'])) {
 
     <?php include('includes/scripts.php'); ?>
 
+    <script>
+        var doc = new jsPDF();
+
+        function printDiv(divId,
+            title) {
+
+            let mywindow = window.open('', 'PRINT', '"width=1000,height=900,left=300,top=50');
+
+            mywindow.document.write(`<html><head><title>Earning Report</title>`);
+            mywindow.document.write('</head><body >');
+            mywindow.document.write(document.getElementById(divId).innerHTML);
+            mywindow.document.write('</body></html>');
+
+            mywindow.document.close(); // necessary for IE >= 10
+            mywindow.focus(); // necessary for IE >= 10*/
+
+            mywindow.print();
+            mywindow.close();
+
+            return true;
+        }
+    </script>
 </body>
 
 </html>
