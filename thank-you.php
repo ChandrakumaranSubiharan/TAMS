@@ -48,10 +48,8 @@ foreach ($bookingdata as $bookinginfo) {
                                 <h4 class="main-message">Thank You. Your Booking Order is Progressing.</h4>
                                 <p>Confirmation will be shown in your dashboard, wait until service provider confirm it.</p>
                             </div>
-                            <a href="customer/dashboard.php" style="margin-right: 5px;" class="button btn-small print-button uppercase">View Status</a>
+                            <a href="customer-dashboard.php" style="margin-right: 5px;" class="button btn-small print-button uppercase">View Status</a>
                             <br />
-                            <br />
-                            <a href="#" class="button btn-small print-button uppercase">print Details</a>
                         </div>
                         <hr />
                         <h2>Traveler Information</h2>

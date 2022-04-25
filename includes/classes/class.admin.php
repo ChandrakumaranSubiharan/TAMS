@@ -10,7 +10,6 @@ class admin
     }
 
 
-
     // Method Register new admin
     public function create($fname, $uname, $pass, $contact, $staffid, $department, $email, $category)
     {
@@ -42,6 +41,51 @@ class admin
 
             // Execute the query
             $stmt->execute();
+            return true;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            return false;
+        }
+    }
+
+
+    // Fetch single data for edit from tour table
+    public function displyaRecordById($Id)
+    {
+        $query = "SELECT * FROM tbl_admin WHERE admin_id = '$Id'";
+        $result = $this->db->query($query);
+        if ($result->rowCount() > 0) {
+            while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                $data = $row;
+            }
+            return $data;
+        } else {
+            echo "Record not found";
+        }
+    }
+
+
+    public function update($id, $fname, $uname, $pass, $mail, $contact)
+    {
+        try {
+            // Hash password
+            $user_hashed_password = password_hash($pass, PASSWORD_DEFAULT);
+
+            $stmt = $this->db->prepare("UPDATE tbl_admin SET 
+                full_name=:fname,
+                username=:uname,
+                email=:mail,
+                password=:pass,
+                contact_number=:contact
+             WHERE admin_id =:id");
+            $stmt->bindparam(":fname", $fname);
+            $stmt->bindparam(":uname", $uname);
+            $stmt->bindparam(":mail", $mail);
+            $stmt->bindparam(":pass", $user_hashed_password);
+            $stmt->bindparam(":contact", $contact);
+            $stmt->bindparam(":id", $id);
+            $stmt->execute();
+
             return true;
         } catch (PDOException $e) {
             echo $e->getMessage();
