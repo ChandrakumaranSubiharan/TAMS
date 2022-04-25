@@ -36,34 +36,20 @@
 						<li><a href="partner-manage.php">Manage</a></li>
 					</ul>
 				</li>
-
-				<li class="dropdown">
-					<a href="javascript:;" class="dropdown-toggle">
-						<span class="micon icon-copy dw dw-group "></span><span class="mtext">Customers</span>
+				<li>
+					<a href="customer-manage.php" class="dropdown-toggle no-arrow">
+						<i class="micon icon-copy dw dw-group" aria-hidden="true"></i><span class="mtext">Manage Customers</span>
 					</a>
-					<ul class="submenu">
-						<li><a href="customer-create.php">Create</a></li>
-						<li><a href="customer-manage.php">Manage</a></li>
-					</ul>
 				</li>
-
-				<li class="dropdown">
-					<a href="javascript:;" class="dropdown-toggle">
-						<span class="micon icon-copy ti-map-alt "></span><span class="mtext">Tour Packages</span>
+				<li>
+					<a href="tour-manage.php" class="dropdown-toggle no-arrow">
+						<i class="micon icon-copy ti-map-alt" aria-hidden="true"></i><span class="mtext">Manage Tours</span>
 					</a>
-					<ul class="submenu">
-						<li><a href="tour-create.php">Create</a></li>
-						<li><a href="tour-manage.php">Manage</a></li>
-					</ul>
 				</li>
-				<li class="dropdown">
-					<a href="javascript:;" class="dropdown-toggle">
-						<span class="micon icon-copy ti-home"></span></span><span class="mtext">Homes</span>
+				<li>
+					<a href="home-manage.php" class="dropdown-toggle no-arrow">
+						<i class="micon icon-copy ti-home" aria-hidden="true"></i><span class="mtext">Manage Homes</span>
 					</a>
-					<ul class="submenu">
-						<li><a href="home-create.php">Create</a></li>
-						<li><a href="home-manage.php">Manage</a></li>
-					</ul>
 				</li>
 				<li>
 					<a href="review-manage.php" class="dropdown-toggle no-arrow">

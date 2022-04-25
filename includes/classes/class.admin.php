@@ -107,4 +107,58 @@ class admin
             return false;
         }
     }
+
+
+    // Fetch users records for show listing
+
+    public function displayUserData()
+    {
+        $sql = "SELECT * FROM tbl_admin";
+        $query = $this->db->query($sql);
+        $data = array();
+        if ($query->rowCount() > 0) {
+            while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+                $data[] = $row;
+            }
+            return $data;
+        } else {
+            return false;
+        }
+    }
+
+    public function updatestatusActive($editId)
+    {
+        try {
+            $sta = 1;
+            $stmt = $this->db->prepare("UPDATE tbl_admin SET 
+                      status=:st
+                   WHERE admin_id=:id ");
+            $stmt->bindparam(":st", $sta);
+            $stmt->bindparam(":id", $editId);
+            $stmt->execute();
+
+            return true;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            return false;
+        }
+    }
+
+    public function updatestatusDeactive($editId)
+    {
+        try {
+            $sta = 0;
+            $stmt = $this->db->prepare("UPDATE tbl_admin SET 
+                      status=:st
+                   WHERE admin_id=:id ");
+            $stmt->bindparam(":st", $sta);
+            $stmt->bindparam(":id", $editId);
+            $stmt->execute();
+
+            return true;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            return false;
+        }
+    }
 }

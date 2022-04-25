@@ -17,13 +17,18 @@ if (isset($_POST['update'])) {
 
     if ($UpdateProfileData) {
 
-        $msg = "<div class='alert alert-info'>
-        <strong>WOW!</strong> Record was updated successfully!
-        </div>";
+        $msg = "<div class='alert alert-success alert-dismissible'>
+        <button type='button' class='close' data-dismiss='alert'>&times;</button>
+        Record was updated successfully
+      </div>";
+
+
         $admindata = $admin->displyaRecordById($aid);
     } else {
-        $msg = "Failed to Create Home ";
-        echo "<script type='text/javascript'>alert('$msg');</script>";
+        $msg = "<div class='alert alert-danger alert-dismissible'>
+                    <button type='button' class='close' data-dismiss='alert'>&times;</button>
+                    Record was failed to updated
+                </div>";
     }
 }
 
