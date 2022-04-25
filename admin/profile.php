@@ -28,7 +28,6 @@ if (isset($_POST['update'])) {
 }
 
 
-
 ?>
 
 <!DOCTYPE html>
@@ -168,7 +167,7 @@ if (isset($_POST['update'])) {
                                                             </div>
                                                             <div class="form-group">
                                                                 <label>Password</label>
-                                                                <input class="form-control form-control-lg" type="password" name="pass" value="">
+                                                                <input class="form-control form-control-lg" type="password" name="pass" value="" autocomplete="off">
                                                                 <span>Leave this blank if you dont want to change the password.</span>
                                                             </div>
                                                             <div class="form-group">

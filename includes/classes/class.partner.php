@@ -87,13 +87,37 @@ class partner
 
   public function update($id, $fname, $lname, $uname, $pass, $mail, $contact, $address, $zip, $province, $gender)
   {
-
     try {
+      if ($pass == NULL) {
+        // Hash password
+        $stmt = $this->db->prepare("UPDATE tbl_partner SET 
+                first_name=:fname,
+                last_name=:lname,
+                username=:uname,
+                address=:address,
+                email_address=:mail,
+                contact_number=:contact,
+                gender=:gender,
+                zipcode=:zipcode,
+                province=:province
+             WHERE partner_id=:id ");
+        $stmt->bindparam(":fname", $fname);
+        $stmt->bindparam(":lname", $lname);
+        $stmt->bindparam(":uname", $uname);
+        $stmt->bindparam(":address", $address);
+        $stmt->bindparam(":mail", $mail);
+        $stmt->bindparam(":contact", $contact);
+        $stmt->bindparam(":gender", $gender);
+        $stmt->bindparam(":zipcode", $zip);
+        $stmt->bindparam(":province", $province);
+        $stmt->bindparam(":id", $id);
+        $stmt->execute();
+        return true;
+      } else {
+        // Hash password
+        $user_hashed_password = password_hash($pass, PASSWORD_DEFAULT);
 
-      // Hash password
-      $user_hashed_password = password_hash($pass, PASSWORD_DEFAULT);
-
-      $stmt = $this->db->prepare("UPDATE tbl_partner SET 
+        $stmt = $this->db->prepare("UPDATE tbl_partner SET 
                 first_name=:fname,
                 last_name=:lname,
                 username=:uname,
@@ -105,34 +129,23 @@ class partner
                 zipcode=:zipcode,
                 province=:province
              WHERE partner_id=:id ");
-      $stmt->bindparam(":fname", $fname);
-      $stmt->bindparam(":lname", $lname);
-      $stmt->bindparam(":uname", $uname);
-      $stmt->bindparam(":address", $address);
-      $stmt->bindparam(":mail", $mail);
-      $stmt->bindparam(":pass", $user_hashed_password);
-      $stmt->bindparam(":contact", $contact);
-      $stmt->bindparam(":gender", $gender);
-      $stmt->bindparam(":zipcode", $zip);
-      $stmt->bindparam(":province", $province);
-      $stmt->bindparam(":id", $id);
-      $stmt->execute();
-
-      return true;
+        $stmt->bindparam(":fname", $fname);
+        $stmt->bindparam(":lname", $lname);
+        $stmt->bindparam(":uname", $uname);
+        $stmt->bindparam(":address", $address);
+        $stmt->bindparam(":mail", $mail);
+        $stmt->bindparam(":pass", $user_hashed_password);
+        $stmt->bindparam(":contact", $contact);
+        $stmt->bindparam(":gender", $gender);
+        $stmt->bindparam(":zipcode", $zip);
+        $stmt->bindparam(":province", $province);
+        $stmt->bindparam(":id", $id);
+        $stmt->execute();
+        return true;
+      }
     } catch (PDOException $e) {
       echo $e->getMessage();
       return false;
     }
   }
-
-
-  
-
-
-
-
-
-
-
-
 }

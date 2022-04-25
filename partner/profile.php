@@ -34,11 +34,6 @@ if (isset($_POST['update'])) {
     }
 }
 
-
-
-
-
-
 ?>
 
 <!DOCTYPE html>
@@ -106,11 +101,11 @@ if (isset($_POST['update'])) {
                                     <li class="breadcrumb-item active" aria-current="page">Profile</li>
                                 </ol>
                             </nav>
-                                <?php
-                                if (isset($msg)) {
-                                    echo $msg;
-                                }
-                                ?>
+                            <?php
+                            if (isset($msg)) {
+                                echo $msg;
+                            }
+                            ?>
                         </div>
                     </div>
                 </div>
@@ -165,7 +160,7 @@ if (isset($_POST['update'])) {
                                             <div class="profile-setting">
                                                 <form method="POST">
 
-                                                <input  type="hidden" name="uid" value="<?php echo $returned_row['partner_id']; ?>">
+                                                    <input type="hidden" name="uid" value="<?php echo $returned_row['partner_id']; ?>">
                                                     <ul class="profile-edit-list row">
                                                         <li class="weight-500 col-md-12">
                                                             <h4 class="text-blue h5 mb-20">Edit Your Personal Details</h4>
@@ -246,9 +241,6 @@ if (isset($_POST['update'])) {
             </div>
         </div>
     </div>
-
-
-
     </div>
 
     <?php include('includes/scripts.php'); ?>
