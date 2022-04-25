@@ -423,7 +423,54 @@ class booking
       while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
         $data[] = $row;
       }
-        return $data;
+      return $data;
+    } else {
+      return false;
+    }
+  }
+
+
+  public function GetTopPartners()
+  {
+    $sql = "SELECT DISTINCT tbl_booking.partner_id, tbl_partner.username, tbl_earning.payout,
+    COUNT(DISTINCT tbl_booking.booking_id), 
+        SUM(tbl_earning.payout) 
+    FROM tbl_booking 
+    JOIN tbl_partner ON tbl_booking.partner_id = tbl_partner.partner_id
+    JOIN tbl_earning ON tbl_booking.booking_id = tbl_earning.booking_id
+    GROUP BY tbl_booking.partner_id, tbl_partner.username 
+    ORDER BY 5 DESC";
+
+    $query = $this->db->query($sql);
+    $data = array();
+    if ($query->rowCount() > 0) {
+      while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+        $data[] = $row;
+      }
+      return $data;
+    } else {
+      return false;
+    }
+  }
+
+  public function GetTopCustomer()
+  {
+    $sql = "SELECT tbl_booking.cus_id, tbl_customer.first_name, tbl_customer.last_name, 
+    COUNT(DISTINCT tbl_booking.booking_id), 
+MAX(tbl_booking.total_amount), 
+SUM(tbl_booking.total_amount)
+FROM tbl_booking 
+JOIN tbl_customer ON tbl_booking.cus_id = tbl_customer.customer_id
+GROUP BY tbl_booking.cus_id
+ORDER BY 5 DESC;";
+
+    $query = $this->db->query($sql);
+    $data = array();
+    if ($query->rowCount() > 0) {
+      while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+        $data[] = $row;
+      }
+      return $data;
     } else {
       return false;
     }

@@ -271,7 +271,6 @@ if (isset($_GET['type']) && !empty($_GET['type'])) {
                                 <th scope="col">Income</th>
                                 <th scope="col">Income <br> Percentage%</th>
                                 <th scope="col">Status</th>
-                                <th scope="col">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -286,14 +285,14 @@ if (isset($_GET['type']) && !empty($_GET['type'])) {
 
                             ?>
                                         <tr>
-                                            <td><?php echo $Reportdatas['earning_id']; ?></td>
-                                            <td><?php echo $Reportdatas['booking_id']; ?></td>
-                                            <td><?php echo $Reportdatas['first_name'], ' ', $Reportdatas['last_name']; ?></td>
-                                            <td><?php echo $Reportdatas['service_type']; ?></td>
-                                            <td><?php echo $Reportdatas['total_amount']; ?> LKR</td>
-                                            <td><?php echo $Reportdatas['payout']; ?> LKR</td>
+                                            <td><?= $Reportdatas['earning_id']; ?></td>
+                                            <td><?= $Reportdatas['booking_id']; ?></td>
+                                            <td><?= $Reportdatas['first_name'], ' ', $Reportdatas['last_name']; ?></td>
+                                            <td><?= $Reportdatas['service_type']; ?></td>
+                                            <td><?= $Reportdatas['total_amount']; ?> LKR</td>
+                                            <td><?= $Reportdatas['payout']; ?> LKR</td>
                                             <?php $incomePercent = 100 - $Reportdatas['profit_percentage']   ?>
-                                            <td><?php echo $incomePercent ?> %</td>
+                                            <td><?= $incomePercent ?> %</td>
                                             <td><?php if ($Reportdatas['payment_status'] == 1) {
                                                     echo "<span style='color: green;'>Received</span>";
                                                 } elseif ($Reportdatas['payment_status'] >= 2) {
@@ -307,16 +306,6 @@ if (isset($_GET['type']) && !empty($_GET['type'])) {
                                                 $TotalIncome += $Reportdatas['payout'];
                                             }
                                             ?>
-                                            <td>
-                                                <div class="dropdown">
-                                                    <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-                                                        <i class="dw dw-more"></i>
-                                                    </a>
-                                                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                                                        <a class="dropdown-item" href="earning-view-model.php?viewId=<?php echo $Reportdatas['earning_id'] ?>"><i class="dw dw-eye"></i> View</a>
-                                                    </div>
-                                                </div>
-                                            </td>
                                         </tr>
                                     <?php
                                     }

@@ -91,7 +91,6 @@ if (isset($_GET['type']) && !empty($_GET['type'])) {
                 </div>
 
                 <?php
-                // Insert Record in home table
                 if (isset($_POST['submit'])) {
                     $pid = $returned_row['partner_id'];
                     $Rtype = $_POST['ReportType'];
@@ -268,13 +267,16 @@ if (isset($_GET['type']) && !empty($_GET['type'])) {
                         <thead>
                             <tr>
                                 <th scope="col">Booking Id</th>
+                                <th scope="col">In - Out</th>
+                                <th scope="col">Tot Nights</th>
+                                <th scope="col">Adults</th>
+                                <th scope="col">Kids</th>
                                 <th scope="col">Customer Name</th>
                                 <th scope="col">Service Type</th>
                                 <th scope="col">Service Name</th>
                                 <th scope="col">Total Amount</th>
                                 <th scope="col">Status</th>
                                 <th scope="col">Payment Status</th>
-                                <th scope="col">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -287,11 +289,15 @@ if (isset($_GET['type']) && !empty($_GET['type'])) {
                                     foreach ($Reportdata as $Reportdatas) {
                             ?>
                                         <tr>
-                                            <td scope="row"><?php echo $Reportdatas['booking_id']; ?></td>
-                                            <td><?php echo $Reportdatas['first_name'], ' ', $Reportdatas['last_name']; ?></td>
-                                            <td><?php echo $Reportdatas['service_type']; ?></td>
-                                            <td><?php echo $Reportdatas['service_name']; ?></td>
-                                            <td><?php echo $Reportdatas['total_amount']; ?> LKR</td>
+                                            <td scope="row"><?= $Reportdatas['booking_id']; ?></td>
+                                            <td><?= $Reportdatas['start_date']; ?> - <?= $Reportdatas['end_date']; ?></td>
+                                            <td><?= $Reportdatas['total_nights']; ?></td>
+                                            <td><?= $Reportdatas['total_adults']; ?></td>
+                                            <td><?= $Reportdatas['total_kids']; ?></td>
+                                            <td><?= $Reportdatas['first_name'], ' ', $Reportdatas['last_name']; ?></td>
+                                            <td><?= $Reportdatas['service_type']; ?></td>
+                                            <td><?= $Reportdatas['service_name']; ?></td>
+                                            <td><?= $Reportdatas['total_amount']; ?> LKR</td>
                                             <td><?php if ($Reportdatas['status'] == 0) {
                                                     echo "<span style='color: teal;'>Not Confirmed</span>";
                                                 } elseif ($Reportdatas['status'] == 1) {
@@ -315,16 +321,6 @@ if (isset($_GET['type']) && !empty($_GET['type'])) {
                                                     echo "<span style='color: red;'>Proccessing</span>";
                                                 }
                                                 ?></td>
-                                            <td>
-                                                <div class="dropdown">
-                                                    <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-                                                        <i class="dw dw-more"></i>
-                                                    </a>
-                                                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                                                        <a class="dropdown-item" href="earning-view-model.php?viewId=<?php echo $Reportdatas['earning_id'] ?>"><i class="dw dw-eye"></i> View</a>
-                                                    </div>
-                                                </div>
-                                            </td>
                                         </tr>
 
                                     <?php

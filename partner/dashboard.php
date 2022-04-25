@@ -350,14 +350,14 @@
 			<!-- Responsive tables End -->
 
 
-			<div class="row">
+			<!-- <div class="row">
 				<div class="col-xl-12 mb-30">
 					<div class="card-box height-100-p pd-20">
 						<h2 class="h4 mb-20">Activity</h2>
 						<div id="chart5"></div>
 					</div>
 				</div>
-			</div>
+			</div> -->
 			<div class="footer-wrap pd-20 mb-20 card-box">
 				HappyHolidayss By <a href="https://github.com/dropways" target="_blank">Subiharan Chandrakumaran</a>
 			</div>
@@ -368,17 +368,28 @@
 
 
 	<?php
-	$bookingcount = $booking->BookingCountByMonth();
+	// $bookingcount = $booking->BookingCountByMonth();
 
-	$var = print_r($bookingcount[1]['MONTH(created_date)'], true);
-	$var2 = print_r($bookingcount[1]['COUNT(MONTH(created_date))'], true);
+	// $var = print_r($bookingcount[1]['MONTH(created_date)'], true);
+	// $var2 = print_r($bookingcount[1]['COUNT(MONTH(created_date))'], true);
+
+	// foreach ($bookingcount as $row) {
+	// 	$data[] = array(
+			
+	// 		'month'		=>	$row["MONTH(created_date)"],
+	// 		'count'			=>	$row["MONTH(created_date)"],
+	// 	);
+
+	// 	echo json_encode($data);
+		
+	// }
 
 	?>
 
 
 
 	<!-- booking bar chart -->
-	<script>
+	<!-- <script>
 		var options5 = {
 			chart: {
 				height: 350,
@@ -409,6 +420,9 @@
 				width: 2,
 				colors: ['transparent']
 			},
+
+
+			
 			series: [{
 				name: 'In Progress',
 				data: [<?php echo $var ?>, 28, 47, 22, 34, 25, 30, 20, 37, 10, 28, 11]
@@ -508,7 +522,7 @@
 				},
 			});
 		});
-	</script>
+	</script> -->
 
 </body>
 

@@ -106,8 +106,7 @@
 			</div>
 
 
-			<div class="row pb-10">
-
+			<div class="row pb-10 d-flex">
 				<div style="display:grid; margin:0 ; padding:0;" class="col-md-3">
 					<div class="col-md-12 mb-30">
 						<div class="card-box height-100-p widget-style3">
@@ -136,7 +135,6 @@
 						</div>
 					</div>
 				</div>
-
 
 				<div style="display:grid; margin:0 ; padding:0;" class="col-md-3">
 					<div class="col-md-12 mb-30">
@@ -196,75 +194,119 @@
 					</div>
 				</div>
 
-				<div class="col-xl-3">
-					<div class="card-box height-100-p pd-20 min-height-200px">
-						<div class="d-flex justify-content-between pb-10">
-							<div class="h5 mb-0">Top 3 Customers</div>
+				<div style="display:grid; margin:0 ; padding:0;" class="col-md-3">
+					<div class="col-md-12 mb-30">
+						<div class="card-box height-100-p widget-style3">
+							<div class="d-flex flex-wrap">
+								<div class="widget-data">
+									<div class="weight-700 font-24 text-dark">2</div>
+									<div class="font-14 text-secondary weight-500">Active Partners</div>
+								</div>
+								<div class="widget-icon">
+									<div class="icon" data-color="#09cc06"><i class="icon-copy dw dw-deal" aria-hidden="true"></i></div>
+								</div>
+							</div>
 						</div>
-						<div class="user-list">
-							<ul>
-								<li class="d-flex align-items-center justify-content-between">
-									<div class="name-avatar d-flex align-items-center pr-2">
-										<div class="avatar mr-2 flex-shrink-0">
-											<img src="../assets/images/user.png" class="border-radius-100 box-shadow" width="50" height="50" alt="">
-										</div>
-										<div class="txt">
-											<div class="font-14 weight-600">Dr. Neil Wagner</div>
-											<div class="font-12 weight-500" data-color="#b2b1b6">Made 50 Booking</div>
-										</div>
-									</div>
-									<div class="cta flex-shrink-0">
-										<div class="table-actions">
-											<a href="#" data-color="#265ed7"><i class="icon-copy dw dw-eye"></i></a>
-										</div>
-									</div>
-								</li>
-							</ul>
-							<ul>
-								<li class="d-flex align-items-center justify-content-between">
-									<div class="name-avatar d-flex align-items-center pr-2">
-										<div class="avatar mr-2 flex-shrink-0">
-											<img src="../assets/images/user.png" class="border-radius-100 box-shadow" width="50" height="50" alt="">
-										</div>
-										<div class="txt">
-											<div class="font-14 weight-600">Dr. Neil Wagner</div>
-											<div class="font-12 weight-500" data-color="#b2b1b6">Made 50 Booking</div>
-										</div>
-									</div>
-									<div class="cta flex-shrink-0">
-										<div class="table-actions">
-											<a href="#" data-color="#265ed7"><i class="icon-copy dw dw-eye"></i></a>
-										</div>
-									</div>
-								</li>
-							</ul>
-							<ul>
-								<li class="d-flex align-items-center justify-content-between">
-									<div class="name-avatar d-flex align-items-center pr-2">
-										<div class="avatar mr-2 flex-shrink-0">
-											<img src="../assets/images/user.png" class="border-radius-100 box-shadow" width="50" height="50" alt="">
-										</div>
-										<div class="txt">
-											<div class="font-14 weight-600">Dr. Neil Wagner</div>
-											<div class="font-12 weight-500" data-color="#b2b1b6">Made 50 Booking</div>
-										</div>
-									</div>
-									<div class="cta flex-shrink-0">
-										<div class="table-actions">
-											<a href="#" data-color="#265ed7"><i class="icon-copy dw dw-eye"></i></a>
-										</div>
-									</div>
-								</li>
-							</ul>
+					</div>
+					<div class="col-md-12 mb-30">
+						<div class="card-box height-100-p widget-style3">
+							<div class="d-flex flex-wrap">
+								<div class="widget-data">
+									<div class="weight-700 font-24 text-dark">75</div>
+									<div class="font-14 text-secondary weight-500">Cancelled Bookings</div>
+								</div>
+								<div class="widget-icon">
+									<div class="icon" data-color="#00eccf"><i class="icon-copy dw dw-file-21"></i></div>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 
 
-			<div class="row pb-10">
-				<div class="col-md-8 mb-20">
 
+			<div class="row pb-10">
+				<div class="col-md-6 mb-20">
+
+					<div class="card-box height-100-p pd-20 min-height-200px">
+						<div class="d-flex justify-content-between pb-10">
+							<div class="h5 mb-0">Top 5 Partners</div>
+						</div>
+						<div class="user-list">
+							<?php
+							$TopPartners = $booking->GetTopPartners();
+							if ($TopPartners) {
+								foreach ($TopPartners as $Top5Partner) {
+							?>
+									<ul>
+										<li class="d-flex align-items-center justify-content-between">
+											<div class="name-avatar d-flex align-items-center pr-2">
+												<div class="avatar mr-2 flex-shrink-0">
+													<img src="../assets/images/user.png" class="border-radius-100 box-shadow" width="50" height="50" alt="">
+												</div>
+												<div class="txt">
+													<div class="font-14 weight-600"><?= $Top5Partner['username']; ?></div>
+													<div class="font-12 weight-500" data-color="#b2b1b6">Helped to Make <span style="font-weight: 700; color:#09cc06"> <?= $Top5Partner['COUNT(DISTINCT tbl_booking.booking_id)']; ?> </span> Bookings & Paid <span style="font-weight: 700; color:#09cc06"> <?= $Top5Partner['SUM(tbl_earning.payout)']; ?> (LKR) </span></div>
+												</div>
+											</div>
+											<div class="cta flex-shrink-0">
+												<a href="#" class="btn btn-sm btn-outline-primary">View</a>
+											</div>
+										</li>
+									</ul>
+							<?php
+
+								}
+							}
+							?>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6 mb-20">
+					<div class="card-box height-100-p pd-20 min-height-200px">
+						<div class="d-flex justify-content-between pb-10">
+							<div class="h5 mb-0">Top 5 Customers</div>
+						</div>
+						<div class="user-list">
+							<?php
+							$TopCustomer = $booking->GetTopCustomer();
+							if ($TopCustomer) {
+								foreach ($TopCustomer as $Top5Customer) {
+
+							?>
+									<ul>
+										<li class="d-flex align-items-center justify-content-between">
+											<div class="name-avatar d-flex align-items-center pr-2">
+												<div class="avatar mr-2 flex-shrink-0">
+													<img src="../assets/images/user.png" class="border-radius-100 box-shadow" width="50" height="50" alt="">
+												</div>
+												<div class="txt">
+													<div class="font-14 weight-600"><?= $Top5Customer['first_name']; ?> <?= $Top5Customer['last_name']; ?> </div>
+													<div class="font-12 weight-500" data-color="#b2b1b6">Made <span style="font-weight: 700; color:#09cc06"> <?= $Top5Customer['COUNT(DISTINCT tbl_booking.booking_id)']; ?> </span>Booking & Total Booking Amount Is <span style="font-weight: 700; color:#09cc06">  <?= $Top5Customer['SUM(tbl_booking.total_amount)']; ?> (LKR) </span></div>
+												</div>
+											</div>
+											<div class="cta flex-shrink-0">
+												<div class="table-actions">
+													<a href="#" data-color="#265ed7"><i class="icon-copy dw dw-eye"></i></a>
+												</div>
+											</div>
+										</li>
+									</ul>
+							<?php
+
+								}
+							}
+							?>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+
+			<div class="row pb-10">
+				<div class="col-md-12">
 					<!-- Responsive tables Start -->
 					<div class="pd-20 card-box mb-30">
 						<div class="clearfix mb-20">
@@ -288,10 +330,6 @@
 								</thead>
 								<tbody>
 									<?php
-									// $viewId = 3;
-
-									// $StatusProgressAutoUpdate = $booking->UpdateBookingStatusProgressByDate();
-									// $StatusCompleteAutoUpdate = $booking->UpdateBookingStatusCompletedByDate();
 									$bookingdata = $booking->displayBookingForAdmin();
 
 									if ($bookingdata) {
@@ -335,8 +373,6 @@
 															<a class="dropdown-item" href="booking-view-model.php?viewId=<?php echo $bookings['booking_id'] ?>"><i class="dw dw-eye"></i> View</a>
 														</div>
 													</div>
-
-
 												<?php
 
 											}
@@ -344,8 +380,6 @@
 												?>
 
 												<td colspan="12" style="padding-left: 400px;">No Bookings Found.</td>
-
-
 											<?php
 
 										}
@@ -360,127 +394,11 @@
 					</div>
 					<!-- Responsive tables End -->
 
-
-
 				</div>
-				<div class="col-md-4 mb-20">
-					<div class="card-box height-100-p pd-20 min-height-200px">
-						<div class="d-flex justify-content-between pb-10">
-							<div class="h5 mb-0">Top 5 Partners</div>
-						</div>
-						<div class="user-list">
-							<ul>
-								<li class="d-flex align-items-center justify-content-between">
-									<div class="name-avatar d-flex align-items-center pr-2">
-										<div class="avatar mr-2 flex-shrink-0">
-											<img src="../assets/images/user.png" class="border-radius-100 box-shadow" width="50" height="50" alt="">
-										</div>
-										<div class="txt">
-											<div class="font-14 weight-600">Dr. Neil Wagner</div>
-											<div class="font-12 weight-500" data-color="#b2b1b6">Paid 50000 & Earned 50000 (LKR)</div>
-										</div>
-									</div>
-									<div class="cta flex-shrink-0">
-										<a href="#" class="btn btn-sm btn-outline-primary">View</a>
-									</div>
-								</li>
-								<li class="d-flex align-items-center justify-content-between">
-									<div class="name-avatar d-flex align-items-center pr-2">
-										<div class="avatar mr-2 flex-shrink-0">
-											<img src="../assets/images/user.png" class="border-radius-100 box-shadow" width="50" height="50" alt="">
-										</div>
-										<div class="txt">
-											<div class="font-14 weight-600">Dr. Neil Wagner</div>
-											<div class="font-12 weight-500" data-color="#b2b1b6">Paid 50000 & Earned 50000 (LKR)</div>
-										</div>
-									</div>
-									<div class="cta flex-shrink-0">
-										<a href="#" class="btn btn-sm btn-outline-primary">View</a>
-									</div>
-								</li>
-								<li class="d-flex align-items-center justify-content-between">
-									<div class="name-avatar d-flex align-items-center pr-2">
-										<div class="avatar mr-2 flex-shrink-0">
-											<img src="../assets/images/user.png" class="border-radius-100 box-shadow" width="50" height="50" alt="">
-										</div>
-										<div class="txt">
-											<div class="font-14 weight-600">Dr. Neil Wagner</div>
-											<div class="font-12 weight-500" data-color="#b2b1b6">Paid 50000 & Earned 50000 (LKR)</div>
-										</div>
-									</div>
-									<div class="cta flex-shrink-0">
-										<a href="#" class="btn btn-sm btn-outline-primary">View</a>
-									</div>
-								</li>
-								<li class="d-flex align-items-center justify-content-between">
-									<div class="name-avatar d-flex align-items-center pr-2">
-										<div class="avatar mr-2 flex-shrink-0">
-											<img src="../assets/images/user.png" class="border-radius-100 box-shadow" width="50" height="50" alt="">
-										</div>
-										<div class="txt">
-											<div class="font-14 weight-600">Dr. Neil Wagner</div>
-											<div class="font-12 weight-500" data-color="#b2b1b6">Paid 50000 & Earned 50000 (LKR)</div>
-										</div>
-									</div>
-									<div class="cta flex-shrink-0">
-										<a href="#" class="btn btn-sm btn-outline-primary">View</a>
-									</div>
-								</li>
-								<li class="d-flex align-items-center justify-content-between">
-									<div class="name-avatar d-flex align-items-center pr-2">
-										<div class="avatar mr-2 flex-shrink-0">
-											<img src="../assets/images/user.png" class="border-radius-100 box-shadow" width="50" height="50" alt="">
-										</div>
-										<div class="txt">
-											<div class="font-14 weight-600">Dr. Neil Wagner</div>
-											<div class="font-12 weight-500" data-color="#b2b1b6">Paid 50000 & Earned 50000 (LKR)</div>
-										</div>
-									</div>
-									<div class="cta flex-shrink-0">
-										<a href="#" class="btn btn-sm btn-outline-primary">View</a>
-									</div>
-								</li>
-							</ul>
-						</div>
-					</div>
-				</div>
+
 			</div>
 
-			<div class="row pb-10">
-				<div class="col-md-8 mb-20">
-					<div class="card-box height-100-p pd-20">
-						<div class="d-flex flex-wrap justify-content-between align-items-center pb-0 pb-md-3">
-							<div class="h5 mb-md-0">Booking Activities</div>
-						</div>
-						<div id="activities-chart"></div>
-					</div>
-				</div>
-				<div class="col-md-4 mb-20">
-					<div class="card-box height-100-p pd-20 min-height-200px">
-						<div class="d-flex justify-content-between pb-10">
-							<div class="h5 mb-0">Top 5 Services</div>
-						</div>
-						<div class="user-list">
-							<ul>
-								<li class="d-flex align-items-center justify-content-between">
-									<div class="name-avatar d-flex align-items-center pr-2">
-										<div class="avatar mr-2 flex-shrink-0">
-											<img src="../assets/images/user.png" class="border-radius-100 box-shadow" width="50" height="50" alt="">
-										</div>
-										<div class="txt">
-											<div class="font-14 weight-600">Eco Lodge</div>
-											<div class="font-12 weight-500" data-color="#b2b1b6">Booked 50 Times</div>
-										</div>
-									</div>
-									<div class="cta flex-shrink-0">
-										<a href="#" class="btn btn-sm btn-outline-primary">View</a>
-									</div>
-								</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
+
 
 
 			<div class="footer-wrap pd-20 mb-20 card-box">

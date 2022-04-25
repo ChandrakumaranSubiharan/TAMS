@@ -90,8 +90,8 @@ class partner
 
     try {
 
-// Hash password
-$user_hashed_password = password_hash($pass, PASSWORD_DEFAULT);
+      // Hash password
+      $user_hashed_password = password_hash($pass, PASSWORD_DEFAULT);
 
       $stmt = $this->db->prepare("UPDATE tbl_partner SET 
                 first_name=:fname,
@@ -124,4 +124,15 @@ $user_hashed_password = password_hash($pass, PASSWORD_DEFAULT);
       return false;
     }
   }
+
+
+  
+
+
+
+
+
+
+
+
 }
