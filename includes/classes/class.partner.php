@@ -68,21 +68,21 @@ class partner
     }
   }
 
-  // Fetch single data for edit from tour table
-  public function displyaRecordById($Id)
+  // Fetch all data
+  public function displayUserDataAll()
   {
-    $query = "SELECT * FROM tbl_partner WHERE partner_id = '$Id'";
-    $result = $this->db->query($query);
-    if ($result->rowCount() > 0) {
-      while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-        $data = $row;
+    $sql = "SELECT * FROM tbl_partner";
+    $query = $this->db->query($sql);
+    $data = array();
+    if ($query->rowCount() > 0) {
+      while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+        $data[] = $row;
       }
       return $data;
     } else {
-      echo "Record not found";
+      return false;
     }
   }
-
 
 
   public function update($id, $fname, $lname, $uname, $pass, $mail, $contact, $address, $zip, $province, $gender)
@@ -148,4 +148,70 @@ class partner
       return false;
     }
   }
+
+
+  public function updatestatusActive($editId)
+  {
+    try {
+      $sta = 1;
+      $stmt = $this->db->prepare("UPDATE tbl_partner SET 
+                      status=:st
+                   WHERE partner_id=:id ");
+      $stmt->bindparam(":st", $sta);
+      $stmt->bindparam(":id", $editId);
+      $stmt->execute();
+
+      return true;
+    } catch (PDOException $e) {
+      echo $e->getMessage();
+      return false;
+    }
+  }
+
+  public function updatestatusDeactive($editId)
+  {
+    try {
+      $sta = 0;
+      $stmt = $this->db->prepare("UPDATE tbl_partner SET 
+                      status=:st
+                   WHERE partner_id=:id ");
+      $stmt->bindparam(":st", $sta);
+      $stmt->bindparam(":id", $editId);
+      $stmt->execute();
+
+      return true;
+    } catch (PDOException $e) {
+      echo $e->getMessage();
+      return false;
+    }
+  }
+
+  public function DeleteUser($UId)
+  {
+    try {
+      $stmt = $this->db->prepare("DELETE FROM tbl_partner
+                   WHERE partner_id=:id ");
+      $stmt->bindparam(":id", $UId);
+      $stmt->execute();
+
+      return true;
+    } catch (PDOException $e) {
+      echo $e->getMessage();
+      return false;
+    }
+  }
+
+  public function displyaRecordById($Id)
+    {
+        $query = "SELECT * FROM tbl_partner WHERE partner_id = '$Id'";
+        $result = $this->db->query($query);
+        if ($result->rowCount() > 0) {
+            while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                $data = $row;
+            }
+            return $data;
+        } else {
+            echo "Record not found";
+        }
+    }
 }

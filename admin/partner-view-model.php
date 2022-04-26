@@ -6,7 +6,7 @@ include_once '../includes/dbconfig.php';
 // display record
 if (isset($_GET['UId']) && !empty($_GET['UId'])) {
     $UId = $_GET['UId'];
-    $admindata = $admin->displyaRecordById($UId);
+    $partnerdata = $partner->displyaRecordById($UId);
 }
 
 if (isset($_GET['confirmId']) && !empty($_GET['confirmId'])) {
@@ -14,22 +14,22 @@ if (isset($_GET['confirmId']) && !empty($_GET['confirmId'])) {
     $CurrentStatus = $_GET['status'];
 
     if ($CurrentStatus == 1) {
-        $UserActivate = $admin->updatestatusActive($editId);
+        $UserActivate = $partner->updatestatusActive($editId);
         $msg = "<div class='alert alert-success alert-dismissible'>
         <button type='button' class='close' data-dismiss='alert'>&times;</button>
-        User Activated Successfully
+        Partner Activated Successfully
       </div>";
-        $admindata = $admin->displyaRecordById($UId);
+        $partnerdata = $partner->displyaRecordById($UId);
     } elseif ($CurrentStatus == 0) {
-        $UserDeactivate = $admin->updatestatusDeactive($editId);
+        $UserDeactivate = $partner->updatestatusDeactive($editId);
         $msg = "<div class='alert alert-danger alert-dismissible'>
         <button type='button' class='close' data-dismiss='alert'>&times;</button>
-        User Deactivated Successfully
+        Partner Deactivated Successfully
       </div>";
-        $admindata = $admin->displyaRecordById($UId);
+        $partnerdata = $partner->displyaRecordById($UId);
     } elseif ($CurrentStatus == 2) {
-        $UserDelete = $admin->DeleteUser($editId);
-        echo "<script>alert('User Removed Successfully'); window.location = 'user-manage.php';</script>";
+        $UserDelete = $partner->DeleteUser($editId);
+        echo "<script>alert('Partner Removed Successfully'); window.location = 'partner-manage.php';</script>";
     }
 }
 
@@ -86,13 +86,13 @@ if (isset($_GET['confirmId']) && !empty($_GET['confirmId'])) {
                     <div class="row">
                         <div class="col-md-6 col-sm-12">
                             <div class="title">
-                                <h4>View Earning Details</h4>
+                                <h4>View Partner Details</h4>
                             </div>
                             <nav aria-label="breadcrumb" role="navigation">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                                    <li class="breadcrumb-item" aria-current="page">Internal Users</li>
-                                    <li class="breadcrumb-item active" aria-current="page">View User</li>
+                                    <li class="breadcrumb-item"><a href="dashboard.php">Home</a></li>
+                                    <li class="breadcrumb-item" aria-current="page">Manage Partners</li>
+                                    <li class="breadcrumb-item active" aria-current="page">View partner</li>
                                 </ol>
                             </nav>
                             <?php
@@ -108,85 +108,103 @@ if (isset($_GET['confirmId']) && !empty($_GET['confirmId'])) {
                         <div class="row">
                             <div class="col-md-3 col-sm-12">
                                 <div class="form-group">
-                                    <label>User Id</label>
+                                    <label>Partner Id</label>
                                     <h6><?= $UId; ?></h6>
                                 </div>
                             </div>
                             <div class="col-md-3 col-sm-12">
                                 <div class="form-group">
-                                    <label>Full Name</label>
-                                    <h6><?= $admindata['full_name']; ?></h6>
+                                    <label>First Name</label>
+                                    <h6><?= $partnerdata['first_name']; ?></h6>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-12">
+                                <div class="form-group">
+                                    <label>Last Name</label>
+                                    <h6><?= $partnerdata['last_name']; ?></h6>
                                 </div>
                             </div>
                             <div class="col-md-3 col-sm-12">
                                 <div class="form-group">
                                     <label>User Name</label>
-                                    <h6><?= $admindata['username']; ?></h6>
+                                    <h6><?= $partnerdata['username']; ?></h6>
                                 </div>
                             </div>
-                            <div class="col-md-3 col-sm-12">
-                                <div class="form-group">
-                                    <label>Contact</label>
-                                    <h6><?= $admindata['contact_number']; ?></h6>
-                                </div>
-                            </div>
+
                         </div>
 
                         <div class="row">
                             <div class="col-md-3 col-sm-12">
                                 <div class="form-group">
+                                    <label>Contact</label>
+                                    <h6><?= $partnerdata['contact_number']; ?></h6>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-12">
+                                <div class="form-group">
                                     <label>Email</label>
-                                    <h6><?= $admindata['email']; ?></h6>
+                                    <h6><?= $partnerdata['email_address']; ?></h6>
                                 </div>
                             </div>
                             <div class="col-md-3 col-sm-12">
                                 <div class="form-group">
-                                    <label>Staff Id</label>
-                                    <h6><?= $admindata['staff_id']; ?></h6>
+                                    <label>Address</label>
+                                    <h6><?= $partnerdata['address']; ?></h6>
                                 </div>
                             </div>
                             <div class="col-md-3 col-sm-12">
                                 <div class="form-group">
-                                    <label>Department</label>
-                                    <h6><?= $admindata['department']; ?></h6>
+                                    <label>Province</label>
+                                    <h6><?= $partnerdata['province']; ?></h6>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3 col-sm-12">
+                                <div class="form-group">
+                                    <label>Gender</label>
+                                    <h6><?= $partnerdata['gender']; ?></h6>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-12">
+                                <div class="form-group">
+                                    <label>Zipcode</label>
+                                    <h6><?= $partnerdata['zipcode']; ?></h6>
                                 </div>
                             </div>
                             <div class="col-md-3 col-sm-12">
                                 <div class="form-group">
                                     <label>Status</label>
-                                    <h6><?php if ($admindata['status'] == 0) {
+                                    <h6><?php if ($partnerdata['status'] == 0) {
                                             echo "<span style='color: red;'>Inactive</span>";
-                                        } elseif ($admindata['status'] == 1) {
+                                        } elseif ($partnerdata['status'] == 1) {
                                             echo "<span style='color: green;'>Active</span>";
-                                        } else {
-                                            echo "Disabled";
                                         } ?></h6>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-12">
+                                <div class="form-group">
+                                    <label>Registred Date&Time</label>
+                                    <h6><?= date('jS F, Y h:i A', strtotime($partnerdata['created_date'])); ?></h6>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-3 col-sm-12">
-                                <div class="form-group">
-                                    <label>Registred Date&Time</label>
-                                    <h6><?= date('jS F, Y h:i A', strtotime($admindata['created_date'])); ?></h6>
-                                </div>
-                            </div>
-
-                            <div class="col-md-9 col-sm-12 text-right">
+                            <div class="col-md-12 col-sm-12 text-right">
                                 <div class="btn-list">
                                     <?php
-                                    if ($admindata['status'] == 0) {
+                                    if ($partnerdata['status'] == 0) {
                                     ?>
-                                        <a type="button" href="?UId=<?= $admindata['admin_id'] ?>&confirmId=<?= $admindata['admin_id'] ?>&status=1" class="btn btn-success">Activate User</a>
+                                        <a type="button" href="?UId=<?= $partnerdata['partner_id'] ?>&confirmId=<?= $partnerdata['partner_id'] ?>&status=1" class="btn btn-success">Activate User</a>
                                     <?php
-                                    } elseif ($admindata['status'] == 1) {
+                                    } elseif ($partnerdata['status'] == 1) {
                                     ?>
-                                        <a type="button" href="?UId=<?= $admindata['admin_id'] ?>&confirmId=<?= $admindata['admin_id'] ?>&status=0" class="btn btn-danger">Deactivate User</a>
+                                        <a type="button" href="?UId=<?= $partnerdata['partner_id'] ?>&confirmId=<?= $partnerdata['partner_id'] ?>&status=0" class="btn btn-danger">Deactivate User</a>
                                     <?php
                                     }
                                     ?>
-                                    <a type="button" href="?UId=<?= $admindata['admin_id'] ?>&confirmId=<?= $admindata['admin_id'] ?>&status=2" class="btn btn-danger">Remove User</a>
-                                    <a type="button" href="user-manage.php" class="btn btn-secondary">Go Back</a>
+                                    <a type="button" href="?UId=<?= $partnerdata['partner_id'] ?>&confirmId=<?= $partnerdata['partner_id'] ?>&status=2" class="btn btn-danger">Remove User</a>
+                                    <a type="button" href="partner-manage.php" class="btn btn-secondary">Go Back</a>
                                 </div>
                             </div>
                         </div>

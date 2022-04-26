@@ -26,15 +26,10 @@
 						<li><a href="user-manage.php">Manage</a></li>
 					</ul>
 				</li>
-
-				<li class="dropdown">
-					<a href="javascript:;" class="dropdown-toggle">
-						<span class="micon icon-copy dw dw-deal "></span><span class="mtext">Partners</span>
+				<li>
+					<a href="partner-manage.php" class="dropdown-toggle no-arrow">
+						<i class="micon icon-copy dw dw-deal" aria-hidden="true"></i><span class="mtext">Manage Partners</span>
 					</a>
-					<ul class="submenu">
-						<li><a href="partner-create.php">Create</a></li>
-						<li><a href="partner-manage.php">Manage</a></li>
-					</ul>
 				</li>
 				<li>
 					<a href="customer-manage.php" class="dropdown-toggle no-arrow">

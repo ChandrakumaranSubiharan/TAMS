@@ -156,4 +156,19 @@ class admin
             return false;
         }
     }
+
+    public function DeleteUser($UId)
+    {
+        try {
+            $stmt = $this->db->prepare("DELETE FROM tbl_admin
+                   WHERE admin_id=:id ");
+            $stmt->bindparam(":id", $UId);
+            $stmt->execute();
+
+            return true;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            return false;
+        }
+    }
 }
