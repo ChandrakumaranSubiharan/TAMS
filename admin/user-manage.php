@@ -137,7 +137,7 @@ if (isset($_GET['UId']) && !empty($_GET['UId'])) {
                                                     <i class="dw dw-more"></i>
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                                                    <a class="dropdown-item" href="booking-view-model.php?viewId=<?php echo $users['booking_id'] ?>"><i class="dw dw-eye"></i> View</a>
+                                                    <a class="dropdown-item" href="user-view-model.php?UId=<?php echo $users['admin_id'] ?>"><i class="dw dw-eye"></i> View</a>
                                                     <?php
                                                     if ($users['status'] <= 0 && $users['admin_id'] != $returned_row['admin_id']) {
                                                     ?>

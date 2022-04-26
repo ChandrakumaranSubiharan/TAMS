@@ -5,36 +5,29 @@ include_once '../includes/dbconfig.php';
 
 
 // Insert Record in home table
-if(isset($_POST['submit'])) {
+if (isset($_POST['submit'])) {
 
-    // $home_name = $_POST['hname'];
-    // $location_address = $_POST['laddress'];
-    // $adult_price = $_POST['anprice'];
-    // $kid_price = $_POST['kidprice'];
-    // $max_adult = $_POST['madult'];
-    // $max_kid = $_POST['mkid'];
-    // $lg_desc = $_POST['lgdesc'];
-    // $home_type = $_POST['type'];
-    // $home_room = $_POST['rooms'];
-    // $district = $_POST['district'];
-    // $province = $_POST['province'];
-    // $cancel = $_POST['cancel'];
-    // $str_date = $_POST['start_date'];
-    // $end_date = $_POST['end_date'];
-    // $str_time = $_POST['start_time'];
-    // $end_time = $_POST['end_time'];
-    // $file = $_FILES['image'];
-    // $pid = $_POST['partnerid'];
+    $fullname = $_POST['fname'];
+    $username = $_POST['uname'];
+    $email = $_POST['mail'];
+    $contact = $_POST['cnumber'];
+    $staffid = $_POST['cid'];
+    $department = $_POST['dep'];
+    $password = $_POST['pass'];
 
-    // $insertData = $home->insertData($home_name, $location_address, $adult_price, $kid_price, $max_adult, $max_kid, $lg_desc, $home_type,$home_room, $district, $province, $cancel, $str_date, $end_date, $str_time, $end_time, $file,$pid);
+    $insertData = $admin->create($fullname, $username, $email, $contact, $staffid, $department, $password);
 
-    // if ($insertData){
-    //     $msg = "Home successfully created ";
-    //     echo "<script type='text/javascript'>alert('$msg');</script>";
-    // }else{
-    //     $msg = "Failed to Create Home ";
-    //     echo "<script type='text/javascript'>alert('$msg');</script>";
-    // }
+    if ($insertData) {
+        $msg = "<div class='alert alert-success alert-dismissible'>
+        <button type='button' class='close' data-dismiss='alert'>&times;</button>
+        User was added successfully
+      </div>";
+    } else {
+        $msg = "<div class='alert alert-danger alert-dismissible'>
+                    <button type='button' class='close' data-dismiss='alert'>&times;</button>
+                    User was failed to add
+                </div>";
+    }
 }
 ?>
 
@@ -97,6 +90,11 @@ if(isset($_POST['submit'])) {
                                     <li class="breadcrumb-item active" aria-current="page">Create Internal User</li>
                                 </ol>
                             </nav>
+                            <?php
+                            if (isset($msg)) {
+                                echo $msg;
+                            }
+                            ?>
                         </div>
                     </div>
                 </div>
@@ -113,7 +111,7 @@ if(isset($_POST['submit'])) {
                         </div>
                         <div class="form-group">
                             <label>Email Address</label>
-                            <input placeholder="Enter Email Address" class="form-control" name="email" type="email" required>
+                            <input placeholder="Enter Email Address" class="form-control" name="mail" type="email" required>
                         </div>
                         <div class="form-group">
                             <label>Contact No</label>
@@ -125,10 +123,10 @@ if(isset($_POST['submit'])) {
                         </div>
                         <div class="form-group">
                             <label>Department</label>
-							<select name="dep" class="custom-select col-12">
-									<option selected="">Choose...</option>
-									<option value="Adminstartive Department">Adminstartive Department</option>
-							</select>
+                            <select name="dep" class="custom-select col-12">
+                                <option selected="">Choose...</option>
+                                <option value="Adminstartive Department">Adminstartive Department</option>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label>Password</label>
