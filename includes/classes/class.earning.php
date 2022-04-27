@@ -82,7 +82,7 @@ class earning
       from tbl_earning
       join tbl_customer on tbl_earning.customer_id=tbl_customer.customer_id
       join tbl_booking on tbl_earning.booking_id=tbl_booking.booking_id
-      where tbl_booking.payment_status = 1 AND tbl_booking.status = 2 OR tbl_booking.status >= 3 AND tbl_booking.partner_id= $pid ";
+      where tbl_booking.payment_status = 1 AND tbl_booking.partner_id= $pid ";
 
 
     $query = $this->db->query($sql);

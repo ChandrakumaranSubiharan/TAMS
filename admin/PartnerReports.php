@@ -124,16 +124,13 @@ if (isset($_GET['type']) && !empty($_GET['type'])) {
                                                     echo 'Partners Report : Selected';
                                                 } elseif ($Rtype == 2) {
                                                     echo 'Top Partners Report : Selected';
-                                                } elseif ($Rtype == 3) {
-                                                    echo 'Most Service Listed Parters Report : Selected';
-                                                }; ?>
+                                                };?>
                                             </option>
                                         <?php
                                         }
                                         ?>
                                         <option value="1">Partners Report</option>
                                         <option value="2">Top Partners Report</option>
-                                        <option value="3">Most Service Listed Parters Report</option>
                                     </select>
                                 </div>
                             </div>
@@ -204,21 +201,7 @@ if (isset($_GET['type']) && !empty($_GET['type'])) {
                             <?php if (isset($_POST['submit'])) {
 
                                 if ($Rtype == 2) {
-                                    echo 'Tour Services';
-                                } elseif ($Rtype == 3) {
-                                    echo 'HomeStay Services';
-                                } elseif ($Rtype == 4) {
-                                    echo 'Unconfirmed';
-                                } elseif ($Rtype == 5) {
-                                    echo 'Confirmed';
-                                } elseif ($Rtype == 6) {
-                                    echo 'Inprogress';
-                                } elseif ($Rtype == 7) {
-                                    echo 'Cancelled';
-                                } elseif ($Rtype == 7) {
-                                    echo 'Refunded';
-                                } elseif ($Rtype == 7) {
-                                    echo 'Completed';
+                                    echo 'Top';
                                 };
                             }
                             ?>
