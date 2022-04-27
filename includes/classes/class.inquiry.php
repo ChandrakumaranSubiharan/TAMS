@@ -40,4 +40,72 @@ class inquiry
             return false;
         }
     }
+
+
+    public function displayReviewsAll()
+    {
+        $sql = "SELECT * FROM tbl_inquiry";
+        $query = $this->db->query($sql);
+        $data = array();
+        if ($query->rowCount() > 0) {
+            while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+                $data[] = $row;
+            }
+            return $data;
+        } else {
+            return false;
+        }
+    }
+
+
+
+    public function updatestatusApprove($editId)
+    {
+        try {
+            $sta = 1;
+            $stmt = $this->db->prepare("UPDATE tbl_inquiry SET 
+                      status=:st
+                   WHERE inquiry_id=:id ");
+            $stmt->bindparam(":st", $sta);
+            $stmt->bindparam(":id", $editId);
+            $stmt->execute();
+
+            return true;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            return false;
+        }
+    }
+
+    public function updatestatusDisapprove($editId)
+    {
+        try {
+            $sta = 0;
+            $stmt = $this->db->prepare("UPDATE tbl_inquiry SET 
+                      status=:st
+                   WHERE inquiry_id=:id ");
+            $stmt->bindparam(":st", $sta);
+            $stmt->bindparam(":id", $editId);
+            $stmt->execute();
+
+            return true;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            return false;
+        }
+    }
+
+    public function displyaRecordById($Id)
+    {
+        $query = "SELECT * FROM tbl_inquiry WHERE inquiry_id = '$Id'";
+        $result = $this->db->query($query);
+        if ($result->rowCount() > 0) {
+            while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                $data = $row;
+            }
+            return $data;
+        } else {
+            echo "Record not found";
+        }
+    }
 }
