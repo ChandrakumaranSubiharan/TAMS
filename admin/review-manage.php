@@ -106,11 +106,8 @@ if (isset($_GET['RId']) && !empty($_GET['RId'])) {
                                 <tr>
                                     <th class="table-plus datatable-nosort">Id</th>
                                     <th>Title</th>
-                                    <th>Description</th>
                                     <th>Customer Name</th>
                                     <th>Customer Type</th>
-                                    <!-- <th>Service Name</th>
-                                    <th>Service Type</th> -->
                                     <th>Review Rating</th>
                                     <th>Status</th>
                                     <th class="datatable-nosort">Action</th>
@@ -124,7 +121,6 @@ if (isset($_GET['RId']) && !empty($_GET['RId'])) {
                                     <tr>
                                         <td><?= $reviews['review_id']; ?></td>
                                         <td><?= $reviews['review_title']; ?></td>
-                                        <td><?= $reviews['review_description']; ?></td>
                                         <td><?= $reviews['first_name']; ?> <?= $reviews['last_name']; ?></td>
                                         <td><?= $reviews['review_user_type']; ?></td>
                                         <td><?= $reviews['review_rating']; ?></td>

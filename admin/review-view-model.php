@@ -120,8 +120,12 @@ if (isset($_GET['confirmId']) && !empty($_GET['confirmId'])) {
                             </div>
                             <div class="col-md-3 col-sm-12">
                                 <div class="form-group">
-                                    <label>Description</label>
-                                    <h6><?= $reviewdata['review_description']; ?></h6>
+                                    <label>Status</label>
+                                    <h6><?php if ($reviewdata['status'] == 0) {
+                                            echo "<span style='color: red;'>Disapproved</span>";
+                                        } elseif ($reviewdata['status'] == 1) {
+                                            echo "<span style='color: green;'>Approved</span>";
+                                        } ?></h6>
                                 </div>
                             </div>
                             <div class="col-md-3 col-sm-12">
@@ -143,7 +147,7 @@ if (isset($_GET['confirmId']) && !empty($_GET['confirmId'])) {
                             <div class="col-md-3 col-sm-12">
                                 <div class="form-group">
                                     <label>Service Name</label>
-                                    <h6><?= $reviewdata['service_id']; ?></h6>
+                                    <h6><?= $reviewdata['service_name']; ?></h6>
                                 </div>
                             </div>
                             <div class="col-md-3 col-sm-12">
@@ -160,16 +164,7 @@ if (isset($_GET['confirmId']) && !empty($_GET['confirmId'])) {
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-3 col-sm-12">
-                                <div class="form-group">
-                                    <label>Status</label>
-                                    <h6><?php if ($reviewdata['status'] == 0) {
-                                            echo "<span style='color: red;'>Disapproved</span>";
-                                        } elseif ($reviewdata['status'] == 1) {
-                                            echo "<span style='color: green;'>Approved</span>";
-                                        } ?></h6>
-                                </div>
-                            </div>
+
                             <?php
                             if ($reviewdata['approved_date']) {
                             ?>
@@ -182,7 +177,20 @@ if (isset($_GET['confirmId']) && !empty($_GET['confirmId'])) {
                             <?php
                             }
                             ?>
-                            <div class="col-md-6 col-sm-12 text-right">
+
+                            <div class="col-md-9 col-sm-12">
+                                <div class="form-group">
+                                    <label>Description</label>
+                                    <h6><?= $reviewdata['review_description']; ?></h6>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                        <div class="row">
+
+                            <div class="col-md-12 col-sm-12 text-right">
                                 <div class="btn-list">
                                     <?php
                                     if ($reviewdata['status'] == 0) {
@@ -199,7 +207,12 @@ if (isset($_GET['confirmId']) && !empty($_GET['confirmId'])) {
                                     <a type="button" href="review-manage.php" class="btn btn-secondary">Go Back</a>
                                 </div>
                             </div>
+
                         </div>
+
+
+
+
                     </form>
                 </div>
             </div>

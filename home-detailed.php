@@ -406,6 +406,7 @@ foreach ($homedata as $homeinfo) {
                                             $u_type = $_POST['user_type'];
                                             $rating = $_POST['review_rating'];
                                             $customerid = $_POST['cid'];
+                                            $servicename = $_POST['hname'];
                                             $serviceid = $_POST['sid'];
 
                                             // Check for empty and invalid inputs
@@ -420,7 +421,7 @@ foreach ($homedata as $homeinfo) {
                                             } else {
 
                                                 // Check if the user may send the review
-                                                if ($review->create_review($title, $des, $u_type, $rating, $customerid, $serviceid)) {
+                                                if ($review->create_review($title, $des, $u_type, $rating, $customerid, $serviceid, $servicename)) {
 
                                                     $message = "Review Successfully submitted !";
                                                     echo "<script type='text/javascript'>
@@ -444,6 +445,7 @@ foreach ($homedata as $homeinfo) {
 
                                     <form method="POST" class="review-form">
                                         <input type="text" name="sid" hidden value="<?php echo $homeinfo['home_id']; ?>">
+                                        <input type="text" name="hname" hidden value="<?php echo $homeinfo['home_name']; ?>">
                                         <input type="text" name="cid" hidden value="<?php echo $returned_row['customer_id']; ?>">
 
                                         <div class="form-group col-md-5 no-float no-padding">

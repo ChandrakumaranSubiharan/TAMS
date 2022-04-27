@@ -12,13 +12,13 @@ class review
 
 
     // Method Register new partner
-    public function create_review($title, $des, $u_type, $rating, $cid, $sid)
+    public function create_review($title, $des, $u_type, $rating, $cid, $sid, $servicename)
     {
         try {
 
             // Prepare the statement to insert values into the inquiry table
 
-            $stmt = $this->db->prepare("INSERT INTO tbl_review(review_title, review_description, review_user_type, customer_id, service_id, review_rating, status) VALUES(:title,:des,:type,:cid,:sid,:rate,:status)");
+            $stmt = $this->db->prepare("INSERT INTO tbl_review(review_title, review_description, review_user_type, customer_id, service_id, review_rating, status, service_name) VALUES(:title,:des,:type,:cid,:sid,:rate,:status,:sname)");
 
             // variable to fetch inquiry active/inactive status by bool value
             $sta = '0';
@@ -31,6 +31,7 @@ class review
             $stmt->bindparam(":sid", $sid);
             $stmt->bindparam(":rate", $rating);
             $stmt->bindparam(":status", $sta);
+            $stmt->bindparam(":sname", $servicename);
 
             // Execute the query
             $stmt->execute();
@@ -171,6 +172,7 @@ class review
       tbl_review.review_description,
       tbl_review.review_user_type, 
       tbl_review.service_id, 
+      tbl_review.service_name, 
       tbl_review.review_rating, 
       tbl_review.created_date,
       tbl_review.approved_date,

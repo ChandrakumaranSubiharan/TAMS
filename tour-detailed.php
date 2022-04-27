@@ -376,7 +376,9 @@ foreach ($tourdata as $tourinfo) {
                                             $u_type = $_POST['user_type'];
                                             $rating = $_POST['review_rating'];
                                             $customerid = $_POST['cid'];
+                                            $servicename = $_POST['tname'];
                                             $serviceid = $_POST['sid'];
+                                            
 
                                             // Check for empty and invalid inputs
                                             if (empty($title)) {
@@ -390,7 +392,7 @@ foreach ($tourdata as $tourinfo) {
                                             } else {
 
                                                 // Check if the user may send the review
-                                                if ($review->create_review($title, $des, $u_type, $rating, $customerid, $serviceid)) {
+                                                if ($review->create_review($title, $des, $u_type, $rating, $customerid, $serviceid, $servicename)) {
 
                                                     $message = "Review Successfully submitted !";
                                                     echo "<script type='text/javascript'>
@@ -411,6 +413,7 @@ foreach ($tourdata as $tourinfo) {
 
                                     <form method="POST" class="review-form">
                                         <input type="text" name="sid" hidden value="<?php echo $tourinfo['tour_id']; ?>">
+                                        <input type="text" name="tname" hidden value="<?php echo $tourinfo['title']; ?>">
                                         <input type="text" name="cid" hidden value="<?php echo $returned_row['customer_id']; ?>">
 
                                         <div class="form-group col-md-5 no-float no-padding">
