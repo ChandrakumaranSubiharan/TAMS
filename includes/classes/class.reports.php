@@ -162,4 +162,78 @@ class reports
             return false;
         }
     }
+
+
+
+
+
+
+
+
+    // admin reports
+    public function PartnersReport($Rtype, $SDate, $EDate, $Type)
+    {
+        $sql = '';
+        $sql = "SELECT DISTINCT tbl_booking.partner_id, tbl_partner.username, tbl_earning.payout,tbl_earning.net_amount,
+        tbl_partner.partner_id,
+        tbl_partner.first_name,
+        tbl_partner.last_name,
+        tbl_partner.username,
+        tbl_partner.address,
+        tbl_partner.email_address,
+        tbl_partner.contact_number,
+        tbl_partner.status,
+        tbl_partner.gender,
+        tbl_partner.zipcode,
+        tbl_partner.created_date,
+        tbl_partner.updated_date,
+        tbl_partner.province,
+        COUNT(DISTINCT tbl_booking.booking_id), 
+        COUNT(DISTINCT tbl_home.partner_id), 
+        COUNT(DISTINCT tbl_tour.partner_id), 
+            SUM(tbl_earning.payout), 
+            SUM(tbl_earning.net_amount) 
+        FROM tbl_booking 
+        JOIN tbl_partner ON tbl_booking.partner_id = tbl_partner.partner_id
+        JOIN tbl_earning ON tbl_booking.booking_id = tbl_earning.booking_id
+        JOIN tbl_home ON tbl_partner.partner_id = tbl_home.partner_id
+        JOIN tbl_tour ON tbl_partner.partner_id = tbl_tour.partner_id
+        WHERE ";
+
+        if ($Type == 'DateWise') {
+
+            $SqlCommonQuery = "DATE(tbl_partner.created_date) BETWEEN '$SDate' AND '$EDate'";
+
+            if ($Rtype == 1) {
+                $sql .= "$SqlCommonQuery ORDER BY created_date DESC ";
+            } elseif ($Rtype == 2) {
+                $sql .= "$SqlCommonQuery ORDER BY COUNT(DISTINCT tbl_booking.booking_id) DESC ";
+            } elseif ($Rtype == 3) {
+                $sql .= "$SqlCommonQuery ORDER BY COUNT(DISTINCT tbl_home.partner_id)+COUNT(DISTINCT tbl_tour.partner_id) DESC ";
+            };
+        } elseif ($Type == 'Daily') {
+
+            $SqlCommonQuery = "DATE(tbl_partner.created_date) = '$SDate'";
+
+            if ($Rtype == 1) {
+                $sql .= "$SqlCommonQuery ORDER BY created_date DESC ";
+            } elseif ($Rtype == 2) {
+                $sql .= "$SqlCommonQuery ORDER BY COUNT(DISTINCT tbl_booking.booking_id) DESC ";
+            } elseif ($Rtype == 3) {
+                $sql .= "$SqlCommonQuery ORDER BY COUNT(DISTINCT tbl_home.partner_id)+COUNT(DISTINCT tbl_tour.partner_id) DESC ";
+            };
+        }
+
+        $sql .= ";";
+        $query = $this->db->query($sql);
+        $data = array();
+        if ($query->rowCount() > 0) {
+            while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+                $data[] = $row;
+            }
+            return $data;
+        } else {
+            return false;
+        }
+    }
 }

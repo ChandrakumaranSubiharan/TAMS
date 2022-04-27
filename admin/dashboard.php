@@ -247,7 +247,7 @@
 												</div>
 												<div class="txt">
 													<div class="font-14 weight-600"><?= $Top5Partner['username']; ?></div>
-													<div class="font-12 weight-500" data-color="#b2b1b6">Helped to Make <span style="font-weight: 700; color:#09cc06"> <?= $Top5Partner['COUNT(DISTINCT tbl_booking.booking_id)']; ?> </span> Bookings & Paid <span style="font-weight: 700; color:#09cc06"> <?= $Top5Partner['SUM(tbl_earning.payout)']; ?> (LKR) </span></div>
+													<div class="font-12 weight-500" data-color="#b2b1b6">Helped to Make <span style="font-weight: 700; color:#09cc06"> <?= $Top5Partner['COUNT(DISTINCT tbl_booking.booking_id)']; ?> </span> Bookings & Paid <span style="font-weight: 700; color:#09cc06"> <?= $Top5Partner['SUM(tbl_earning.net_amount)']; ?> (LKR) </span></div>
 												</div>
 											</div>
 											<div class="cta flex-shrink-0">

@@ -432,9 +432,9 @@ class booking
 
   public function GetTopPartners()
   {
-    $sql = "SELECT DISTINCT tbl_booking.partner_id, tbl_partner.username, tbl_earning.payout,
+    $sql = "SELECT DISTINCT tbl_booking.partner_id, tbl_partner.username, tbl_earning.net_amount,
     COUNT(DISTINCT tbl_booking.booking_id), 
-        SUM(tbl_earning.payout) 
+        SUM(tbl_earning.net_amount) 
     FROM tbl_booking 
     JOIN tbl_partner ON tbl_booking.partner_id = tbl_partner.partner_id
     JOIN tbl_earning ON tbl_booking.booking_id = tbl_earning.booking_id

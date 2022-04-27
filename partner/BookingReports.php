@@ -14,8 +14,6 @@ if (isset($_GET['type']) && !empty($_GET['type'])) {
         $SDate = isset($_POST['Sdate']) ? $_POST['Sdate'] : date("Y-m-d", strtotime(date("Y-m-d")));
     }
 }
-
-
 ?>
 
 
