@@ -171,6 +171,8 @@ class reports
 
 
     // admin reports
+
+    //partner report
     public function PartnersReport($Rtype, $SDate, $EDate, $Type)
     {
         $sql = '';
@@ -208,9 +210,7 @@ class reports
                 $sql .= "$SqlCommonQuery ORDER BY created_date DESC ";
             } elseif ($Rtype == 2) {
                 $sql .= "$SqlCommonQuery ORDER BY COUNT(DISTINCT tbl_booking.booking_id) DESC ";
-            } elseif ($Rtype == 3) {
-                $sql .= "$SqlCommonQuery ORDER BY COUNT(DISTINCT tbl_home.partner_id)+COUNT(DISTINCT tbl_tour.partner_id) DESC ";
-            };
+            }
         } elseif ($Type == 'Daily') {
 
             $SqlCommonQuery = "DATE(tbl_partner.created_date) = '$SDate'";
@@ -219,8 +219,59 @@ class reports
                 $sql .= "$SqlCommonQuery ORDER BY created_date DESC ";
             } elseif ($Rtype == 2) {
                 $sql .= "$SqlCommonQuery ORDER BY COUNT(DISTINCT tbl_booking.booking_id) DESC ";
-            } elseif ($Rtype == 3) {
-                $sql .= "$SqlCommonQuery ORDER BY COUNT(DISTINCT tbl_home.partner_id)+COUNT(DISTINCT tbl_tour.partner_id) DESC ";
+            };
+        }
+
+        $sql .= ";";
+        $query = $this->db->query($sql);
+        $data = array();
+        if ($query->rowCount() > 0) {
+            while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+                $data[] = $row;
+            }
+            return $data;
+        } else {
+            return false;
+        }
+    }
+
+
+
+    //customer report
+    public function CustomersReport($Rtype, $SDate, $EDate, $Type)
+    {
+        $sql = '';
+        $sql = "SELECT DISTINCT tbl_booking.cus_id, 
+         tbl_customer.customer_id,
+         tbl_customer.first_name,
+         tbl_customer.last_name,
+         tbl_customer.email_address,
+         tbl_customer.address,
+         tbl_customer.contact_number,
+         tbl_customer.status,
+         tbl_customer.created_date,
+         COUNT(DISTINCT tbl_booking.booking_id) 
+         FROM tbl_booking 
+         JOIN tbl_customer ON tbl_booking.cus_id = tbl_customer.customer_id
+         WHERE ";
+
+        if ($Type == 'DateWise') {
+
+            $SqlCommonQuery = "DATE(tbl_customer.created_date) BETWEEN '$SDate' AND '$EDate'";
+
+            if ($Rtype == 1) {
+                $sql .= "$SqlCommonQuery ORDER BY tbl_customer.created_date DESC ";
+            } elseif ($Rtype == 2) {
+                $sql .= "$SqlCommonQuery ORDER BY COUNT(DISTINCT tbl_booking.booking_id) DESC ";
+            }
+        } elseif ($Type == 'Daily') {
+
+            $SqlCommonQuery = "DATE(tbl_customer.created_date) = '$SDate'";
+
+            if ($Rtype == 1) {
+                $sql .= "$SqlCommonQuery ORDER BY tbl_customer.created_date DESC ";
+            } elseif ($Rtype == 2) {
+                $sql .= "$SqlCommonQuery ORDER BY COUNT(DISTINCT tbl_booking.booking_id) DESC ";
             };
         }
 

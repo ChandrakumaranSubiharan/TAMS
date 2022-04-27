@@ -25,7 +25,7 @@ class tour
         if (move_uploaded_file($file['tmp_name'], $filePath)) {
 
           // variable to fetch home active/inactive status by bool value
-          $sta = "0";
+          $sta = "2";
 
           $query = "INSERT INTO tbl_tour(title,details,location,tour_type,duration_nights,adult_price,kid_status,kid_price,image,partner_id,status,language,district,availabile_seats,ava_start_date,s_time,ava_end_date,e_time,gathering_location,cancellation)
                     VALUES('$tour_title','$tour_details','$tour_location','$tour_type','$tour_duration','$adult_price','$kid_status','$kid_price','$fileNew','$pid','$sta','$tour_language','$district','$ava_seats','$str_date','$str_time','$end_date','$end_time','$g_location','$cancel')";
