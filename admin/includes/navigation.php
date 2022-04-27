@@ -112,15 +112,6 @@
 						</li>
 						<li class="dropdown">
 							<a href="javascript:;" class="dropdown-toggle">
-								<span class="micon dw dw-analytics"></span><span class="mtext">Services Reports</span>
-							</a>
-							<ul class="submenu child">
-								<li><a href="ServiceReports.php?type=Daily">Daily</a></li>
-								<li><a href="ServiceReports.php?type=DateWise">Date-Wise</a></li>
-							</ul>
-						</li>
-						<li class="dropdown">
-							<a href="javascript:;" class="dropdown-toggle">
 								<span class="micon dw dw-analytics-3"></span><span class="mtext">Earnings Reports</span>
 							</a>
 							<ul class="submenu child">

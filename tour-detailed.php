@@ -190,12 +190,20 @@ foreach ($tourdata as $tourinfo) {
                                                     </div>
                                                     <?php
                                                     if ($tourinfo['kid_status'] == 1) {
-                                                        ?>
-                                                            <div class="col-xs-4">
-                                                                <label>KIDS</label>
-                                                                <input type="number" min="0" max="<?php echo $tourinfo['availabile_seats']; ?>" value="0" name="ckids" class="input-text full-width">
-                                                            </div>
-                                                        <?php
+                                                    ?>
+                                                        <div class="col-xs-4">
+                                                            <label>KIDS</label>
+                                                            <input type="number" min="0" max="<?php echo $tourinfo['availabile_seats']; ?>" value="0" name="ckids" class="input-text full-width">
+                                                        </div>
+                                                    <?php
+                                                    } elseif ($tourinfo['kid_status'] == 0) {
+                                                    ?>
+                                                        <div class="col-xs-4">
+                                                        <label style="padding: 0 20px !important;">*KIDS NOT AlLOWED</label>
+                                                            <input hidden type="number" value="0" name="ckids" class="input-text full-width">
+                                                        </div>
+                                                    <?php
+
                                                     }
                                                     ?>
                                                 </div>
@@ -378,7 +386,7 @@ foreach ($tourdata as $tourinfo) {
                                             $customerid = $_POST['cid'];
                                             $servicename = $_POST['tname'];
                                             $serviceid = $_POST['sid'];
-                                            
+
 
                                             // Check for empty and invalid inputs
                                             if (empty($title)) {

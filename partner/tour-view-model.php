@@ -278,7 +278,7 @@ if (isset($_GET['confirmId']) && !empty($_GET['confirmId'])) {
                                         } ?></h6>
                                 </div>
                             </div>
-                            <div class="col-md-3 col-sm-12 text-right">
+                            <div class="col-md-6 col-sm-12 text-right">
                                 <div class="btn-list">
                                     <?php
                                     if ($tourdata['status'] == 0) {
