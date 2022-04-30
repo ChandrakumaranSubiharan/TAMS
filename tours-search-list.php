@@ -74,10 +74,8 @@ if (isset($_REQUEST['toursubmit'])) {
                                                     <select name="ttype" class="full-width">
                                                         <option value="<?php echo $ttype; ?>"><?php echo $ttype; ?></option>
                                                         <option value="Active Adventure">Active Adventure</option>
-                                                        <option value="resort">Resort</option>
-                                                        <option value="villa">Villa</option>
-                                                        <option value="cabin">Cabin</option>
-                                                        <option value="cottage">Cottage</option>
+                                                        <option value="Explorer">Explorer</option>
+                                                        <option value="In-depth Cultural">In-depth Cultural</option>
 
                                                     </select>
                                                 </div>
@@ -109,7 +107,11 @@ if (isset($_REQUEST['toursubmit'])) {
                                                 <label>Kids</label>
                                                 <div class="selector">
                                                     <select name="ckid" class="full-width">
-                                                        <option value="<?php echo $tckid;?>"><?php if($tckid == 0){echo 'No Kids';}else{echo $tckid;}?></option>
+                                                        <option value="<?php echo $tckid; ?>"><?php if ($tckid == 0) {
+                                                                                                    echo 'No Kids';
+                                                                                                } else {
+                                                                                                    echo $tckid;
+                                                                                                } ?></option>
                                                         <option value="0">No Kids</option>
                                                         <option value="1">1</option>
                                                         <option value="2">2</option>

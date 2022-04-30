@@ -190,8 +190,8 @@ include_once 'includes/dbconfig.php';
                                         <div class="selector">
                                             <select name="ttype" class="full-width">
                                                 <option value="Active Adventure">Active Adventure</option>
-                                                <option value="2">Colombo</option>
-                                                <option value="3">Jaffna</option>
+                                                <option value="Explorer">Explorer</option>
+                                                <option value="In-depth Cultural">In-depth Cultural</option>
                                             </select>
                                         </div>
                                     </div>

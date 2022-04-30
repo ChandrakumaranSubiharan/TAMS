@@ -58,10 +58,8 @@ include_once 'includes/dbconfig.php';
                                             <div class="selector">
                                                 <select name="ttype" class="full-width">
                                                     <option value="Active Adventure">Active Adventure</option>
-                                                    <option value="resort">Resort</option>
-                                                    <option value="villa">Villa</option>
-                                                    <option value="cabin">Cabin</option>
-                                                    <option value="cottage">Cottage</option>
+                                                    <option value="Explorer">Explorer</option>
+                                                    <option value="In-depth Cultural">In-depth Cultural</option>
 
                                                 </select>
                                             </div>
