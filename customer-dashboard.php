@@ -184,6 +184,10 @@ if (isset($_GET['logout']) && ($_GET['logout'] == 'true')) {
                                                             echo "<span style='color: green;'>Confirmed</span>";
                                                         } elseif ($bookings['status'] == 3) {
                                                             echo "<span style='color: red;'>Cancelled by You</span>";
+                                                        } elseif ($bookings['status'] == 4) {
+                                                            echo "<span style='color: green;'>Completed</span>";
+                                                        } elseif ($bookings['status'] == 5) {
+                                                            echo "<span style='color: blue;'>Inprogress</span>";
                                                         } else {
                                                             echo "Booking Failed";
                                                         } ?></td>
@@ -295,7 +299,7 @@ if (isset($_GET['logout']) && ($_GET['logout'] == 'true')) {
                             <?php
                             $cid = $returned_row['customer_id'];
                             $StatusProgressAutoUpdate = $booking->UpdateBookingStatusProgressByDate();
-							$StatusCompleteAutoUpdate = $booking->UpdateBookingStatusCompletedByDate();
+                            $StatusCompleteAutoUpdate = $booking->UpdateBookingStatusCompletedByDate();
                             $bookingdata = $booking->displayBookingByCustomer($cid);
                             if ($bookingdata) {
                                 foreach ($bookingdata as $bookings) {
@@ -356,9 +360,21 @@ if (isset($_GET['logout']) && ($_GET['logout'] == 'true')) {
                                             ?>
                                                 <button class="status green">CONFIRMED</button>
                                             <?php
+                                            } elseif ($bookings['status'] == 3) {
+                                            ?>
+                                                <button class="status green">CANCELLED BY YOUR</button>
+                                            <?php
+                                            } elseif ($bookings['status'] == 4) {
+                                            ?>
+                                                <button class="status green">COMPLETED</button>
+                                            <?php
+                                            } elseif ($bookings['status'] == 5) {
+                                            ?>
+                                                <button class="status green">INPROGRESS</button>
+                                            <?php
                                             } else {
                                             ?>
-                                                <button class="status red">CANCELLED BY YOU</button>
+                                                <button class="status red">BOOKING FAILED</button>
                                             <?php
                                             }
                                             ?>

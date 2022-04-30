@@ -12,7 +12,7 @@ class tour
 
 
   // Insert tour data into tour table
-  public function insertData($tour_title, $tour_location, $adult_price, $kid_status, $kid_price, $file, $tour_details, $tour_duration, $tour_type, $ava_seats, $tour_language, $district, $cancel, $str_date, $str_time, $end_date, $end_time, $g_location, $pid)
+  public function insertData($tour_title, $tour_location, $adult_price, $kid_status, $kid_price, $file, $tour_details, $tour_duration, $tour_type, $ava_seats, $tour_language, $district, $cancel, $str_date ,$str_time, $end_date ,$end_time ,$g_location ,$pid)
   {
     $allow = array('jpg', 'jpeg', 'png');
     $exntension = explode('.', $file['name']);

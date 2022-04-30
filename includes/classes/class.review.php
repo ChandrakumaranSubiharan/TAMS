@@ -46,7 +46,22 @@ class review
 
     public function displayReviews($sid)
     {
-        $sql = "SELECT * FROM tbl_review where status = 1 AND service_id = $sid ";
+        $sql = "SELECT DISTINCT 
+        tbl_review.review_id, 
+        tbl_review.review_title, 
+        tbl_review.review_description,
+        tbl_review.review_user_type, 
+        tbl_review.review_rating, 
+        tbl_review.created_date,
+        tbl_review.approved_date,
+        tbl_review.status,
+        tbl_customer.customer_id, 
+        tbl_customer.first_name, 
+        tbl_customer.last_name 
+        from tbl_review 
+        join tbl_customer on tbl_review.customer_id=tbl_customer.customer_id 
+        where tbl_review.status = 1 AND tbl_review.service_id = $sid";
+
         $query = $this->db->query($sql);
         $data = array();
         if ($query->rowCount() > 0) {
@@ -61,7 +76,21 @@ class review
 
     public function displayReviewsLimit($sid)
     {
-        $sql = "SELECT * FROM tbl_review where status = 1 AND service_id = $sid order by rand() LIMIT 3 ";
+        $sql = "SELECT DISTINCT 
+        tbl_review.review_id, 
+        tbl_review.review_title, 
+        tbl_review.review_description,
+        tbl_review.review_user_type, 
+        tbl_review.review_rating, 
+        tbl_review.created_date,
+        tbl_review.approved_date,
+        tbl_review.status,
+        tbl_customer.customer_id, 
+        tbl_customer.first_name, 
+        tbl_customer.last_name 
+        from tbl_review 
+        join tbl_customer on tbl_review.customer_id=tbl_customer.customer_id 
+        where tbl_review.status = 1 AND tbl_review.service_id = $sid order by rand() LIMIT 3";
         $query = $this->db->query($sql);
         $data = array();
         if ($query->rowCount() > 0) {

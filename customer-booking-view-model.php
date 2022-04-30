@@ -193,6 +193,10 @@ if (isset($_GET['confirmId']) && !empty($_GET['confirmId'])) {
                                                     echo "<span style='color: green;'>Confirmed</span>";
                                                 } elseif ($bookingdata['status'] == 3) {
                                                     echo "<span style='color: red;'>Cancelled by You</span>";
+                                                } elseif ($bookingdata['status'] == 4) {
+                                                    echo "<span style='color: green;'>Completed</span>";
+                                                } elseif ($bookingdata['status'] == 5) {
+                                                    echo "<span style='color: blue;'>Inprogress</span>";
                                                 } else {
                                                     echo "<span style='color: red;'>Booking Failed</span>";
                                                 } ?></h2>

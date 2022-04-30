@@ -134,7 +134,7 @@ foreach ($homedata as $homeinfo) {
                                                                 <p class="description"><?php echo $reviewinfo['review_description']; ?></p>
                                                                 <div class="author clearfix">
                                                                     <a href="#"><img src="assets/images/user2.png" alt="" width="74" height="74" /></a>
-                                                                    <h5 class="name"><?php echo $reviewinfo['customer_name']; ?><small>guest</small></h5>
+                                                                    <h5 class="name"><?php echo $reviewinfo['first_name']; ?> <?php echo $reviewinfo['last_name']; ?><small>guest</small></h5>
                                                                 </div>
                                                             </li>
                                                     <?php
@@ -285,7 +285,7 @@ foreach ($homedata as $homeinfo) {
                                                 <div class="guest-review table-wrapper">
                                                     <div class="col-xs-3 col-md-2 author table-cell">
                                                         <a href="#"><img src="assets/images/user2.png" alt="" width="270" height="263" /></a>
-                                                        <p class="name"><?php echo $reviewinfo['customer_name']; ?></p>
+                                                        <p class="name"><?php echo $reviewinfo['first_name']; ?> <?php echo $reviewinfo['last_name']; ?></p>
                                                         <p class="date"><?php echo date('jS F, Y', strtotime($reviewinfo['created_date'])); ?></p>
                                                     </div>
                                                     <div class="col-xs-9 col-md-10 table-cell comment-container">
