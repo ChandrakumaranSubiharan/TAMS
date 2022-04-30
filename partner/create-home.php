@@ -26,6 +26,7 @@ if(isset($_POST['submit'])) {
     $file = $_FILES['image'];
     $pid = $_POST['partnerid'];
 
+    // Passing the parameters to home class inserdata method via object
     $insertData = $home->insertData($home_name, $location_address, $adult_price, $kid_price, $max_adult, $max_kid, $lg_desc, $home_type,$home_room, $district, $province, $cancel, $str_date, $end_date, $str_time, $end_time, $file,$pid);
 
     if ($insertData){

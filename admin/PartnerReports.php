@@ -292,6 +292,9 @@ if (isset($_GET['type']) && !empty($_GET['type'])) {
     </div>
 
     <?php include('includes/scripts.php'); ?>
+
+
+    <!-- html to pdf generator using javascript and jsPDF  -->
     <script>
         var doc = new jsPDF();
 
@@ -305,8 +308,8 @@ if (isset($_GET['type']) && !empty($_GET['type'])) {
             mywindow.document.write(document.getElementById(divId).innerHTML);
             mywindow.document.write('</body></html>');
 
-            mywindow.document.close(); // necessary for IE >= 10
-            mywindow.focus(); // necessary for IE >= 10*/
+            mywindow.document.close(); 
+            mywindow.focus(); 
 
             mywindow.print();
             mywindow.close();
@@ -314,6 +317,12 @@ if (isset($_GET['type']) && !empty($_GET['type'])) {
             return true;
         }
     </script>
+
+
+
+
+
+
 </body>
 
 </html>

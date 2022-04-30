@@ -183,9 +183,7 @@ include_once 'includes/dbconfig.php';
                                     </article>
                                 <?php }
                             } else {
-
                                 ?>
-
                                 <?php
                                 $homedata = $home->HomeActiveData();
                                 foreach ($homedata as $homeinfo) {

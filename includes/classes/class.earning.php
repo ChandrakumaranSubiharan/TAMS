@@ -23,28 +23,28 @@ class earning
   }
 
 
-
+  // Calculating Home Service Net Amount
   function HomePercentageCalculate($total_amount)
   {
-
+    // if home booking amount graterthan 50000
+    // the allocated percentage will be 20% or it will be 10%
     if ($total_amount >= 50000) {
       $Allocated_percentage = 20;
     } else {
       $Allocated_percentage = 10;
     }
-
     //Convert our percentage value into a decimal.
     $percentInDecimal = $Allocated_percentage / 100;
-
     //Get the result.
     $Net_Amount = $percentInDecimal * $total_amount;
-
     return $Net_Amount;
   }
 
+  // Calculating Tour Service Net Amount
   function TourPercentageCalculate($total_amount)
   {
-
+    // if tour booking amount graterthan 20000
+    // the allocated percentage will be 20% or it will be 10%
     if ($total_amount >= 20000) {
       $Allocated_percentage = 20;
     } else {
@@ -65,9 +65,7 @@ class earning
 
   function Payout($tot_amount, $net_amount)
   {
-
     $payout = $tot_amount - $net_amount;
-
     return $payout;
   }
 

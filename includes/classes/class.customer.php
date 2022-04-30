@@ -19,7 +19,8 @@ class customer
 
       // Prepare the statement to insert values into the customer table
 
-      $stmt = $this->db->prepare("INSERT INTO tbl_customer(first_name,last_name,address,username,email_address,contact_number,password,status) VALUES(:fname, :lname,:address,:uname,:email_id,:contact,:pass,:status)");
+      $stmt = $this->db->prepare("INSERT INTO tbl_customer(first_name,last_name,address,username,email_address,contact_number,password,status) 
+                                  VALUES(:fname, :lname,:address,:uname,:email_id,:contact,:pass,:status)");
 
       // variable to fetch customer active/inactive status by bool value
       $sta = "1";

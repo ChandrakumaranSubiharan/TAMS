@@ -42,11 +42,11 @@
     // Include necessary file
     include_once 'dbconfig.php';
 
+    // If customer click logout button system will destroy the session with this code
     if (isset($_GET['logout']) && ($_GET['logout'] == 'true')) {
         $auth->log_out();
         $auth->redirect('index.php');
     }
-
     ?>
 
     <!-- Check if user is not logged in -->
@@ -56,8 +56,6 @@
             <div class="topnav hidden-xs">
                 <div class="container">
                     <ul class="quick-menu pull-right">
-                        <!-- <li><a href="#" class="#">Welcome &nbsp; UserName</a></li>
-                        <li><a  href="?logout=true" class="#">Dashboard</a></li> -->
                         <li><a href="login.php" class="#">LOGIN</a></li>
                         <li><a href="signup.php" class="#">SIGNUP</a></li>
                         <li><a href="become-partner.php">BECOME A PARTNER</a></li>
@@ -233,57 +231,6 @@
 
 
     <?php } ?>
-    <?php
-
-
-
-    // try {
-    // Define query to select values from the partner table
-    // $sql = "SELECT * FROM tbl_partner WHERE partner_id=:partner_id";
-
-    // Prepare the statement
-    // $query = $DB_con->prepare($sql);
-
-    // Bind the parameters
-    // $query->bindParam(':partner_id', $_SESSION['user_session']);
-
-    // Execute the query
-    // $query->execute();
-
-    // Return row as an array indexed by both column name
-    // $returned_row = $query->fetch(PDO::FETCH_ASSOC);
-    // } catch (PDOException $e) {
-    // array_push($errors, $e->getMessage());
-    // }
-
-    // if (isset($_GET['logout']) && ($_GET['logout'] == 'true')) {
-    //     $auth->log_out();
-    //     $auth->redirect('partner-login.php');
-    // }
-
-    ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </body>
 
 </html>

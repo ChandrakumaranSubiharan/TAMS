@@ -163,6 +163,7 @@ if (isset($_REQUEST['homesubmit'])) {
                         </div>
                         <div class="hotel-list listing-style3 hotel">
                             <?php
+                            //calling a method via object to display searched homes using foreach
                             $homedata = $home->HomeSearchData($Hdistrict, $Hsdate, $Hedate, $Hcadult, $Hckid, $Hcroom, $Hapricerange, $Htype);
                             if ($homedata) {
                                 foreach ($homedata as $homeinfo) {
@@ -174,7 +175,7 @@ if (isset($_REQUEST['homesubmit'])) {
                                         <div class="details col-sm-7 col-md-8">
                                             <div>
                                                 <div>
-                                                    <h4 class="box-title"><?php echo $homeinfo['home_name']; ?><small><i class="soap-icon-departure yellow-color"></i> <?php echo $homeinfo['district']; ?>, Sri Lanka</small><small> <i style="font-size: 17px;" class="soap-icon-availability yellow-color"></i> <?php echo $homeinfo['ava_start_date']; ?> - <?php echo $homeinfo['ava_end_date']; ?> </small></h4> <br />
+                                                    <h4 class="box-title"><?= $homeinfo['home_name']; ?><small><i class="soap-icon-departure yellow-color"></i> <?php echo $homeinfo['district']; ?>, Sri Lanka</small><small> <i style="font-size: 17px;" class="soap-icon-availability yellow-color"></i> <?php echo $homeinfo['ava_start_date']; ?> - <?php echo $homeinfo['ava_end_date']; ?> </small></h4> <br />
                                                     <div class="amenities">
                                                         <i class="soap-icon-wifi circle"></i>
                                                         <i class="soap-icon-fitnessfacility circle"></i>
@@ -183,13 +184,13 @@ if (isset($_REQUEST['homesubmit'])) {
                                                     </div>
                                                 </div>
                                                 <div>
-                                                    <span class="review">Includes <br /><?php echo $homeinfo['rooms']; ?> Rooms</span>
+                                                    <span class="review">Includes <br /><?= $homeinfo['rooms']; ?> Rooms</span>
                                                 </div>
                                             </div>
                                             <div>
-                                                <p><?php echo $homeinfo['lg_desc']; ?></p>
+                                                <p><?= $homeinfo['lg_desc']; ?></p>
                                                 <div>
-                                                    <span class="price"><small>AVG/NIGHT</small><?php echo $homeinfo['ava_night_price_adult']; ?></span>
+                                                    <span class="price"><small>AVG/NIGHT</small><?= $homeinfo['ava_night_price_adult']; ?></span>
                                                     <a class="button btn-small full-width text-center" title="" href="home-detailed.php?homeid=<?php echo $homeinfo['home_id']; ?>">SELECT</a>
                                                 </div>
                                             </div>

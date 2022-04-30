@@ -38,7 +38,7 @@ if (isset($_REQUEST['book'])) {
 <head>
 
     <?php
-    // Insert Record in booking table
+    // Posting booking information
     if (isset($_POST['submit'])) {
 
         $cus_id = $_POST['cusid'];
@@ -62,18 +62,21 @@ if (isset($_REQUEST['book'])) {
         $service_ava_edate = $homedata['ava_end_date'];
         $cancell_ava = $homedata['cancellation'];
 
-
+        //calculating booking amount
         $calculate_net_amount = $earning->TourPercentageCalculate($total_amount);
         $Profit_Percentage = $calculate_net_amount['percentage'];
         $net_amount =  $calculate_net_amount['net_amount'];
 
+        //calculating payout amount
         $payout = $earning->Payout($total_amount, $net_amount);
+        //insert booking
         $insertBookingData = $booking->insertBookingData($total_amount, $cus_card_type, $card_holdername, $card_number, $cus_id, $booking_sdate, $booking_edate, $total_night, $total_persons_count, $adult_count, $kid_count, $serviceid, $servicename, $stype, $pid, $cancell_ava);
+        //updating service after booking
         $homeUpdate = $home->home_update_after_booking($serviceid, $service_ava_sdate, $service_ava_edate, $total_night);
 
-
+        //retriving recent row id
         $LAST_INSERTED_ID = $insertBookingData['lastInsertedID'];
-
+        //inserting earning data after a booking
         $insertEarningData = $earning->insertEarningData($LAST_INSERTED_ID, $total_amount, $payout, $net_amount, $cus_id, $servicename, $serviceid, $stype, $Profit_Percentage);
 
 
@@ -254,7 +257,7 @@ if (isset($_REQUEST['book'])) {
                                     <?php
                                     $reviewscount = $review->GetReviewsCount($hid)
                                     ?>
-                                    <span class="review"><?php echo $reviewscount?> reviews</span>
+                                    <span class="review"><?php echo $reviewscount ?> reviews</span>
                                 </div>
                                 <div class="constant-column-3 timing clearfix">
                                     <div class="check-in">

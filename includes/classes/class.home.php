@@ -107,29 +107,15 @@ class home
     }
   }
 
-
+  // Home Updation
   public function update($id, $homename, $location, $aprice, $kprice, $madult, $mkid, $room, $des, $type, $province, $district, $cancell, $ava_start, $ava_end, $s_time, $e_time, $sta)
   {
     try {
-      $stmt = $this->db->prepare("UPDATE tbl_home SET 
-                home_name=:hname, 
-                location_address=:address, 
-                ava_night_price_adult=:aprice, 
-                ava_night_price_kid=:kprice, 
-                max_adults=:madult, 
-                max_kids=:mkid, 
-                rooms=:room, 
-                lg_desc=:desc,
-                home_type=:type,
-                province=:pro,
-                district=:distri,
-                cancellation=:cancell,
-                ava_start_date=:sdate,
-                ava_end_date=:edate,
-                s_time=:stime,
-                e_time=:etime,
-                status=:st
-             WHERE home_id=:id ");
+      $stmt = $this->db->prepare("UPDATE tbl_home SET home_name=:hname,location_address=:address, 
+                ava_night_price_adult=:aprice,ava_night_price_kid=:kprice,max_adults=:madult, 
+                max_kids=:mkid,rooms=:room,lg_desc=:desc,home_type=:type,province=:pro,
+                district=:distri,cancellation=:cancell,ava_start_date=:sdate,ava_end_date=:edate,
+                s_time=:stime, e_time=:etime, status=:s WHERE home_id=:id ");
       $stmt->bindparam(":hname", $homename);
       $stmt->bindparam(":address", $location);
       $stmt->bindparam(":aprice", $aprice);
@@ -157,7 +143,7 @@ class home
     }
   }
 
-  // Delete customer data from home table
+  // Delete home data from home table
   public function deleteRecord($id)
   {
     try {
@@ -223,7 +209,6 @@ class home
   }
 
   // Fetch home records for show listing
-
   public function HomeActiveData()
   {
     $sql = "SELECT * FROM tbl_home where status = 1 AND ava_start_date >= CURDATE() order by rand() LIMIT 4";
@@ -294,7 +279,7 @@ class home
   }
 
 
-  // Fetch tour records for show listing
+  // Home Searching Method
   public function HomeSearchData($Hdistrict, $Hsdate, $Hedate, $Hcadult, $Hckid, $Hcroom, $Hpricerange, $Htype)
   {
     $sql = "SELECT * from tbl_home WHERE status = 1 AND ava_start_date >= CURDATE()
@@ -319,20 +304,21 @@ class home
     }
   }
 
-
+  // Specific home reservation prices calculate method
   public function HomePriceCalculation($adultcount, $kidcount, $nightcount, $kidprice, $adultprice)
   {
+    //get total persons
     $total_person_count = $adultcount + $kidcount;
-
+    //get total amount for adults
     $sum_adults_price = $adultcount * $adultprice;
     $total_nights_adults_price = $nightcount * $sum_adults_price;
-
+    //get total amount for kids
     $sum_kids_price = $kidcount * $kidprice;
     $total__nights_kids_price = $nightcount * $sum_kids_price;
 
-
+    //get total amount
     $total_amount = $total_nights_adults_price + $total__nights_kids_price;
-
+    //return as array
     return array(
       'total_person_count'    => $total_person_count,
       'total_adults_price' => $total_nights_adults_price,

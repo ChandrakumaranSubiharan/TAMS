@@ -186,6 +186,7 @@ class partner
     }
   }
 
+  //remove user partner method
   public function DeleteUser($UId)
   {
     try {

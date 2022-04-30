@@ -12,7 +12,6 @@ class reports
 
     // Partner 
     // Earning Report
-
     public function EarningReport($Rtype, $SDate, $EDate, $pid, $Type)
     {
         $sql = '';

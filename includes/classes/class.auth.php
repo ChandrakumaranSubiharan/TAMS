@@ -10,11 +10,11 @@ class auth
     }
 
 
-    // Log in registered users with either their username or email and their password
+    // Log in registered customer with either their username or email and their password
     public function customerlogin($uname, $email, $pass)
     {
         try {
-            // Define query to insert values into the users table
+            // Define query to select values into the customer table
             $sql = "SELECT * FROM tbl_customer WHERE username=:uname OR email_address=:email LIMIT 1";
 
             // Prepare the statement

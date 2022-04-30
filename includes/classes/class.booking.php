@@ -68,7 +68,7 @@ class booking
     }
   }
 
-
+  //displaying recently made reservations to high level users.
   public function GetRecentlyBookedTour()
   {
     $sql = "SELECT * FROM tbl_tour where status = 1 AND ava_start_date >= CURDATE() order by rand()";
@@ -126,6 +126,7 @@ class booking
   }
 
 
+  //Displaying totlal Reservation Counts to admin dashboard.
   public function GetBookingsCount()
   {
     $sql = "SELECT booking_id from tbl_booking";
@@ -181,6 +182,7 @@ class booking
     }
   }
 
+  // Displaying Booking Details to Admin with sql joins
   public function displayBookingForAdmin()
   {
     $sql = "SELECT DISTINCT tbl_booking.booking_id,tbl_booking.cus_id,tbl_booking.total_amount,tbl_booking.cus_payment_card_type,tbl_booking.start_date,tbl_booking.end_date,tbl_booking.status,tbl_booking.created_date,tbl_booking.payment_status,tbl_booking.total_nights,tbl_booking.total_persons,tbl_booking.total_kids,tbl_booking.total_adults,tbl_booking.payment_card_holder_name,tbl_booking.payment_card_number,tbl_booking.service_id,tbl_booking.service_name,tbl_booking.service_type,tbl_booking.cancellation_ava, tbl_earning.earning_id,tbl_earning.net_amount,tbl_earning.payout,tbl_customer.first_name,tbl_customer.last_name,tbl_customer.email_address,tbl_customer.contact_number
@@ -429,7 +431,7 @@ class booking
     }
   }
 
-
+//displaying top 5 partners to admin
   public function GetTopPartners()
   {
     $sql = "SELECT DISTINCT tbl_booking.partner_id, tbl_partner.username, tbl_earning.net_amount,
@@ -453,16 +455,17 @@ class booking
     }
   }
 
+//displaying top 5 Customers to admin
   public function GetTopCustomer()
   {
     $sql = "SELECT tbl_booking.cus_id, tbl_customer.first_name, tbl_customer.last_name, 
     COUNT(DISTINCT tbl_booking.booking_id), 
-MAX(tbl_booking.total_amount), 
-SUM(tbl_booking.total_amount)
-FROM tbl_booking 
-JOIN tbl_customer ON tbl_booking.cus_id = tbl_customer.customer_id
-GROUP BY tbl_booking.cus_id
-ORDER BY 5 DESC;";
+    MAX(tbl_booking.total_amount), 
+    SUM(tbl_booking.total_amount)
+    FROM tbl_booking 
+    JOIN tbl_customer ON tbl_booking.cus_id = tbl_customer.customer_id
+    GROUP BY tbl_booking.cus_id
+    ORDER BY 5 DESC;";
 
     $query = $this->db->query($sql);
     $data = array();
