@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 30, 2022 at 11:12 PM
+-- Generation Time: May 02, 2022 at 08:28 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.27
 
@@ -85,7 +85,8 @@ CREATE TABLE `tbl_booking` (
 INSERT INTO `tbl_booking` (`booking_id`, `total_amount`, `cus_payment_card_type`, `cus_id`, `start_date`, `end_date`, `status`, `created_date`, `updated_date`, `payment_status`, `total_nights`, `total_persons`, `partner_id`, `total_kids`, `total_adults`, `service_id`, `service_name`, `service_type`, `payment_card_holder_name`, `payment_card_number`, `cancellation_ava`) VALUES
 (1112, 5000, 'Master Card', 3030, '2022-04-17', '2022-04-21', 4, '2022-04-19 22:00:00', '2022-04-29 20:05:57', 1, 1, 3, 6061, 1, 2, 4044, 'Madulkelle Tea and Eco Lodge', 'Home Stay', 'fsd', 24124, 0),
 (101011, 2500, 'Visa Card', 3030, '2022-04-29', '2022-04-30', 4, '2022-04-23 09:57:00', '2022-04-30 19:13:50', 1, 1, 1, 6061, 0, 1, 4044, 'Madulkelle Tea and Eco Lodge', 'Home Stay', 'dsfds', 123213, 1),
-(101013, 5000, 'Master Card', 3030, '2022-04-25', '2022-05-05', 5, '2022-04-25 16:00:48', '2022-04-29 20:03:23', 1, 9, 1, 6061, 0, 1, 8, 'Sri Lanka Uncovered', 'Tour Package', 'asdas', 12421, 0);
+(101013, 5000, 'Master Card', 3030, '2022-04-25', '2022-05-05', 5, '2022-04-25 16:00:48', '2022-05-02 11:17:03', 1, 9, 1, 6061, 0, 1, 8, 'Sri Lanka Uncovered', 'Tour Package', 'asdas', 12421, 0),
+(101015, 30000, 'Master Card', 3030, '2022-05-15', '2022-05-18', 4, '2022-05-02 09:30:12', '2022-05-02 11:15:58', 1, 3, 4, 6061, 2, 2, 404041, 'The Kandy House', 'Home Stay', 'sfasf', 14214, 0);
 
 -- --------------------------------------------------------
 
@@ -113,7 +114,7 @@ CREATE TABLE `tbl_customer` (
 
 INSERT INTO `tbl_customer` (`customer_id`, `first_name`, `last_name`, `address`, `email_address`, `contact_number`, `username`, `password`, `created_date`, `updated_date`, `status`) VALUES
 (37, 'admin', 'admin', 'admin', 'admin@xmail.com', '14124124', 'adminsanju', '$2y$10$4aSwPX.ZZHbd8MBUcEZnfeNDTH4ofW3hgzgMe7swfqXwP4X4Isw1C', '2022-03-15 07:37:29', '2022-04-19 21:12:35', 1),
-(3030, 'Subiharan', 'Chandrakumaran', '12/3, pothukola, panwila, kandy', 'Subiharan@gmail.com', '0775430351', 'user', '$2y$10$/nsDkanR7e6sPRxgnvXVJeZkOmdbduRJdVCdyQnvMQzeFgyjqNTbq', '2022-04-20 02:22:05', NULL, 1),
+(3030, 'Subiharan', 'Chandrakumaran', '12/3, pothukola, panwila, kandy', 'Subiharan@gmail.com', '0765430351', 'user', '$2y$10$/nsDkanR7e6sPRxgnvXVJeZkOmdbduRJdVCdyQnvMQzeFgyjqNTbq', '2022-04-20 02:22:05', '2022-05-02 09:33:18', 1),
 (303030, 'manoj', 'ragal', '45,wattegama, kandy', 'manoj@gmail.com', '07765484621', 'manoj', '$2y$10$ZdFcts4G0wtw1AhsAT.HueHoCHsS3LvsnwdTyvxp5QDNpa6DV.ilW', '2022-04-29 20:56:57', NULL, 1),
 (303031, 'dilshan', 'keel', 'dilshan@gmail.com', 'dilshan@hotmail.com', '0775530351', 'dilshan', '$2y$10$gOUstja1IoUZaiif//KEVe4f.HTZyF8JUbYY9sbt7b7yJC/Hr31x.', '2022-04-29 20:57:45', NULL, 1);
 
@@ -148,7 +149,8 @@ INSERT INTO `tbl_earning` (`earning_id`, `booking_id`, `total_amount`, `payout`,
 (808080, 101011, 2500, 2250, 250, 3030, '2022-04-23 09:57:00', 'Home Stay', 4044, 'Madulkelle Tea and Eco Lodge', '10'),
 (808081, 101012, NULL, 5000, NULL, 0, '2022-04-25 11:41:27', NULL, NULL, NULL, NULL),
 (808082, 101013, 5000, 4500, 500, 3030, '2022-04-25 16:00:48', 'Tour Package', 8, 'Sri Lanka Uncovered', '10'),
-(808083, 101014, 123, 110.7, 12.3, 3030, '2022-04-27 13:02:12', 'Tour Package', 505051, 'sad', '10');
+(808083, 101014, 123, 110.7, 12.3, 3030, '2022-04-27 13:02:12', 'Tour Package', 505051, 'sad', '10'),
+(808084, 101015, 30000, 24000, 6000, 3030, '2022-05-02 09:30:13', 'Home Stay', 404041, 'The Kandy House', '20');
 
 -- --------------------------------------------------------
 
@@ -188,7 +190,7 @@ CREATE TABLE `tbl_home` (
 INSERT INTO `tbl_home` (`home_id`, `home_name`, `cover_img1`, `location_address`, `ava_night_price_adult`, `lg_desc`, `home_type`, `district`, `province`, `cancellation`, `ava_start_date`, `ava_end_date`, `created_date`, `updated_date`, `status`, `partner_id`, `rooms`, `max_adults`, `max_kids`, `ava_night_price_kid`, `s_time`, `e_time`) VALUES
 (4044, 'Madulkelle Tea and Eco Lodge', '1774802820.jpg', 'Madulkelle', 2500, 'Located in Madulkelle in the Kandy District region, Eco Lodge features a garden. The property is 7 miles. ', 'Cottage', 'Kandy', 'Central Province', 1, '2022-05-10', '2022-05-31', '2022-04-20 14:59:02', '2022-04-29 17:33:37', 1, 6061, 5, 5, 2, 1500, '08:00:00', '08:00:00'),
 (404040, 'Raya Holiday Villa', '1039069714.png', 'Kandy', 45000, 'Raya Holiday Bungalow is situated in a quiet and relaxing waterfront environment facing the Mahaweli reservoir. Only 5km to Pallekale International Cricket Stadium. Less than 8km to the heart of Kandy.', 'Villa', 'Kandy', 'Central Province', 1, '2022-05-10', '2022-06-30', '2022-04-29 17:37:02', '2022-04-29 17:37:24', 1, 6061, 5, 5, 2, 3000, '08:00:00', '08:00:00'),
-(404041, 'The Kandy House', '1607827161.jpg', 'Kandy', 3000, 'The Kandy House is a lovely private residence available for your exclusive use (just you - no other guests!). Just a few minutes out of Kandy centre (2.5km), the house affords stunning views within a peaceful setting.', 'Villa', 'Kandy', 'Central Province', 0, '2022-05-15', '2022-05-20', '2022-04-29 17:39:26', '2022-04-29 17:45:02', 1, 6061, 6, 8, 3, 2000, '08:00:00', '08:00:00'),
+(404041, 'The Kandy House', '1607827161.jpg', 'Kandy', 3000, 'The Kandy House is a lovely private residence available for your exclusive use (just you - no other guests!). Just a few minutes out of Kandy centre (2.5km), the house affords stunning views within a peaceful setting.', 'Villa', 'Kandy', 'Central Province', 0, '2022-05-18', '2022-05-20', '2022-04-29 17:39:26', '2022-05-02 09:30:13', 1, 6061, 6, 8, 3, 2000, '08:00:00', '08:00:00'),
 (404042, 'The Backpackers hub in the kadyan Hills!', '279486242.jpg', 'kandy', 3000, 'We are a hidden spot in a Hill City. Its windy and bit cold in the night. 6pm afterwards you could witness wild boars, porcupines and some bad-ass monkey gang while you sip on to that hot coffee of your choice.', 'Villa', 'Kandy', 'Central Province', 1, '2022-05-25', '2022-06-30', '2022-04-29 17:43:58', '2022-04-29 17:45:04', 1, 6061, 3, 5, 3, 4000, '08:00:00', '08:00:00');
 
 -- --------------------------------------------------------
@@ -395,7 +397,7 @@ ALTER TABLE `tbl_admin`
 -- AUTO_INCREMENT for table `tbl_booking`
 --
 ALTER TABLE `tbl_booking`
-  MODIFY `booking_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101015;
+  MODIFY `booking_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101016;
 
 --
 -- AUTO_INCREMENT for table `tbl_customer`
@@ -407,7 +409,7 @@ ALTER TABLE `tbl_customer`
 -- AUTO_INCREMENT for table `tbl_earning`
 --
 ALTER TABLE `tbl_earning`
-  MODIFY `earning_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=808084;
+  MODIFY `earning_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=808085;
 
 --
 -- AUTO_INCREMENT for table `tbl_home`
