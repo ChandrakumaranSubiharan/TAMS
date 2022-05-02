@@ -67,7 +67,7 @@
 					<div class="card-box height-100-p widget-style3">
 						<div class="d-flex flex-wrap">
 							<div class="widget-data">
-								<div class="weight-700 font-24 text-dark">175</div>
+								<div class="weight-700 font-24 text-dark">2</div>
 								<div class="font-14 text-secondary weight-500">Completed Bookings</div>
 							</div>
 							<div class="widget-icon">
@@ -80,7 +80,7 @@
 					<div class="card-box height-100-p widget-style3">
 						<div class="d-flex flex-wrap">
 							<div class="widget-data">
-								<div class="weight-700 font-24 text-dark">124</div>
+								<div class="weight-700 font-24 text-dark">0</div>
 								<div class="font-14 text-secondary weight-500">Refunded Bookings</div>
 							</div>
 							<div class="widget-icon">
@@ -93,7 +93,7 @@
 					<div class="card-box height-100-p widget-style3">
 						<div class="d-flex flex-wrap">
 							<div class="widget-data">
-								<div class="weight-700 font-24 text-dark">400</div>
+								<div class="weight-700 font-24 text-dark">1</div>
 								<div class="font-14 text-secondary weight-500">Inprogress Bookings</div>
 							</div>
 							<div class="widget-icon">
@@ -112,7 +112,7 @@
 						<div class="card-box height-100-p widget-style3">
 							<div class="d-flex flex-wrap">
 								<div class="widget-data">
-									<div class="weight-700 font-24 text-dark">60</div>
+									<div class="weight-700 font-24 text-dark">6</div>
 									<div class="font-14 text-secondary weight-500">Unverified Partners</div>
 								</div>
 								<div class="widget-icon">
@@ -125,7 +125,7 @@
 						<div class="card-box height-100-p widget-style3">
 							<div class="d-flex flex-wrap">
 								<div class="widget-data">
-									<div class="weight-700 font-24 text-dark">75</div>
+									<div class="weight-700 font-24 text-dark">7</div>
 									<div class="font-14 text-secondary weight-500">Unverified Reviews</div>
 								</div>
 								<div class="widget-icon">
@@ -141,7 +141,7 @@
 						<div class="card-box height-100-p widget-style3">
 							<div class="d-flex flex-wrap">
 								<div class="widget-data">
-									<div class="weight-700 font-24 text-dark">75</div>
+									<div class="weight-700 font-24 text-dark">5</div>
 									<div class="font-14 text-secondary weight-500">Pending Enquiries</div>
 								</div>
 								<div class="widget-icon">
@@ -154,7 +154,7 @@
 						<div class="card-box height-100-p widget-style3">
 							<div class="d-flex flex-wrap">
 								<div class="widget-data">
-									<div class="weight-700 font-24 text-dark">75</div>
+									<div class="weight-700 font-24 text-dark">5</div>
 									<div class="font-14 text-secondary weight-500">Active Customers</div>
 								</div>
 								<div class="widget-icon">
@@ -170,7 +170,7 @@
 						<div class="card-box height-100-p widget-style3">
 							<div class="d-flex flex-wrap">
 								<div class="widget-data">
-									<div class="weight-700 font-24 text-dark">$50,000</div>
+									<div class="weight-700 font-24 text-dark">4</div>
 									<div class="font-14 text-secondary weight-500">Active Homes</div>
 								</div>
 								<div class="widget-icon">
@@ -183,7 +183,7 @@
 						<div class="card-box height-100-p widget-style3">
 							<div class="d-flex flex-wrap">
 								<div class="widget-data">
-									<div class="weight-700 font-24 text-dark">75</div>
+									<div class="weight-700 font-24 text-dark">4</div>
 									<div class="font-14 text-secondary weight-500">Active Tours</div>
 								</div>
 								<div class="widget-icon">
