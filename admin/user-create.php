@@ -57,15 +57,6 @@ if (isset($_POST['submit'])) {
     <link rel="stylesheet" type="text/css" href="../assets/dashboard/src/plugins/datatables/css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" type="text/css" href="../assets/dashboard/vendors/styles/style.css">
 
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-119386393-1"></script>
-	<script>
-		window.dataLayer = window.dataLayer || [];
-		function gtag(){dataLayer.push(arguments);}
-		gtag('js', new Date());
-
-		gtag('config', 'UA-119386393-1');
-	</script> -->
 </head>
 
 <body>
@@ -73,8 +64,6 @@ if (isset($_POST['submit'])) {
     <?php include('includes/navigation.php'); ?>
 
     <div class="mobile-menu-overlay"></div>
-
-
     <div class="main-container">
         <div class="pd-ltr-20 xs-pd-20-10">
             <div class="min-height-200px">
@@ -123,8 +112,7 @@ if (isset($_POST['submit'])) {
                         </div>
                         <div class="form-group">
                             <label>Department</label>
-                            <select name="dep" class="custom-select col-12">
-                                <option selected="">Choose...</option>
+                            <select name="dep" class="custom-select col-12" required>
                                 <option value="Adminstartive Department">Adminstartive Department</option>
                             </select>
                         </div>
@@ -138,16 +126,12 @@ if (isset($_POST['submit'])) {
                 </div>
             </div>
             <div class="footer-wrap pd-20 mb-20 card-box">
-
-                HappyHolidayss By <a href="https://github.com/dropways" target="_blank">Subiharan Chandrakumaran</a>
+                HappyHolidayss By <a href="#">Subiharan Chandrakumaran</a>
             </div>
         </div>
     </div>
-
     </div>
-
     <?php include('includes/scripts.php'); ?>
-
 </body>
 
 </html>
