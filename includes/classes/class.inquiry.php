@@ -108,4 +108,13 @@ class inquiry
             echo "Record not found";
         }
     }
+
+
+    public function CntPendingEnquire()
+    {
+        $sql = "SELECT inquiry_id from tbl_inquiry WHERE status = 0";
+        $query = $this->db->query($sql);
+        $cnt = $query->rowCount();
+        return $cnt;
+    }
 }

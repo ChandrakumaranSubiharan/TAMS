@@ -215,4 +215,21 @@ class partner
             echo "Record not found";
         }
     }
+
+
+    public function UnverifiedCountPartner()
+    {
+      $sql = "SELECT partner_id from tbl_partner WHERE status = 0";
+      $query = $this->db->query($sql);
+      $cnt = $query->rowCount();
+      return $cnt;
+    }
+
+    public function GetActivePartnerCount()
+    {
+      $sql = "SELECT partner_id from tbl_partner WHERE status = 1";
+      $query = $this->db->query($sql);
+      $cnt = $query->rowCount();
+      return $cnt;
+    }
 }

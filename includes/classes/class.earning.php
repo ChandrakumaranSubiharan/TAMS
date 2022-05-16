@@ -117,4 +117,91 @@ class earning
       echo "Record not found";
     }
   }
+
+
+  public function displyaAllRecord()
+  {
+    $sql = "SELECT DISTINCT 
+      tbl_earning.earning_id,tbl_earning.total_amount,tbl_earning.profit_percentage,tbl_earning.net_amount,tbl_earning.payout,tbl_earning.created_date,tbl_earning.service_type,tbl_earning.service_name,
+      tbl_booking.booking_id,tbl_booking.cus_id,tbl_booking.payment_status,tbl_booking.payment_card_holder_name,tbl_booking.payment_card_number,tbl_booking.cus_payment_card_type,
+      tbl_customer.first_name,tbl_customer.last_name,tbl_customer.email_address,tbl_customer.contact_number
+
+      from tbl_earning
+      join tbl_customer on tbl_earning.customer_id=tbl_customer.customer_id
+      join tbl_booking on tbl_earning.booking_id=tbl_booking.booking_id";
+
+
+    $query = $this->db->query($sql);
+    $data = array();
+    if ($query->rowCount() > 0) {
+      while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+        $data[] = $row;
+      }
+      return $data;
+    } else {
+      return false;
+    }
+  }
+
+  // total earning amount calculate for partner
+  public function TotEarAmount($pid)
+  {
+    $sql = "SELECT DISTINCT tbl_booking.partner_id,
+    SUM(tbl_earning.payout) 
+    FROM tbl_booking 
+    JOIN tbl_partner ON tbl_booking.partner_id = tbl_partner.partner_id
+    JOIN tbl_earning ON tbl_booking.booking_id = tbl_earning.booking_id
+    where tbl_partner.partner_id= $pid";
+
+    $query = $this->db->query($sql);
+    $data = array();
+    if ($query->rowCount() > 0) {
+      while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+        $data[] = $row;
+      }
+      return $data;
+    } else {
+      return false;
+    }
+  }
+
+
+  // total payout amount calculate for partner
+  public function TotPayoutAmount($pid)
+  {
+    $sql = "SELECT DISTINCT tbl_booking.partner_id,
+    SUM(tbl_earning.net_amount) 
+    FROM tbl_booking 
+    JOIN tbl_partner ON tbl_booking.partner_id = tbl_partner.partner_id
+    JOIN tbl_earning ON tbl_booking.booking_id = tbl_earning.booking_id
+    where tbl_partner.partner_id= $pid";
+
+    $query = $this->db->query($sql);
+    $data = array();
+    if ($query->rowCount() > 0) {
+      while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+        $data[] = $row;
+      }
+      return $data;
+    } else {
+      return false;
+    }
+  }
+
+
+    // total earning amount calculate for admin
+    public function TotEarAmountAdmin()
+    {
+      $sql = "SELECT SUM(tbl_earning.net_amount) FROM tbl_earning ;";
+      $query = $this->db->query($sql);
+      $data = array();
+      if ($query->rowCount() > 0) {
+        while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+          $data[] = $row;
+        }
+        return $data;
+      } else {
+        return false;
+      }
+    }
 }

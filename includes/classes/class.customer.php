@@ -53,6 +53,14 @@ class customer
     return $cnt;
   }
 
+  public function GetActiveCustomersCount()
+  {
+    $sql = "SELECT customer_id from tbl_customer where status = 1";
+    $query = $this->db->query($sql);
+    $cnt = $query->rowCount();
+    return $cnt;
+  }
+
 
 
   public function UpdateInfo($uname, $fname, $lname, $address, $email, $contact, $pass, $uid)

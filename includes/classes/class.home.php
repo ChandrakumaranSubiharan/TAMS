@@ -380,4 +380,14 @@ class home
     $cnt = $query->rowCount();
     return $cnt;
   }
+
+  public function GetActiveHomeCount()
+  {
+    $sql = "SELECT home_id from tbl_home WHERE status = 1";
+    $query = $this->db->query($sql);
+    $cnt = $query->rowCount();
+    return $cnt;
+  }
+
+
 }
