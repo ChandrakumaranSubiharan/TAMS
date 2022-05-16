@@ -93,8 +93,6 @@ if (isset($_GET['UId']) && !empty($_GET['UId'])) {
                                     <th class="table-plus datatable-nosort">Id</th>
                                     <th>User Name</th>
                                     <th>Address</th>
-                                    <th>Province</th>
-                                    <th>Zip Code</th>
                                     <th>Email</th>
                                     <th>Contact No</th>
                                     <th>Status</th>
@@ -110,8 +108,6 @@ if (isset($_GET['UId']) && !empty($_GET['UId'])) {
                                         <td><?= $partners['partner_id']; ?></td>
                                         <td><?= $partners['username'] ?></td>
                                         <td><?= $partners['address']; ?></td>
-                                        <td><?= $partners['province']; ?></td>
-                                        <td><?= $partners['zipcode']; ?></td>
                                         <td><?= $partners['email_address']; ?></td>
                                         <td><?= $partners['contact_number']; ?></td>
                                         <td><?php if ($partners['status'] == 0) {
