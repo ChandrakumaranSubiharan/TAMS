@@ -26,8 +26,6 @@ if (isset($_GET['UId']) && !empty($_GET['UId'])) {
 ?>
 
 
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -53,22 +51,11 @@ if (isset($_GET['UId']) && !empty($_GET['UId'])) {
     <link rel="stylesheet" type="text/css" href="../assets/dashboard/src/plugins/datatables/css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" type="text/css" href="../assets/dashboard/vendors/styles/style.css">
 
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-119386393-1"></script>
-	<script>
-		window.dataLayer = window.dataLayer || [];
-		function gtag(){dataLayer.push(arguments);}
-		gtag('js', new Date());
-
-		gtag('config', 'UA-119386393-1');
-	</script> -->
 </head>
 
 <body>
     <?php include('includes/header.php'); ?>
     <?php include('includes/navigation.php'); ?>
-
-
 
     <div class="mobile-menu-overlay"></div>
 
@@ -128,7 +115,7 @@ if (isset($_GET['UId']) && !empty($_GET['UId'])) {
                                                 echo "<span style='color: red;'>Inactive</span>";
                                             } elseif ($users['status'] == 1) {
                                                 echo "<span style='color: green;'>Active</span>";
-                                            }  else {
+                                            } else {
                                                 echo "Disabled";
                                             } ?></td>
                                         <td>
@@ -162,7 +149,7 @@ if (isset($_GET['UId']) && !empty($_GET['UId'])) {
                 <!-- Export Datatable End -->
             </div>
             <div class="footer-wrap pd-20 mb-20 card-box">
-                HappyHolidayss By <a href="https://github.com/dropways" target="_blank">Chandrakumaran Subiharan</a>
+                HappyHolidayss By <a href="#" >Chandrakumaran Subiharan</a>
             </div>
         </div>
     </div>

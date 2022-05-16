@@ -167,6 +167,36 @@ class booking
     }
   }
 
+
+  public function displayBookingByAdmin($viewId)
+  {
+    $sql = '';
+    $sql = "SELECT DISTINCT tbl_booking.booking_id,tbl_booking.cus_id,tbl_booking.total_amount,tbl_booking.cus_payment_card_type,tbl_booking.start_date,tbl_booking.end_date,tbl_booking.status,tbl_booking.created_date,tbl_booking.payment_status,tbl_booking.total_nights,tbl_booking.total_persons,tbl_booking.total_kids,tbl_booking.total_adults,tbl_booking.payment_card_holder_name,tbl_booking.payment_card_number,tbl_booking.service_id,tbl_booking.service_name,tbl_booking.service_type,tbl_booking.cancellation_ava, tbl_earning.earning_id,tbl_earning.net_amount,tbl_earning.payout,tbl_customer.first_name,tbl_customer.last_name,tbl_customer.email_address,tbl_customer.contact_number
+        from tbl_booking
+        join tbl_customer on tbl_booking.cus_id=tbl_customer.customer_id
+        join tbl_earning on tbl_booking.booking_id=tbl_earning.booking_id
+        where ";
+    if ($viewId == 1) {
+      $sql .= "tbl_booking.status >= 0 ";
+    } elseif ($viewId == 2) {
+      $sql .= "payment_status >= 2 ";
+    };
+
+    $sql .= ";";
+
+    $query = $this->db->query($sql);
+    $data = array();
+    if ($query->rowCount() > 0) {
+      while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+        $data[] = $row;
+      }
+      return $data;
+    } else {
+      return false;
+    }
+  }
+
+
   public function displayBookingByCustomer($cid)
   {
     $sql = "SELECT  *  FROM tbl_booking where cus_id = $cid order by created_date desc limit 5";
@@ -371,7 +401,44 @@ class booking
     return $cnt;
   }
 
+
   //  Partner Dashboard Querys End
+
+
+
+  //  Admin Dashboard Querys End
+
+  public function GetBookingCount()
+  {
+    $sql = "SELECT booking_id from tbl_booking WHERE status = 4";
+    $query = $this->db->query($sql);
+    $cnt = $query->rowCount();
+    return $cnt;
+  }
+
+  public function AdminGetRefundedBookingCount()
+  {
+    $sql = "SELECT booking_id from tbl_booking WHERE payment_status >= 2";
+    $query = $this->db->query($sql);
+    $cnt = $query->rowCount();
+    return $cnt;
+  }
+
+  public function AdminGetInprogressBookingCount()
+  {
+    $sql = "SELECT booking_id from tbl_booking WHERE status = 5";
+    $query = $this->db->query($sql);
+    $cnt = $query->rowCount();
+    return $cnt;
+  }
+
+  public function AdminGetCancelledBookingCount()
+  {
+    $sql = "SELECT booking_id from tbl_booking WHERE status = 3";
+    $query = $this->db->query($sql);
+    $cnt = $query->rowCount();
+    return $cnt;
+  }
 
 
 

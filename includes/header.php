@@ -74,7 +74,7 @@
 
                 <div class="container">
                     <h1 class=" logo-header navbar-brand">
-                        <a href="index.html" title="HappyHolidayss - home">
+                        <a href="index.php" title="HappyHolidayss - home">
                             <img src="assets/images/logo.svg" alt="HappyHolidayss_Logo" />
                         </a>
                     </h1>

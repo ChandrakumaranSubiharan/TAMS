@@ -61,15 +61,6 @@ if (isset($_GET['confirmId']) && !empty($_GET['confirmId'])) {
     <link rel="stylesheet" type="text/css" href="../assets/dashboard/src/plugins/datatables/css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" type="text/css" href="../assets/dashboard/vendors/styles/style.css">
 
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-119386393-1"></script>
-	<script>
-		window.dataLayer = window.dataLayer || [];
-		function gtag(){dataLayer.push(arguments);}
-		gtag('js', new Date());
-
-		gtag('config', 'UA-119386393-1');
-	</script> -->
 </head>
 
 <body>
@@ -175,17 +166,23 @@ if (isset($_GET['confirmId']) && !empty($_GET['confirmId'])) {
                             <div class="col-md-9 col-sm-12 text-right">
                                 <div class="btn-list">
                                     <?php
-                                    if ($admindata['status'] == 0) {
+                                    if ($admindata['status'] == 0  && $admindata['admin_id'] != $returned_row['admin_id']) {
                                     ?>
                                         <a type="button" href="?UId=<?= $admindata['admin_id'] ?>&confirmId=<?= $admindata['admin_id'] ?>&status=1" class="btn btn-success">Activate User</a>
                                     <?php
-                                    } elseif ($admindata['status'] == 1) {
+                                    } elseif ($admindata['status'] == 1 && $admindata['admin_id'] != $returned_row['admin_id']) {
                                     ?>
                                         <a type="button" href="?UId=<?= $admindata['admin_id'] ?>&confirmId=<?= $admindata['admin_id'] ?>&status=0" class="btn btn-danger">Deactivate User</a>
                                     <?php
                                     }
                                     ?>
-                                    <a type="button" href="?UId=<?= $admindata['admin_id'] ?>&confirmId=<?= $admindata['admin_id'] ?>&status=2" class="btn btn-danger">Remove User</a>
+                                    <?php
+                                    if ($admindata['admin_id'] != $returned_row['admin_id']) {
+                                    ?>
+                                        <a type="button" href="?UId=<?= $admindata['admin_id'] ?>&confirmId=<?= $admindata['admin_id'] ?>&status=2" class="btn btn-danger">Remove User</a>
+                                    <?php
+                                    }
+                                    ?>
                                     <a type="button" href="user-manage.php" class="btn btn-secondary">Go Back</a>
                                 </div>
                             </div>
