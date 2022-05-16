@@ -11,6 +11,11 @@
     <meta name="description" content="HappyHolidayss | Accomodations & Tours">
     <meta name="author" content="Subiharan">
 
+    <!-- Site favicon -->
+	<link rel="apple-touch-icon" sizes="180x180" href="assets/dashboard/vendors/images/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="assets/dashboard/vendors/images/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="assets/dashboard/vendors/images/favicon-16x16.png">
+
     <!-- Theme Styles -->
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/font-awesome.min.css">
