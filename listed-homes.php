@@ -188,6 +188,7 @@ include_once 'includes/dbconfig.php';
                                 $homedata = $home->HomeActiveData();
                                 foreach ($homedata as $homeinfo) {
                                 ?>
+                                
                                     <article class="service-info-crd box">
                                         <figure class="col-sm-5 col-md-4">
                                             <a title="" class="popup-gallery"><img width="270" height="160" alt="" src="partner/includes/uploads/<?php echo $homeinfo['cover_img1']; ?>"></a>

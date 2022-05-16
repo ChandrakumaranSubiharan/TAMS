@@ -23,17 +23,6 @@
 	<link rel="stylesheet" type="text/css" href="../assets/dashboard/src/plugins/datatables/css/responsive.bootstrap4.min.css">
 	<link rel="stylesheet" type="text/css" href="../assets/dashboard/vendors/styles/style.css">
 
-
-
-	<!-- Global site tag (gtag.js) - Google Analytics -->
-	<!-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-119386393-1"></script>
-	<script>
-		window.dataLayer = window.dataLayer || [];
-		function gtag(){dataLayer.push(arguments);}
-		gtag('js', new Date());
-
-		gtag('config', 'UA-119386393-1');
-	</script> -->
 </head>
 
 <body>
@@ -54,7 +43,16 @@
 					<div class="card-box height-100-p widget-style3">
 						<div class="d-flex flex-wrap">
 							<div class="widget-data">
-								<div class="weight-700 font-24 text-dark">50000 LKR</div>
+								<?php
+								$TotalEarningAmount = $earning->TotEarAmountAdmin();
+								if ($TotalEarningAmount) {
+									foreach ($TotalEarningAmount as $TotalEarning) {
+								?>
+										<div class="weight-700 font-24 text-dark"><?= $TotalEarning['SUM(tbl_earning.net_amount)']; ?> LKR</div>
+								<?php
+									}
+								}
+								?>
 								<div class="font-14 text-secondary weight-500">Earnings</div>
 							</div>
 							<div class="widget-icon">
@@ -67,7 +65,10 @@
 					<div class="card-box height-100-p widget-style3">
 						<div class="d-flex flex-wrap">
 							<div class="widget-data">
-								<div class="weight-700 font-24 text-dark">2</div>
+								<?php
+								$CompletedBookingCount = $booking->GetBookingCount();
+								?>
+								<div class="weight-700 font-24 text-dark"><?= $CompletedBookingCount; ?></div>
 								<div class="font-14 text-secondary weight-500">Completed Bookings</div>
 							</div>
 							<div class="widget-icon">
@@ -80,7 +81,10 @@
 					<div class="card-box height-100-p widget-style3">
 						<div class="d-flex flex-wrap">
 							<div class="widget-data">
-								<div class="weight-700 font-24 text-dark">0</div>
+								<?php
+								$RefundedBookingCount = $booking->AdminGetRefundedBookingCount();
+								?>
+								<div class="weight-700 font-24 text-dark"><?= $RefundedBookingCount; ?></div>
 								<div class="font-14 text-secondary weight-500">Refunded Bookings</div>
 							</div>
 							<div class="widget-icon">
@@ -93,7 +97,10 @@
 					<div class="card-box height-100-p widget-style3">
 						<div class="d-flex flex-wrap">
 							<div class="widget-data">
-								<div class="weight-700 font-24 text-dark">1</div>
+								<?php
+								$InprogressBookingCount = $booking->AdminGetInprogressBookingCount();
+								?>
+								<div class="weight-700 font-24 text-dark"><?= $InprogressBookingCount; ?></div>
 								<div class="font-14 text-secondary weight-500">Inprogress Bookings</div>
 							</div>
 							<div class="widget-icon">
@@ -112,7 +119,10 @@
 						<div class="card-box height-100-p widget-style3">
 							<div class="d-flex flex-wrap">
 								<div class="widget-data">
-									<div class="weight-700 font-24 text-dark">6</div>
+									<?php
+									$CntUnverifiedPartner = $partner->UnverifiedCountPartner();
+									?>
+									<div class="weight-700 font-24 text-dark"><?= $CntUnverifiedPartner; ?></div>
 									<div class="font-14 text-secondary weight-500">Unverified Partners</div>
 								</div>
 								<div class="widget-icon">
@@ -125,7 +135,10 @@
 						<div class="card-box height-100-p widget-style3">
 							<div class="d-flex flex-wrap">
 								<div class="widget-data">
-									<div class="weight-700 font-24 text-dark">7</div>
+									<?php
+									$CntUnverifiedReviews = $review->UnverifiedCountReview();
+									?>
+									<div class="weight-700 font-24 text-dark"><?= $CntUnverifiedReviews; ?></div>
 									<div class="font-14 text-secondary weight-500">Unverified Reviews</div>
 								</div>
 								<div class="widget-icon">
@@ -141,7 +154,10 @@
 						<div class="card-box height-100-p widget-style3">
 							<div class="d-flex flex-wrap">
 								<div class="widget-data">
-									<div class="weight-700 font-24 text-dark">5</div>
+									<?php
+									$PendingEnquires = $inquiry->CntPendingEnquire();
+									?>
+									<div class="weight-700 font-24 text-dark"><?= $PendingEnquires; ?></div>
 									<div class="font-14 text-secondary weight-500">Pending Enquiries</div>
 								</div>
 								<div class="widget-icon">
@@ -154,7 +170,10 @@
 						<div class="card-box height-100-p widget-style3">
 							<div class="d-flex flex-wrap">
 								<div class="widget-data">
-									<div class="weight-700 font-24 text-dark">5</div>
+									<?php
+									$CntActiveCustomer = $customer->GetActiveCustomersCount();
+									?>
+									<div class="weight-700 font-24 text-dark"><?= $CntActiveCustomer; ?></div>
 									<div class="font-14 text-secondary weight-500">Active Customers</div>
 								</div>
 								<div class="widget-icon">
@@ -170,7 +189,10 @@
 						<div class="card-box height-100-p widget-style3">
 							<div class="d-flex flex-wrap">
 								<div class="widget-data">
-									<div class="weight-700 font-24 text-dark">4</div>
+									<?php
+									$CntActiveHome = $home->GetActiveHomeCount();
+									?>
+									<div class="weight-700 font-24 text-dark"><?= $CntActiveHome; ?></div>
 									<div class="font-14 text-secondary weight-500">Active Homes</div>
 								</div>
 								<div class="widget-icon">
@@ -183,7 +205,10 @@
 						<div class="card-box height-100-p widget-style3">
 							<div class="d-flex flex-wrap">
 								<div class="widget-data">
-									<div class="weight-700 font-24 text-dark">4</div>
+									<?php
+									$CntActiveTour = $tour->GetActiveTourCount();
+									?>
+									<div class="weight-700 font-24 text-dark"><?= $CntActiveTour; ?></div>
 									<div class="font-14 text-secondary weight-500">Active Tours</div>
 								</div>
 								<div class="widget-icon">
@@ -199,7 +224,10 @@
 						<div class="card-box height-100-p widget-style3">
 							<div class="d-flex flex-wrap">
 								<div class="widget-data">
-									<div class="weight-700 font-24 text-dark">2</div>
+									<?php
+									$CntActivePartner = $partner->GetActivePartnerCount();
+									?>
+									<div class="weight-700 font-24 text-dark"><?= $CntActivePartner; ?></div>
 									<div class="font-14 text-secondary weight-500">Active Partners</div>
 								</div>
 								<div class="widget-icon">
@@ -212,7 +240,10 @@
 						<div class="card-box height-100-p widget-style3">
 							<div class="d-flex flex-wrap">
 								<div class="widget-data">
-									<div class="weight-700 font-24 text-dark">75</div>
+									<?php
+									$CntCancelledBookings = $booking->AdminGetCancelledBookingCount();
+									?>
+									<div class="weight-700 font-24 text-dark"><?= $CntCancelledBookings; ?></div>
 									<div class="font-14 text-secondary weight-500">Cancelled Bookings</div>
 								</div>
 								<div class="widget-icon">
@@ -251,7 +282,7 @@
 												</div>
 											</div>
 											<div class="cta flex-shrink-0">
-												<a href="#" class="btn btn-sm btn-outline-primary">View</a>
+												<a href="partner-view-model.php?UId=<?= $Top5Partner['partner_id'] ?>" class="btn btn-sm btn-outline-primary">View</a>
 											</div>
 										</li>
 									</ul>
@@ -283,12 +314,12 @@
 												</div>
 												<div class="txt">
 													<div class="font-14 weight-600"><?= $Top5Customer['first_name']; ?> <?= $Top5Customer['last_name']; ?> </div>
-													<div class="font-12 weight-500" data-color="#b2b1b6">Made <span style="font-weight: 700; color:#09cc06"> <?= $Top5Customer['COUNT(DISTINCT tbl_booking.booking_id)']; ?> </span>Booking & Total Booking Amount Is <span style="font-weight: 700; color:#09cc06">  <?= $Top5Customer['SUM(tbl_booking.total_amount)']; ?> (LKR) </span></div>
+													<div class="font-12 weight-500" data-color="#b2b1b6">Made <span style="font-weight: 700; color:#09cc06"> <?= $Top5Customer['COUNT(DISTINCT tbl_booking.booking_id)']; ?> </span>Booking & Total Booking Amount Is <span style="font-weight: 700; color:#09cc06"> <?= $Top5Customer['SUM(tbl_booking.total_amount)']; ?> (LKR) </span></div>
 												</div>
 											</div>
 											<div class="cta flex-shrink-0">
 												<div class="table-actions">
-													<a href="#" data-color="#265ed7"><i class="icon-copy dw dw-eye"></i></a>
+													<a href="customer-view-model.php?UId=<?= $Top5Customer['cus_id'] ?>" data-color="#265ed7"><i class="icon-copy dw dw-eye"></i></a>
 												</div>
 											</div>
 										</li>
@@ -402,7 +433,7 @@
 
 
 			<div class="footer-wrap pd-20 mb-20 card-box">
-				HappyHolidayss By <a href="https://github.com/dropways" target="_blank">Subiharan Chandrakumaran</a>
+				HappyHolidayss By <a href="#">Subiharan Chandrakumaran</a>
 			</div>
 		</div>
 	</div>

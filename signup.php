@@ -82,7 +82,7 @@ if (isset($_GET['inserted'])) {
                 <div class="form-group">
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox" required /> I accept <a href="#travelo-login" class="goto-login soap-popupbox">Terms and Conditions</a>
+                            <input type="checkbox" required /> I accept <a href="terms-and-conditions.php" class="goto-login">Terms and Conditions</a>
                         </label>
                     </div>
                 </div>
@@ -90,7 +90,7 @@ if (isset($_GET['inserted'])) {
             </form>
         </div>
         <div class="seperator"></div>
-        <p>Have an Account? <a href="#travelo-login" class="goto-login soap-popupbox">Login</a></p>
+        <p>Have an Account? <a href="login.php" class="goto-login">Login</a></p>
     </div>
 
 </div>
