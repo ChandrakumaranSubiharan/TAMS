@@ -16,7 +16,6 @@ if (isset($_GET['type']) && !empty($_GET['type'])) {
 }
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -44,17 +43,6 @@ if (isset($_GET['type']) && !empty($_GET['type'])) {
 
     <!-- pdf script -->
     <script src="../assets/dashboard/vendors/scripts/jspdfmin.js"></script>
-
-
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-119386393-1"></script>
-	<script>
-		window.dataLayer = window.dataLayer || [];
-		function gtag(){dataLayer.push(arguments);}
-		gtag('js', new Date());
-
-		gtag('config', 'UA-119386393-1');
-	</script> -->
 </head>
 
 <body>
@@ -340,7 +328,7 @@ if (isset($_GET['type']) && !empty($_GET['type'])) {
 
         </div>
         <div class="footer-wrap pd-20 mb-20 card-box">
-            HappyHolidayss By <a href="https://github.com/dropways" target="_blank">Chandrakumaran Subiharan</a>
+            HappyHolidayss By <a href="#">Chandrakumaran Subiharan</a>
         </div>
     </div>
     </div>

@@ -389,4 +389,12 @@ class tour
     $cnt = $query->rowCount();
     return $cnt;
   }
+
+  public function GetActiveTourCount()
+  {
+    $sql = "SELECT tour_id from tbl_tour WHERE status = 1";
+    $query = $this->db->query($sql);
+    $cnt = $query->rowCount();
+    return $cnt;
+  }
 }

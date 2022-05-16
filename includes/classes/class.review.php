@@ -223,4 +223,13 @@ class review
             echo "Record not found";
         }
     }
+
+
+    public function UnverifiedCountReview()
+    {
+        $sql = "SELECT review_id from tbl_review WHERE status = 0";
+        $query = $this->db->query($sql);
+        $cnt = $query->rowCount();
+        return $cnt;
+    }
 }

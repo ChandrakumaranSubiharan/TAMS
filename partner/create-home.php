@@ -5,7 +5,7 @@ include_once '../includes/dbconfig.php';
 
 
 // Insert Record in home table
-if(isset($_POST['submit'])) {
+if (isset($_POST['submit'])) {
 
     $home_name = $_POST['hname'];
     $location_address = $_POST['laddress'];
@@ -27,12 +27,12 @@ if(isset($_POST['submit'])) {
     $pid = $_POST['partnerid'];
 
     // Passing the parameters to home class inserdata method via object
-    $insertData = $home->insertData($home_name, $location_address, $adult_price, $kid_price, $max_adult, $max_kid, $lg_desc, $home_type,$home_room, $district, $province, $cancel, $str_date, $end_date, $str_time, $end_time, $file,$pid);
+    $insertData = $home->insertData($home_name, $location_address, $adult_price, $kid_price, $max_adult, $max_kid, $lg_desc, $home_type, $home_room, $district, $province, $cancel, $str_date, $end_date, $str_time, $end_time, $file, $pid);
 
-    if ($insertData){
+    if ($insertData) {
         $msg = "Home successfully created ";
         echo "<script type='text/javascript'>alert('$msg');</script>";
-    }else{
+    } else {
         $msg = "Failed to Create Home ";
         echo "<script type='text/javascript'>alert('$msg');</script>";
     }
@@ -104,134 +104,155 @@ if(isset($_POST['submit'])) {
                 <div class="pd-20 bg-white border-radius-4 box-shadow mb-30">
                     <form method="POST" enctype="multipart/form-data">
 
-                    <input type="text" name="partnerid" hidden id="" value="<?= $returned_row['partner_id']; ?>">
+                        <input type="text" name="partnerid" hidden id="" value="<?= $returned_row['partner_id']; ?>">
 
 
                         <div class="form-group">
                             <label>Home Name</label>
-                            <input class="form-control" name="hname" type="text" placeholder="Enter Home Name">
+                            <input class="form-control" name="hname" type="text" placeholder="Enter Home Name" required>
                         </div>
                         <div class="form-group">
                             <label>Home Location</label>
-                            <input class="form-control" name="laddress" placeholder="Enter Home Location" type="text">
+                            <input class="form-control" name="laddress" placeholder="Enter Home Location" type="text" required>
                         </div>
                         <div class="form-group">
                             <label>Adult/Avg/Night Price(LKR)</label>
-                            <input placeholder="Enter Avarage Adult Night Price in LKR" class="form-control" name="anprice" type="number">
+                            <input placeholder="Enter Avarage Adult Night Price in LKR" class="form-control" name="anprice" type="number" required>
                         </div>
                         <div class="form-group">
                             <label>Kid/Avg/Night Price(LKR)</label>
-                            <input placeholder="Enter Avarage Kid Night Price in LKR" class="form-control" name="kidprice" type="number">
+                            <input placeholder="Enter Avarage Kid Night Price in LKR" class="form-control" name="kidprice" type="number" required>
                         </div>
                         <div class="form-group">
                             <label>Max Adults</label>
-							<select name="madult" class="custom-select col-12">
-									<option selected="">Choose...</option>
-									<option value="1">1</option>
-									<option value="2">2</option>
-									<option value="3">3</option>
-									<option value="4">4</option>
-									<option value="5">5</option>
-									<option value="6">6</option>
-									<option value="7">7</option>
-									<option value="8">8</option>
-									<option value="9">9</option>
-									<option value="10">10</option>
-							</select>
+                            <select name="madult" class="custom-select col-12" required>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label>Max Kids</label>
-							<select name="mkid" class="custom-select col-12">
-									<option selected="">Choose...</option>
-									<option value="0">0</option>
-									<option value="1">1</option>
-									<option value="2">2</option>
-									<option value="3">3</option>
-									<option value="4">4</option>
-									<option value="5">5</option>
-                                    <option value="6">6</option>
-									<option value="7">7</option>
-									<option value="8">8</option>
-									<option value="9">9</option>
-									<option value="10">10</option>
-							</select>
+                            <select name="mkid" class="custom-select col-12" required>
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label>Home Image</label>
-                            <input type="file" class="form-control" name="image" >
+                            <input type="file" class="form-control" name="image" required>
                         </div>
                         <div class="form-group">
-							<label>Home Details</label>
-							<textarea placeholder="Enter Home Details"  name="lgdesc" class="form-control"></textarea>
-						</div>
-                        <div class="form-group">
-							<label>Type</label>
-							<select name="type" class="custom-select col-12">
-									<option selected="">Choose...</option>
-									<option value="Cabin">Cabin</option>
-									<option value="Cottage">Cottage</option>
-									<option value="Resort">Resort</option>
-									<option value="Villa">Villa</option>
-									<option value="Hostel">Hostel</option>
-							</select>
-						</div>
-                        <div class="form-group">
-							<label>Available Rooms</label>
-							<select name="rooms" class="custom-select col-12">
-									<option selected="">Choose...</option>
-									<option value="1">1</option>
-									<option value="2">2</option>
-									<option value="3">3</option>
-									<option value="4">4</option>
-									<option value="5">5</option>
-									<option value="6">6</option>
-									<option value="7">7</option>
-									<option value="8">8</option>
-									<option value="9">9</option>
-									<option value="10">10</option>
-							</select>
-						</div>
-                        <div class="form-group">
-							<label>Province</label>
-							<select name="province" class="custom-select col-12">
-									<option selected="">Choose...</option>
-									<option value="Northern Province">Northern Province</option>
-									<option value="Central Province">Central Province</option>
-									<option value="Western Province">Western Province</option>
-							</select>
-						</div>
-                        <div class="form-group">
-							<label>District</label>
-							<select name="district" class="custom-select col-12">
-									<option selected="">Choose...</option>
-									<option value="Kandy">Kandy</option>
-									<option value="Jaffna">Jaffna</option>
-									<option value="Colombo">Colombo</option>
-							</select>
-						</div>
-                        <div class="form-group">
-							<label>Cancellation</label>
-							<select name="cancel" class="custom-select col-12">
-									<option selected="">Choose...</option>
-									<option value="1">Yes</option>
-									<option value="0">No</option>
-							</select>
-						</div>
-                        <div class="form-group">
-                        <label>Availability Start Date</label>
-                        <input type="date" class="form-control" name="start_date" >
+                            <label>Home Details</label>
+                            <textarea placeholder="Enter Home Details" name="lgdesc" class="form-control" required></textarea>
                         </div>
                         <div class="form-group">
-                        <label>Availability End Date</label>
-                        <input type="date" class="form-control" name="end_date" >
+                            <label>Type</label>
+                            <select name="type" class="custom-select col-12" required>
+                                <option value="Cabin">Cabin</option>
+                                <option value="Cottage">Cottage</option>
+                                <option value="Resort">Resort</option>
+                                <option value="Villa">Villa</option>
+                                <option value="Hostel">Hostel</option>
+                            </select>
                         </div>
                         <div class="form-group">
-                        <label>Stay Start Time</label>
-                        <input type="time" class="form-control" name="start_time" >
+                            <label>Available Rooms</label>
+                            <select name="rooms" class="custom-select col-12" required>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                            </select>
                         </div>
                         <div class="form-group">
-                        <label>Stay End Time</label>
-                        <input type="time" class="form-control" name="end_time" >
+                            <label>Province</label>
+                            <select name="province" class="custom-select col-12" required>
+                                <option value="Northern Province">Northern Province</option>
+                                <option value="Central Province">Central Province</option>
+                                <option value="Western Province">Western Province</option>
+                                <option value="Eastern Province">Western Province</option>
+                                <option value="Southern Province">Western Province</option>
+                                <option value="North Western Province">Western Province</option>
+                                <option value="North Central Province">Western Province</option>
+                                <option value="Uva Province">Western Province</option>
+                                <option value="Sabaragamuwa Province">Western Province</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>District</label>
+                            <select name="district" class="custom-select col-12" required>
+                                <option value="Kandy">Kandy</option>
+                                <option value="Jaffna">Jaffna</option>
+                                <option value="Gampaha">Gampaha</option>
+                                <option value="Colombo">Colombo</option>
+                                <option value="Kalutara">Kalutara</option>
+                                <option value="Matara">Matara</option>
+                                <option value="Matale">Matale</option>
+                                <option value="Nuwara Eliya">Nuwara Eliya</option>
+                                <option value="Galle">Galle</option>
+                                <option value="Hambantota">Hambantota</option>
+                                <option value="Kilinochchi">Kilinochchi</option>
+                                <option value="Mannar">Mannar</option>
+                                <option value="Mullaitivu">Mullaitivu</option>
+                                <option value="Batticaloa">Batticaloa</option>
+                                <option value="Ampara">Ampara</option>
+                                <option value="Trincomalee">Trincomalee</option>
+                                <option value="Vavuniya">Vavuniya</option>
+                                <option value="Kurunegala">Kurunegala</option>
+                                <option value="Puttalam">Puttalam</option>
+                                <option value="Anuradhapura">Anuradhapura</option>
+                                <option value="Polonnaruwa">Polonnaruwa</option>
+                                <option value="Badulla">Badulla</option>
+                                <option value="Moneragala">Moneragala</option>
+                                <option value="Ratnapura">Ratnapura</option>
+                                <option value="Kegalle">Kegalle</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Cancellation</label>
+                            <select name="cancel" class="custom-select col-12" required>
+                                <option value="1">Availabile</option>
+                                <option value="0">Unavailabile</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Availability Start Date</label>
+                            <input type="date" class="form-control" name="start_date" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Availability End Date</label>
+                            <input type="date" class="form-control" name="end_date" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Stay Start Time</label>
+                            <input type="time" class="form-control" name="start_time" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Stay End Time</label>
+                            <input type="time" class="form-control" name="end_time" required>
                         </div>
                         <input class="btn btn-primary" name="submit" type="submit" value="Submit">
                         <input class="btn btn-info" type="reset" value="Reset">
@@ -240,10 +261,10 @@ if(isset($_POST['submit'])) {
             </div>
             <div class="footer-wrap pd-20 mb-20 card-box">
 
-                HappyHolidayss By <a href="https://github.com/dropways" target="_blank">Subiharan Chandrakumaran</a>
+                HappyHolidayss By <a href="#">Subiharan Chandrakumaran</a>
             </div>
-            
-    
+
+
 
 
         </div>
