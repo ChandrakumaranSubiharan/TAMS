@@ -111,35 +111,20 @@ if (isset($_POST['submit'])) {
 
                         <div class="form-group">
                             <label>Tour Title</label>
-                            <input class="form-control" name="ttitle" type="text" placeholder="Enter Tour Title">
+                            <input class="form-control" name="ttitle" type="text" placeholder="Enter Tour Title" required>
                         </div>
                         <div class="form-group">
                             <label>Tour Starting Location</label>
-                            <input class="form-control" name="tlocation" placeholder="Enter Tour Starting Location" type="text">
+                            <input class="form-control" name="tlocation" placeholder="Enter Tour Starting Location" type="text" required>
                         </div>
                         <div class="form-group">
                             <label>Adult Price(LKR)</label>
-                            <input placeholder="Enter Adult Price in LKR" class="form-control" name="anprice" type="number">
+                            <input placeholder="Enter Adult Price in LKR" class="form-control" name="anprice" type="number" required>
                         </div>
-
-
-                        <!-- <Script>
-                            function myFunction() {
-                                var x = document.getElementById('retrievekidava').value;
-                                if (x == '1') {
-                                    document.getElementById('kidpricespan').innerHTML = '<div class="form-group"><label>Kid Price(LKR)</label><input placeholder="Enter Kid Price in LKR" class="form-control" name="kidprice" type="number"></div>';
-                                } else {
-                                    document.getElementById('kidpricespan').innerHTML = '';;
-                                }
-                            }
-                        </Script> -->
-
 
                         <div class="form-group">
                             <label>Is Kids Allowed ?</label>
-                            <select name="kidava" class="custom-select col-12" id="retrievekidava">
-                            <!-- <select name="kidava" class="custom-select col-12" id="retrievekidava" onblur="myFunction()"> -->
-                                <option selected="">Choose...</option>
+                            <select name="kidava" class="custom-select col-12" id="retrievekidava" required>
                                 <option value="1">Yes</option>
                                 <option value="0">No</option>
                             </select>
@@ -147,40 +132,41 @@ if (isset($_POST['submit'])) {
 
                         <div class="form-group">
                             <label>Kid Price(LKR)</label>
-                            <input placeholder="Enter Kid Price in LKR" class="form-control" value="0" name="kidprice" type="number">
+                            <input placeholder="Enter Kid Price in LKR" class="form-control" value="0" name="kidprice" type="number" required>
                         </div>
 
                         <!-- <span id="kidpricespan"></span> -->
 
                         <div class="form-group">
                             <label>Tour Image</label>
-                            <input type="file" class="form-control" name="image">
+                            <input type="file" class="form-control" name="image" required>
                         </div>
                         <div class="form-group">
                             <label>Tour Details</label>
-                            <textarea placeholder="Enter Tour Details" name="lgdesc" class="form-control"></textarea>
+                            <textarea placeholder="Enter Tour Details" name="lgdesc" class="form-control" required></textarea>
                         </div>
                         <div class="form-group">
                             <label>Tour Duration (in nights)</label>
-                            <input class="form-control" name="duration" placeholder="Enter Tour Duration in Nights" type="number">
+                            <input class="form-control" name="duration" placeholder="Enter Tour Duration in Nights" type="number" required>
                         </div>
                         <div class="form-group">
                             <label>Tour Type</label>
-                            <select name="type" class="custom-select col-12">
-                                <option selected="">Choose...</option>
+                            <select name="type" class="custom-select col-12" required>
                                 <option value="Active Adventure">Active Adventure</option>
                                 <option value="Explorer">Explorer</option>
                                 <option value="In-depth Cultural">In-depth Cultural</option>
+                                <option value="Hiking & Trekking">Hiking & Trekking</option>
+                                <option value="Wildlife">Wildlife</option>
+                                <option value="Sailing">Sailing</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label>Tour Available Seats (count)</label>
-                            <input class="form-control" placeholder="Enter Seats Availability in Number" name="seats" type="number">
+                            <input class="form-control" placeholder="Enter Seats Availability in Number" name="seats" type="number" required>
                         </div>
                         <div class="form-group">
                             <label>Tour language</label>
-                            <select name="language" class="custom-select col-12">
-                                <option selected="">Choose...</option>
+                            <select name="language" class="custom-select col-12" required>
                                 <option value="English">English</option>
                                 <option value="Tamil">Tamil</option>
                                 <option value="Sinhala">Sinhala</option>
@@ -188,8 +174,7 @@ if (isset($_POST['submit'])) {
                         </div>
                         <div class="form-group">
                             <label>Tour District</label>
-                            <select name="district" class="custom-select col-12">
-                                <option selected="">Choose...</option>
+                            <select name="district" class="custom-select col-12" required>
                                 <option value="Kandy">Kandy</option>
                                 <option value="Jaffna">Jaffna</option>
                                 <option value="Gampaha">Gampaha</option>
@@ -219,31 +204,30 @@ if (isset($_POST['submit'])) {
                         </div>
                         <div class="form-group">
                             <label>Cancellation</label>
-                            <select name="cancel" class="custom-select col-12">
-                                <option selected="">Choose...</option>
-                                <option value="1">Yes</option>
-                                <option value="0">No</option>
+                            <select name="cancel" class="custom-select col-12" required>
+                                <option value="1">Available</option>
+                                <option value="0">Unavailable</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label>Availability Start Date</label>
-                            <input type="date" class="form-control" name="start_date">
+                            <input type="date" class="form-control" name="start_date" required>
                         </div>
                         <div class="form-group">
                             <label>Start Time</label>
-                            <input type="time" class="form-control" name="start_time">
+                            <input type="time" class="form-control" name="start_time" required>
                         </div>
                         <div class="form-group">
                             <label>Availability End Date</label>
-                            <input type="date" class="form-control" name="end_date">
+                            <input type="date" class="form-control" name="end_date" required>
                         </div>
                         <div class="form-group">
                             <label>End Time</label>
-                            <input type="time" class="form-control" name="end_time">
+                            <input type="time" class="form-control" name="end_time" required>
                         </div>
                         <div class="form-group">
                             <label>Gathering Location</label>
-                            <input type="text" class="form-control" name="gatherlocation" placeholder="Enter Gathering Location">
+                            <input type="text" class="form-control" name="gatherlocation" placeholder="Enter Gathering Location" required>
                         </div>
                         <input class="btn btn-primary" name="submit" type="submit" value="Submit">
                         <input class="btn btn-info" type="reset" value="Reset">
@@ -251,7 +235,7 @@ if (isset($_POST['submit'])) {
                 </div>
             </div>
             <div class="footer-wrap pd-20 mb-20 card-box">
-                HappyHolidayss By <a href="https://github.com/dropways" target="_blank">Subiharan Chandrakumaran</a>
+                HappyHolidayss By <a href="#">Subiharan Chandrakumaran</a>
             </div>
         </div>
     </div>

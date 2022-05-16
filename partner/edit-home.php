@@ -125,31 +125,31 @@ if (isset($_POST['update'])) {
                     <form method="POST" enctype="multipart/form-data">
                         <div class="form-group">
                             <label>Home Name</label>
-                            <input class="form-control" name="hname" type="text" value="<?php echo $homedata['home_name']; ?>">
+                            <input class="form-control" name="hname" type="text" value="<?php echo $homedata['home_name']; ?>" required>
                         </div>
                         <div class="form-group">
                             <label>Home Location</label>
-                            <input class="form-control" name="laddress" placeholder="Enter Home Location" value="<?php echo $homedata['location_address']; ?>" type="text">
+                            <input class="form-control" name="laddress" placeholder="Enter Home Location" value="<?php echo $homedata['location_address']; ?>" type="text" required>
                         </div>
                         <div class="form-group">
                             <label>Adult/Avg/Night Price(LKR)</label>
-                            <input class="form-control" name="anprice" type="number" value="<?php echo $homedata['ava_night_price_adult']; ?>">
+                            <input class="form-control" name="anprice" type="number" value="<?php echo $homedata['ava_night_price_adult']; ?>" required>
                         </div>
                         <div class="form-group">
                             <label>Kid/Avg/Night Price(LKR)</label>
-                            <input class="form-control" name="kidprice" type="number" value="<?php echo $homedata['ava_night_price_kid']; ?>">
+                            <input class="form-control" name="kidprice" type="number" value="<?php echo $homedata['ava_night_price_kid']; ?>" required>
                         </div>
                         <div class="form-group">
                             <label>Max Adults</label>
-                            <input class="form-control" name="madult" type="number" value="<?php echo $homedata['max_adults']; ?>">
+                            <input class="form-control" name="madult" type="number" value="<?php echo $homedata['max_adults']; ?>" required>
                         </div>
                         <div class="form-group">
                             <label>Max Kids</label>
-                            <input class="form-control" name="mkid" type="number" value="<?php echo $homedata['max_kids']; ?>">
+                            <input class="form-control" name="mkid" type="number" value="<?php echo $homedata['max_kids']; ?>" required>
                         </div>
                         <div class="form-group">
                             <label>Rooms Included</label>
-                            <input class="form-control" name="rooms" type="number" value="<?php echo $homedata['rooms']; ?>">
+                            <input class="form-control" name="rooms" type="number" value="<?php echo $homedata['rooms']; ?>" required>
                         </div>
                         <div class="form-group">
                             <label for="focusedinput">Home Image</label>
@@ -161,11 +161,11 @@ if (isset($_POST['update'])) {
                         </div>
                         <div class="form-group">
                             <label>Home Details</label>
-                            <textarea name="lgdesc" class="form-control"><?php echo $homedata['lg_desc']; ?></textarea>
+                            <textarea name="lgdesc" class="form-control" required><?php echo $homedata['lg_desc']; ?></textarea>
                         </div>
                         <div class="form-group">
                             <label>Type</label>
-                            <select name="type" class="custom-select col-12">
+                            <select name="type" class="custom-select col-12" required>
                                 <option value="<?php echo $homedata['home_type']; ?>"><?php echo $homedata['home_type']; ?></option>
                                 <option value="Cabin">Cabin</option>
                                 <option value="Cottage">Cottage</option>
@@ -176,25 +176,53 @@ if (isset($_POST['update'])) {
                         </div>
                         <div class="form-group">
                             <label>Province</label>
-                            <select name="province" class="custom-select col-12">
+                            <select name="province" class="custom-select col-12" required>
                                 <option value="<?php echo $homedata['province']; ?>"><?php echo $homedata['province']; ?></option>
                                 <option value="Northern Province">Northern Province</option>
                                 <option value="Central Province">Central Province</option>
                                 <option value="Western Province">Western Province</option>
+                                <option value="Eastern Province">Western Province</option>
+                                <option value="Southern Province">Western Province</option>
+                                <option value="North Western Province">Western Province</option>
+                                <option value="North Central Province">Western Province</option>
+                                <option value="Uva Province">Western Province</option>
+                                <option value="Sabaragamuwa Province">Western Province</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label>District</label>
-                            <select name="district" class="custom-select col-12">
+                            <select name="district" class="custom-select col-12" required>
                                 <option value="<?php echo $homedata['district']; ?>"><?php echo $homedata['district']; ?></option>
                                 <option value="Kandy">Kandy</option>
                                 <option value="Jaffna">Jaffna</option>
+                                <option value="Gampaha">Gampaha</option>
                                 <option value="Colombo">Colombo</option>
+                                <option value="Kalutara">Kalutara</option>
+                                <option value="Matara">Matara</option>
+                                <option value="Matale">Matale</option>
+                                <option value="Nuwara Eliya">Nuwara Eliya</option>
+                                <option value="Galle">Galle</option>
+                                <option value="Hambantota">Hambantota</option>
+                                <option value="Kilinochchi">Kilinochchi</option>
+                                <option value="Mannar">Mannar</option>
+                                <option value="Mullaitivu">Mullaitivu</option>
+                                <option value="Batticaloa">Batticaloa</option>
+                                <option value="Ampara">Ampara</option>
+                                <option value="Trincomalee">Trincomalee</option>
+                                <option value="Vavuniya">Vavuniya</option>
+                                <option value="Kurunegala">Kurunegala</option>
+                                <option value="Puttalam">Puttalam</option>
+                                <option value="Anuradhapura">Anuradhapura</option>
+                                <option value="Polonnaruwa">Polonnaruwa</option>
+                                <option value="Badulla">Badulla</option>
+                                <option value="Moneragala">Moneragala</option>
+                                <option value="Ratnapura">Ratnapura</option>
+                                <option value="Kegalle">Kegalle</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label>Cancellation</label>
-                            <select name="cancel" class="custom-select col-12">
+                            <select name="cancel" class="custom-select col-12" required>
                                 <option value="<?php echo $homedata['cancellation']; ?>"><?php if ($homedata['cancellation'] == 1) {
                                                                                                 echo "Enabled";
                                                                                             } else {
@@ -206,26 +234,26 @@ if (isset($_POST['update'])) {
                         </div>
                         <div class="form-group">
                             <label>Availability Start Date</label>
-                            <input type="date" value="<?php echo $homedata['ava_start_date']; ?>" class="form-control" name="start_date">
+                            <input type="date" value="<?php echo $homedata['ava_start_date']; ?>" class="form-control" name="start_date" required>
                         </div>
                         <div class="form-group">
                             <label>Availability End Date</label>
-                            <input type="date" value="<?php echo $homedata['ava_end_date']; ?>" class="form-control" name="end_date">
+                            <input type="date" value="<?php echo $homedata['ava_end_date']; ?>" class="form-control" name="end_date" required>
                         </div>
                         <div class="form-group">
                             <label>Stay Start Time</label>
-                            <input type="time" value="<?php echo $homedata['s_time']; ?>" class="form-control" name="starttime">
+                            <input type="time" value="<?php echo $homedata['s_time']; ?>" class="form-control" name="starttime" required>
                         </div>
                         <div class="form-group">
                             <label>Stay End Time</label>
-                            <input type="time" value="<?php echo $homedata['e_time']; ?>" class="form-control" name="endtime">
+                            <input type="time" value="<?php echo $homedata['e_time']; ?>" class="form-control" name="endtime" required>
                         </div>
                         <?php
                         if ($homedata['status'] <= 1) {
                         ?>
                             <div class="form-group">
                                 <label>Status</label>
-                                <select name="stat" class="custom-select col-12">
+                                <select name="stat" class="custom-select col-12" required>
                                     <option value="<?php echo $homedata['status']; ?>"><?php if ($homedata['status'] == 1) {
                                                                                             echo "Active";
                                                                                         } else {

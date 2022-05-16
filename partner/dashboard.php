@@ -24,15 +24,6 @@
 	<link rel="stylesheet" type="text/css" href="../assets/dashboard/vendors/styles/style.css">
 
 
-	<!-- Global site tag (gtag.js) - Google Analytics -->
-	<!-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-119386393-1"></script>
-	<script>
-		window.dataLayer = window.dataLayer || [];
-		function gtag(){dataLayer.push(arguments);}
-		gtag('js', new Date());
-
-		gtag('config', 'UA-119386393-1');
-	</script> -->
 </head>
 
 <body>
@@ -137,17 +128,16 @@
 					<div class="card-box height-100-p widget-style3">
 						<div class="d-flex flex-wrap">
 							<div class="widget-data">
-
-
-
-
-								<!-- fix -->
-
-
-
-
-
-								<div class="weight-700 font-24 text-dark">65000 LKR</div>
+								<?php
+								$TotalEarningAmount = $earning->TotEarAmount($pid);
+								if ($TotalEarningAmount) {
+									foreach ($TotalEarningAmount as $TotalEarning) {
+								?>
+										<div class="weight-700 font-24 text-dark"><?= $TotalEarning['SUM(tbl_earning.payout)']; ?> LKR</div>
+								<?php
+									}
+								}
+								?>
 								<div class="font-14 text-secondary weight-500">Total Earning</div>
 							</div>
 							<div class="widget-icon">
@@ -160,17 +150,16 @@
 					<div class="card-box height-100-p widget-style3">
 						<div class="d-flex flex-wrap">
 							<div class="widget-data">
-
-
-
-
-								<!-- fix -->
-
-
-
-
-
-								<div class="weight-700 font-24 text-dark">30000 LKR</div>
+							<?php
+								$TotalPayoutAmount = $earning->TotPayoutAmount($pid);
+								if ($TotalPayoutAmount) {
+									foreach ($TotalPayoutAmount as $TotalPayout) {
+								?>
+										<div class="weight-700 font-24 text-dark"><?= $TotalPayout['SUM(tbl_earning.net_amount)']; ?> LKR</div>
+								<?php
+									}
+								}
+								?>
 								<div class="font-14 text-secondary weight-500">Total Payout</div>
 							</div>
 							<div class="widget-icon">
@@ -350,7 +339,7 @@
 			<!-- Responsive tables End -->
 
 			<div class="footer-wrap pd-20 mb-20 card-box">
-				HappyHolidayss By <a href="https://github.com/dropways" target="_blank">Subiharan Chandrakumaran</a>
+				HappyHolidayss By <a href="#">Subiharan Chandrakumaran</a>
 			</div>
 		</div>
 	</div>

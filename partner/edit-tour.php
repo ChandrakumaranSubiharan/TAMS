@@ -124,19 +124,19 @@ if (isset($_POST['update'])) {
                     <form method="POST" enctype="multipart/form-data">
                         <div class="form-group">
                             <label>Tour Title</label>
-                            <input class="form-control" name="ttitle" type="text" value="<?php echo $tourdata['title']; ?>">
+                            <input class="form-control" name="ttitle" type="text" value="<?php echo $tourdata['title']; ?>" required>
                         </div>
                         <div class="form-group">
                             <label>Tour Starting Location</label>
-                            <input class="form-control" name="tloc" placeholder="Enter Tour Starting Location" value="<?php echo $tourdata['location']; ?>" type="text">
+                            <input class="form-control" name="tloc" placeholder="Enter Tour Starting Location" value="<?php echo $tourdata['location']; ?>" type="text" required>
                         </div>
                         <div class="form-group">
                             <label>Adult Price(LKR)</label>
-                            <input class="form-control" name="anprice" type="number" value="<?php echo $tourdata['adult_price']; ?>">
+                            <input class="form-control" name="anprice" type="number" value="<?php echo $tourdata['adult_price']; ?>" required>
                         </div>
                         <div class="form-group">
                             <label>Kids Allowing Status</label>
-                            <select name="kstatus" class="custom-select col-12" id="retrievekidava" onblur="myFunction()">
+                            <select name="kstatus" class="custom-select col-12" id="retrievekidava" onblur="myFunction()" required>
                                 <option value="<?php echo $tourdata['kid_status']; ?>"><?php if ($tourdata['kid_status'] == 1) {
                                                                                             echo "Enabled";
                                                                                         } else {
@@ -151,7 +151,7 @@ if (isset($_POST['update'])) {
                         ?>
                             <div class="form-group">
                                 <label>Kid Price(LKR)</label>
-                                <input class="form-control" name="kidprice" type="number" value="<?php echo $tourdata['kid_price']; ?>">
+                                <input class="form-control" name="kidprice" type="number" value="<?php echo $tourdata['kid_price']; ?>" required>
                             </div>
                         <?php
                         } else {
@@ -170,32 +170,35 @@ if (isset($_POST['update'])) {
                         </div>
                         <div class="form-group">
                             <label>Tour Details</label>
-                            <textarea name="detail" class="form-control"><?php echo $tourdata['details']; ?></textarea>
+                            <textarea name="detail" class="form-control" required><?php echo $tourdata['details']; ?></textarea>
                         </div>
                         <div class="form-group">
                             <label>Tour Duration (in nights)</label>
-                            <input class="form-control" name="duration" type="number" value="<?php echo $tourdata['duration_nights']; ?>">
+                            <input class="form-control" name="duration" type="number" value="<?php echo $tourdata['duration_nights']; ?>" required>
                         </div>
                         <div class="form-group">
                             <label>Type</label>
-                            <select name="type" class="custom-select col-12">
+                            <select name="type" class="custom-select col-12" required>
                                 <option value="<?php echo $tourdata['tour_type']; ?>"><?php echo $tourdata['tour_type']; ?></option>
                                 <option value="Active Adventure">Active Adventure</option>
                                 <option value="Explorer">Explorer</option>
                                 <option value="In-depth Cultural">In-depth Cultural</option>
+                                <option value="Hiking & Trekking">Hiking & Trekking</option>
+                                <option value="Wildlife">Wildlife</option>
+                                <option value="Sailing">Sailing</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label>Available Seats (count)</label>
-                            <input type="text" value="<?php echo $tourdata['availabile_seats']; ?>" class="form-control" name="ava_seat">
+                            <input type="text" value="<?php echo $tourdata['availabile_seats']; ?>" class="form-control" name="ava_seat" required>
                         </div>
                         <div class="form-group">
                             <label>Tour Gather Location</label>
-                            <input type="text" value="<?php echo $tourdata['gathering_location']; ?>" class="form-control" name="g_location">
+                            <input type="text" value="<?php echo $tourdata['gathering_location']; ?>" class="form-control" name="g_location" required>
                         </div>
                         <div class="form-group">
                             <label>Tour language</label>
-                            <select name="language" class="custom-select col-12">
+                            <select name="language" class="custom-select col-12" required>
                                 <option value="<?php echo $tourdata['language']; ?>"><?php echo $tourdata['language']; ?></option>
                                 <option value="english">English</option>
                                 <option value="tamil">tamil</option>
@@ -204,9 +207,8 @@ if (isset($_POST['update'])) {
                         </div>
                         <div class="form-group">
                             <label>Tour Starting District</label>
-                            <select name="district" class="custom-select col-12">
+                            <select name="district" class="custom-select col-12" required>
                                 <option value="<?php echo $tourdata['district']; ?>"><?php echo $tourdata['district']; ?></option>
-                                <option selected="">Choose...</option>
                                 <option value="Kandy">Kandy</option>
                                 <option value="Jaffna">Jaffna</option>
                                 <option value="Gampaha">Gampaha</option>
@@ -236,7 +238,7 @@ if (isset($_POST['update'])) {
                         </div>
                         <div class="form-group">
                             <label>Tour Cancellation Status</label>
-                            <select name="cancel" class="custom-select col-12">
+                            <select name="cancel" class="custom-select col-12" required>
                                 <option value="<?php echo $tourdata['cancellation']; ?>"><?php if ($tourdata['cancellation'] == 1) {
                                                                                                 echo "Enabled";
                                                                                             } else {
@@ -248,26 +250,26 @@ if (isset($_POST['update'])) {
                         </div>
                         <div class="form-group">
                             <label>Tour Start Date</label>
-                            <input type="date" value="<?php echo $tourdata['ava_start_date']; ?>" class="form-control" name="start_date">
+                            <input type="date" value="<?php echo $tourdata['ava_start_date']; ?>" class="form-control" name="start_date" required>
                         </div>
                         <div class="form-group">
                             <label>Tour Start Time</label>
-                            <input type="time" value="<?php echo $tourdata['s_time']; ?>" class="form-control" name="start_time">
+                            <input type="time" value="<?php echo $tourdata['s_time']; ?>" class="form-control" name="start_time" required>
                         </div>
                         <div class="form-group">
                             <label>Tour End Date</label>
-                            <input type="date" value="<?php echo $tourdata['ava_end_date']; ?>" class="form-control" name="end_date">
+                            <input type="date" value="<?php echo $tourdata['ava_end_date']; ?>" class="form-control" name="end_date" required>
                         </div>
                         <div class="form-group">
                             <label>Tour End Time</label>
-                            <input type="time" value="<?php echo $tourdata['e_time']; ?>" class="form-control" name="end_time">
+                            <input type="time" value="<?php echo $tourdata['e_time']; ?>" class="form-control" name="end_time" required>
                         </div>
                         <?php
                         if ($tourdata['status'] <= 1) {
                         ?>
                             <div class="form-group">
                             <label>Tour Status</label>
-                            <select name="stat" class="custom-select col-12">
+                            <select name="stat" class="custom-select col-12" required>
                                 <option value="<?php echo $tourdata['status']; ?>"><?php if ($tourdata['status'] == 1) {
                                                                                         echo "Active";
                                                                                     } else {
