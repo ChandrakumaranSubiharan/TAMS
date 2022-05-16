@@ -1,11 +1,7 @@
 <?php
 // Include database file
 include_once '../includes/dbconfig.php';
-
 ?>
-
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -31,16 +27,6 @@ include_once '../includes/dbconfig.php';
     <link rel="stylesheet" type="text/css" href="../assets/dashboard/src/plugins/datatables/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" type="text/css" href="../assets/dashboard/src/plugins/datatables/css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" type="text/css" href="../assets/dashboard/vendors/styles/style.css">
-
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-119386393-1"></script>
-	<script>
-		window.dataLayer = window.dataLayer || [];
-		function gtag(){dataLayer.push(arguments);}
-		gtag('js', new Date());
-
-		gtag('config', 'UA-119386393-1');
-	</script> -->
 </head>
 
 <body>
@@ -48,8 +34,6 @@ include_once '../includes/dbconfig.php';
     <?php include('includes/navigation.php'); ?>
 
     <div class="mobile-menu-overlay"></div>
-
-
     <div class="main-container">
         <div class="pd-ltr-20 xs-pd-20-10">
             <div class="min-height-200px">
@@ -68,9 +52,6 @@ include_once '../includes/dbconfig.php';
                         </div>
                     </div>
                 </div>
-
-
-
                 <!-- Export Datatable start -->
                 <div class="card-box mb-30">
                     <div class=" pt-20">
@@ -126,11 +107,9 @@ include_once '../includes/dbconfig.php';
                     </div>
                 </div>
                 <!-- Export Datatable End -->
-
-
             </div>
             <div class="footer-wrap pd-20 mb-20 card-box">
-                HappyHolidayss By <a href="https://github.com/dropways" target="_blank">Chandrakumaran Subiharan</a>
+                HappyHolidayss By <a href="#">Chandrakumaran Subiharan</a>
             </div>
         </div>
     </div>

@@ -115,21 +115,6 @@ if (isset($_GET['confirmId']) && !empty($_GET['confirmId'])) {
                                     <th>Status</th>
                                     <th class="datatable-nosort">Action</th>
 
-                                    <!-- hidden -->
-                                    <th hidden>Rooms</th>
-                                    <th hidden>Location</th>
-                                    <th hidden>Start Time</th>
-                                    <th hidden>End Time</th>
-                                    <th hidden>Kid/Avg/Night(LKR)</th>
-                                    <th hidden>Description</th>
-                                    <th hidden>Max Adults</th>
-                                    <th hidden>Max Kids</th>
-                                    <th hidden>Home Type</th>
-                                    <th hidden>Province</th>
-                                    <th hidden>District</th>
-                                    <th hidden>Cancellation</th>
-                                    <th hidden>Image</th>
-                                    <th hidden>Created Date</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -183,25 +168,6 @@ if (isset($_GET['confirmId']) && !empty($_GET['confirmId'])) {
                                             </div>
                                         </td>
 
-                                        <!-- hidden -->
-                                        <td hidden><?php echo $homes['rooms']; ?></td>
-                                        <td hidden><?php echo $homes['location_address']; ?></td>
-                                        <td hidden><?php echo date('h:i A', strtotime($homes['s_time'])); ?></td>
-                                        <td hidden><?php echo date('h:i A', strtotime($homes['e_time'])); ?></td>
-                                        <td hidden><?php echo $homes['ava_night_price_kid']; ?> LKR</td>
-                                        <td hidden><?php echo $homes['lg_desc']; ?></td>
-                                        <td hidden><?php echo $homes['max_adults']; ?></td>
-                                        <td hidden><?php echo $homes['max_kids']; ?></td>
-                                        <td hidden><?php echo $homes['home_type']; ?></td>
-                                        <td hidden><?php echo $homes['province']; ?></td>
-                                        <td hidden><?php echo $homes['district']; ?></td>
-                                        <td hidden><?php if ($homes['cancellation'] == 0) {
-                                                        echo "Disabled";
-                                                    } else {
-                                                        echo "Enabled";
-                                                    } ?></td>
-                                        <td hidden><img src="<?php echo 'includes/uploads/' . $homes['cover_img1'] ?>" width="150px"></td>
-                                        <td hidden><?php echo date('d-M-Y', strtotime($homes['created_date'])); ?></td>
                                     </tr>
                                 <?php } ?>
 

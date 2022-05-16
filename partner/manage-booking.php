@@ -111,24 +111,8 @@ if (isset($_GET['confirmId']) && !empty($_GET['confirmId'])) {
                                     <th>Service Name</th>
                                     <th>Total Amount</th>
                                     <th>Status</th>
-                                    <th >Payment Status</th>
-
+                                    <th>Payment</th>
                                     <th class="datatable-nosort">Action</th>
-
-                                    <!-- hidden -->
-                                    <th hidden>Customer Contact</th>
-                                    <th hidden>Customer Email</th>
-                                    <th hidden>Payment Card Type</th>
-                                    <th hidden>Card Number</th>
-                                    <th hidden>Card Holder Name</th>
-                                    <th hidden>Booking Start Date</th>
-                                    <th hidden>Booking End Date</th>
-                                    <th hidden>Booking Income Amount</th>
-                                    <th hidden>Total Nights</th>
-                                    <th hidden>Total Persons</th>
-                                    <th hidden>Adult Count</th>
-                                    <th hidden>Kid Count</th>
-                                    <th style="color: firebrick;" hidden>Booking Created Date and Time</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -138,78 +122,76 @@ if (isset($_GET['confirmId']) && !empty($_GET['confirmId'])) {
 
                                 if (isset($_GET['viewId']) && !empty($_GET['viewId'])) {
                                     $bookingdata = $booking->displayBookingByPartner($pid, $viewId);
-                                    foreach ($bookingdata as $bookings) {
+
+
+
+                                    if ($bookingdata) {
+
+
+
+                                        foreach ($bookingdata as $bookings) {
                                 ?>
-                                        <tr>
-                                            <td><?php echo $bookings['booking_id']; ?></td>
-                                            <td><?php echo $bookings['first_name'], ' ', $bookings['last_name']; ?></td>
-                                            <td><?php echo $bookings['service_type']; ?></td>
-                                            <td><?php echo $bookings['service_name']; ?></td>
-                                            <td><?php echo $bookings['total_amount']; ?> LKR</td>
-                                            <td><?php if ($bookings['status'] == 0) {
-                                                    echo "<span style='color: teal;'>Not Confirmed</span>";
-                                                } elseif ($bookings['status'] == 1) {
-                                                    echo "<span style='color: firebrick;'>Cancelled</span>";
-                                                } elseif ($bookings['status'] == 2) {
-                                                    echo "<span style='color: green;'>Confirmed</span>";
-                                                } elseif ($bookings['status'] == 3) {
-                                                    echo "<span style='color: red;'>Cancelled by You</span>";
-                                                } elseif ($bookings['status'] == 4) {
-                                                    echo "<span style='color: green;'>Completed</span>";
-                                                } elseif ($bookings['status'] == 5) {
-                                                    echo "<span style='color: blue;'>Inprogress</span>";
-                                                } else {
-                                                    echo "Booking Failed";
-                                                } ?></td>
-                                            <td ><?php if ($bookings['payment_status'] == 1) {
-                                                    echo "<span style='color: green;'>Paid</span>";
-                                                } elseif ($bookings['payment_status'] >= 2) {
-                                                    echo "<span style='color: blue;'>Refunded</span>";
-                                                } else {
-                                                    echo "<span style='color: red;'>Not Paid</span>";
-                                                }
-                                                ?> </td>
-                                            <td>
-                                                <div class="dropdown">
-                                                    <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-                                                        <i class="dw dw-more"></i>
-                                                    </a>
-                                                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                                                        <a class="dropdown-item" href="booking-view-model.php?viewId=<?php echo $bookings['booking_id'] ?>"><i class="dw dw-eye"></i> View</a>
-                                                        <?php
-                                                        if ($bookings['status'] <= 0) {
-                                                        ?>
-                                                            <a class="dropdown-item" href="?confirmId=<?php echo $bookings['booking_id'] ?>&status=0&viewId=1"><i style="color:green" class="icon-copy ion-checkmark-circled"></i> Confirm Booking</a>
-                                                            <a class="dropdown-item" href="?confirmId=<?php echo $bookings['booking_id'] ?>&status=1"><i style="color:red" class="icon-copy ion-close-circled"></i> Cancel Booking</a>
-                                                        <?php
-                                                        } elseif ($bookings['status'] == 1) {
-                                                        ?>
-                                                            <a class="dropdown-item" href="?confirmId=<?php echo $bookings['booking_id'] ?>&status=0"><i style="color:green" class="icon-copy ion-checkmark-circled"></i> Confirm Booking</a>
-                                                        <?php
-                                                        }
-                                                        ?>
+                                            <tr>
+                                                <td><?php echo $bookings['booking_id']; ?></td>
+                                                <td><?php echo $bookings['first_name'], ' ', $bookings['last_name']; ?></td>
+                                                <td><?php echo $bookings['service_type']; ?></td>
+                                                <td><?php echo $bookings['service_name']; ?></td>
+                                                <td><?php echo $bookings['total_amount']; ?> LKR</td>
+                                                <td><?php if ($bookings['status'] == 0) {
+                                                        echo "<span style='color: teal;'>Not Confirmed</span>";
+                                                    } elseif ($bookings['status'] == 1) {
+                                                        echo "<span style='color: firebrick;'>Cancelled</span>";
+                                                    } elseif ($bookings['status'] == 2) {
+                                                        echo "<span style='color: green;'>Confirmed</span>";
+                                                    } elseif ($bookings['status'] == 3) {
+                                                        echo "<span style='color: red;'>Cancelled by You</span>";
+                                                    } elseif ($bookings['status'] == 4) {
+                                                        echo "<span style='color: green;'>Completed</span>";
+                                                    } elseif ($bookings['status'] == 5) {
+                                                        echo "<span style='color: blue;'>Inprogress</span>";
+                                                    } else {
+                                                        echo "Booking Failed";
+                                                    } ?></td>
+                                                <td><?php if ($bookings['payment_status'] == 1) {
+                                                        echo "<span style='color: green;'>Paid</span>";
+                                                    } elseif ($bookings['payment_status'] >= 2) {
+                                                        echo "<span style='color: blue;'>Refunded</span>";
+                                                    } else {
+                                                        echo "<span style='color: red;'>Not Paid</span>";
+                                                    }
+                                                    ?> </td>
+                                                <td>
+                                                    <div class="dropdown">
+                                                        <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                                                            <i class="dw dw-more"></i>
+                                                        </a>
+                                                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                                                            <a class="dropdown-item" href="booking-view-model.php?viewId=<?php echo $bookings['booking_id'] ?>"><i class="dw dw-eye"></i> View</a>
+                                                            <?php
+                                                            if ($bookings['status'] <= 0) {
+                                                            ?>
+                                                                <a class="dropdown-item" href="?confirmId=<?php echo $bookings['booking_id'] ?>&status=0&viewId=1"><i style="color:green" class="icon-copy ion-checkmark-circled"></i> Confirm Booking</a>
+                                                                <a class="dropdown-item" href="?confirmId=<?php echo $bookings['booking_id'] ?>&status=1"><i style="color:red" class="icon-copy ion-close-circled"></i> Cancel Booking</a>
+                                                            <?php
+                                                            } elseif ($bookings['status'] == 1) {
+                                                            ?>
+                                                                <a class="dropdown-item" href="?confirmId=<?php echo $bookings['booking_id'] ?>&status=0"><i style="color:green" class="icon-copy ion-checkmark-circled"></i> Confirm Booking</a>
+                                                            <?php
+                                                            }
+                                                            ?>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </td>
-
-
-                                            <!-- hidden -->
-                                            <td hidden><?php echo $bookings['contact_number']; ?> </td>
-                                            <td hidden><?php echo $bookings['email_address']; ?> </td>
-
-                                            <td hidden><?php echo $bookings['cus_payment_card_type']; ?> </td>
-                                            <td hidden><?php echo $bookings['payment_card_number']; ?> </td>
-                                            <td hidden><?php echo $bookings['payment_card_holder_name']; ?> </td>
-                                            <td hidden><?php echo date('jS F, Y ', strtotime($bookings['start_date'])); ?> </td>
-                                            <td hidden><?php echo date('jS F, Y ', strtotime($bookings['end_date'])); ?> </td>
-                                            <td hidden><?php echo $bookings['payout']; ?> LKR </td>
-                                            <td hidden><?php echo $bookings['total_nights']; ?> </td>
-                                            <td hidden><?php echo $bookings['total_persons']; ?> </td>
-                                            <td hidden><?php echo $bookings['total_adults']; ?> </td>
-                                            <td hidden><?php echo $bookings['total_kids']; ?> </td>
-                                            <td hidden><?php echo date('jS F, Y ', strtotime($bookings['created_date'])); ?></td>
-                                        </tr>
-                                <?php }
+                                                </td>
+                                            </tr>
+                                        <?php }
+                                    } else {
+                                        ?>
+                                        <div class='alert alert-danger alert-dismissible'>
+                                            <button type='button' class='close' data-dismiss='alert'>&times;</button>
+                                            No Data Found.
+                                        </div>
+                                <?php
+                                    }
                                 }
                                 ?>
                             </tbody>
@@ -219,7 +201,7 @@ if (isset($_GET['confirmId']) && !empty($_GET['confirmId'])) {
                 <!-- Export Datatable End -->
             </div>
             <div class="footer-wrap pd-20 mb-20 card-box">
-                HappyHolidayss By <a href="https://github.com/dropways" target="_blank">Chandrakumaran Subiharan</a>
+                HappyHolidayss By <a href="#">Chandrakumaran Subiharan</a>
             </div>
         </div>
     </div>

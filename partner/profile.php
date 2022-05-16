@@ -3,9 +3,6 @@
 // Include database file
 include_once '../includes/dbconfig.php';
 
-
-
-
 // Update Record in customer table
 if (isset($_POST['update'])) {
     $id = $_POST['uid'];
@@ -61,15 +58,6 @@ if (isset($_POST['update'])) {
     <link rel="stylesheet" type="text/css" href="../assets/dashboard/src/plugins/datatables/css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" type="text/css" href="../assets/dashboard/vendors/styles/style.css">
 
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-119386393-1"></script>
-	<script>
-		window.dataLayer = window.dataLayer || [];
-		function gtag(){dataLayer.push(arguments);}
-		gtag('js', new Date());
-
-		gtag('config', 'UA-119386393-1');
-	</script> -->
 </head>
 
 <body>
@@ -166,15 +154,15 @@ if (isset($_POST['update'])) {
                                                             <h4 class="text-blue h5 mb-20">Edit Your Personal Details</h4>
                                                             <div class="form-group">
                                                                 <label>First Name</label>
-                                                                <input class="form-control form-control-lg" type="text" name="fname" value="<?php echo $partnerdata['first_name']; ?>">
+                                                                <input class="form-control form-control-lg" type="text" name="fname" value="<?php echo $partnerdata['first_name']; ?>" required>
                                                             </div>
                                                             <div class="form-group">
                                                                 <label>Last Name</label>
-                                                                <input class="form-control form-control-lg" type="text" name="lname" value="<?php echo $partnerdata['last_name']; ?>">
+                                                                <input class="form-control form-control-lg" type="text" name="lname" value="<?php echo $partnerdata['last_name']; ?>" required>
                                                             </div>
                                                             <div class="form-group">
                                                                 <label>User Name</label>
-                                                                <input class="form-control form-control-lg" type="text" name="uname" value="<?php echo $partnerdata['username']; ?>">
+                                                                <input class="form-control form-control-lg" type="text" name="uname" value="<?php echo $partnerdata['username']; ?>" required>
                                                             </div>
                                                             <div class="form-group">
                                                                 <label>Password</label>
@@ -183,23 +171,23 @@ if (isset($_POST['update'])) {
                                                             </div>
                                                             <div class="form-group">
                                                                 <label>Email</label>
-                                                                <input class="form-control form-control-lg" type="email" name="email" value="<?php echo $partnerdata['email_address']; ?>">
+                                                                <input class="form-control form-control-lg" type="email" name="email" value="<?php echo $partnerdata['email_address']; ?>" required>
                                                             </div>
                                                             <div class="form-group">
                                                                 <label>Contact</label>
-                                                                <input class="form-control form-control-lg" type="text" name="contact" value="<?php echo $partnerdata['contact_number']; ?>">
+                                                                <input class="form-control form-control-lg" type="text" name="contact" value="<?php echo $partnerdata['contact_number']; ?>" required>
                                                             </div>
                                                             <div class="form-group">
                                                                 <label>Address</label>
-                                                                <input class="form-control form-control-lg" type="text" name="address" value="<?php echo $partnerdata['address']; ?>">
+                                                                <input class="form-control form-control-lg" type="text" name="address" value="<?php echo $partnerdata['address']; ?>" required>
                                                             </div>
                                                             <div class="form-group">
                                                                 <label>Zip Code</label>
-                                                                <input class="form-control form-control-lg" type="number" name="zip" value="<?php echo $partnerdata['zipcode']; ?>">
+                                                                <input class="form-control form-control-lg" type="number" name="zip" value="<?php echo $partnerdata['zipcode']; ?>" required>
                                                             </div>
                                                             <div class="form-group">
                                                                 <label>State/Province/Region</label>
-                                                                <select name="province" class="custom-select col-12">
+                                                                <select name="province" class="custom-select col-12" required>
                                                                     <option value="<?php echo $partnerdata['province']; ?>"><?php echo $partnerdata['province']; ?></option>
                                                                     <option value="Northern">Northern</option>
                                                                     <option value="North Western">North Western</option>
@@ -214,7 +202,7 @@ if (isset($_POST['update'])) {
                                                             </div>
                                                             <div class="form-group">
                                                                 <label>Gender</label>
-                                                                <select name="gender" class="custom-select col-12">
+                                                                <select name="gender" class="custom-select col-12" required>
                                                                     <option value="<?php echo $partnerdata['gender']; ?>"><?php echo $partnerdata['gender']; ?></option>
                                                                     <option value="Male">Male</option>
                                                                     <option value="Female">Female</option>
