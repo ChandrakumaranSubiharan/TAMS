@@ -124,56 +124,63 @@ if (isset($_GET['confirmId']) && !empty($_GET['confirmId'])) {
 
                                 $pid = $returned_row['partner_id'];
                                 $tourdata = $tour->displayDataAsPartner($pid);
+                                if ($tourdata) {
 
-                                foreach ($tourdata as $tourinfo) {
+
+                                    foreach ($tourdata as $tourinfo) {
 
                                 ?>
-                                    <tr>
-                                        <td><?php echo $tourinfo['tour_id']; ?></td>
-                                        <td><?php echo $tourinfo['title']; ?></td>
-                                        <td><?php echo date('d-M-Y', strtotime($tourinfo['ava_start_date'])); ?></td>
-                                        <td><?php echo date('d-M-Y', strtotime($tourinfo['ava_end_date'])); ?></td>
-                                        <td><?php if ($tourinfo['status'] == 0) {
-                                                echo "<span style='color: red;'>Inactive</span>";
-                                            } elseif ($tourinfo['status'] == 1) {
-                                                echo "<span style='color: green;'>Active</span>";
-                                            } elseif ($tourinfo['status'] == 2) {
-                                                echo "<span style='color: firebrick;'>Not Verified Yet</span>";
-                                            }elseif ($tourinfo['status'] == 3) {
-                                                echo "<span style='color: red;'>Verification Failed</span>";
-                                            } else {
-                                                echo "<span style='color: red;'>Disabled by Admin</span>";
-                                            } ?></td>
-                                        <td><?php echo $tourinfo['duration_nights']; ?> Nights</td>
-                                        <td><?php echo $tourinfo['availabile_seats']; ?></td>
+                                        <tr>
+                                            <td><?php echo $tourinfo['tour_id']; ?></td>
+                                            <td><?php echo $tourinfo['title']; ?></td>
+                                            <td><?php echo date('d-M-Y', strtotime($tourinfo['ava_start_date'])); ?></td>
+                                            <td><?php echo date('d-M-Y', strtotime($tourinfo['ava_end_date'])); ?></td>
+                                            <td><?php if ($tourinfo['status'] == 0) {
+                                                    echo "<span style='color: red;'>Inactive</span>";
+                                                } elseif ($tourinfo['status'] == 1) {
+                                                    echo "<span style='color: green;'>Active</span>";
+                                                } elseif ($tourinfo['status'] == 2) {
+                                                    echo "<span style='color: firebrick;'>Not Verified Yet</span>";
+                                                } elseif ($tourinfo['status'] == 3) {
+                                                    echo "<span style='color: red;'>Verification Failed</span>";
+                                                } else {
+                                                    echo "<span style='color: red;'>Disabled by Admin</span>";
+                                                } ?></td>
+                                            <td><?php echo $tourinfo['duration_nights']; ?> Nights</td>
+                                            <td><?php echo $tourinfo['availabile_seats']; ?></td>
 
 
-                                        <td>
-                                            <div class="dropdown">
-                                                <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-                                                    <i class="dw dw-more"></i>
-                                                </a>
-                                                <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                                            <td>
+                                                <div class="dropdown">
+                                                    <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                                                        <i class="dw dw-more"></i>
+                                                    </a>
+                                                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
 
-                                                    <a class="dropdown-item" href="tour-view-model.php?viewId=<?php echo $tourinfo['tour_id'] ?>"><i class="dw dw-eye"></i> View</a>
-                                                    <a class="dropdown-item" href="edit-tour.php?editId=<?php echo $tourinfo['tour_id'] ?>"><i class="dw dw-edit2" aria-hidden="true"></i> Edit</a>
-                                                    <a href="manage-tour.php?deleteId=<?php echo $tourinfo['tour_id'] ?>" style="color:red" onclick="confirm('Are you sure want to delete this record')" class="dropdown-item"><i class="dw dw-delete-3"></i> Delete</a>
-                                                    <?php
-                                                    if ($tourinfo['status'] == 0) {
-                                                    ?>
-                                                        <a class="dropdown-item" href="?confirmId=<?php echo $tourinfo['tour_id'] ?>&status=1"><i style="color:green" class="icon-copy ion-checkmark-circled"></i>Activate</a>
-                                                    <?php
-                                                    } elseif ($tourinfo['status'] == 1) {
-                                                    ?>
-                                                        <a class="dropdown-item" href="?confirmId=<?php echo $tourinfo['tour_id'] ?>&status=0"><i style="color:red" class="icon-copy ion-close-circled"></i>Deactivate</a>
-                                                    <?php
-                                                    }
-                                                    ?>
+                                                        <a class="dropdown-item" href="tour-view-model.php?viewId=<?php echo $tourinfo['tour_id'] ?>"><i class="dw dw-eye"></i> View</a>
+                                                        <a class="dropdown-item" href="edit-tour.php?editId=<?php echo $tourinfo['tour_id'] ?>"><i class="dw dw-edit2" aria-hidden="true"></i> Edit</a>
+                                                        <a href="manage-tour.php?deleteId=<?php echo $tourinfo['tour_id'] ?>" style="color:red" onclick="confirm('Are you sure want to delete this record')" class="dropdown-item"><i class="dw dw-delete-3"></i> Delete</a>
+                                                        <?php
+                                                        if ($tourinfo['status'] == 0) {
+                                                        ?>
+                                                            <a class="dropdown-item" href="?confirmId=<?php echo $tourinfo['tour_id'] ?>&status=1"><i style="color:green" class="icon-copy ion-checkmark-circled"></i>Activate</a>
+                                                        <?php
+                                                        } elseif ($tourinfo['status'] == 1) {
+                                                        ?>
+                                                            <a class="dropdown-item" href="?confirmId=<?php echo $tourinfo['tour_id'] ?>&status=0"><i style="color:red" class="icon-copy ion-close-circled"></i>Deactivate</a>
+                                                        <?php
+                                                        }
+                                                        ?>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                <?php } ?>
+                                            </td>
+                                        </tr>
+                                    <?php }
+                                } else {
+                                    ?>
+                                    <td colspan="9" style="text-align: center;">No Records Found.</td>
+                                <?php
+                                } ?>
 
                             </tbody>
                         </table>

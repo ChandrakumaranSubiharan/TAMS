@@ -197,7 +197,7 @@ include_once 'includes/dbconfig.php';
                                 ?>
 
                                 <?php
-                                $tourdata = $tour->TourActiveData();
+                                $tourdata = $tour->TourActiveListedData();
                                 foreach ($tourdata as $tourinfo) {
                                 ?>
                                     <article class="service-info-crd box">

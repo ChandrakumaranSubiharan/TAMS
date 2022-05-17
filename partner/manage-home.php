@@ -123,53 +123,60 @@ if (isset($_GET['confirmId']) && !empty($_GET['confirmId'])) {
 
                                 $pid = $returned_row['partner_id'];
                                 $homedata = $home->displayDataAsPartner($pid);
-                                foreach ($homedata as $homes) {
+                                if ($homedata) {
+
+                                    foreach ($homedata as $homes) {
 
                                 ?>
-                                    <tr>
-                                        <td><?php echo $homes['home_id']; ?></td>
-                                        <td><?php echo $homes['home_name']; ?></td>
-                                        <td><?php echo $homes['ava_night_price_adult']; ?> LKR</td>
-                                        <td><?php echo date('d-M-Y', strtotime($homes['ava_start_date'])); ?></td>
-                                        <td><?php echo date('d-M-Y', strtotime($homes['ava_end_date'])); ?></td>
-                                        <td><?php if ($homes['status'] == 0) {
-                                                echo "<span style='color: red;'>Inactive</span>";
-                                            } elseif ($homes['status'] == 1) {
-                                                echo "<span style='color: green;'>Active</span>";
-                                            } elseif ($homes['status'] == 2) {
-                                                echo "<span style='color: firebrick;'>Not Verified Yet</span>";
-                                            } elseif ($homes['status'] == 3) {
-                                                echo "<span style='color: red;'>Verification Failed</span>";
-                                            } else {
-                                                echo "<span style='color: red;'>Disabled by Admin</span>";
-                                            } ?></td>
+                                        <tr>
+                                            <td><?php echo $homes['home_id']; ?></td>
+                                            <td><?php echo $homes['home_name']; ?></td>
+                                            <td><?php echo $homes['ava_night_price_adult']; ?> LKR</td>
+                                            <td><?php echo date('d-M-Y', strtotime($homes['ava_start_date'])); ?></td>
+                                            <td><?php echo date('d-M-Y', strtotime($homes['ava_end_date'])); ?></td>
+                                            <td><?php if ($homes['status'] == 0) {
+                                                    echo "<span style='color: red;'>Inactive</span>";
+                                                } elseif ($homes['status'] == 1) {
+                                                    echo "<span style='color: green;'>Active</span>";
+                                                } elseif ($homes['status'] == 2) {
+                                                    echo "<span style='color: firebrick;'>Not Verified Yet</span>";
+                                                } elseif ($homes['status'] == 3) {
+                                                    echo "<span style='color: red;'>Verification Failed</span>";
+                                                } else {
+                                                    echo "<span style='color: red;'>Disabled by Admin</span>";
+                                                } ?></td>
 
-                                        <td>
-                                            <div class="dropdown">
-                                                <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-                                                    <i class="dw dw-more"></i>
-                                                </a>
-                                                <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                                                    <a class="dropdown-item" href="home-view-model.php?viewId=<?php echo $homes['home_id'] ?>"><i class="dw dw-eye"></i> View</a>
-                                                    <a class="dropdown-item" href="edit-home.php?editId=<?php echo $homes['home_id'] ?>"><i class="dw dw-edit2" aria-hidden="true"></i> Edit</a>
-                                                    <a href="manage-home.php?deleteId=<?php echo $homes['home_id'] ?>" style="color:red" onclick="confirm('Are you sure want to delete this record')" class="dropdown-item"><i class="dw dw-delete-3"></i> Delete</a>
-                                                    <?php
-                                                    if ($homes['status'] == 0) {
-                                                    ?>
-                                                        <a class="dropdown-item" href="?confirmId=<?php echo $homes['home_id'] ?>&status=1"><i style="color:green" class="icon-copy ion-checkmark-circled"></i>Activate</a>
-                                                    <?php
-                                                    } elseif ($homes['status'] == 1) {
-                                                    ?>
-                                                        <a class="dropdown-item" href="?confirmId=<?php echo $homes['home_id'] ?>&status=0"><i style="color:red" class="icon-copy ion-close-circled"></i>Deactivate</a>
-                                                    <?php
-                                                    }
-                                                    ?>
+                                            <td>
+                                                <div class="dropdown">
+                                                    <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                                                        <i class="dw dw-more"></i>
+                                                    </a>
+                                                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                                                        <a class="dropdown-item" href="home-view-model.php?viewId=<?php echo $homes['home_id'] ?>"><i class="dw dw-eye"></i> View</a>
+                                                        <a class="dropdown-item" href="edit-home.php?editId=<?php echo $homes['home_id'] ?>"><i class="dw dw-edit2" aria-hidden="true"></i> Edit</a>
+                                                        <a href="manage-home.php?deleteId=<?php echo $homes['home_id'] ?>" style="color:red" onclick="confirm('Are you sure want to delete this record')" class="dropdown-item"><i class="dw dw-delete-3"></i> Delete</a>
+                                                        <?php
+                                                        if ($homes['status'] == 0) {
+                                                        ?>
+                                                            <a class="dropdown-item" href="?confirmId=<?php echo $homes['home_id'] ?>&status=1"><i style="color:green" class="icon-copy ion-checkmark-circled"></i>Activate</a>
+                                                        <?php
+                                                        } elseif ($homes['status'] == 1) {
+                                                        ?>
+                                                            <a class="dropdown-item" href="?confirmId=<?php echo $homes['home_id'] ?>&status=0"><i style="color:red" class="icon-copy ion-close-circled"></i>Deactivate</a>
+                                                        <?php
+                                                        }
+                                                        ?>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </td>
+                                            </td>
 
-                                    </tr>
-                                <?php } ?>
+                                        </tr>
+                                    <?php }
+                                } else {
+                                    ?>
+                                    <td colspan="9" style="text-align: center;">No Records Found.</td>
+                                <?php
+                                } ?>
 
                             </tbody>
                         </table>

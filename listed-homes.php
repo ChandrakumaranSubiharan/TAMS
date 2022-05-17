@@ -185,7 +185,7 @@ include_once 'includes/dbconfig.php';
                             } else {
                                 ?>
                                 <?php
-                                $homedata = $home->HomeActiveData();
+                                $homedata = $home->HomeActiveListedData();
                                 foreach ($homedata as $homeinfo) {
                                 ?>
                                 

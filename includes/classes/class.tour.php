@@ -211,7 +211,23 @@ class tour
   // Fetch tour records for show listing
   public function TourActiveData()
   {
-    $sql = "SELECT * FROM tbl_tour where status = 1 AND ava_start_date >= CURDATE() order by rand() LIMIT 4";
+    $sql = "SELECT * FROM tbl_tour where status = 1 AND ava_start_date >= CURDATE() order by rand() limit 4";
+    $query = $this->db->query($sql);
+    $data = array();
+    if ($query->rowCount() > 0) {
+      while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+        $data[] = $row;
+      }
+      return $data;
+    } else {
+      return false;
+    }
+  }
+
+
+  public function TourActiveListedData()
+  {
+    $sql = "SELECT * FROM tbl_tour where status = 1 AND ava_start_date >= CURDATE() order by rand()";
     $query = $this->db->query($sql);
     $data = array();
     if ($query->rowCount() > 0) {

@@ -72,35 +72,42 @@ include_once '../includes/dbconfig.php';
                                 <?php
                                 $pid = $returned_row['partner_id'];
                                 $earningdata = $earning->displayEarningByPartner($pid);
-                                foreach ($earningdata as $earnings) {
+                                if ($earningdata) {
+
+                                    foreach ($earningdata as $earnings) {
                                 ?>
-                                    <tr>
-                                        <td><?php echo $earnings['booking_id']; ?></td>
-                                        <td><?php echo $earnings['service_type']; ?></td>
-                                        <td><?php echo $earnings['service_name']; ?></td>
-                                        <td><?php echo $earnings['total_amount']; ?> LKR</td>
-                                        <td><?php echo $earnings['profit_percentage']; ?> %</td>
-                                        <td><?php echo $earnings['net_amount']; ?> LKR</td>
-                                        <td><?php if ($earnings['payment_status'] == 1) {
-                                                echo "<span style='color: green;'>Paid</span>";
-                                            } elseif ($earnings['payment_status'] >= 2) {
-                                                echo "<span style='color: blue;'>Refunded</span>";
-                                            } else {
-                                                echo "<span style='color: red;'>Not Paid</span>";
-                                            }
-                                            ?></td>
-                                        <td>
-                                            <div class="dropdown">
-                                                <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-                                                    <i class="dw dw-more"></i>
-                                                </a>
-                                                <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                                                    <a class="dropdown-item" href="payout-view-model.php?viewId=<?php echo $earnings['earning_id'] ?>"><i class="dw dw-eye"></i> View</a>
+                                        <tr>
+                                            <td><?php echo $earnings['booking_id']; ?></td>
+                                            <td><?php echo $earnings['service_type']; ?></td>
+                                            <td><?php echo $earnings['service_name']; ?></td>
+                                            <td><?php echo $earnings['total_amount']; ?> LKR</td>
+                                            <td><?php echo $earnings['profit_percentage']; ?> %</td>
+                                            <td><?php echo $earnings['net_amount']; ?> LKR</td>
+                                            <td><?php if ($earnings['payment_status'] == 1) {
+                                                    echo "<span style='color: green;'>Paid</span>";
+                                                } elseif ($earnings['payment_status'] >= 2) {
+                                                    echo "<span style='color: blue;'>Refunded</span>";
+                                                } else {
+                                                    echo "<span style='color: red;'>Not Paid</span>";
+                                                }
+                                                ?></td>
+                                            <td>
+                                                <div class="dropdown">
+                                                    <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                                                        <i class="dw dw-more"></i>
+                                                    </a>
+                                                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                                                        <a class="dropdown-item" href="payout-view-model.php?viewId=<?php echo $earnings['earning_id'] ?>"><i class="dw dw-eye"></i> View</a>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                <?php } ?>
+                                            </td>
+                                        </tr>
+                                    <?php }
+                                } else {
+                                    ?>
+                                    <td colspan="9" style="text-align: center;">No Records Found.</td>
+                                <?php
+                                } ?>
 
                             </tbody>
                         </table>
