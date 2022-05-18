@@ -82,7 +82,7 @@ foreach ($bookingdata as $bookinginfo) {
                                     echo "UNPAID";
                                 } ?></dd>
                             <dt>Cancellation Status:</dt>
-                            <dd><?php if ($bookinginfo['cancellation_ava'] == 0) {
+                            <dd><?php if ($bookinginfo['cancellation_ava'] == 1) {
                                     echo "Available for 24Hr";
                                 } else {
                                     echo "Unavailable";
