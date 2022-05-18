@@ -147,48 +147,54 @@ include_once 'includes/dbconfig.php';
                                 $bydistrict = ($_GET['district']);
 
                                 $homedata = $home->HomebyDistrictData($bydistrict);
-                                foreach ($homedata as $homeinfo) {
+                                if ($homedata) {
+
+                                    foreach ($homedata as $homeinfo) {
 
                             ?>
-                                    <article class="service-info-crd box">
-                                        <figure class="col-sm-5 col-md-4">
-                                            <a title="" class="popup-gallery"><img width="270" height="160" alt="" src="partner/includes/uploads/<?php echo $homeinfo['cover_img1']; ?>"></a>
-                                        </figure>
-                                        <div class="details col-sm-7 col-md-8">
-                                            <div>
+                                        <article class="service-info-crd box">
+                                            <figure class="col-sm-5 col-md-4">
+                                                <a title="" class="popup-gallery"><img width="270" height="160" alt="" src="partner/includes/uploads/<?php echo $homeinfo['cover_img1']; ?>"></a>
+                                            </figure>
+                                            <div class="details col-sm-7 col-md-8">
                                                 <div>
-                                                    <h4 class="box-title"><?php echo $homeinfo['home_name']; ?><small><i class="soap-icon-departure yellow-color"></i> <?php echo $homeinfo['district']; ?>, Sri Lanka</small></h4>
-                                                    <div class="amenities">
-                                                        <i class="soap-icon-wifi circle"></i>
-                                                        <i class="soap-icon-fitnessfacility circle"></i>
-                                                        <i class="soap-icon-fork circle"></i>
-                                                        <i class="soap-icon-television circle"></i>
+                                                    <div>
+                                                        <h4 class="box-title"><?php echo $homeinfo['home_name']; ?><small><i class="soap-icon-departure yellow-color"></i> <?php echo $homeinfo['district']; ?>, Sri Lanka</small></h4>
+                                                        <div class="amenities">
+                                                            <i class="soap-icon-wifi circle"></i>
+                                                            <i class="soap-icon-fitnessfacility circle"></i>
+                                                            <i class="soap-icon-fork circle"></i>
+                                                            <i class="soap-icon-television circle"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <div class="five-stars-container">
+                                                            <span class="five-stars" style="width: 80%;"></span>
+                                                        </div>
+                                                        <span class="review"><?php echo $homeinfo['home_type']; ?></span>
                                                     </div>
                                                 </div>
                                                 <div>
-                                                    <div class="five-stars-container">
-                                                        <span class="five-stars" style="width: 80%;"></span>
+                                                    <p><?php echo $homeinfo['lg_desc']; ?></p>
+                                                    <div>
+                                                        <span class="price"><small>AVG/NIGHT</small>LKR <?php echo $homeinfo['ava_night_price_adult']; ?></span>
+                                                        <a class="button btn-small full-width text-center view-card" href="home-detailed.php?homeid=<?php echo $homeinfo['home_id']; ?>">Details</a>
                                                     </div>
-                                                    <span class="review"><?php echo $homeinfo['home_type']; ?></span>
                                                 </div>
                                             </div>
-                                            <div>
-                                                <p><?php echo $homeinfo['lg_desc']; ?></p>
-                                                <div>
-                                                    <span class="price"><small>AVG/NIGHT</small>LKR <?php echo $homeinfo['ava_night_price_adult']; ?></span>
-                                                    <a class="button btn-small full-width text-center view-card" href="home-detailed.php?homeid=<?php echo $homeinfo['home_id']; ?>">Details</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </article>
+                                        </article>
                                 <?php }
+                                } else {
+
+                                    echo "Homes Not Found.";
+                                }
                             } else {
                                 ?>
                                 <?php
                                 $homedata = $home->HomeActiveListedData();
                                 foreach ($homedata as $homeinfo) {
                                 ?>
-                                
+
                                     <article class="service-info-crd box">
                                         <figure class="col-sm-5 col-md-4">
                                             <a title="" class="popup-gallery"><img width="270" height="160" alt="" src="partner/includes/uploads/<?php echo $homeinfo['cover_img1']; ?>"></a>

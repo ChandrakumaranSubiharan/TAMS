@@ -199,7 +199,7 @@ if (isset($_REQUEST['homesubmit'])) {
                             <?php
                                 }
                             } else {
-                                echo "Home Not Found.";
+                                echo "Homes Not Found.";
                             }
                             ?>
                         </div>

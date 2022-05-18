@@ -135,63 +135,68 @@ include_once 'includes/dbconfig.php';
 
 
                                 $tourdata = $tour->TourbyDistrictData($bydistrict);
-                                foreach ($tourdata as $tourinfo) {
+                                if ($tourdata) {
+
+                                    foreach ($tourdata as $tourinfo) {
 
                             ?>
-                                    <article class="service-info-crd box">
-                                        <figure class="col-sm-4">
-                                            <a title="" class=""><img width="270" height="160" alt="" src="partner/includes/uploads/<?php echo $tourinfo['image']; ?>"></a>
-                                        </figure>
-                                        <div class="details col-sm-8">
-                                            <div class="clearfix">
-                                                <h4 class="box-title pull-left"><?php echo $tourinfo['title']; ?><small>Total <?php echo $tourinfo['duration_nights']; ?> Nights</small></h4>
-                                                <span class="price pull-right"><small>from</small>LKR <?php echo $tourinfo['adult_price']; ?></span>
-                                            </div>
-                                            <div class="character clearfix">
-                                                <div class="col-xs-4 date">
-                                                    <i class="soap-icon-fireplace yellow-color"></i>
-                                                    <div>
-                                                        <span class="skin-color">Type</span><br><?php echo $tourinfo['tour_type']; ?>
+                                        <article class="service-info-crd box">
+                                            <figure class="col-sm-4">
+                                                <a title="" class=""><img width="270" height="160" alt="" src="partner/includes/uploads/<?php echo $tourinfo['image']; ?>"></a>
+                                            </figure>
+                                            <div class="details col-sm-8">
+                                                <div class="clearfix">
+                                                    <h4 class="box-title pull-left"><?php echo $tourinfo['title']; ?><small>Total <?php echo $tourinfo['duration_nights']; ?> Nights</small></h4>
+                                                    <span class="price pull-right"><small>from</small>LKR <?php echo $tourinfo['adult_price']; ?></span>
+                                                </div>
+                                                <div class="character clearfix">
+                                                    <div class="col-xs-4 date">
+                                                        <i class="soap-icon-fireplace yellow-color"></i>
+                                                        <div>
+                                                            <span class="skin-color">Type</span><br><?php echo $tourinfo['tour_type']; ?>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xs-4 date">
+                                                        <i class="soap-icon-clock yellow-color"></i>
+                                                        <div>
+                                                            <span class="skin-color">Starting From:</span><br><?php echo $tourinfo['ava_start_date']; ?>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xs-5 departure">
+                                                        <i class="soap-icon-departure yellow-color"></i>
+                                                        <div>
+                                                            <span class="skin-color">Location</span><br>Starting From <?php echo $tourinfo['district']; ?>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-xs-4 date">
-                                                    <i class="soap-icon-clock yellow-color"></i>
-                                                    <div>
-                                                        <span class="skin-color">Starting From:</span><br><?php echo $tourinfo['ava_start_date']; ?>
+                                                <div class="clearfix">
+                                                    <div class="review pull-left">
+                                                        <?php
+                                                        $string = $tourinfo['details'];
+
+                                                        // strip tags to avoid breaking any html
+                                                        $string = strip_tags($string);
+                                                        if (strlen($string) > 100) {
+
+                                                            // truncate string
+                                                            $stringCut = substr($string, 0, 100);
+                                                            $endPoint = strrpos($stringCut, ' ');
+
+                                                            //if the string doesn't contain any space then it will cut without word basis.
+                                                            $string = $endPoint ? substr($stringCut, 0, $endPoint) : substr($stringCut, 0);
+                                                            $string .= '... <a">Read More</a>';
+                                                        }
+                                                        ?>
+                                                        <p><?php echo $string; ?></p>
                                                     </div>
-                                                </div>
-                                                <div class="col-xs-5 departure">
-                                                    <i class="soap-icon-departure yellow-color"></i>
-                                                    <div>
-                                                        <span class="skin-color">Location</span><br>Starting From <?php echo $tourinfo['district']; ?>
-                                                    </div>
+                                                    <a href="tour-detailed.php?tourid=<?php echo $tourinfo['tour_id']; ?>" class="button btn-small pull-right view-card">select Tour</a>
                                                 </div>
                                             </div>
-                                            <div class="clearfix">
-                                                <div class="review pull-left">
-                                                    <?php
-                                                    $string = $tourinfo['details'];
-
-                                                    // strip tags to avoid breaking any html
-                                                    $string = strip_tags($string);
-                                                    if (strlen($string) > 100) {
-
-                                                        // truncate string
-                                                        $stringCut = substr($string, 0, 100);
-                                                        $endPoint = strrpos($stringCut, ' ');
-
-                                                        //if the string doesn't contain any space then it will cut without word basis.
-                                                        $string = $endPoint ? substr($stringCut, 0, $endPoint) : substr($stringCut, 0);
-                                                        $string .= '... <a">Read More</a>';
-                                                    }
-                                                    ?>
-                                                    <p><?php echo $string; ?></p>
-                                                </div>
-                                                <a href="tour-detailed.php?tourid=<?php echo $tourinfo['tour_id']; ?>" class="button btn-small pull-right view-card">select Tour</a>
-                                            </div>
-                                        </div>
-                                    </article>
+                                        </article>
                                 <?php }
+                                } else {
+                                    echo "Tours Not Found.";
+                                }
                             } else {
 
                                 ?>

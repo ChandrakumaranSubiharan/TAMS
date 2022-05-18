@@ -73,8 +73,30 @@ include_once 'includes/dbconfig.php';
                                 <div class="selector">
                                     <select name="district" class="full-width">
                                         <option value="Kandy">Kandy</option>
-                                        <option value="Colombo">Colombo</option>
                                         <option value="Jaffna">Jaffna</option>
+                                        <option value="Colombo">Colombo</option>
+                                        <option value="Gampaha">Gampaha</option>
+                                        <option value="Kalutara">Kalutara</option>
+                                        <option value="Matara">Matara</option>
+                                        <option value="Matale">Matale</option>
+                                        <option value="Nuwara Eliya">Nuwara Eliya</option>
+                                        <option value="Galle">Galle</option>
+                                        <option value="Hambantota">Hambantota</option>
+                                        <option value="Kilinochchi">Kilinochchi</option>
+                                        <option value="Mannar">Mannar</option>
+                                        <option value="Mullaitivu">Mullaitivu</option>
+                                        <option value="Batticaloa">Batticaloa</option>
+                                        <option value="Ampara">Ampara</option>
+                                        <option value="Trincomalee">Trincomalee</option>
+                                        <option value="Vavuniya">Vavuniya</option>
+                                        <option value="Kurunegala">Kurunegala</option>
+                                        <option value="Puttalam">Puttalam</option>
+                                        <option value="Anuradhapura">Anuradhapura</option>
+                                        <option value="Polonnaruwa">Polonnaruwa</option>
+                                        <option value="Badulla">Badulla</option>
+                                        <option value="Moneragala">Moneragala</option>
+                                        <option value="Ratnapura">Ratnapura</option>
+                                        <option value="Kegalle">Kegalle</option>
                                     </select>
                                 </div>
                             </div>
@@ -169,9 +191,31 @@ include_once 'includes/dbconfig.php';
                                 <label>Select Destination</label>
                                 <div class="selector">
                                     <select name="tdistrict" class="full-width">
-                                        <option value="kandy">Kandy</option>
-                                        <option value="colombo">Colombo</option>
-                                        <option value="jaffna">Jaffna</option>
+                                        <option value="Kandy">Kandy</option>
+                                        <option value="Jaffna">Jaffna</option>
+                                        <option value="Colombo">Colombo</option>
+                                        <option value="Gampaha">Gampaha</option>
+                                        <option value="Kalutara">Kalutara</option>
+                                        <option value="Matara">Matara</option>
+                                        <option value="Matale">Matale</option>
+                                        <option value="Nuwara Eliya">Nuwara Eliya</option>
+                                        <option value="Galle">Galle</option>
+                                        <option value="Hambantota">Hambantota</option>
+                                        <option value="Kilinochchi">Kilinochchi</option>
+                                        <option value="Mannar">Mannar</option>
+                                        <option value="Mullaitivu">Mullaitivu</option>
+                                        <option value="Batticaloa">Batticaloa</option>
+                                        <option value="Ampara">Ampara</option>
+                                        <option value="Trincomalee">Trincomalee</option>
+                                        <option value="Vavuniya">Vavuniya</option>
+                                        <option value="Kurunegala">Kurunegala</option>
+                                        <option value="Puttalam">Puttalam</option>
+                                        <option value="Anuradhapura">Anuradhapura</option>
+                                        <option value="Polonnaruwa">Polonnaruwa</option>
+                                        <option value="Badulla">Badulla</option>
+                                        <option value="Moneragala">Moneragala</option>
+                                        <option value="Ratnapura">Ratnapura</option>
+                                        <option value="Kegalle">Kegalle</option>
                                     </select>
                                 </div>
                             </div>
@@ -192,6 +236,9 @@ include_once 'includes/dbconfig.php';
                                                 <option value="Active Adventure">Active Adventure</option>
                                                 <option value="Explorer">Explorer</option>
                                                 <option value="In-depth Cultural">In-depth Cultural</option>
+                                                <option value="Hiking & Trekking">Hiking & Trekking</option>
+                                                <option value="Wildlife">Wildlife</option>
+                                                <option value="Sailing">Sailing</option>
                                             </select>
                                         </div>
                                     </div>
