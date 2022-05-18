@@ -313,7 +313,7 @@ if (isset($_GET['type']) && !empty($_GET['type'])) {
                                     }
                                 } else {
                                     ?>
-                                    <td colspan="9" style="text-align: center;">No Records Found.</td>
+                                    <td colspan="11" style="text-align: center;">No Records Found.</td>
                             <?php
 
                                 }
