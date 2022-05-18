@@ -115,7 +115,7 @@ class home
                 ava_night_price_adult=:aprice,ava_night_price_kid=:kprice,max_adults=:madult, 
                 max_kids=:mkid,rooms=:room,lg_desc=:desc,home_type=:type,province=:pro,
                 district=:distri,cancellation=:cancell,ava_start_date=:sdate,ava_end_date=:edate,
-                s_time=:stime, e_time=:etime, status=:s WHERE home_id=:id ");
+                s_time=:stime, e_time=:etime, status=:st WHERE home_id=:id ");
       $stmt->bindparam(":hname", $homename);
       $stmt->bindparam(":address", $location);
       $stmt->bindparam(":aprice", $aprice);

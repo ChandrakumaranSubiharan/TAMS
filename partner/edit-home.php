@@ -181,12 +181,12 @@ if (isset($_POST['update'])) {
                                 <option value="Northern Province">Northern Province</option>
                                 <option value="Central Province">Central Province</option>
                                 <option value="Western Province">Western Province</option>
-                                <option value="Eastern Province">Western Province</option>
-                                <option value="Southern Province">Western Province</option>
-                                <option value="North Western Province">Western Province</option>
-                                <option value="North Central Province">Western Province</option>
-                                <option value="Uva Province">Western Province</option>
-                                <option value="Sabaragamuwa Province">Western Province</option>
+                                <option value="Eastern Province">Eastern Province</option>
+                                <option value="Southern Province">Southern Province</option>
+                                <option value="North Western Province">North Western Province</option>
+                                <option value="North Central Province">North Central Province</option>
+                                <option value="Uva Province">Uva Province</option>
+                                <option value="Sabaragamuwa Province">Sabaragamuwa Province</option>
                             </select>
                         </div>
                         <div class="form-group">
