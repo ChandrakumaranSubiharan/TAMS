@@ -177,7 +177,7 @@ if (isset($_GET['confirmId']) && !empty($_GET['confirmId'])) {
                                         } elseif ($bookingdata['status'] == 3) {
                                             echo "0";
                                         } else {
-                                            echo $bookingdata['payout'];
+                                            echo $bookingdata['net_amount'];
                                         } ?>
                                         <?php
                                         ?> LKR</h6>
